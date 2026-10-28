@@ -1,0 +1,30 @@
+ Container sdlab-k6-run-2c3cb8a6fb70 Creating 
+ Container sdlab-k6-run-2c3cb8a6fb70 Created 
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 205005  1051.297937/s
+    checks_succeeded...: 100.00% 205005 out of 205005
+    checks_failed......: 0.00%   0 out of 205005
+
+    ✓ redirected
+
+    HTTP
+    http_req_duration..............: avg=2.56ms min=221.52µs med=439.64µs max=95.18ms  p(90)=5.76ms p(95)=16.19ms
+      { expected_response:true }...: avg=2.56ms min=221.52µs med=439.64µs max=95.18ms  p(90)=5.76ms p(95)=16.19ms
+    http_req_failed................: 0.00%  0 out of 205005
+    http_reqs......................: 205005 1051.297937/s
+
+    EXECUTION
+    iteration_duration.............: avg=2.67ms min=285.64µs med=549.74µs max=108.47ms p(90)=5.9ms  p(95)=16.29ms
+    iterations.....................: 205005 1051.297937/s
+    vus............................: 0      min=0           max=44  
+    vus_max........................: 1000   min=1000        max=1000
+
+    NETWORK
+    data_received..................: 46 MB  233 kB/s
+    data_sent......................: 14 MB  70 kB/s
+
+
+

@@ -1,0 +1,41 @@
+# The lab: one app server, one database, and k6 to load them.
+# CPU limits keep the numbers repeatable and leave the rest of the host alone:
+# the system under test gets half a core each, k6 gets two so it is never the limit.
+name: sdlab
+
+services:
+  db:
+    image: postgres:18.6-alpine
+    environment:
+      POSTGRES_PASSWORD: lab
+      POSTGRES_DB: shortener
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "shortener"]
+      interval: 2s
+      retries: 30
+    cpus: 0.5
+    mem_limit: 1g
+
+  app:
+    build: ./app
+    environment:
+      DATABASE_URL: postgres://postgres:lab@db:5432/shortener
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+    cpus: 0.5
+    mem_limit: 512m
+
+  k6:
+    image: grafana/k6:1.8.2
+    profiles: ["load"]
+    volumes:
+      - ./load:/load
+    working_dir: /load
+    user: "${UID:-1000}:${GID:-1000}"
+    cpus: 2.0   # the load generator must never be the bottleneck
+    mem_limit: 1g

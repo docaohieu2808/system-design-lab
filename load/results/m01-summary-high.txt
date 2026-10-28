@@ -1,0 +1,31 @@
+ Container sdlab-k6-run-e835d9fd3ba7 Creating 
+ Container sdlab-k6-run-e835d9fd3ba7 Created 
+
+
+  █ TOTAL RESULTS 
+
+    checks_total.......: 211127  2827.558879/s
+    checks_succeeded...: 100.00% 211127 out of 211127
+    checks_failed......: 0.00%   0 out of 211127
+
+    ✓ redirected
+
+    HTTP
+    http_req_duration..............: avg=242.07ms min=231.56µs med=176.9ms  max=1.66s p(90)=535.7ms  p(95)=594.23ms
+      { expected_response:true }...: avg=242.07ms min=231.56µs med=176.9ms  max=1.66s p(90)=535.7ms  p(95)=594.23ms
+    http_req_failed................: 0.00%  0 out of 211127
+    http_reqs......................: 211127 2827.558879/s
+
+    EXECUTION
+    dropped_iterations.............: 87950  1177.887259/s
+    iteration_duration.............: avg=273.72ms min=310.26µs med=184.74ms max=4.72s p(90)=571.73ms p(95)=618.17ms
+    iterations.....................: 211127 2827.558879/s
+    vus............................: 695    min=0           max=2565
+    vus_max........................: 4100   min=1013        max=4100
+
+    NETWORK
+    data_received..................: 47 MB  627 kB/s
+    data_sent......................: 14 MB  189 kB/s
+
+
+
