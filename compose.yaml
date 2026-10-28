@@ -34,8 +34,8 @@ services:
     image: grafana/k6:1.8.2
     profiles: ["load"]
     volumes:
-      - ./load:/load
-    working_dir: /load
+      - ./:/lab
+    working_dir: /lab
     user: "${UID:-1000}:${GID:-1000}"
     cpus: 2.0   # the load generator must never be the bottleneck
     mem_limit: 1g
