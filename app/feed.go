@@ -66,6 +66,8 @@ func feed(ctx context.Context, pool *pgxpool.Pool) map[string]any {
 	// fan-out on write: fill timelines for the last 20 posts of everyone first, so reads see a realistic table
 	pool.Exec(ctx, `INSERT INTO timeline (owner, post) SELECT f.follower, p.id FROM follows f JOIN LATERAL
 		(SELECT id FROM posts WHERE author = f.followee ORDER BY id DESC LIMIT 20) p ON true ON CONFLICT DO NOTHING`)
+	// a freshly bulk-loaded table has no visibility map or statistics yet; a real timeline table would have both
+	pool.Exec(ctx, "VACUUM ANALYZE timeline")
 	return map[string]any{
 		"users": 10000, "ordinary_followers": 100, "celebrity_followers": 9999,
 		"write_ordinary_ms":    map[string]float64{"fanout_on_write": post(500, true), "fanout_on_read": post(501, false)},

@@ -1,0 +1,8 @@
+{
+ "conns": 1000,
+ "sent_to": 30050,
+ "received": 30050,
+ "delivery_p50_ms": 1,
+ "delivery_p99_ms": 3,
+ "delivery_max_ms": 5
+}

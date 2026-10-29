@@ -1,0 +1,1 @@
+{"celebrity_followers":9999,"ordinary_followers":100,"read_feed_p50_ms":{"fanout_on_read":1.002,"fanout_on_write":5.184},"timeline_rows_stored":20208079,"users":10000,"write_celebrity_ms":{"fanout_on_read":0.56,"fanout_on_write":1124.481},"write_ordinary_ms":{"fanout_on_read":0.766,"fanout_on_write":61.552}}
