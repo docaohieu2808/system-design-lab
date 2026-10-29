@@ -1,0 +1,113 @@
+{
+ "hold_s": 15,
+ "steps": [
+  {
+   "asked_rps": 150,
+   "sent_rps": 150.1,
+   "dropped": 0,
+   "completed_rps": 150.1,
+   "succeeded_rps": 150.1,
+   "p50_ms": 1.8,
+   "p95_ms": 42.57,
+   "p99_ms": 72.87,
+   "avg_ms": 6.78,
+   "max_ms": 92.41
+  },
+  {
+   "asked_rps": 300,
+   "sent_rps": 300.1,
+   "dropped": 0,
+   "completed_rps": 300.1,
+   "succeeded_rps": 300.1,
+   "p50_ms": 243.78,
+   "p95_ms": 383.45,
+   "p99_ms": 415.22,
+   "avg_ms": 236.48,
+   "max_ms": 490.34
+  },
+  {
+   "asked_rps": 450,
+   "sent_rps": 394.7,
+   "dropped": 831,
+   "completed_rps": 244.3,
+   "succeeded_rps": 244.3,
+   "p50_ms": 2728.27,
+   "p95_ms": 3000.94,
+   "p99_ms": 3005.06,
+   "avg_ms": 2261.85,
+   "max_ms": 3032.67
+  },
+  {
+   "asked_rps": 600,
+   "sent_rps": 508.7,
+   "dropped": 1370,
+   "completed_rps": 180.7,
+   "succeeded_rps": 180.7,
+   "p50_ms": 2999.99,
+   "p95_ms": 3001.03,
+   "p99_ms": 3002.24,
+   "avg_ms": 2603.32,
+   "max_ms": 3009.94
+  },
+  {
+   "asked_rps": 750,
+   "sent_rps": 606.2,
+   "dropped": 2158,
+   "completed_rps": 156.9,
+   "succeeded_rps": 156.9,
+   "p50_ms": 3000.08,
+   "p95_ms": 3002.14,
+   "p99_ms": 3018.55,
+   "avg_ms": 2745.61,
+   "max_ms": 3042.27
+  },
+  {
+   "asked_rps": 900,
+   "sent_rps": 593.5,
+   "dropped": 3949,
+   "completed_rps": 172.3,
+   "succeeded_rps": 172.3,
+   "p50_ms": 3000.18,
+   "p95_ms": 3328.67,
+   "p99_ms": 3707.96,
+   "avg_ms": 2742.39,
+   "max_ms": 4170.7
+  },
+  {
+   "asked_rps": 1050,
+   "sent_rps": 312.5,
+   "dropped": 11057,
+   "completed_rps": 312.5,
+   "succeeded_rps": 312.5,
+   "p50_ms": 1813.41,
+   "p95_ms": 2848.84,
+   "p99_ms": 2889.26,
+   "avg_ms": 1784.17,
+   "max_ms": 2974.75
+  },
+  {
+   "asked_rps": 1200,
+   "sent_rps": 386.7,
+   "dropped": 12201,
+   "completed_rps": 234.5,
+   "succeeded_rps": 234.5,
+   "p50_ms": 2945.1,
+   "p95_ms": 3003.34,
+   "p99_ms": 3012.03,
+   "avg_ms": 2504.23,
+   "max_ms": 3028.5
+  },
+  {
+   "asked_rps": 1350,
+   "sent_rps": 357.5,
+   "dropped": 14920,
+   "completed_rps": 218.9,
+   "succeeded_rps": 218.9,
+   "p50_ms": 2972.19,
+   "p95_ms": 3028.7,
+   "p99_ms": 3042.2,
+   "avg_ms": 2665.2,
+   "max_ms": 3085.34
+  }
+ ]
+}
