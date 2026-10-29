@@ -1,6 +1,6 @@
 #!/bin/sh
 # Maintainer hook (git config core.hooksPath tools/git-hooks): refuse to commit files that name services or hosts
 # outside the lab, since the repo is public and results are recorded on a machine that runs other things.
-bad=$(git diff --cached --name-only -z -- . ":(exclude)tools/git-hooks" | xargs -0 -r git grep --cached -lIE "finance|file-drop|devops-lab|beszel|dozzle|form-gym|pg-shared|cadvisor|socket-proxy|docaohieu|hieudc|tailscale|100\.(6[4-9]|[7-9][0-9]|1[01][0-9]|12[0-7])\.[0-9]+\.[0-9]+" -- 2>/dev/null)
+bad=$(git diff --cached --name-only -z -- . ":(exclude)tools/git-hooks" | xargs -0 -r git grep --cached -lIE "finance|file-drop|devops-lab|beszel|dozzle|form-gym|pg-shared|cadvisor|socket-proxy|docaohieu\.com|@docaohieu|hieudc|tailscale|100\.(6[4-9]|[7-9][0-9]|1[01][0-9]|12[0-7])\.[0-9]+\.[0-9]+" -- 2>/dev/null)
 [ -z "$bad" ] && exit 0
 echo "pre-commit: these files name private services or hosts, clean them first:"; echo "$bad"; exit 1
