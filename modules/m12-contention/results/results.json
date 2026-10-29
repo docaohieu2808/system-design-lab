@@ -1,0 +1,73 @@
+{
+ "runs": 3,
+ "seats": 100,
+ "buyers": 1000,
+ "check_then_insert": {
+  "orders": {
+   "mean": 972,
+   "min": 967,
+   "max": 977
+  },
+  "oversold": {
+   "mean": 872,
+   "min": 867,
+   "max": 877
+  },
+  "ms": {
+   "mean": 1502.33,
+   "min": 1402,
+   "max": 1698
+  }
+ },
+ "select_for_update": {
+  "orders": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "oversold": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "ms": {
+   "mean": 1367.67,
+   "min": 1317,
+   "max": 1460
+  }
+ },
+ "advisory_lock": {
+  "orders": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "oversold": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "ms": {
+   "mean": 758,
+   "min": 713,
+   "max": 788
+  }
+ },
+ "conditional_update": {
+  "orders": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "oversold": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "ms": {
+   "mean": 703.33,
+   "min": 695,
+   "max": 714
+  }
+ }
+}

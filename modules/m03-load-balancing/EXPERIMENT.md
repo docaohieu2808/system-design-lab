@@ -47,3 +47,8 @@ the formal measurement of that is `results-proxy/`).
   each step test is used for the ceiling, and the peak CPU columns include those overloaded steps.
 - Several machines, real network latency between them, or Traefik's own failover (one Traefik here).
 - Exact numbers for your machine; compare the shape (see Module 0, calibration).
+
+## The proxy's own cost (`tools/run-m03-proxy.sh`, `results-proxy/`)
+3 app copies, plain redirect (no page work) at 2,000 req/s for 30 s, 3 runs: all succeeded; Traefik used 61% of a core,
+the three app copies 61% together. With a request this cheap the proxy costs as much as the app, which is why the
+module uses the preview page.

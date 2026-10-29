@@ -1,0 +1,1 @@
+{"advisory_lock":{"ms":788,"orders":100,"oversold":0},"buyers":1000,"check_then_insert":{"ms":1402,"orders":972,"oversold":872},"conditional_update":{"ms":695,"orders":100,"oversold":0},"seats":100,"select_for_update":{"ms":1326,"orders":100,"oversold":0}}

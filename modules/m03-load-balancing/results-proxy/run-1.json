@@ -1,0 +1,17 @@
+{
+ "hold_s": 30,
+ "steps": [
+  {
+   "asked_rps": 2000,
+   "sent_rps": 2000,
+   "dropped": 0,
+   "completed_rps": 2000,
+   "succeeded_rps": 2000,
+   "p50_ms": 1.01,
+   "p95_ms": 45.4,
+   "p99_ms": 90.51,
+   "avg_ms": 7.57,
+   "max_ms": 373.61
+  }
+ ]
+}
