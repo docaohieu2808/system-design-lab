@@ -1,0 +1,7 @@
+pgbench (18.6)
+pgbench: error: connection to server at "db" (172.25.6.2), port 5432 failed: FATAL:  sorry, too many clients already
+pgbench: error: could not create connection for client 88
+pgbench: error: connection to server at "db" (172.25.6.2), port 5432 failed: FATAL:  sorry, too many clients already
+pgbench: error: connection to server at "db" (172.25.6.2), port 5432 failed: FATAL:  sorry, too many clients already
+pgbench: error: could not create connection for client 57
+pgbench: error: could not create connection for client 24
