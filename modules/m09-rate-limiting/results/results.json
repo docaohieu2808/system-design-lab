@@ -1,0 +1,145 @@
+{
+ "runs": 3,
+ "limit_per_s": 10,
+ "shared_local_allowed_per_s": {
+  "mean": 30.88,
+  "min": 30.87,
+  "max": 30.9
+ },
+ "shared_redis-bucket_allowed_per_s": {
+  "mean": 10.31,
+  "min": 10.3,
+  "max": 10.33
+ },
+ "boundary_redis-window_allowed_in_200ms": {
+  "mean": 20,
+  "min": 20,
+  "max": 20
+ },
+ "boundary_redis-bucket_allowed_in_200ms": {
+  "mean": 11,
+  "min": 11,
+  "max": 11
+ },
+ "outage_open": {
+  "before": {
+   "allowed_per_s": {
+    "mean": 10.9,
+    "min": 10.9,
+    "max": 10.9
+   },
+   "refused_429": {
+    "mean": 391.67,
+    "min": 391,
+    "max": 392
+   },
+   "errors_503": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "during": {
+   "allowed_per_s": {
+    "mean": 44.03,
+    "min": 43.9,
+    "max": 44.2
+   },
+   "refused_429": {
+    "mean": 60.67,
+    "min": 59,
+    "max": 62
+   },
+   "errors_503": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "after": {
+   "allowed_per_s": {
+    "mean": 16.83,
+    "min": 16.6,
+    "max": 17.1
+   },
+   "refused_429": {
+    "mean": 332.67,
+    "min": 330,
+    "max": 335
+   },
+   "errors_503": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ },
+ "outage_closed": {
+  "before": {
+   "allowed_per_s": {
+    "mean": 10.9,
+    "min": 10.9,
+    "max": 10.9
+   },
+   "refused_429": {
+    "mean": 392,
+    "min": 392,
+    "max": 392
+   },
+   "errors_503": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "during": {
+   "allowed_per_s": {
+    "mean": 1.5,
+    "min": 1.4,
+    "max": 1.6
+   },
+   "refused_429": {
+    "mean": 58.33,
+    "min": 57,
+    "max": 61
+   },
+   "errors_503": {
+    "mean": 427.67,
+    "min": 424,
+    "max": 430
+   }
+  },
+  "after": {
+   "allowed_per_s": {
+    "mean": 9.47,
+    "min": 9.4,
+    "max": 9.5
+   },
+   "refused_429": {
+    "mean": 335,
+    "min": 332,
+    "max": 337
+   },
+   "errors_503": {
+    "mean": 71,
+    "min": 69,
+    "max": 75
+   }
+  }
+ },
+ "spoof_left-insecure_allowed_per_s": {
+  "mean": 50.07,
+  "min": 50.07,
+  "max": 50.07
+ },
+ "spoof_right-insecure_allowed_per_s": {
+  "mean": 10.3,
+  "min": 10.3,
+  "max": 10.3
+ },
+ "spoof_left-default_allowed_per_s": {
+  "mean": 10.31,
+  "min": 10.3,
+  "max": 10.33
+ }
+}

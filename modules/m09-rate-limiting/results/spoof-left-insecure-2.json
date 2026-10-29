@@ -1,0 +1,22 @@
+{
+ "test": "steady",
+ "spoof": true,
+ "before": {
+  "allowed_per_s": 50,
+  "refused_429": 0,
+  "errors_503": 0,
+  "other": 0
+ },
+ "during": {
+  "allowed_per_s": 50.1,
+  "refused_429": 0,
+  "errors_503": 0,
+  "other": 0
+ },
+ "after": {
+  "allowed_per_s": 50.1,
+  "refused_429": 0,
+  "errors_503": 0,
+  "other": 0
+ }
+}
