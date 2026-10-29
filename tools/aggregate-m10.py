@@ -6,7 +6,18 @@ from pathlib import Path
 
 out, runs = Path(sys.argv[1]), int(sys.argv[2])
 agg = lambda xs: {"mean": round(st.mean(xs), 2), "min": round(min(xs), 2), "max": round(max(xs), 2)}
-j = lambda n: [json.loads((out / f"{n}-{k}.json").read_text().strip().splitlines()[-1]) for k in range(1, runs + 1)]
+
+
+def load(path):
+    """k6 writes pretty-printed JSON; the drills print one JSON line after any log lines."""
+    text = path.read_text().strip()
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError:
+        return json.loads(text.splitlines()[-1])
+
+
+j = lambda n: [load(out / f"{n}-{k}.json") for k in range(1, runs + 1)]
 res = {"runs": runs}
 for q in ("0", "1"):
     res[f"inline_queue{q}"] = {f: agg([r[f] for r in j(f"inline-{q}")]) for f in ("create_p50_ms", "create_p99_ms")}

@@ -4,7 +4,7 @@
 #   2 lag:    queued, drained by 1 worker vs 16 workers for 40 s: how long jobs wait, how much is left over
 #   3 charges: 1,000 payment jobs, the worker crashes after charging 10% of the time: without vs with idempotency key
 #   4 poison: 200 good jobs behind one that always fails: retry forever vs dead-letter after 3 tries
-#   5 storm:  the app is frozen for the middle 10 s; clients retry at once vs with exponential backoff and jitter
+#   5 storm:  the app is down (stopped, so requests fail at once) for the middle 10 s; clients retry at once vs with exponential backoff and jitter
 set -euo pipefail
 runs=${1:-3}; out=modules/m10-async/results; mkdir -p "$out"
 export UID GID=$(id -g) COMPOSE_FILE=compose.yaml:modules/m10-async/compose.queue.yaml
@@ -22,7 +22,7 @@ for k in $(seq 1 "$runs"); do
   for dlq in 0 3; do fresh; docker compose run --rm --no-deps -e DLQ_AFTER=$dlq app drill poison > "$out/poison-$dlq-$k.json" 2>/dev/null; echo "run $k poison dlq=$dlq done"; done
   export QUEUE=0 SIDE_WORK_MS=0
   for r in immediate backoff; do
-    fresh; ( sleep 12; docker compose pause app >/dev/null; sleep 10; docker compose unpause app >/dev/null ) & ev=$!
+    fresh; ( sleep 12; docker compose stop app >/dev/null; sleep 10; docker compose start app >/dev/null ) & ev=$!
     create -e RETRY=$r -e RESULT="$out/storm-$r-$k.json"; wait $ev; echo "run $k storm $r done"
   done
 done
