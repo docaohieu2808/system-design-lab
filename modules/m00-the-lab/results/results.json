@@ -1,0 +1,195 @@
+{
+ "runs": 3,
+ "freeze_s": 2,
+ "duration_s": 60,
+ "results": {
+  "closed-calm": {
+   "requests": {
+    "mean": 50856,
+    "min": 50760,
+    "max": 50913
+   },
+   "rps": {
+    "mean": 847.6,
+    "min": 846,
+    "max": 848.5
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.96,
+    "min": 0.95,
+    "max": 0.96
+   },
+   "p99_ms": {
+    "mean": 3.05,
+    "min": 2.99,
+    "max": 3.1
+   },
+   "p999_ms": {
+    "mean": 31.12,
+    "min": 28.75,
+    "max": 34.59
+   },
+   "avg_ms": {
+    "mean": 1.14,
+    "min": 1.14,
+    "max": 1.15
+   },
+   "max_ms": {
+    "mean": 70.85,
+    "min": 59.07,
+    "max": 77.06
+   }
+  },
+  "closed-freeze": {
+   "requests": {
+    "mean": 49076.67,
+    "min": 48935,
+    "max": 49322
+   },
+   "rps": {
+    "mean": 817.93,
+    "min": 815.6,
+    "max": 822
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.96,
+    "min": 0.95,
+    "max": 0.97
+   },
+   "p99_ms": {
+    "mean": 3.08,
+    "min": 2.76,
+    "max": 3.32
+   },
+   "p999_ms": {
+    "mean": 34.13,
+    "min": 31.1,
+    "max": 39.13
+   },
+   "avg_ms": {
+    "mean": 1.56,
+    "min": 1.52,
+    "max": 1.58
+   },
+   "max_ms": {
+    "mean": 2044.92,
+    "min": 2031.74,
+    "max": 2056.02
+   }
+  },
+  "open-calm": {
+   "requests": {
+    "mean": 48000.67,
+    "min": 48000,
+    "max": 48001
+   },
+   "rps": {
+    "mean": 800,
+    "min": 800,
+    "max": 800
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.41,
+    "min": 0.41,
+    "max": 0.41
+   },
+   "p99_ms": {
+    "mean": 6.6,
+    "min": 5.27,
+    "max": 8.44
+   },
+   "p999_ms": {
+    "mean": 45.6,
+    "min": 37.97,
+    "max": 52.64
+   },
+   "avg_ms": {
+    "mean": 0.73,
+    "min": 0.68,
+    "max": 0.79
+   },
+   "max_ms": {
+    "mean": 69.82,
+    "min": 57.06,
+    "max": 77.82
+   }
+  },
+  "open-freeze": {
+   "requests": {
+    "mean": 48000.67,
+    "min": 48000,
+    "max": 48001
+   },
+   "rps": {
+    "mean": 800,
+    "min": 800,
+    "max": 800
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.41,
+    "min": 0.41,
+    "max": 0.41
+   },
+   "p99_ms": {
+    "mean": 1541.64,
+    "min": 1506.11,
+    "max": 1588.9
+   },
+   "p999_ms": {
+    "mean": 2022.61,
+    "min": 2018.05,
+    "max": 2029.69
+   },
+   "avg_ms": {
+    "mean": 43.24,
+    "min": 42.34,
+    "max": 44.69
+   },
+   "max_ms": {
+    "mean": 2107.12,
+    "min": 2082.31,
+    "max": 2150.74
+   }
+  }
+ }
+}

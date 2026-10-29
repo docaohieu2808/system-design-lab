@@ -11,13 +11,15 @@ and measured. Every number shown in the videos comes from running these files.
 ## Quick start
 ```bash
 make verify     # ~1 minute: the stack starts, answers correctly, and k6 is not the bottleneck
+make calibrate  # ~2 minutes: your machine's ceiling vs the course machine, as a ratio
+make m00        # Module 0: closed vs open load around a 2-second freeze (3 runs, ~15 minutes)
 make m01        # Module 1: find the ceiling of one server (3 runs, ~13 minutes)
 make down       # remove everything
 ```
 
 ## How every experiment is recorded
 Each module folder has:
-- the k6 script(s) — always an **open model** (`constant-arrival-rate`): k6 sends at the asked rate whether or not answers
+- the k6 script(s) — an **open model** (Module 0 also runs a closed one, to show why not) (`constant-arrival-rate`): k6 sends at the asked rate whether or not answers
   come back, so a slow server shows up as latency instead of being hidden;
 - `EXPERIMENT.md` — environment, method, what the result proves and what it does **not** prove;
 - `results/results.json` — per load step, the mean / min / max over all runs of:
@@ -30,6 +32,7 @@ the ceiling vs at 50%"), not absolute values.
 ## Modules
 | # | Topic | Folder |
 |---|---|---|
+| 0 | The lab: open vs closed load, calibration | `modules/m00-the-lab` |
 | 1 | One server, honestly measured | `modules/m01-one-server` |
 
 ## License

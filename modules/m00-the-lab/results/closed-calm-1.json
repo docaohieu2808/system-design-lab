@@ -1,0 +1,12 @@
+{
+ "model": "closed",
+ "requests": 50895,
+ "rps": 848.3,
+ "dropped": 0,
+ "failed_pct": 0,
+ "p50_ms": 0.96,
+ "p99_ms": 3.07,
+ "p999_ms": 28.75,
+ "avg_ms": 1.14,
+ "max_ms": 76.41
+}
