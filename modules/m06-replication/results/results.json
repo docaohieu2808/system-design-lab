@@ -1,0 +1,117 @@
+{
+ "runs": 3,
+ "ryw": {
+  "nolag": {
+   "found": {
+    "mean": 376.67,
+    "min": 366,
+    "max": 390
+   },
+   "missing": {
+    "mean": 1124,
+    "min": 1111,
+    "max": 1134
+   },
+   "missing_pct": {
+    "mean": 74.9,
+    "min": 74.02,
+    "max": 75.6
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "lag": {
+   "found": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "missing": {
+    "mean": 1500.67,
+    "min": 1500,
+    "max": 1501
+   },
+   "missing_pct": {
+    "mean": 100,
+    "min": 100,
+    "max": 100
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "lag-ryw": {
+   "found": {
+    "mean": 1500.67,
+    "min": 1500,
+    "max": 1501
+   },
+   "missing": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "missing_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ },
+ "failover": {
+  "async": {
+   "rto_s": {
+    "mean": 5.55,
+    "min": 5.54,
+    "max": 5.56
+   },
+   "acked": {
+    "mean": 3437,
+    "min": 3435,
+    "max": 3439
+   },
+   "lost": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_attempts": {
+    "mean": 199.67,
+    "min": 189,
+    "max": 219
+   }
+  },
+  "sync": {
+   "rto_s": {
+    "mean": 5.6,
+    "min": 5.55,
+    "max": 5.66
+   },
+   "acked": {
+    "mean": 3429.33,
+    "min": 3424,
+    "max": 3434
+   },
+   "lost": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_attempts": {
+    "mean": 200.67,
+    "min": 188,
+    "max": 225
+   }
+  }
+ }
+}
