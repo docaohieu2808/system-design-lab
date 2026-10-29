@@ -1,0 +1,16 @@
+# Module 10: Redis as a queue (a stream) and a worker that drains it.
+#   COMPOSE_FILE=compose.yaml:modules/m10-async/compose.queue.yaml
+services:
+  redis:
+    image: redis:8.10.2-alpine3.23
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30}
+    cpus: 0.5
+  app:
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      SIDE_WORK_MS: ${SIDE_WORK_MS:-200}
+      QUEUE: ${QUEUE:-0}
+      POOL_MAX: "20"
+    depends_on:
+      redis: {condition: service_healthy}

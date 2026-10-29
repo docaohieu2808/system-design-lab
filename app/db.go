@@ -106,6 +106,18 @@ func drill(name string) {
 		res = lostUpdate(ctx, pool)
 	case "write-skew":
 		res = writeSkew(ctx, pool)
+	case "worker":
+		res = worker(ctx)
+	case "charges":
+		res = charges(ctx, pool)
+	case "poison":
+		res = poison(ctx)
+	case "feed":
+		res = feed(ctx, pool)
+	case "rehash":
+		res = rehash()
+	case "tickets":
+		res = tickets(ctx, pool)
 	case "failover-writer":
 		failoverWriter(ctx, pool)
 		return

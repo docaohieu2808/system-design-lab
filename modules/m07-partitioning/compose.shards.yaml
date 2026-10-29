@@ -1,0 +1,30 @@
+# Module 7: three database shards (db, db2, db3). Each holds the same 100,000 links, and the app sends every code
+# to exactly one of them (hash of the code, mod 3), so what is measured is where the lookups land, not data copying.
+# Each shard gets 0.15 of a core so that one hot shard fills up while the app (1 core) and the others do not.
+x-shard: &shard
+  image: postgres:18.6-alpine
+  environment:
+    POSTGRES_PASSWORD: lab
+    POSTGRES_DB: shortener
+  volumes:
+    - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+  healthcheck:
+    test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "postgres", "-d", "shortener"]
+    interval: 2s
+    retries: 60
+  cpus: 0.15
+  mem_limit: 512m
+services:
+  db:
+    cpus: 0.15
+  db2: *shard
+  db3: *shard
+  app:
+    cpus: 1.0
+    environment:
+      SHARD_URLS: postgres://postgres:lab@db:5432/shortener,postgres://postgres:lab@db2:5432/shortener,postgres://postgres:lab@db3:5432/shortener
+    depends_on:
+      db2:
+        condition: service_healthy
+      db3:
+        condition: service_healthy

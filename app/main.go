@@ -5,6 +5,8 @@
 //	GET  /page/{code}                -> 200, a small preview page: the same lookup plus ~1 ms of CPU (Module 3)
 //	GET  /healthz                    -> 200 when the database answers
 //	GET  /api/lookup, /api/recent    -> Module 5 database lessons (db.go)
+//	GET  /api/limited                -> Module 9 rate limiter (ratelimit.go)
+//	GET  /api/enrich/{code}          -> Module 11 dependency + circuit breaker (overload.go)
 //	GET  /stats, POST /stats/reset   -> counters: database queries, cache hits and misses (Module 4)
 //
 // It is deliberately plain (one process, one Postgres) so every later module
@@ -53,7 +55,11 @@ type server struct {
 func (s *server) redirect(w http.ResponseWriter, r *http.Request) {
 	var long string
 	stats.dbQueries.Add(1)
-	err := s.readDB(r).QueryRow(r.Context(), "SELECT url FROM links WHERE code = $1", r.PathValue("code")).Scan(&long)
+	db := s.readDB(r)
+	if sp := shardFor(r.PathValue("code")); sp != nil {
+		db = sp
+	}
+	err := db.QueryRow(r.Context(), "SELECT url FROM links WHERE code = $1", r.PathValue("code")).Scan(&long)
 	if errors.Is(err, pgx.ErrNoRows) {
 		http.NotFound(w, r)
 		return
@@ -93,6 +99,7 @@ func (s *server) create(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "database error", http.StatusServiceUnavailable)
 		return
 	}
+	sideWork(r.Context(), code)
 	markWrote(w)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)
@@ -158,13 +165,17 @@ func main() {
 		work = 6000
 	}
 	openReadPool()
+	openShards()
 	delayMS, _ := strconv.Atoi(os.Getenv("PAGE_DELAY_MS"))
 	s := &server{db: pool, work: work, cache: newPageCache(), delay: time.Duration(delayMS) * time.Millisecond}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", s.health)
 	mux.HandleFunc("POST /api/links", s.create)
-	mux.HandleFunc("GET /page/{code}", s.page)
+	mux.HandleFunc("GET /page/{code}", shed(s.page))
+	mux.HandleFunc("GET /api/enrich/{code}", s.enrich)
 	mux.HandleFunc("GET /stats", serveStats)
+	mux.HandleFunc("GET /stats/shards", serveShardStats)
+	mux.HandleFunc("GET /api/limited", newLimiter().serve)
 	mux.HandleFunc("GET /api/lookup", s.lookup)
 	mux.HandleFunc("GET /api/recent", s.recent)
 	mux.HandleFunc("POST /stats/reset", resetStats)

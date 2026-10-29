@@ -1,0 +1,25 @@
+# Module 9: three app copies behind Traefik (Module 3's overlay) plus Redis for the shared limiter.
+#   COMPOSE_FILE=compose.yaml:modules/m03-load-balancing/compose.lb.yaml:modules/m09-rate-limiting/compose.rl.yaml
+services:
+  redis:
+    image: redis:8.10.2-alpine3.23
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30}
+    cpus: 0.5
+  app:
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      RL_MODE: ${RL_MODE:-local}
+      RL_RATE: ${RL_RATE:-10}
+      RL_FAIL: ${RL_FAIL:-open}
+      RL_CLIENT: ${RL_CLIENT:-xff-right}
+    depends_on:
+      redis: {condition: service_healthy}
+  traefik:
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=sdlab_default
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.forwardedheaders.insecure=${XFF_INSECURE:-false}   # true = pass on whatever the client wrote
+      - --ping=true

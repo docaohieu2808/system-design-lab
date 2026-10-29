@@ -1,0 +1,18 @@
+# Module 11: one app copy (half a core) with load shedding knobs, plus "dep": a second copy of the app that plays a
+# slow dependency (its preview page takes DEP_DELAY_MS to answer).
+#   COMPOSE_FILE=compose.yaml:modules/m11-overload/compose.overload.yaml
+services:
+  app:
+    environment:
+      MAX_INFLIGHT: ${MAX_INFLIGHT:-0}
+      BREAKER: ${BREAKER:-0}
+      DEP_URL: http://dep:8080/page/1C
+      DEP_TIMEOUT_MS: ${DEP_TIMEOUT_MS:-1000}
+  dep:
+    build: ./app
+    environment:
+      DATABASE_URL: postgres://postgres:lab@db:5432/shortener
+      PAGE_DELAY_MS: ${DEP_DELAY_MS:-1500}
+    depends_on:
+      db: {condition: service_healthy}
+    cpus: 0.25
