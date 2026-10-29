@@ -1,0 +1,4 @@
+# Capstone 13.4: every k6 virtual user holds one WebSocket open, which needs more memory than k6's usual 1 GB.
+services:
+  k6:
+    mem_limit: 3g

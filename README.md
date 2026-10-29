@@ -13,6 +13,7 @@ and measured. Every number shown in the videos comes from running these files.
 make verify     # ~1 minute: the stack starts, answers correctly, and k6 is not the bottleneck
 make calibrate  # ~2 minutes: your machine's ceiling vs the course machine, as a ratio
 make m00        # Module 0: closed vs open load around a 2-second freeze (3 runs, ~15 minutes)
+make help       # every module's experiments, with how long each takes
 make m01        # Module 1: find the ceiling of one server (3 runs, ~13 minutes)
 make down       # remove everything
 ```
@@ -34,6 +35,17 @@ the ceiling vs at 50%"), not absolute values.
 |---|---|---|
 | 0 | The lab: open vs closed load, calibration | `modules/m00-the-lab` |
 | 1 | One server, honestly measured | `modules/m01-one-server` |
+| 3 | Load balancing: copies, a crash, a frozen copy, a slow copy | `modules/m03-load-balancing` |
+| 4 | Caching: hit ratio, skewed traffic, stampede, single-flight, TTL jitter | `modules/m04-caching` |
+| 5 | Database: index, N+1, connection pools, lost updates, write skew | `modules/m05-database` |
+| 6 | Replication: replica reads, lag, read-your-writes, failover | `modules/m06-replication` |
+| 7 | Partitioning: consistent hashing, hot keys, ID types | `modules/m07-partitioning` |
+| 8 | CAP: cut the network (etcd, Redis) | `modules/m08-cap` |
+| 9 | Rate limiting: shared buckets, windows, fail open/closed, client identity | `modules/m09-rate-limiting` |
+| 10 | Async work: queues, lag, idempotency, poison messages, retry storms | `modules/m10-async` |
+| 11 | Overload: goodput, load shedding, circuit breaker | `modules/m11-overload` |
+| 12 | Contention: the ticket race | `modules/m12-contention` |
+| 13 | Capstones: news feed drill, and `make check-capstone URL=...` for your own shortener | `modules/m13-capstones` |
 
 ## License
 Code: MIT. Course videos and text are not covered by this license.

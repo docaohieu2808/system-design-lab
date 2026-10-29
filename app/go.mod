@@ -3,6 +3,7 @@ module github.com/example/system-design-lab/app
 go 1.26.10
 
 require (
+	github.com/coder/websocket v1.8.13
 	github.com/jackc/pgx/v5 v5.11.0
 	github.com/redis/go-redis/v9 v9.14.0
 	golang.org/x/sync v0.17.0

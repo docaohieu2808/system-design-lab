@@ -7,6 +7,7 @@
 //	GET  /api/lookup, /api/recent    -> Module 5 database lessons (db.go)
 //	GET  /api/limited                -> Module 9 rate limiter (ratelimit.go)
 //	GET  /api/enrich/{code}          -> Module 11 dependency + circuit breaker (overload.go)
+//	GET  /ws, POST /api/rooms/{room}/send -> capstone 13.4 chat rooms (chat.go)
 //	GET  /stats, POST /stats/reset   -> counters: database queries, cache hits and misses (Module 4)
 //
 // It is deliberately plain (one process, one Postgres) so every later module
@@ -174,6 +175,9 @@ func main() {
 	mux.HandleFunc("GET /page/{code}", shed(s.page))
 	mux.HandleFunc("GET /api/enrich/{code}", s.enrich)
 	mux.HandleFunc("GET /stats", serveStats)
+	mux.HandleFunc("GET /ws", joinRoom)
+	mux.HandleFunc("POST /api/rooms/{room}/send", sendToRoom)
+	mux.HandleFunc("GET /stats/chat", chatStats)
 	mux.HandleFunc("GET /stats/shards", serveShardStats)
 	mux.HandleFunc("GET /api/limited", newLimiter().serve)
 	mux.HandleFunc("GET /api/lookup", s.lookup)

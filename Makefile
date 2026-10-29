@@ -33,10 +33,12 @@ m12:           ## Module 12: the ticket race ($(RUNS) runs, about 3 minutes)
 	tools/run-m12.sh $(RUNS)
 m13:           ## Capstone 13.3: news feed fan-out ($(RUNS) runs, about 5 minutes)
 	tools/run-m13.sh $(RUNS)
+check-capstone: ## capstone 13.1: does your URL shortener meet the contract and the module-two goals?
+	tools/check-capstone.sh $(URL)
 calibrate:     ## ~2 minutes: this machine's ceiling vs the course machine, as a ratio
 	tools/calibrate.sh
 verify:        ## short self-check: the lab runs, answers are correct, k6 is not saturated
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m04 m05 m06 m07 m08 m09 m10 m11 m12 m13 m01-starved verify help
+.PHONY: up down calibrate m00 m01 m03 m04 m05 m06 m07 m08 m09 m10 m11 m12 m13 check-capstone m01-starved verify help
