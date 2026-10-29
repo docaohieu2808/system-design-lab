@@ -12,7 +12,9 @@ services:
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "shortener"]
+      # over TCP: while init.sql loads, Postgres runs a temporary server on the unix socket only, and a socket check
+      # would report "ready" before the 100,000 links exist (the app then answered 503)
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "postgres", "-d", "shortener"]
       interval: 2s
       retries: 30
     cpus: 0.5
@@ -27,6 +29,10 @@ services:
         condition: service_healthy
     ports:
       - "127.0.0.1:8080:8080"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+      interval: 1s
+      retries: 30
     cpus: 0.5
     mem_limit: 512m
 
