@@ -2,6 +2,7 @@
 //   KEYS=zipf     a few links get most of the clicks: link k is picked with probability ~ 1/k (Zipf, s = 1)
 //   KEYS=uniform  every one of the 100,000 links is equally likely
 //   KEYS=hot      HOT_PCT percent of requests ask for one page (think: the home page), the rest are Zipf
+//   KEYS=set      every one of the first SET_N links (default 2,000) is equally likely: the pages a warm-up cached
 // The app's own counters (GET /stats) say how many requests reached the database; tools/run-m04.sh reads them.
 import http from 'k6/http';
 import { check } from 'k6';
@@ -25,7 +26,9 @@ function b62(n) { let s = ''; while (n > 0) { s = A[n % 62] + s; n = Math.floor(
 // continuous inverse of the 1/k density on [1, N+1): close to Zipf(s = 1) without a 100,000-entry table per VU
 const HOT_PCT = Number(__ENV.HOT_PCT || 50);
 const zipf = () => Math.min(N, Math.floor(Math.exp(Math.random() * Math.log(N + 1))));
+const SET_N = Number(__ENV.SET_N || 2000);
 const pick = KEYS === 'uniform' ? () => 1 + Math.floor(Math.random() * N)
+  : KEYS === 'set' ? () => 1 + Math.floor(Math.random() * SET_N)
   : KEYS === 'hot' ? () => (Math.random() * 100 < HOT_PCT ? 1 : zipf()) : zipf;
 
 export default function () {
