@@ -1,0 +1,255 @@
+{
+ "runs": 3,
+ "inline_queue0": {
+  "create_p50_ms": {
+   "mean": 203,
+   "min": 203,
+   "max": 203
+  },
+  "create_p99_ms": {
+   "mean": 206,
+   "min": 206,
+   "max": 206
+  }
+ },
+ "inline_queue1": {
+  "create_p50_ms": {
+   "mean": 2,
+   "min": 2,
+   "max": 2
+  },
+  "create_p99_ms": {
+   "mean": 6,
+   "min": 6,
+   "max": 6
+  }
+ },
+ "lag_workers1": {
+  "done": {
+   "mean": 198,
+   "min": 198,
+   "max": 198
+  },
+  "wait_p50_ms": {
+   "mean": 17241.33,
+   "min": 17235,
+   "max": 17247
+  },
+  "wait_p99_ms": {
+   "mean": 34295.33,
+   "min": 34286,
+   "max": 34303
+  },
+  "left_in_stream": {
+   "mean": 1004.33,
+   "min": 1004,
+   "max": 1005
+  }
+ },
+ "lag_workers16": {
+  "done": {
+   "mean": 1202.33,
+   "min": 1201,
+   "max": 1203
+  },
+  "wait_p50_ms": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p99_ms": {
+   "mean": 1,
+   "min": 1,
+   "max": 1
+  },
+  "left_in_stream": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "charges_idem0": {
+  "crashes": {
+   "mean": 127.67,
+   "min": 116,
+   "max": 137
+  },
+  "charges": {
+   "mean": 1127.67,
+   "min": 1116,
+   "max": 1137
+  },
+  "jobs_charged": {
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
+  },
+  "double_charges": {
+   "mean": 127.67,
+   "min": 116,
+   "max": 137
+  }
+ },
+ "charges_idem1": {
+  "crashes": {
+   "mean": 111.33,
+   "min": 95,
+   "max": 121
+  },
+  "charges": {
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
+  },
+  "jobs_charged": {
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
+  },
+  "double_charges": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "poison_dlq0": {
+  "good_done_in_10s": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "poison_attempts": {
+   "mean": 321,
+   "min": 321,
+   "max": 321
+  },
+  "parked_in_dlq": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "poison_dlq3": {
+  "good_done_in_10s": {
+   "mean": 200,
+   "min": 200,
+   "max": 200
+  },
+  "poison_attempts": {
+   "mean": 3,
+   "min": 3,
+   "max": 3
+  },
+  "parked_in_dlq": {
+   "mean": 1,
+   "min": 1,
+   "max": 1
+  }
+ },
+ "storm_immediate": {
+  "before": {
+   "attempts": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "created": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "during": {
+   "attempts": {
+    "mean": 1150.67,
+    "min": 1144,
+    "max": 1161
+   },
+   "created": {
+    "mean": 328,
+    "min": 328,
+    "max": 328
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "after": {
+   "attempts": {
+    "mean": 403,
+    "min": 401,
+    "max": 406
+   },
+   "created": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ },
+ "storm_backoff": {
+  "before": {
+   "attempts": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "created": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "during": {
+   "attempts": {
+    "mean": 1057.67,
+    "min": 1027,
+    "max": 1097
+   },
+   "created": {
+    "mean": 327,
+    "min": 327,
+    "max": 327
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "after": {
+   "attempts": {
+    "mean": 411.33,
+    "min": 401,
+    "max": 429
+   },
+   "created": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "gave_up": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ }
+}

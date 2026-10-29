@@ -1,0 +1,21 @@
+{
+ "retry": "immediate",
+ "rate": 40,
+ "before": {
+  "attempts": 401,
+  "created": 401,
+  "gave_up": 0
+ },
+ "during": {
+  "attempts": 1144,
+  "created": 328,
+  "gave_up": 0
+ },
+ "after": {
+  "attempts": 401,
+  "created": 401,
+  "gave_up": 0
+ },
+ "create_p50_ms": 3,
+ "create_p99_ms": 10434.1
+}

@@ -1,0 +1,21 @@
+{
+ "retry": "backoff",
+ "rate": 40,
+ "before": {
+  "attempts": 401,
+  "created": 401,
+  "gave_up": 0
+ },
+ "during": {
+  "attempts": 1049,
+  "created": 327,
+  "gave_up": 0
+ },
+ "after": {
+  "attempts": 404,
+  "created": 401,
+  "gave_up": 0
+ },
+ "create_p50_ms": 2,
+ "create_p99_ms": 11459.1
+}
