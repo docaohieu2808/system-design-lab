@@ -5,7 +5,7 @@
 # then <module>/results/results.json (aggregate) via tools/aggregate.py.
 set -euo pipefail
 script=$1; runs=${2:-3}; shift 2 || true
-mod=$(dirname "$script"); out=$mod/results; mkdir -p "$out"
+mod=$(dirname "$script"); out=${OUT:-$mod/results}; mkdir -p "$out"
 export UID GID=$(id -g)
 for k in $(seq 1 "$runs"); do
   docker compose down -v >/dev/null 2>&1 || true

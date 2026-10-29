@@ -37,5 +37,5 @@ services:
       - ./:/lab
     working_dir: /lab
     user: "${UID:-1000}:${GID:-1000}"
-    cpus: 2.0   # the load generator must never be the bottleneck
+    cpus: ${K6_CPUS:-2.0}   # the load generator must never be the bottleneck (lower it only to show what happens when it is)
     mem_limit: 1g

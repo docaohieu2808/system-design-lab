@@ -1,0 +1,125 @@
+{
+ "hold_s": 20,
+ "steps": [
+  {
+   "asked_rps": 250,
+   "sent_rps": 250.1,
+   "dropped": 0,
+   "completed_rps": 250.1,
+   "succeeded_rps": 250.1,
+   "p50_ms": 0.49,
+   "p95_ms": 0.9,
+   "p99_ms": 1.89,
+   "avg_ms": 0.59,
+   "max_ms": 28.82
+  },
+  {
+   "asked_rps": 500,
+   "sent_rps": 500.1,
+   "dropped": 0,
+   "completed_rps": 500.1,
+   "succeeded_rps": 500.1,
+   "p50_ms": 0.46,
+   "p95_ms": 1.1,
+   "p99_ms": 3.88,
+   "avg_ms": 0.67,
+   "max_ms": 46.69
+  },
+  {
+   "asked_rps": 750,
+   "sent_rps": 750,
+   "dropped": 0,
+   "completed_rps": 750,
+   "succeeded_rps": 750,
+   "p50_ms": 0.42,
+   "p95_ms": 1.01,
+   "p99_ms": 4.74,
+   "avg_ms": 0.67,
+   "max_ms": 54.03
+  },
+  {
+   "asked_rps": 1000,
+   "sent_rps": 1000,
+   "dropped": 0,
+   "completed_rps": 1000,
+   "succeeded_rps": 1000,
+   "p50_ms": 0.42,
+   "p95_ms": 1.15,
+   "p99_ms": 7.51,
+   "avg_ms": 0.74,
+   "max_ms": 55.95
+  },
+  {
+   "asked_rps": 1250,
+   "sent_rps": 1250,
+   "dropped": 0,
+   "completed_rps": 1250,
+   "succeeded_rps": 1250,
+   "p50_ms": 0.44,
+   "p95_ms": 1.87,
+   "p99_ms": 14.83,
+   "avg_ms": 0.97,
+   "max_ms": 54.94
+  },
+  {
+   "asked_rps": 1500,
+   "sent_rps": 1500.1,
+   "dropped": 0,
+   "completed_rps": 1500.1,
+   "succeeded_rps": 1500.1,
+   "p50_ms": 0.44,
+   "p95_ms": 1.89,
+   "p99_ms": 17.17,
+   "avg_ms": 0.95,
+   "max_ms": 57.11
+  },
+  {
+   "asked_rps": 2000,
+   "sent_rps": 2000.1,
+   "dropped": 0,
+   "completed_rps": 2000.1,
+   "succeeded_rps": 2000.1,
+   "p50_ms": 0.45,
+   "p95_ms": 7.43,
+   "p99_ms": 25.44,
+   "avg_ms": 1.69,
+   "max_ms": 124.38
+  },
+  {
+   "asked_rps": 3000,
+   "sent_rps": 2998.2,
+   "dropped": 38,
+   "completed_rps": 2998.2,
+   "succeeded_rps": 2998.2,
+   "p50_ms": 1.74,
+   "p95_ms": 66.06,
+   "p99_ms": 103.57,
+   "avg_ms": 12.95,
+   "max_ms": 227.89
+  },
+  {
+   "asked_rps": 4000,
+   "sent_rps": 3742,
+   "dropped": 5167,
+   "completed_rps": 3742,
+   "succeeded_rps": 3742,
+   "p50_ms": 61.85,
+   "p95_ms": 189.92,
+   "p99_ms": 298.76,
+   "avg_ms": 72.79,
+   "max_ms": 428.57
+  },
+  {
+   "asked_rps": 5000,
+   "sent_rps": 3731.3,
+   "dropped": 25376,
+   "completed_rps": 3731.3,
+   "succeeded_rps": 3731.3,
+   "p50_ms": 273.51,
+   "p95_ms": 768.69,
+   "p99_ms": 1101.76,
+   "avg_ms": 342.81,
+   "max_ms": 1374.76
+  }
+ ]
+}
