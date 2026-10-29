@@ -1,0 +1,11 @@
+{
+ "keys": "uniform",
+ "rate": 400,
+ "requests": 24001,
+ "rps": 400,
+ "failed_pct": 0,
+ "dropped": 0,
+ "p50_ms": 1.21,
+ "p99_ms": 43.36,
+ "max_ms": 110.06
+}

@@ -1,6 +1,7 @@
 // Module 4: a steady open load on the preview page, with the codes chosen the way real traffic chooses them.
 //   KEYS=zipf     a few links get most of the clicks: link k is picked with probability ~ 1/k (Zipf, s = 1)
 //   KEYS=uniform  every one of the 100,000 links is equally likely
+//   KEYS=hot      HOT_PCT percent of requests ask for one page (think: the home page), the rest are Zipf
 // The app's own counters (GET /stats) say how many requests reached the database; tools/run-m04.sh reads them.
 import http from 'k6/http';
 import { check } from 'k6';
@@ -22,8 +23,10 @@ export const options = {
 const A = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function b62(n) { let s = ''; while (n > 0) { s = A[n % 62] + s; n = Math.floor(n / 62); } return s; }
 // continuous inverse of the 1/k density on [1, N+1): close to Zipf(s = 1) without a 100,000-entry table per VU
+const HOT_PCT = Number(__ENV.HOT_PCT || 50);
+const zipf = () => Math.min(N, Math.floor(Math.exp(Math.random() * Math.log(N + 1))));
 const pick = KEYS === 'uniform' ? () => 1 + Math.floor(Math.random() * N)
-  : () => Math.min(N, Math.floor(Math.exp(Math.random() * Math.log(N + 1))));
+  : KEYS === 'hot' ? () => (Math.random() * 100 < HOT_PCT ? 1 : zipf()) : zipf;
 
 export default function () {
   const res = http.get(`${BASE}/page/${b62(pick())}`, { timeout: '3s', tags: { name: 'GET /page/{code}' } });

@@ -1,0 +1,193 @@
+{
+ "runs": 3,
+ "hit": {
+  "nocache": {
+   "hit_ratio_pct": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "db_queries_per_s": {
+    "mean": 400.02,
+    "min": 400.02,
+    "max": 400.02
+   },
+   "rps": {
+    "mean": 400,
+    "min": 400,
+    "max": 400
+   },
+   "p50_ms": {
+    "mean": 1.02,
+    "min": 1.01,
+    "max": 1.04
+   },
+   "p99_ms": {
+    "mean": 37.67,
+    "min": 37.09,
+    "max": 38.18
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "uniform": {
+   "hit_ratio_pct": {
+    "mean": 8.42,
+    "min": 8.25,
+    "max": 8.71
+   },
+   "db_queries_per_s": {
+    "mean": 366.35,
+    "min": 365.17,
+    "max": 367.0
+   },
+   "rps": {
+    "mean": 400,
+    "min": 400,
+    "max": 400
+   },
+   "p50_ms": {
+    "mean": 1.23,
+    "min": 1.21,
+    "max": 1.25
+   },
+   "p99_ms": {
+    "mean": 43.83,
+    "min": 42.63,
+    "max": 45.5
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  "zipf": {
+   "hit_ratio_pct": {
+    "mean": 62.8,
+    "min": 62.36,
+    "max": 63.03
+   },
+   "db_queries_per_s": {
+    "mean": 148.81,
+    "min": 147.9,
+    "max": 150.58
+   },
+   "rps": {
+    "mean": 400,
+    "min": 400,
+    "max": 400
+   },
+   "p50_ms": {
+    "mean": 0.41,
+    "min": 0.39,
+    "max": 0.43
+   },
+   "p99_ms": {
+    "mean": 18.73,
+    "min": 15.37,
+    "max": 20.71
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ },
+ "flush": {
+  "0": {
+   "db_queries_3s_after_flush": {
+    "mean": 719.33,
+    "min": 707,
+    "max": 741
+   },
+   "pages_rebuilt": {
+    "mean": 804.67,
+    "min": 776,
+    "max": 849
+   },
+   "queries_per_page": {
+    "mean": 0.89,
+    "min": 0.87,
+    "max": 0.91
+   },
+   "p99_ms": {
+    "mean": 124.27,
+    "min": 119.26,
+    "max": 127.58
+   },
+   "max_ms": {
+    "mean": 163.78,
+    "min": 151.22,
+    "max": 184.16
+   }
+  },
+  "1": {
+   "db_queries_3s_after_flush": {
+    "mean": 715.33,
+    "min": 695,
+    "max": 749
+   },
+   "pages_rebuilt": {
+    "mean": 789.33,
+    "min": 773,
+    "max": 822
+   },
+   "queries_per_page": {
+    "mean": 0.91,
+    "min": 0.85,
+    "max": 0.97
+   },
+   "p99_ms": {
+    "mean": 123.76,
+    "min": 123.34,
+    "max": 124.08
+   },
+   "max_ms": {
+    "mean": 200.84,
+    "min": 155.87,
+    "max": 231.41
+   }
+  }
+ },
+ "expiry": {
+  "0": {
+   "peak_db_queries_per_s": {
+    "mean": 279,
+    "min": 275,
+    "max": 284
+   },
+   "median_db_queries_per_s": {
+    "mean": 247,
+    "min": 245,
+    "max": 249
+   },
+   "p99_ms": {
+    "mean": 123.92,
+    "min": 121.58,
+    "max": 127.06
+   }
+  },
+  "0.5": {
+   "peak_db_queries_per_s": {
+    "mean": 291.67,
+    "min": 286,
+    "max": 297
+   },
+   "median_db_queries_per_s": {
+    "mean": 263.83,
+    "min": 259.5,
+    "max": 269
+   },
+   "p99_ms": {
+    "mean": 124.86,
+    "min": 120.53,
+    "max": 127.39
+   }
+  }
+ }
+}

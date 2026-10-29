@@ -1,0 +1,11 @@
+{
+ "keys": "zipf",
+ "rate": 400,
+ "requests": 24000,
+ "rps": 400,
+ "failed_pct": 0,
+ "dropped": 0,
+ "p50_ms": 1.15,
+ "p99_ms": 126.66,
+ "max_ms": 189.17
+}
