@@ -10,6 +10,8 @@ const STEPS = (__ENV.STEPS || '250,500,750,1000,1250,1500,2000,3000,4000,5000').
 const HOLD = Number(__ENV.HOLD || 20); // seconds per step
 const GAP = Number(__ENV.GAP || 5);    // quiet seconds between steps
 const RESULT = __ENV.RESULT || 'results/run.json';
+const PREFIX = __ENV.PREFIX || '';               // 'page/' asks for the preview page instead of the redirect (Module 3)
+const EXPECT = Number(__ENV.EXPECT || 302);      // the status a correct answer has
 
 const scenarios = {};
 const thresholds = {};
@@ -38,9 +40,9 @@ const A = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function b62(n) { let s = ''; while (n > 0) { s = A[n % 62] + s; n = Math.floor(n / 62); } return s; }
 
 export default function () {
-  const res = http.get(`${BASE}/${b62(1 + Math.floor(Math.random() * 100000))}`,
+  const res = http.get(`${BASE}/${PREFIX}${b62(1 + Math.floor(Math.random() * 100000))}`,
     { timeout: '3s', tags: { name: 'GET /{code}' } });
-  check(res, { redirected: (r) => r.status === 302 });
+  check(res, { redirected: (r) => r.status === EXPECT });
 }
 
 export function handleSummary(data) {

@@ -9,7 +9,7 @@ mod=$(dirname "$script"); out=${OUT:-$mod/results}; mkdir -p "$out"
 export UID GID=$(id -g)
 for k in $(seq 1 "$runs"); do
   docker compose down -v >/dev/null 2>&1 || true
-  docker compose up -d --build --wait >/dev/null
+  docker compose up -d --build --wait ${SCALE:+--scale app=$SCALE} >/dev/null   # SCALE=N: N app copies (Module 3)
   sleep 3                                   # let Postgres finish warming its cache
   ( while :; do docker stats --no-stream --format '{{.Name}}\t{{.CPUPerc}}' | sed "s/^/$(date +%s)\t/"; sleep 2; done ) > "$out/run-$k.cpu.tsv" &
   sampler=$!

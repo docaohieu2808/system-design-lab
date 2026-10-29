@@ -1,0 +1,8 @@
+# Adds a Traefik health check on top of compose.lb.yaml: every second Traefik asks each copy /healthz and stops
+# sending traffic to a copy that does not answer within half a second.
+services:
+  app:
+    labels:
+      traefik.http.services.app.loadbalancer.healthcheck.path: /healthz
+      traefik.http.services.app.loadbalancer.healthcheck.interval: 1s
+      traefik.http.services.app.loadbalancer.healthcheck.timeout: 500ms

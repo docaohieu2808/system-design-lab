@@ -1,0 +1,10 @@
+# Module 5: the Module 1 stack with a million links, click counts and the drill tables (more.sql).
+#   COMPOSE_FILE=compose.yaml:modules/m05-database/compose.db.yaml docker compose up -d --wait
+services:
+  db:
+    volumes:
+      - ./modules/m05-database/more.sql:/docker-entrypoint-initdb.d/zz-more.sql:ro   # after init.sql: init files run in name order
+  app:
+    environment:
+      NPLUS1: ${NPLUS1:-0}
+      POOL_MAX: ${POOL_MAX:-0}

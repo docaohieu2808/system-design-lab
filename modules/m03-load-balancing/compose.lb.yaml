@@ -1,0 +1,42 @@
+# Module 3: the Module 1 stack with N copies of the app behind Traefik.
+#   COMPOSE_FILE=compose.yaml:modules/m03-load-balancing/compose.lb.yaml docker compose up -d --scale app=3 --wait
+# Each app copy gets a quarter of a core (Module 1 gave one copy half), so that on the 4-core reference machine
+# k6 (2 cores), Traefik (1 core), three app copies and the database still fit without fighting for CPU.
+services:
+  app:
+    ports: !reset []          # copies cannot share one host port; traffic goes through Traefik
+    cpus: ${APP_CPUS:-0.25}
+    environment:
+      PAGE_WORK: ${PAGE_WORK:-6000}
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.app.rule: PathPrefix(`/`)
+      traefik.http.routers.app.entrypoints: web
+      traefik.http.services.app.loadbalancer.server.port: "8080"
+      traefik.http.services.app.loadbalancer.strategy: ${LB_STRATEGY:-wrr}   # wrr = take turns; p2c = the less busy of two
+
+  traefik:
+    image: traefik:v3.7.16
+    command:
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=sdlab_default
+      - --entrypoints.web.address=:80
+      - --ping=true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - "127.0.0.1:8080:80"     # same address as Module 1: the outside world still sees one service
+    healthcheck:
+      test: ["CMD", "traefik", "healthcheck", "--ping"]
+      interval: 2s
+      retries: 30
+    depends_on:
+      app:
+        condition: service_healthy
+    cpus: 1.0
+    mem_limit: 512m
+
+  k6:
+    environment:
+      BASE: http://traefik:80

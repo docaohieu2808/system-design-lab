@@ -1,0 +1,24 @@
+# Module 4: the Module 1 stack (one app copy, half a core) plus Redis in front of the preview page (cache-aside).
+#   COMPOSE_FILE=compose.yaml:modules/m04-caching/compose.cache.yaml docker compose up -d --wait
+# CACHE_MB caps Redis memory (allkeys-lru); with the default 4 MB only the most-asked pages fit, which is the point.
+services:
+  redis:
+    image: redis:8.10.2-alpine3.23
+    command: ["redis-server", "--maxmemory", "${CACHE_MB:-4}mb", "--maxmemory-policy", "allkeys-lru", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      retries: 30
+    cpus: 0.5
+    mem_limit: 256m
+
+  app:
+    environment:
+      REDIS_URL: ${REDIS_URL-redis://redis:6379/0}
+      CACHE_TTL: ${CACHE_TTL:-600}
+      CACHE_JITTER: ${CACHE_JITTER:-0}
+      CACHE_SINGLEFLIGHT: ${CACHE_SINGLEFLIGHT:-0}
+      PAGE_DELAY_MS: ${PAGE_DELAY_MS:-0}
+    depends_on:
+      redis:
+        condition: service_healthy

@@ -1,0 +1,22 @@
+# Module 5 connection storm, fixed: every app copy talks to PgBouncer, which keeps 20 real connections to Postgres
+# and lends them out per transaction. pgx is told to use the simple protocol (no prepared statements to keep).
+services:
+  pgbouncer:
+    image: edoburu/pgbouncer:v1.24.1-p1
+    environment:
+      DATABASE_URL: postgres://postgres:lab@db:5432/shortener
+      POOL_MODE: transaction
+      DEFAULT_POOL_SIZE: "20"
+      MAX_CLIENT_CONN: "2000"
+      AUTH_TYPE: scram-sha-256
+    depends_on:
+      db:
+        condition: service_healthy
+    cpus: 0.5
+    mem_limit: 256m
+  app:
+    environment:
+      DATABASE_URL: postgres://postgres:lab@pgbouncer:5432/shortener?default_query_exec_mode=simple_protocol
+    depends_on:
+      pgbouncer:
+        condition: service_started
