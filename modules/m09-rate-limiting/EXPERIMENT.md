@@ -32,8 +32,8 @@ Three app copies behind Traefik v3.7.16, Redis 8.10.2, k6 1.8.2, 4-vCPU AMD EPYC
 | | during | 1.5 | 58 | 428 |
 | | after | 9.5 | 335 | 71 |
 
-The refusals counted "during" happened before the pause took hold; the 503s "after" are requests that were waiting on
-the paused Redis when it came back.
+Not yet checked against per-request timestamps: the refusals counted "during" are likely from just before the pause
+took hold, and the 503s "after" from requests that were waiting on the paused Redis when it came back.
 
 ## What it does not show
 - Sliding-window counters, or limits per API key from a config file (left as the capstone 13.2 exercise).
