@@ -2,36 +2,40 @@
 # test client reaches every node. Cutting a node off "peers" leaves the client able to ask it things.
 #   etcd (e1, e2, e3): a consensus store. Cut e1 off: does it still take writes?
 #   redis (r1 primary, r2 replica): async replication. Cut r2 off: what do reads from it return?
+# Inside each cluster, nodes reach each other by their "-peer" names, which exist only on "peers"; the plain names (e1,
+# r2, ...) are for the client. Otherwise a cut-off node would just find its peers again over "clients".
 # Standalone project: docker compose -f modules/m08-cap/compose.cap.yaml -p sdcap up -d
 x-etcd: &etcd
   image: quay.io/coreos/etcd:v3.6.16
-  networks: [peers, clients]
   cpus: 0.3
   mem_limit: 256m
 services:
   e1:
     <<: *etcd
+    networks: {peers: {aliases: [e1-peer]}, clients: {}}
     command: [etcd, --name=e1, --data-dir=/tmp/e, --listen-client-urls=http://0.0.0.0:2379, --advertise-client-urls=http://e1:2379,
-              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e1:2380,
-              --initial-cluster=e1=http://e1:2380,e2=http://e2:2380,e3=http://e3:2380, --initial-cluster-state=new]
+              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e1-peer:2380,
+              "--initial-cluster=e1=http://e1-peer:2380,e2=http://e2-peer:2380,e3=http://e3-peer:2380", --initial-cluster-state=new]
   e2:
     <<: *etcd
+    networks: {peers: {aliases: [e2-peer]}, clients: {}}
     command: [etcd, --name=e2, --data-dir=/tmp/e, --listen-client-urls=http://0.0.0.0:2379, --advertise-client-urls=http://e2:2379,
-              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e2:2380,
-              --initial-cluster=e1=http://e1:2380,e2=http://e2:2380,e3=http://e3:2380, --initial-cluster-state=new]
+              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e2-peer:2380,
+              "--initial-cluster=e1=http://e1-peer:2380,e2=http://e2-peer:2380,e3=http://e3-peer:2380", --initial-cluster-state=new]
   e3:
     <<: *etcd
+    networks: {peers: {aliases: [e3-peer]}, clients: {}}
     command: [etcd, --name=e3, --data-dir=/tmp/e, --listen-client-urls=http://0.0.0.0:2379, --advertise-client-urls=http://e3:2379,
-              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e3:2380,
-              --initial-cluster=e1=http://e1:2380,e2=http://e2:2380,e3=http://e3:2380, --initial-cluster-state=new]
+              --listen-peer-urls=http://0.0.0.0:2380, --initial-advertise-peer-urls=http://e3-peer:2380,
+              "--initial-cluster=e1=http://e1-peer:2380,e2=http://e2-peer:2380,e3=http://e3-peer:2380", --initial-cluster-state=new]
   r1:
     image: redis:8.10.2-alpine3.23
     command: [redis-server, --save, "", --appendonly, "no"]
-    networks: [peers, clients]
+    networks: {peers: {aliases: [r1-peer]}, clients: {}}
     cpus: 0.3
   r2:
     image: redis:8.10.2-alpine3.23
-    command: [redis-server, --save, "", --appendonly, "no", --replicaof, r1, "6379"]
+    command: [redis-server, --save, "", --appendonly, "no", --replicaof, r1-peer, "6379"]
     networks: [peers, clients]
     cpus: 0.3
   client:
