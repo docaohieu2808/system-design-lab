@@ -30,8 +30,9 @@ Peak sample: k6 103% with a 1-core limit (full), 152% with a 2-core limit (room 
   is spent inside k6 (scheduling and reading responses late), but it is recorded as server latency.
 - It **under-reports the ceiling** by about 3–7% (≈3,760–3,780 instead of 3,900–4,040) and starts failing to send
   requests at 3,000 req/s, where the valid run sent every one.
-- Above the ceiling the two runs look alike (p99 ≈ 240 ms and ≈ 1 s): once the server is full, its queue dominates.
-  A starved load generator does its damage **before** the ceiling, where you would otherwise conclude "fine".
+- Above the ceiling it lies the other way: p99 is about the same (≈ 240 ms, ≈ 1 s) but the median looks **better**
+  (54 ms instead of 117 ms at 4,000; 275 instead of 395 at 5,000), because k6 sends fewer requests, so the server's
+  queue is shorter. The overload looks milder than it is.
 
 ## What it does not prove
 - How badly a starved generator lies on other machines or scripts: heavier scripts (more checks, more tags, bigger
