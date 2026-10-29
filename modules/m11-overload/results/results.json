@@ -1,0 +1,291 @@
+{
+ "runs": 3,
+ "shed_max_inflight_0": [
+  {
+   "offered": 300,
+   "goodput": {
+    "mean": 300.07,
+    "min": 300.07,
+    "max": 300.07
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 600,
+   "goodput": {
+    "mean": 600.02,
+    "min": 600,
+    "max": 600.07
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 900,
+   "goodput": {
+    "mean": 77.31,
+    "min": 75.4,
+    "max": 81.07
+   },
+   "slow_per_s": {
+    "mean": 693.16,
+    "min": 685.8,
+    "max": 700.47
+   },
+   "refused_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 1200,
+   "goodput": {
+    "mean": 44.8,
+    "min": 38.87,
+    "max": 48.47
+   },
+   "slow_per_s": {
+    "mean": 751.47,
+    "min": 729.6,
+    "max": 787
+   },
+   "refused_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_per_s": {
+    "mean": 2.36,
+    "min": 0,
+    "max": 7.07
+   }
+  },
+  {
+   "offered": 1500,
+   "goodput": {
+    "mean": 94.6,
+    "min": 53.27,
+    "max": 172.4
+   },
+   "slow_per_s": {
+    "mean": 497.36,
+    "min": 132.27,
+    "max": 690.8
+   },
+   "refused_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ ],
+ "shed_max_inflight_4": [
+  {
+   "offered": 300,
+   "goodput": {
+    "mean": 295.04,
+    "min": 294.2,
+    "max": 296.47
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 5.02,
+    "min": 3.6,
+    "max": 5.87
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 600,
+   "goodput": {
+    "mean": 514.78,
+    "min": 511.67,
+    "max": 519.67
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 85.2,
+    "min": 80.4,
+    "max": 88.4
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 900,
+   "goodput": {
+    "mean": 525.96,
+    "min": 525,
+    "max": 527.47
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 374.11,
+    "min": 372.6,
+    "max": 375.07
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 1200,
+   "goodput": {
+    "mean": 535.47,
+    "min": 533.53,
+    "max": 539.27
+   },
+   "slow_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "refused_per_s": {
+    "mean": 664.56,
+    "min": 660.67,
+    "max": 666.53
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  },
+  {
+   "offered": 1500,
+   "goodput": {
+    "mean": 518.8,
+    "min": 504.47,
+    "max": 527.2
+   },
+   "slow_per_s": {
+    "mean": 4.33,
+    "min": 0.33,
+    "max": 11.2
+   },
+   "refused_per_s": {
+    "mean": 884.33,
+    "min": 855.6,
+    "max": 906.2
+   },
+   "failed_per_s": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   }
+  }
+ ],
+ "breaker_0": {
+  "ok_pct": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "degraded_pct": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "p50_ms": {
+   "mean": 1001.6,
+   "min": 1001.6,
+   "max": 1001.6
+  },
+  "p99_ms": {
+   "mean": 1038.63,
+   "min": 1037.1,
+   "max": 1039.5
+  },
+  "dropped": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "breaker_1": {
+  "ok_pct": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "degraded_pct": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "p50_ms": {
+   "mean": 1.2,
+   "min": 1.2,
+   "max": 1.2
+  },
+  "p99_ms": {
+   "mean": 1015.77,
+   "min": 1008.1,
+   "max": 1020.8
+  },
+  "dropped": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ }
+}

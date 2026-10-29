@@ -1,0 +1,40 @@
+{
+ "good_ms": 500,
+ "steps": [
+  {
+   "offered": 300,
+   "goodput": 296.46666666666664,
+   "slow_per_s": 0,
+   "refused_per_s": 3.6,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 600,
+   "goodput": 519.6666666666666,
+   "slow_per_s": 0,
+   "refused_per_s": 80.4,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 900,
+   "goodput": 525.4,
+   "slow_per_s": 0,
+   "refused_per_s": 374.6666666666667,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 1200,
+   "goodput": 539.2666666666667,
+   "slow_per_s": 0,
+   "refused_per_s": 660.6666666666666,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 1500,
+   "goodput": 527.2,
+   "slow_per_s": 1.4666666666666666,
+   "refused_per_s": 891.2,
+   "failed_per_s": 0
+  }
+ ]
+}
