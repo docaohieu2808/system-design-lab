@@ -1,0 +1,169 @@
+{
+ "runs": 3,
+ "rehash": {
+  "keys": 1000000,
+  "from_shards": 3,
+  "to_shards": 4,
+  "vnodes_per_shard": 100,
+  "consistent_keys_per_shard_after": [
+   338708,
+   315279,
+   290098,
+   55915
+  ],
+  "moved_modulo_pct": 75.01,
+  "moved_consistent_pct": 5.59
+ },
+ "hot": {
+  "0": {
+   "rps": {
+    "mean": 1798.2,
+    "min": 1797.4,
+    "max": 1798.7
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "p99_ms": {
+    "mean": 184.18,
+    "min": 177.43,
+    "max": 189.1
+   },
+   "hot_p99_ms": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "cold_p50_ms": {
+    "mean": 0.58,
+    "min": 0.57,
+    "max": 0.59
+   },
+   "cold_p99_ms": {
+    "mean": 184.18,
+    "min": 177.43,
+    "max": 189.1
+   },
+   "share_pct_per_shard_run1": [
+    33.1,
+    33.1,
+    33.7
+   ],
+   "peak_cpu_pct": {
+    "sdlab-app-1": {
+     "mean": 45.18,
+     "min": 44.36,
+     "max": 46.82
+    },
+    "sdlab-db-1": {
+     "mean": 14.59,
+     "min": 14.29,
+     "max": 14.77
+    },
+    "sdlab-db2-1": {
+     "mean": 14.4,
+     "min": 13.58,
+     "max": 15.09
+    },
+    "sdlab-db3-1": {
+     "mean": 14.67,
+     "min": 14.23,
+     "max": 15.05
+    }
+   }
+  },
+  "50": {
+   "rps": {
+    "mean": 1706.9,
+    "min": 1691.1,
+    "max": 1721.9
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "p99_ms": {
+    "mean": 1596.49,
+    "min": 1405.93,
+    "max": 1711.36
+   },
+   "hot_p99_ms": {
+    "mean": 1610.76,
+    "min": 1416.16,
+    "max": 1720.87
+   },
+   "cold_p50_ms": {
+    "mean": 1.23,
+    "min": 1.16,
+    "max": 1.31
+   },
+   "cold_p99_ms": {
+    "mean": 1560.71,
+    "min": 1375.66,
+    "max": 1688.79
+   },
+   "share_pct_per_shard_run1": [
+    66.8,
+    16.7,
+    16.5
+   ],
+   "peak_cpu_pct": {
+    "sdlab-app-1": {
+     "mean": 39.34,
+     "min": 38.32,
+     "max": 40.29
+    },
+    "sdlab-db-1": {
+     "mean": 16.16,
+     "min": 15.66,
+     "max": 16.43
+    },
+    "sdlab-db2-1": {
+     "mean": 9.38,
+     "min": 9.21,
+     "max": 9.64
+    },
+    "sdlab-db3-1": {
+     "mean": 10.25,
+     "min": 9.35,
+     "max": 11.4
+    }
+   }
+  }
+ },
+ "ids": {
+  "bigint_insert_s": {
+   "mean": 20.03,
+   "min": 19.8,
+   "max": 20.19
+  },
+  "bigint_index_mb": {
+   "mean": 42.2,
+   "min": 42.2,
+   "max": 42.2
+  },
+  "uuid4_insert_s": {
+   "mean": 53.33,
+   "min": 52.89,
+   "max": 54.21
+  },
+  "uuid4_index_mb": {
+   "mean": 49.8,
+   "min": 49.8,
+   "max": 49.8
+  },
+  "uuid7_insert_s": {
+   "mean": 33.6,
+   "min": 32.81,
+   "max": 34.89
+  },
+  "uuid7_index_mb": {
+   "mean": 49.8,
+   "min": 49.8,
+   "max": 49.8
+  }
+ }
+}

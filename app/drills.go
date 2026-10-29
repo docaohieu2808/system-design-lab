@@ -22,6 +22,15 @@ func hash64(s string) uint64 {
 	return h.Sum64()
 }
 
+// ringHash spreads FNV's output over the whole circle; raw FNV-1a on short, similar strings (vnode names, short codes)
+// clusters, and a new shard's points then land in a few narrow arcs and take far less than its share.
+func ringHash(s string) uint64 {
+	z := hash64(s)
+	z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9
+	z = (z ^ (z >> 27)) * 0x94d049bb133111eb
+	return z ^ (z >> 31)
+}
+
 // ring is consistent hashing: every shard owns `vnodes` points on a circle; a key belongs to the next point clockwise.
 type ring struct {
 	points []uint64
@@ -32,7 +41,7 @@ func newRing(shards, vnodes int) *ring {
 	r := &ring{owner: map[uint64]int{}}
 	for s := 0; s < shards; s++ {
 		for v := 0; v < vnodes; v++ {
-			p := hash64(fmt.Sprintf("shard-%d-vnode-%d", s, v))
+			p := ringHash(fmt.Sprintf("shard-%d-vnode-%d", s, v))
 			r.points = append(r.points, p)
 			r.owner[p] = s
 		}
@@ -42,7 +51,7 @@ func newRing(shards, vnodes int) *ring {
 }
 
 func (r *ring) shard(key string) int {
-	h := hash64(key)
+	h := ringHash(key)
 	i := sort.Search(len(r.points), func(i int) bool { return r.points[i] >= h })
 	if i == len(r.points) {
 		i = 0
