@@ -18,6 +18,10 @@ make m01        # Module 1: find the ceiling of one server (3 runs, ~13 minutes)
 make down       # remove everything
 ```
 
+## How to follow along
+Each module folder has a `LAB.md`: the lesson's experiments step by step, with a question to answer **before** each
+run. Write your prediction down, then run it; being wrong is where the learning happens.
+
 ## How every experiment is recorded
 Each module folder has:
 - the k6 script(s) — an **open model** (Module 0 also runs a closed one, to show why not) (`constant-arrival-rate`): k6 sends at the asked rate whether or not answers
