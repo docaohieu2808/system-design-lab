@@ -166,49 +166,49 @@
   },
   "during": {
    "attempts": {
-    "mean": 1350.33,
-    "min": 1344,
-    "max": 1360
+    "mean": 2137.33,
+    "min": 2125,
+    "max": 2151
    },
    "created": {
-    "mean": 306,
-    "min": 305,
-    "max": 307
+    "mean": 53.33,
+    "min": 51,
+    "max": 55
    },
    "gave_up": {
-    "mean": 24,
-    "min": 24,
-    "max": 24
+    "mean": 347.33,
+    "min": 345,
+    "max": 350
    }
   },
   "after": {
    "attempts": {
-    "mean": 497.67,
-    "min": 496,
-    "max": 499
+    "mean": 890,
+    "min": 886,
+    "max": 895
    },
    "created": {
-    "mean": 392,
-    "min": 391,
-    "max": 393
+    "mean": 303,
+    "min": 301,
+    "max": 304
    },
    "gave_up": {
-    "mean": 9,
-    "min": 8,
-    "max": 10
+    "mean": 97.67,
+    "min": 97,
+    "max": 99
    }
   }
  },
  "storm_backoff": {
   "before": {
    "attempts": {
-    "mean": 400.67,
-    "min": 400,
+    "mean": 401,
+    "min": 401,
     "max": 401
    },
    "created": {
-    "mean": 400.67,
-    "min": 400,
+    "mean": 401,
+    "min": 401,
     "max": 401
    },
    "gave_up": {
@@ -219,26 +219,26 @@
   },
   "during": {
    "attempts": {
-    "mean": 1144.67,
-    "min": 1141,
-    "max": 1150
+    "mean": 1941,
+    "min": 1931,
+    "max": 1953
    },
    "created": {
-    "mean": 327.67,
-    "min": 327,
-    "max": 329
+    "mean": 168.33,
+    "min": 135,
+    "max": 192
    },
    "gave_up": {
-    "mean": 0,
-    "min": 0,
-    "max": 0
+    "mean": 205,
+    "min": 184,
+    "max": 236
    }
   },
   "after": {
    "attempts": {
-    "mean": 462,
-    "min": 457,
-    "max": 467
+    "mean": 737,
+    "min": 715,
+    "max": 771
    },
    "created": {
     "mean": 401,

@@ -12,7 +12,10 @@ const attempts = new Counter('attempts'), created = new Counter('created'), gave
 const t = new Trend('create_ms', true);
 const phase = (name, start, dur) => ({ executor: 'constant-arrival-rate', rate: RATE, timeUnit: '1s', duration: `${dur}s`,
   startTime: `${start}s`, preAllocatedVUs: 200, maxVUs: 3000, tags: { phase: name } });
+// With retries, look the app up again on every request and open a fresh connection, so a stopped app fails at once
+// (k6 otherwise keeps the old address for 5 minutes and waits out the timeout on it, which hides the storm).
 export const options = {
+  ...(RETRY !== 'none' ? { dns: { ttl: '0' }, noConnectionReuse: true } : {}),
   summaryTrendStats: ['p(50)', 'p(99)', 'max'],
   scenarios: { before: phase('before', 0, 10), during: phase('during', 10, 10), after: phase('after', 20, 10) },
   thresholds: Object.fromEntries(['before', 'during', 'after'].flatMap((p) =>

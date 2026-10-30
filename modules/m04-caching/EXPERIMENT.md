@@ -24,19 +24,22 @@ query counter every 0.5 s). 3 runs each.
 ### b1. Stampede after a wipe (`results-b/results.json`; one page, building it takes 500 ms, wipe at 32 s)
 | | queries in the 10 s before | queries in the 3 s after | p99 | max |
 |---|---|---|---|---|
-| no single-flight | 0 | 158 (134–201) | 502 ms | 535 ms |
-| single-flight | 0 | 0.7 (0–1) | 220 ms | 519 ms |
+| no single-flight | 0 | 129 (102–159) | 502 ms | 538 ms |
+| single-flight | 0 | 1 (1–1) | 216 ms | 512 ms |
 
 ### b2. Synchronised expiry (2,000 pages warmed together, TTL 20 s, building a page takes 100 ms)
 | | worst 1 s of database queries | total queries in 60 s | p99 |
 |---|---|---|---|
-| no jitter | 180 (165–207) | 3,812 | 104 ms |
-| 50% jitter | 119 (114–123) | 4,975 | 104 ms |
+| no jitter | 183 (174–193) | 3,805 | 104 ms |
+| 50% jitter (lifetimes 15–25 s) | 119 (112–123) | 3,804 | 104 ms |
 
-Jitter here shortens each lifetime by a random 0–50%, so pages live 15 s on average instead of 20 s and are refilled
-more often: the total goes up while the worst second goes down by a third. A jitter that spreads lifetimes around the
-target (for example 20 s ± 25%) keeps the average and only flattens the peak. At 400 req/s over 2,000 pages each page
-is asked for about every 5 s, so traffic itself already spreads the refills; the peak is lower than "2,000 at once".
+The worst second drops by about a third while the total stays the same: jitter moves refills apart, it doesn't remove
+them. At 400 req/s over 2,000 pages each page is asked for about every 5 s, so traffic itself already spreads the
+refills a little; the peak is lower than "2,000 at once".
+
+Note: the first version of jitter only shortened lifetimes (TTL minus up to 50%), so pages lived 15 s on average
+instead of 20 s and the total rose to 4,975. `app/cache.go` now spreads lifetimes evenly over TTL ± 25%; the tables
+are from the rerun after that change (b1 was re-measured in the same run; it does not use jitter).
 
 ## What this does not show
 - How stale data affects a real product.

@@ -22,19 +22,25 @@ One app copy (half a core), Postgres 18.6, Redis 8.10.2 streams as the queue, k6
 | good jobs done in 10 s behind a poison job, retry forever vs dead-letter after 3 | 0 (321 tries of the bad job) | 200 (bad job parked after 3) |
 
 ### Retry storm (40 creates/s; the app is stopped from 12 s to about 22 s; up to 5 retries)
-| | attempts during (10–20 s) | created during | gave up, whole run | attempts after (20–30 s) |
+| | attempts during (10–20 s) | attempts after (20–30 s) | gave up, whole run | created after |
 |---|---|---|---|---|
-| retry at once | 1,350 (1,344–1,360) | 306 | 33 (32–34) | 498 |
-| backoff + jitter (200 ms, 400 ms, ... ×0.5–1.5) | 1,145 (1,141–1,150) | 328 | 0 | 462 |
+| retry at once | 2,137 (×5.3 normal) | 890 | 445 of 1,200 | 303 of 400 |
+| backoff + jitter (200 ms, 400 ms, ... ×0.5–1.5) | 1,941 (×4.9) | 737 | 205 of 1,200 | 401 of 401 |
 
-Normal is 400 attempts per 10 s. Both ways about tripled the load while the app was down; the clear difference is who
-gave up: retrying at once used its five tries inside the outage, backing off outlasted it. Attempts during the outage
-still took up to the 2 s client timeout (p99 of a create was 11–12 s both ways), so "at once" is not instant here and
-the attempt counts are closer than a real fast-failing outage would make them.
+Normal is 400 attempts per 10 s. Retrying at once spends all five retries within milliseconds (p99 of a create 5–6 ms,
+so failures are instant), so everyone who arrives while the app is down gives up, including the first two seconds
+after the 20 s mark before the app is back. Backing off waits 0.2 + 0.4 + ... + 3.2 s, about 6 s in total: people who
+arrived in the last few seconds of the outage were still waiting when it came back, and nobody after 20 s gave up.
+Both still make about five times the normal attempts while the app is down, because both are allowed the same five
+retries; a 10 s outage outlasts the whole backoff schedule. Fewer retries, a longer cap, or a server-side "retry
+after" would cut the attempts themselves.
 
-Note: the first runs froze the app (`docker compose pause`) and showed no difference at all (immediate 1,151, backoff
-1,058 attempts, nobody gave up). `tools/run-m10.sh` now stops the app instead; the table is from
-`tools/run-m10-storm.sh 3` after that change.
+Notes on earlier runs:
+- `docker compose pause` froze the app; every attempt hung for the 2 s timeout, no difference between the two.
+- `docker compose stop` with k6 defaults: k6 kept the app's old address (DNS cached 5 min) and its open connections,
+  so attempts still waited out the 2 s timeout on a dead address (p99 11–12 s); only 33 vs 0 gave up.
+- Now: with retries, `create.js` looks the app up on every request and opens a fresh connection, so a stopped app
+  fails at once, as it would behind a load balancer. The table is from `tools/run-m10-storm.sh 3` after that change.
 
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.

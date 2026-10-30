@@ -2,20 +2,20 @@
  "retry": "immediate",
  "rate": 40,
  "before": {
-  "attempts": 400,
-  "created": 400,
+  "attempts": 401,
+  "created": 401,
   "gave_up": 0
  },
  "during": {
-  "attempts": 1360,
-  "created": 307,
-  "gave_up": 24
+  "attempts": 2136,
+  "created": 54,
+  "gave_up": 347
  },
  "after": {
-  "attempts": 498,
-  "created": 393,
-  "gave_up": 8
+  "attempts": 895,
+  "created": 301,
+  "gave_up": 99
  },
  "create_p50_ms": 3,
- "create_p99_ms": 11071.3
+ "create_p99_ms": 5.5
 }

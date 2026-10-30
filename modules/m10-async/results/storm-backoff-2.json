@@ -2,20 +2,20 @@
  "retry": "backoff",
  "rate": 40,
  "before": {
-  "attempts": 400,
-  "created": 400,
+  "attempts": 401,
+  "created": 401,
   "gave_up": 0
  },
  "during": {
-  "attempts": 1141,
-  "created": 329,
-  "gave_up": 0
+  "attempts": 1931,
+  "created": 135,
+  "gave_up": 236
  },
  "after": {
-  "attempts": 467,
+  "attempts": 771,
   "created": 401,
   "gave_up": 0
  },
  "create_p50_ms": 3,
- "create_p99_ms": 11816.3
+ "create_p99_ms": 9613
 }

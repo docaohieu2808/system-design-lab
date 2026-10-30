@@ -4,8 +4,8 @@ package main
 //
 //	REDIS_URL         unset = no cache (Modules 1-3 behave exactly as before)
 //	CACHE_TTL         seconds a cached page lives (default 60)
-//	CACHE_JITTER      0..1, each TTL is shortened by a random part of this fraction, so pages cached together
-//	                  do not all expire together (default 0)
+//	CACHE_JITTER      0..1, each TTL is spread evenly over TTL ± half this fraction (0.5 = 75%..125%), so pages
+//	                  cached together do not all expire together, and the average lifetime stays TTL (default 0)
 //	CACHE_SINGLEFLIGHT 1 = while one request rebuilds a missing page, others asking for the same page wait for it
 //	                  instead of all going to the database (default 0)
 
@@ -78,7 +78,7 @@ func (s *server) cachedPage(ctx context.Context, code string) (string, error) {
 	build := func() (any, error) {
 		html, err := s.renderPage(ctx, code)
 		if err == nil {
-			ttl := c.ttl - time.Duration(rand.Float64()*c.jitter*float64(c.ttl))
+			ttl := time.Duration(float64(c.ttl) * (1 + c.jitter*(rand.Float64()-0.5)))
 			c.rdb.Set(ctx, "page:"+code, html, ttl)
 		}
 		return html, err
