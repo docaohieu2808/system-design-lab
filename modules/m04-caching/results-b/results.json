@@ -1,0 +1,85 @@
+{
+ "runs": 3,
+ "flush": {
+  "0": {
+   "db_queries_10s_before": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "db_queries_3s_after": {
+    "mean": 157.67,
+    "min": 134,
+    "max": 201
+   },
+   "p99_ms": {
+    "mean": 501.97,
+    "min": 501.9,
+    "max": 502.11
+   },
+   "max_ms": {
+    "mean": 535.41,
+    "min": 527.35,
+    "max": 543.59
+   }
+  },
+  "1": {
+   "db_queries_10s_before": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "db_queries_3s_after": {
+    "mean": 0.67,
+    "min": 0,
+    "max": 1
+   },
+   "p99_ms": {
+    "mean": 219.64,
+    "min": 216.2,
+    "max": 222.87
+   },
+   "max_ms": {
+    "mean": 518.89,
+    "min": 513.19,
+    "max": 523.38
+   }
+  }
+ },
+ "expiry": {
+  "0": {
+   "peak_db_q_in_1s": {
+    "mean": 179.67,
+    "min": 165,
+    "max": 207
+   },
+   "db_q_total": {
+    "mean": 3811.67,
+    "min": 3798,
+    "max": 3823
+   },
+   "p99_ms": {
+    "mean": 103.86,
+    "min": 103.78,
+    "max": 103.93
+   }
+  },
+  "0.5": {
+   "peak_db_q_in_1s": {
+    "mean": 118.67,
+    "min": 114,
+    "max": 123
+   },
+   "db_q_total": {
+    "mean": 4974.67,
+    "min": 4915,
+    "max": 5015
+   },
+   "p99_ms": {
+    "mean": 104.48,
+    "min": 104.05,
+    "max": 104.82
+   }
+  }
+ }
+}
