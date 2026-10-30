@@ -149,13 +149,13 @@
  "storm_immediate": {
   "before": {
    "attempts": {
-    "mean": 401,
-    "min": 401,
+    "mean": 400.67,
+    "min": 400,
     "max": 401
    },
    "created": {
-    "mean": 401,
-    "min": 401,
+    "mean": 400.67,
+    "min": 400,
     "max": 401
    },
    "gave_up": {
@@ -166,49 +166,49 @@
   },
   "during": {
    "attempts": {
-    "mean": 1150.67,
-    "min": 1144,
-    "max": 1161
+    "mean": 1350.33,
+    "min": 1344,
+    "max": 1360
    },
    "created": {
-    "mean": 328,
-    "min": 328,
-    "max": 328
+    "mean": 306,
+    "min": 305,
+    "max": 307
    },
    "gave_up": {
-    "mean": 0,
-    "min": 0,
-    "max": 0
+    "mean": 24,
+    "min": 24,
+    "max": 24
    }
   },
   "after": {
    "attempts": {
-    "mean": 403,
-    "min": 401,
-    "max": 406
+    "mean": 497.67,
+    "min": 496,
+    "max": 499
    },
    "created": {
-    "mean": 401,
-    "min": 401,
-    "max": 401
+    "mean": 392,
+    "min": 391,
+    "max": 393
    },
    "gave_up": {
-    "mean": 0,
-    "min": 0,
-    "max": 0
+    "mean": 9,
+    "min": 8,
+    "max": 10
    }
   }
  },
  "storm_backoff": {
   "before": {
    "attempts": {
-    "mean": 401,
-    "min": 401,
+    "mean": 400.67,
+    "min": 400,
     "max": 401
    },
    "created": {
-    "mean": 401,
-    "min": 401,
+    "mean": 400.67,
+    "min": 400,
     "max": 401
    },
    "gave_up": {
@@ -219,14 +219,14 @@
   },
   "during": {
    "attempts": {
-    "mean": 1057.67,
-    "min": 1027,
-    "max": 1097
+    "mean": 1144.67,
+    "min": 1141,
+    "max": 1150
    },
    "created": {
-    "mean": 327,
+    "mean": 327.67,
     "min": 327,
-    "max": 327
+    "max": 329
    },
    "gave_up": {
     "mean": 0,
@@ -236,9 +236,9 @@
   },
   "after": {
    "attempts": {
-    "mean": 411.33,
-    "min": 401,
-    "max": 429
+    "mean": 462,
+    "min": 457,
+    "max": 467
    },
    "created": {
     "mean": 401,

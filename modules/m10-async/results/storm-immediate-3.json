@@ -7,15 +7,15 @@
   "gave_up": 0
  },
  "during": {
-  "attempts": 1161,
-  "created": 328,
-  "gave_up": 0
+  "attempts": 1347,
+  "created": 306,
+  "gave_up": 24
  },
  "after": {
-  "attempts": 406,
-  "created": 401,
-  "gave_up": 0
+  "attempts": 496,
+  "created": 392,
+  "gave_up": 9
  },
  "create_p50_ms": 3,
- "create_p99_ms": 10536.9
+ "create_p99_ms": 11122.5
 }

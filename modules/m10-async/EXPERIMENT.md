@@ -21,11 +21,20 @@ One app copy (half a core), Postgres 18.6, Redis 8.10.2 streams as the queue, k6
 | double charges in 1,000 payments, no key vs idempotency key | 128 (116–137) | 0 |
 | good jobs done in 10 s behind a poison job, retry forever vs dead-letter after 3 | 0 (321 tries of the bad job) | 200 (bad job parked after 3) |
 
-### Retry storm
-Re-measuring. The first runs froze the app (`docker compose pause`), so every attempt hung until the client's 2 s
-timeout and "retry at once" behaved like a slow retry: during the outage both ways made about 2.8 times the normal
-number of attempts (immediate 1,151, backoff 1,058). `tools/run-m10.sh` now stops the app instead, so requests fail
-at once; `tools/run-m10-storm.sh` re-runs only this experiment.
+### Retry storm (40 creates/s; the app is stopped from 12 s to about 22 s; up to 5 retries)
+| | attempts during (10–20 s) | created during | gave up, whole run | attempts after (20–30 s) |
+|---|---|---|---|---|
+| retry at once | 1,350 (1,344–1,360) | 306 | 33 (32–34) | 498 |
+| backoff + jitter (200 ms, 400 ms, ... ×0.5–1.5) | 1,145 (1,141–1,150) | 328 | 0 | 462 |
+
+Normal is 400 attempts per 10 s. Both ways about tripled the load while the app was down; the clear difference is who
+gave up: retrying at once used its five tries inside the outage, backing off outlasted it. Attempts during the outage
+still took up to the 2 s client timeout (p99 of a create was 11–12 s both ways), so "at once" is not instant here and
+the attempt counts are closer than a real fast-failing outage would make them.
+
+Note: the first runs froze the app (`docker compose pause`) and showed no difference at all (immediate 1,151, backoff
+1,058 attempts, nobody gave up). `tools/run-m10.sh` now stops the app instead; the table is from
+`tools/run-m10-storm.sh 3` after that change.
 
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.
