@@ -14,6 +14,9 @@ loc=$(curl -s -o /dev/null -w '%{http_code} %{redirect_url}' "$base/$code")
 nf=$(curl -s -o /dev/null -w '%{http_code}' "$base/zz-no-such-code")
 [ "$nf" = 404 ] && say ok "unknown code answers 404" || { say FAIL "unknown code: got $nf, want 404"; fail=1; }
 [ $fail = 0 ] || exit 1
-host=$(echo "$base" | sed -E 's#https?://(localhost|127\.0\.0\.1)#http://host.docker.internal#')
-docker run --rm -i --add-host host.docker.internal:host-gateway -e BASE="$host" -e RATE="$rate" -e RESULT=/tmp/check.json \
+# Linux: share the host's network so localhost means your machine (a host firewall may block the docker bridge).
+# Docker Desktop (macOS, Windows): reach your machine through host.docker.internal.
+if [ "$(uname -s)" = Linux ]; then host=$base; net="--network host"
+else host=$(echo "$base" | sed -E 's#https?://(localhost|127\.0\.0\.1)#http://host.docker.internal#'); net="--add-host host.docker.internal:host-gateway"; fi
+docker run --rm -i $net -e BASE="$host" -e RATE="$rate" -e RESULT=/tmp/check.json \
   grafana/k6:1.8.2 run --quiet - < modules/m13-capstones/check.js 2>/dev/null | tail -1

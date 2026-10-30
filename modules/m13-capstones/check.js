@@ -12,14 +12,14 @@ export const options = {
 export function setup() {
   const codes = [];
   for (let i = 0; i < 200; i++) {
-    const r = http.post(`${BASE}/api/links`, JSON.stringify({ url: `https://example.com/check/${i}` }), { headers: { 'Content-Type': 'application/json' } });
-    if (r.status === 201) codes.push(r.json('code'));
+    const r = http.post(`${BASE}/api/links`, JSON.stringify({ url: `https://example.com/check/${i}` }), { headers: { 'Content-Type': 'application/json' }, responseType: 'text' });
+    if (r.status === 201) codes.push({ code: r.json('code'), i });
   }
   return { codes };
 }
 export default function (d) {
-  const i = Math.floor(Math.random() * d.codes.length);
-  const r = http.get(`${BASE}/${d.codes[i]}`);
+  const { code, i } = d.codes[Math.floor(Math.random() * d.codes.length)];
+  const r = http.get(`${BASE}/${code}`);
   check(r, { redirect: (x) => x.status === 302 && x.headers.Location === `https://example.com/check/${i}` });
 }
 export function handleSummary(data) {
