@@ -23,11 +23,11 @@ The hot shard's slow end spreads to every code: p99 for the other codes alone wa
 | rule | codes that change shard |
 |---|---|
 | remainder, `hash mod N` | 75.0% |
-| consistent hashing, 100 points per shard | re-measuring, see note |
+| consistent hashing, 100 points per shard | 27.8% (new shard holds 27.8%; others 22.4–26.9%) |
 
 Note: the first runs gave 5.6%, with the new shard taking only 5.6% of the keys instead of about a quarter. Raw
 FNV-1a on short, similar strings (vnode names, short codes) clusters on the ring. `app/drills.go` now mixes the hash
-(`ringHash`) before placing points and keys; a Python replay of the same logic on 200,000 codes moved 27.9%.
+(`ringHash`) before placing points and keys; a Python replay of the same logic on 200,000 codes moved 27.9%. The table is from the rerun after that change (3 runs, identical: the drill is deterministic).
 
 ### IDs (1,000,000 inserts)
 | key type | insert time | primary key index |

@@ -1,18 +1,18 @@
 {
  "runs": 3,
  "rehash": {
-  "keys": 1000000,
-  "from_shards": 3,
-  "to_shards": 4,
-  "vnodes_per_shard": 100,
   "consistent_keys_per_shard_after": [
-   338708,
-   315279,
-   290098,
-   55915
+   229075,
+   223612,
+   269481,
+   277832
   ],
+  "from_shards": 3,
+  "keys": 1000000,
+  "moved_consistent_pct": 27.78,
   "moved_modulo_pct": 75.01,
-  "moved_consistent_pct": 5.59
+  "to_shards": 4,
+  "vnodes_per_shard": 100
  },
  "hot": {
   "0": {

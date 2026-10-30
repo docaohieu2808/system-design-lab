@@ -15,15 +15,16 @@ celebrity) is followed by all 9,999 others. Chat: listeners spread over 20 rooms
 ### 13.3 News feed
 | | fan-out on write | fan-out on read |
 |---|---|---|
-| ordinary user posts (100 followers) | 39 ms (19–62) | 0.9 ms |
-| celebrity posts (9,999 followers) | 1,013 ms (742–1,172) | 0.6 ms |
-| read one feed, p50 of 200 reads | 5.2 ms (first runs, see note) | 0.97 ms |
+| ordinary user posts (100 followers) | 27 ms (26–29) | 0.7 ms |
+| celebrity posts (9,999 followers) | 1,157 ms (1,032–1,361) | 0.6 ms |
+| read one feed, p50 of 200 reads | 0.14 ms (0.13–0.15) | 0.88 ms (0.85–0.90) |
 | rows in the timeline table | 20,208,079 | 0 |
 
 Note on reads: the first runs read the timeline table straight after a 20-million-row bulk load, before any vacuum, so
-Postgres could not use an index-only scan and fetched every row from the table itself. A real timeline table is vacuumed
-regularly. `app/feed.go` now runs `VACUUM ANALYZE timeline` before measuring; `tools/run-m13-feed.sh` re-measures
-the feed alone.
+Postgres could not use an index-only scan and fetched every row from the table itself (5.2 ms vs 0.97 ms, fan-out on
+write looked slower to read). A real timeline table is vacuumed regularly, so `app/feed.go` now runs `VACUUM ANALYZE
+timeline` before measuring, and the table above is from `tools/run-m13-feed.sh 3` after that change. Write numbers
+moved between the two sets of runs (ordinary post 39 → 27 ms); the gap between the designs did not.
 
 ### 13.4 Chat rooms
 | listeners | delivered | delivery p50 | delivery p99 | server memory per connection |
