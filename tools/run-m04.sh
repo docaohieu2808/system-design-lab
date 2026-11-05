@@ -8,7 +8,10 @@ set -euo pipefail
 runs=${1:-3}; out=modules/m04-caching/results; mkdir -p "$out"
 export UID GID=$(id -g) COMPOSE_FILE=compose.yaml:modules/m04-caching/compose.cache.yaml
 
-fresh() { docker compose down -v >/dev/null 2>&1 || true; docker compose up -d --wait >/dev/null; sleep 3; }
+fresh() {  # fresh <tag>: lab down, wait for a quiet machine (background saved next to the result), lab up
+  docker compose down -v >/dev/null 2>&1 || true
+  tools/quiet-gate.sh > "$out/$1.gate"; docker compose up -d --wait >/dev/null; sleep 3
+}
 sampler() {  # every 0.5 s: seconds, database queries so far, keys in Redis
   ( t0=$(date +%s.%N); while :; do
       q=$(curl -s localhost:8080/stats | python3 -c "import json,sys; print(json.load(sys.stdin)['db_queries'])" 2>/dev/null || echo -1)
@@ -28,18 +31,18 @@ docker compose build app >/dev/null   # build once: code edited during a run mus
 for k in $(seq 1 "$runs"); do
   for cfg in nocache uniform zipf; do
     if [ $cfg = nocache ]; then export REDIS_URL=""; else unset REDIS_URL; fi
-    export CACHE_MB=4 CACHE_TTL=600 CACHE_JITTER=0 CACHE_SINGLEFLIGHT=0 PAGE_DELAY_MS=0
-    fresh; load "$out/hit-$cfg-$k.json" $([ $cfg = uniform ] && echo uniform || echo zipf); echo "run $k hit $cfg done"
+    export CACHE_MB=4 CACHE_TTL=600 CACHE_JITTER=0 CACHE_SINGLEFLIGHT=0 CACHE_SWR=0 PAGE_DELAY_MS=0
+    fresh "hit-$cfg-$k"; load "$out/hit-$cfg-$k.json" $([ $cfg = uniform ] && echo uniform || echo zipf); echo "run $k hit $cfg done"
   done
   unset REDIS_URL
   for sf in 0 1; do
-    export CACHE_MB=64 CACHE_TTL=600 CACHE_JITTER=0 CACHE_SINGLEFLIGHT=$sf PAGE_DELAY_MS=100
-    fresh; s=$(sampler "$out/flush-$sf-$k.stats.tsv")
+    export CACHE_MB=64 CACHE_TTL=600 CACHE_JITTER=0 CACHE_SINGLEFLIGHT=$sf CACHE_SWR=0 PAGE_DELAY_MS=100
+    fresh "flush-$sf-$k"; s=$(sampler "$out/flush-$sf-$k.stats.tsv")
     load "$out/flush-$sf-$k.json" zipf "docker compose exec -T redis redis-cli flushall >/dev/null"; kill $s; echo "run $k flush sf=$sf done"
   done
   for j in 0 0.5; do
-    export CACHE_MB=64 CACHE_TTL=20 CACHE_JITTER=$j CACHE_SINGLEFLIGHT=0 PAGE_DELAY_MS=100
-    fresh; s=$(sampler "$out/expiry-$j-$k.stats.tsv")
+    export CACHE_MB=64 CACHE_TTL=20 CACHE_JITTER=$j CACHE_SINGLEFLIGHT=0 CACHE_SWR=0 PAGE_DELAY_MS=100
+    fresh "expiry-$j-$k"; s=$(sampler "$out/expiry-$j-$k.stats.tsv")
     load "$out/expiry-$j-$k.json" zipf; kill $s; echo "run $k expiry jitter=$j done"
   done
 done

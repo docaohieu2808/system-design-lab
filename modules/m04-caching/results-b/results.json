@@ -1,5 +1,5 @@
 {
- "runs": 3,
+ "runs": 1,
  "flush": {
   "0": {
    "db_queries_10s_before": {
@@ -8,19 +8,24 @@
     "max": 0
    },
    "db_queries_3s_after": {
-    "mean": 129.33,
-    "min": 102,
-    "max": 159
+    "mean": 202,
+    "min": 202,
+    "max": 202
    },
    "p99_ms": {
-    "mean": 501.91,
-    "min": 501.86,
-    "max": 502
+    "mean": 502.45,
+    "min": 502.45,
+    "max": 502.45
    },
    "max_ms": {
-    "mean": 538.32,
-    "min": 535.61,
-    "max": 542.23
+    "mean": 655.07,
+    "min": 655.07,
+    "max": 655.07
+   },
+   "background_busy_pct": {
+    "mean": 14.0,
+    "min": 14.0,
+    "max": 14.0
    }
   },
   "1": {
@@ -35,50 +40,102 @@
     "max": 1
    },
    "p99_ms": {
-    "mean": 216.01,
-    "min": 213.38,
-    "max": 217.73
+    "mean": 213.01,
+    "min": 213.01,
+    "max": 213.01
    },
    "max_ms": {
-    "mean": 512.02,
-    "min": 508.67,
-    "max": 514.75
+    "mean": 513.29,
+    "min": 513.29,
+    "max": 513.29
+   },
+   "background_busy_pct": {
+    "mean": 9.0,
+    "min": 9.0,
+    "max": 9.0
    }
   }
  },
  "expiry": {
   "0": {
    "peak_db_q_in_1s": {
-    "mean": 182.67,
-    "min": 174,
-    "max": 193
+    "mean": 175,
+    "min": 175,
+    "max": 175
    },
    "db_q_total": {
-    "mean": 3805,
-    "min": 3774,
-    "max": 3840
+    "mean": 3834,
+    "min": 3834,
+    "max": 3834
    },
    "p99_ms": {
-    "mean": 103.79,
-    "min": 103.53,
-    "max": 104.14
+    "mean": 109.11,
+    "min": 109.11,
+    "max": 109.11
+   },
+   "max_ms": {
+    "mean": 152.51,
+    "min": 152.51,
+    "max": 152.51
+   },
+   "background_busy_pct": {
+    "mean": 10.0,
+    "min": 10.0,
+    "max": 10.0
    }
   },
   "0.5": {
    "peak_db_q_in_1s": {
-    "mean": 118.67,
-    "min": 112,
-    "max": 123
+    "mean": 131,
+    "min": 131,
+    "max": 131
    },
    "db_q_total": {
-    "mean": 3804,
-    "min": 3783,
-    "max": 3846
+    "mean": 3785,
+    "min": 3785,
+    "max": 3785
    },
    "p99_ms": {
-    "mean": 103.67,
-    "min": 103.58,
-    "max": 103.78
+    "mean": 105.71,
+    "min": 105.71,
+    "max": 105.71
+   },
+   "max_ms": {
+    "mean": 152.11,
+    "min": 152.11,
+    "max": 152.11
+   },
+   "background_busy_pct": {
+    "mean": 15.0,
+    "min": 15.0,
+    "max": 15.0
+   }
+  },
+  "swr": {
+   "peak_db_q_in_1s": {
+    "mean": 175,
+    "min": 175,
+    "max": 175
+   },
+   "db_q_total": {
+    "mean": 3740,
+    "min": 3740,
+    "max": 3740
+   },
+   "p99_ms": {
+    "mean": 16.41,
+    "min": 16.41,
+    "max": 16.41
+   },
+   "max_ms": {
+    "mean": 118.78,
+    "min": 118.78,
+    "max": 118.78
+   },
+   "background_busy_pct": {
+    "mean": 15.0,
+    "min": 15.0,
+    "max": 15.0
    }
   }
  }
