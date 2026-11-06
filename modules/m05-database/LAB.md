@@ -43,3 +43,12 @@ often does nobody end up on call?
 
 ## Try next
 Rewrite the read-then-write in `app/db.go` with `SELECT ... FOR UPDATE` in a transaction and run the drill again.
+
+## Variations (added 06/11/2026)
+Each one is one change to a run you have already done; predict first. `make m05-deepen` runs them all, interleaved (about 90 minutes).
+- No index at 2 and 10 lookups a second: the same command as section 1 with `-e RATE=2`, then `-e RATE=10`.
+- `/api/recent` at 400 a second: `NPLUS1=1 docker compose up -d --force-recreate app`, then `-e RATE=400 -e PATH_TMPL=/api/recent`, then again with `NPLUS1=0`.
+- PgBouncer pool size: `POOL_SIZE=5` or `POOL_SIZE=80` with the PgBouncer overlay (`DEFAULT_POOL_SIZE` is `${POOL_SIZE:-20}`), 512 clients.
+- Lost update with fewer or more connections: `POOL_MAX=2 docker compose run --rm --no-deps app drill lost-update`, then `POOL_MAX=50`. The drill also runs a `for_update` arm now.
+- Write skew with locked rows: `drill write-skew` prints a third variant, `read committed, select for update`.
+- Prepared statements: add `-M prepared` to the 8-client pgbench command and compare with the same command without it.

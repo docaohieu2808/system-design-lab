@@ -1,0 +1,11 @@
+{
+ "path": "/api/lookup?url=https://example.com/articles/{id}",
+ "rate": 2,
+ "requests": 61,
+ "rps": 2,
+ "failed_pct": 0,
+ "dropped": 0,
+ "p50_ms": 229.55,
+ "p99_ms": 366.71,
+ "max_ms": 415.82
+}

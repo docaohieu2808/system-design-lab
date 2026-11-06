@@ -1,0 +1,13 @@
+pgbench (18.6)
+transaction type: /dev/stdin
+scaling factor: 1
+query mode: prepared
+number of clients: 8
+number of threads: 4
+maximum number of tries: 1
+duration: 20 s
+number of transactions actually processed: 74916
+number of failed transactions: 0 (0.000%)
+latency average = 2.128 ms
+initial connection time = 122.609 ms
+tps = 3759.259465 (without initial connection time)

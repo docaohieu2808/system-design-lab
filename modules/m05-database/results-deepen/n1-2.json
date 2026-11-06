@@ -1,0 +1,11 @@
+{
+ "path": "/api/recent",
+ "rate": 400,
+ "requests": 6739,
+ "rps": 224.6,
+ "failed_pct": 41.579,
+ "dropped": 5261,
+ "p50_ms": 9513.78,
+ "p99_ms": 10001.16,
+ "max_ms": 10002.38
+}
