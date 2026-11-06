@@ -1,0 +1,5 @@
+# Module 1 variations: more memory for k6. With the default 1 GB the base arm's k6 was killed (exit 137) in 2 of 3 runs at the
+# 5,000/s step, where thousands of requests wait at once. Memory is not CPU: this does not change what the test measures.
+services:
+  k6:
+    mem_limit: 3g

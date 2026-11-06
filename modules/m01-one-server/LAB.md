@@ -29,6 +29,11 @@ Course machine at 3,000 req/s: average 4.9 ms, p99 42 ms (8.5×).
 Plot `p99_ms` against `asked_rps` (a spreadsheet is fine). Your curve should look like the one in lesson 1.1: flat,
 then bending up well before the ceiling.
 
+## 5. Squeeze the load generator, strengthen the app (added 06/11/2026)
+Same test, two changes, one at a time. **Predict** the ceiling first. (a) `K6_CPUS=0.5 docker compose run --rm -e RESULT=/lab/mine-k6half.json k6 run --quiet modules/m01-one-server/find-the-ceiling.js`.
+(b) `COMPOSE_FILE=compose.yaml:modules/m01-one-server/compose.app1core.yaml docker compose up -d --wait --force-recreate app`, then the normal run. Watch `docker stats`: which container is at its cap?
+If k6 is killed (exit 137) add `modules/m01-one-server/compose.k6mem.yaml` to `COMPOSE_FILE`. `make m01-variations` runs the base and both variations, interleaved (about 50 minutes).
+
 ## If something goes wrong
 - Ceiling far below your calibration ratio: rerun `make verify`; check `peak_cpu_pct.k6` — if k6 is near its limit,
   the tester is the bottleneck (lesson 0.5).

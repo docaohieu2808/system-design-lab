@@ -1,0 +1,902 @@
+{
+ "runs": 3,
+ "arms": {
+  "base": {
+   "steps": [
+    {
+     "asked_rps": 250,
+     "succeeded_rps": {
+      "mean": 250.1,
+      "min": 250.1,
+      "max": 250.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.65,
+      "min": 0.64,
+      "max": 0.65
+     },
+     "p95_ms": {
+      "mean": 1.49,
+      "min": 1.38,
+      "max": 1.56
+     },
+     "p99_ms": {
+      "mean": 3.53,
+      "min": 3.28,
+      "max": 3.79
+     }
+    },
+    {
+     "asked_rps": 500,
+     "succeeded_rps": {
+      "mean": 500,
+      "min": 500,
+      "max": 500
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.51,
+      "max": 0.54
+     },
+     "p95_ms": {
+      "mean": 1.52,
+      "min": 1.38,
+      "max": 1.64
+     },
+     "p99_ms": {
+      "mean": 17.1,
+      "min": 13.6,
+      "max": 22.52
+     }
+    },
+    {
+     "asked_rps": 750,
+     "succeeded_rps": {
+      "mean": 750,
+      "min": 750,
+      "max": 750
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.49,
+      "min": 0.48,
+      "max": 0.49
+     },
+     "p95_ms": {
+      "mean": 1.87,
+      "min": 1.65,
+      "max": 2.04
+     },
+     "p99_ms": {
+      "mean": 21.58,
+      "min": 19.48,
+      "max": 24.56
+     }
+    },
+    {
+     "asked_rps": 1000,
+     "succeeded_rps": {
+      "mean": 1000,
+      "min": 1000,
+      "max": 1000
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.51,
+      "max": 0.53
+     },
+     "p95_ms": {
+      "mean": 2.8,
+      "min": 2.28,
+      "max": 3.35
+     },
+     "p99_ms": {
+      "mean": 27.08,
+      "min": 22.83,
+      "max": 30.87
+     }
+    },
+    {
+     "asked_rps": 1250,
+     "succeeded_rps": {
+      "mean": 1250.0,
+      "min": 1249.9,
+      "max": 1250.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.54,
+      "min": 0.53,
+      "max": 0.56
+     },
+     "p95_ms": {
+      "mean": 4.59,
+      "min": 4.32,
+      "max": 4.97
+     },
+     "p99_ms": {
+      "mean": 26.79,
+      "min": 24.34,
+      "max": 28.04
+     }
+    },
+    {
+     "asked_rps": 1500,
+     "succeeded_rps": {
+      "mean": 1500.03,
+      "min": 1500,
+      "max": 1500.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.56,
+      "min": 0.51,
+      "max": 0.59
+     },
+     "p95_ms": {
+      "mean": 12.36,
+      "min": 6.86,
+      "max": 19.49
+     },
+     "p99_ms": {
+      "mean": 36.81,
+      "min": 29.98,
+      "max": 43.65
+     }
+    },
+    {
+     "asked_rps": 2000,
+     "succeeded_rps": {
+      "mean": 2000,
+      "min": 2000,
+      "max": 2000
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.63,
+      "min": 0.59,
+      "max": 0.7
+     },
+     "p95_ms": {
+      "mean": 33.99,
+      "min": 30.06,
+      "max": 41.06
+     },
+     "p99_ms": {
+      "mean": 62.45,
+      "min": 59.01,
+      "max": 68.1
+     }
+    },
+    {
+     "asked_rps": 3000,
+     "succeeded_rps": {
+      "mean": 2956.43,
+      "min": 2931.3,
+      "max": 2982.2
+     },
+     "dropped": {
+      "mean": 829.33,
+      "min": 229,
+      "max": 1375
+     },
+     "p50_ms": {
+      "mean": 94.13,
+      "min": 54.99,
+      "max": 154.21
+     },
+     "p95_ms": {
+      "mean": 196.02,
+      "min": 157.66,
+      "max": 257.27
+     },
+     "p99_ms": {
+      "mean": 257.33,
+      "min": 189.05,
+      "max": 307.79
+     }
+    },
+    {
+     "asked_rps": 4000,
+     "succeeded_rps": {
+      "mean": 3101.17,
+      "min": 3006.6,
+      "max": 3225.6
+     },
+     "dropped": {
+      "mean": 17979.33,
+      "min": 15499,
+      "max": 19867
+     },
+     "p50_ms": {
+      "mean": 578.23,
+      "min": 525.73,
+      "max": 641.24
+     },
+     "p95_ms": {
+      "mean": 1010.34,
+      "min": 870.97,
+      "max": 1117.75
+     },
+     "p99_ms": {
+      "mean": 1063.63,
+      "min": 931.12,
+      "max": 1161.41
+     }
+    },
+    {
+     "asked_rps": 5000,
+     "succeeded_rps": {
+      "mean": 3090.3,
+      "min": 3079.5,
+      "max": 3110.7
+     },
+     "dropped": {
+      "mean": 38190.33,
+      "min": 37784,
+      "max": 38403
+     },
+     "p50_ms": {
+      "mean": 842.29,
+      "min": 823.41,
+      "max": 868.73
+     },
+     "p95_ms": {
+      "mean": 1112.57,
+      "min": 1089.99,
+      "max": 1143.31
+     },
+     "p99_ms": {
+      "mean": 1158.62,
+      "min": 1113.05,
+      "max": 1184.68
+     }
+    }
+   ],
+   "k6_cores_last_20s": {
+    "mean": 1.03,
+    "min": 0.98,
+    "max": 1.06
+   },
+   "app_cores_last_20s": {
+    "mean": 0.48,
+    "min": 0.47,
+    "max": 0.49
+   },
+   "background_busy_pct": {
+    "mean": 10.67,
+    "min": 7.0,
+    "max": 15.0
+   }
+  },
+  "k6half": {
+   "steps": [
+    {
+     "asked_rps": 250,
+     "succeeded_rps": {
+      "mean": 250.1,
+      "min": 250.1,
+      "max": 250.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.62,
+      "min": 0.6,
+      "max": 0.65
+     },
+     "p95_ms": {
+      "mean": 1.56,
+      "min": 1.37,
+      "max": 1.67
+     },
+     "p99_ms": {
+      "mean": 5.86,
+      "min": 3.79,
+      "max": 9.79
+     }
+    },
+    {
+     "asked_rps": 500,
+     "succeeded_rps": {
+      "mean": 500.1,
+      "min": 500.1,
+      "max": 500.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.52,
+      "max": 0.53
+     },
+     "p95_ms": {
+      "mean": 3.84,
+      "min": 3.05,
+      "max": 4.63
+     },
+     "p99_ms": {
+      "mean": 22.0,
+      "min": 21.09,
+      "max": 23.77
+     }
+    },
+    {
+     "asked_rps": 750,
+     "succeeded_rps": {
+      "mean": 750,
+      "min": 750,
+      "max": 750
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.5,
+      "min": 0.5,
+      "max": 0.5
+     },
+     "p95_ms": {
+      "mean": 12.22,
+      "min": 8.79,
+      "max": 15.68
+     },
+     "p99_ms": {
+      "mean": 65.08,
+      "min": 42.89,
+      "max": 82.67
+     }
+    },
+    {
+     "asked_rps": 1000,
+     "succeeded_rps": {
+      "mean": 1000,
+      "min": 1000,
+      "max": 1000
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.54,
+      "min": 0.53,
+      "max": 0.56
+     },
+     "p95_ms": {
+      "mean": 39.85,
+      "min": 10.04,
+      "max": 87.17
+     },
+     "p99_ms": {
+      "mean": 104.54,
+      "min": 30.95,
+      "max": 185.83
+     }
+    },
+    {
+     "asked_rps": 1250,
+     "succeeded_rps": {
+      "mean": 1247.1,
+      "min": 1241.3,
+      "max": 1250
+     },
+     "dropped": {
+      "mean": 22,
+      "min": 0,
+      "max": 66
+     },
+     "p50_ms": {
+      "mean": 0.6,
+      "min": 0.57,
+      "max": 0.62
+     },
+     "p95_ms": {
+      "mean": 126.79,
+      "min": 99.86,
+      "max": 175.15
+     },
+     "p99_ms": {
+      "mean": 233.31,
+      "min": 198.37,
+      "max": 292.3
+     }
+    },
+    {
+     "asked_rps": 1500,
+     "succeeded_rps": {
+      "mean": 1455.07,
+      "min": 1448.3,
+      "max": 1460.5
+     },
+     "dropped": {
+      "mean": 899,
+      "min": 790,
+      "max": 1034
+     },
+     "p50_ms": {
+      "mean": 1.19,
+      "min": 0.73,
+      "max": 1.81
+     },
+     "p95_ms": {
+      "mean": 167.66,
+      "min": 112.36,
+      "max": 203.73
+     },
+     "p99_ms": {
+      "mean": 294.64,
+      "min": 211.65,
+      "max": 391.6
+     }
+    },
+    {
+     "asked_rps": 2000,
+     "succeeded_rps": {
+      "mean": 1784.07,
+      "min": 1758.2,
+      "max": 1833.8
+     },
+     "dropped": {
+      "mean": 4267.33,
+      "min": 3324,
+      "max": 4837
+     },
+     "p50_ms": {
+      "mean": 14.16,
+      "min": 11.71,
+      "max": 17.37
+     },
+     "p95_ms": {
+      "mean": 255.27,
+      "min": 182.86,
+      "max": 296.87
+     },
+     "p99_ms": {
+      "mean": 376.04,
+      "min": 303.39,
+      "max": 412.99
+     }
+    },
+    {
+     "asked_rps": 3000,
+     "succeeded_rps": {
+      "mean": 1990.03,
+      "min": 1953.5,
+      "max": 2044
+     },
+     "dropped": {
+      "mean": 20117.67,
+      "min": 19120,
+      "max": 20932
+     },
+     "p50_ms": {
+      "mean": 104.47,
+      "min": 101.74,
+      "max": 106.34
+     },
+     "p95_ms": {
+      "mean": 338.12,
+      "min": 305.18,
+      "max": 396.56
+     },
+     "p99_ms": {
+      "mean": 591.47,
+      "min": 568.13,
+      "max": 623.96
+     }
+    },
+    {
+     "asked_rps": 4000,
+     "succeeded_rps": {
+      "mean": 1934.77,
+      "min": 1863.3,
+      "max": 2003
+     },
+     "dropped": {
+      "mean": 41188.33,
+      "min": 39938,
+      "max": 42398
+     },
+     "p50_ms": {
+      "mean": 112.21,
+      "min": 110.25,
+      "max": 113.91
+     },
+     "p95_ms": {
+      "mean": 424.42,
+      "min": 390.9,
+      "max": 485.98
+     },
+     "p99_ms": {
+      "mean": 724.82,
+      "min": 678.49,
+      "max": 790.82
+     }
+    },
+    {
+     "asked_rps": 5000,
+     "succeeded_rps": {
+      "mean": 1923.83,
+      "min": 1873,
+      "max": 1998
+     },
+     "dropped": {
+      "mean": 60949,
+      "min": 59139,
+      "max": 62193
+     },
+     "p50_ms": {
+      "mean": 116.68,
+      "min": 113.44,
+      "max": 119.56
+     },
+     "p95_ms": {
+      "mean": 427.04,
+      "min": 402.87,
+      "max": 475.25
+     },
+     "p99_ms": {
+      "mean": 701.47,
+      "min": 697.08,
+      "max": 708.58
+     }
+    }
+   ],
+   "k6_cores_last_20s": {
+    "mean": 0.5,
+    "min": 0.49,
+    "max": 0.5
+   },
+   "app_cores_last_20s": {
+    "mean": 0.35,
+    "min": 0.34,
+    "max": 0.36
+   },
+   "background_busy_pct": {
+    "mean": 11.0,
+    "min": 9.0,
+    "max": 15.0
+   }
+  },
+  "app1": {
+   "steps": [
+    {
+     "asked_rps": 250,
+     "succeeded_rps": {
+      "mean": 250.07,
+      "min": 250,
+      "max": 250.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.65,
+      "min": 0.63,
+      "max": 0.66
+     },
+     "p95_ms": {
+      "mean": 1.33,
+      "min": 1.28,
+      "max": 1.37
+     },
+     "p99_ms": {
+      "mean": 2.77,
+      "min": 2.71,
+      "max": 2.87
+     }
+    },
+    {
+     "asked_rps": 500,
+     "succeeded_rps": {
+      "mean": 500.1,
+      "min": 500.1,
+      "max": 500.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.52,
+      "max": 0.53
+     },
+     "p95_ms": {
+      "mean": 1.41,
+      "min": 1.35,
+      "max": 1.46
+     },
+     "p99_ms": {
+      "mean": 9.61,
+      "min": 4.1,
+      "max": 18.24
+     }
+    },
+    {
+     "asked_rps": 750,
+     "succeeded_rps": {
+      "mean": 750,
+      "min": 750,
+      "max": 750
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.49,
+      "min": 0.48,
+      "max": 0.5
+     },
+     "p95_ms": {
+      "mean": 1.32,
+      "min": 1.21,
+      "max": 1.48
+     },
+     "p99_ms": {
+      "mean": 4.27,
+      "min": 3.94,
+      "max": 4.57
+     }
+    },
+    {
+     "asked_rps": 1000,
+     "succeeded_rps": {
+      "mean": 1000,
+      "min": 1000,
+      "max": 1000
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.51,
+      "max": 0.53
+     },
+     "p95_ms": {
+      "mean": 1.47,
+      "min": 1.27,
+      "max": 1.65
+     },
+     "p99_ms": {
+      "mean": 5.14,
+      "min": 3.05,
+      "max": 7.54
+     }
+    },
+    {
+     "asked_rps": 1250,
+     "succeeded_rps": {
+      "mean": 1250,
+      "min": 1250,
+      "max": 1250
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.55,
+      "min": 0.54,
+      "max": 0.57
+     },
+     "p95_ms": {
+      "mean": 2.29,
+      "min": 2,
+      "max": 2.45
+     },
+     "p99_ms": {
+      "mean": 9.97,
+      "min": 9.76,
+      "max": 10.31
+     }
+    },
+    {
+     "asked_rps": 1500,
+     "succeeded_rps": {
+      "mean": 1499.67,
+      "min": 1499,
+      "max": 1500
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.54,
+      "min": 0.53,
+      "max": 0.55
+     },
+     "p95_ms": {
+      "mean": 2.21,
+      "min": 1.86,
+      "max": 2.47
+     },
+     "p99_ms": {
+      "mean": 8.68,
+      "min": 6.2,
+      "max": 10.73
+     }
+    },
+    {
+     "asked_rps": 2000,
+     "succeeded_rps": {
+      "mean": 2000.03,
+      "min": 2000,
+      "max": 2000.1
+     },
+     "dropped": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "p50_ms": {
+      "mean": 0.52,
+      "min": 0.51,
+      "max": 0.53
+     },
+     "p95_ms": {
+      "mean": 8.99,
+      "min": 5.67,
+      "max": 13.05
+     },
+     "p99_ms": {
+      "mean": 36.9,
+      "min": 34.54,
+      "max": 41.4
+     }
+    },
+    {
+     "asked_rps": 3000,
+     "succeeded_rps": {
+      "mean": 2990.23,
+      "min": 2984.1,
+      "max": 2996.3
+     },
+     "dropped": {
+      "mean": 194.67,
+      "min": 73,
+      "max": 318
+     },
+     "p50_ms": {
+      "mean": 1.16,
+      "min": 1.11,
+      "max": 1.19
+     },
+     "p95_ms": {
+      "mean": 63.78,
+      "min": 62.49,
+      "max": 64.85
+     },
+     "p99_ms": {
+      "mean": 95.33,
+      "min": 90.03,
+      "max": 102.92
+     }
+    },
+    {
+     "asked_rps": 4000,
+     "succeeded_rps": {
+      "mean": 3582.97,
+      "min": 3556.5,
+      "max": 3625.6
+     },
+     "dropped": {
+      "mean": 8339.67,
+      "min": 7488,
+      "max": 8869
+     },
+     "p50_ms": {
+      "mean": 162.93,
+      "min": 136.15,
+      "max": 195.06
+     },
+     "p95_ms": {
+      "mean": 354.9,
+      "min": 299.38,
+      "max": 386.05
+     },
+     "p99_ms": {
+      "mean": 477.34,
+      "min": 468.44,
+      "max": 486
+     }
+    },
+    {
+     "asked_rps": 5000,
+     "succeeded_rps": {
+      "mean": 3678.43,
+      "min": 3571.9,
+      "max": 3778.1
+     },
+     "dropped": {
+      "mean": 25205.33,
+      "min": 24420,
+      "max": 26295
+     },
+     "p50_ms": {
+      "mean": 432.21,
+      "min": 412.56,
+      "max": 443.37
+     },
+     "p95_ms": {
+      "mean": 874.34,
+      "min": 849.36,
+      "max": 893.41
+     },
+     "p99_ms": {
+      "mean": 1615.65,
+      "min": 1066.51,
+      "max": 2564.28
+     }
+    }
+   ],
+   "k6_cores_last_20s": {
+    "mean": 1.18,
+    "min": 1.14,
+    "max": 1.21
+   },
+   "app_cores_last_20s": {
+    "mean": 0.61,
+    "min": 0.57,
+    "max": 0.64
+   },
+   "background_busy_pct": {
+    "mean": 13.67,
+    "min": 7.0,
+    "max": 20.0
+   }
+  }
+ }
+}

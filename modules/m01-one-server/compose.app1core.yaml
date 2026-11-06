@@ -1,0 +1,4 @@
+# Module 1 variation: the app gets a whole core instead of half (COMPOSE_FILE=compose.yaml:modules/m01-one-server/compose.app1core.yaml).
+services:
+  app:
+    cpus: 1.0
