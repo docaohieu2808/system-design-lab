@@ -4,17 +4,26 @@
  "before": {
   "attempts": 401,
   "created": 401,
-  "gave_up": 0
+  "gave_up": 0,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "during": {
-  "attempts": 2166,
-  "created": 48,
-  "gave_up": 353
+  "attempts": 2341,
+  "created": 13,
+  "gave_up": 388,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "after": {
-  "attempts": 768,
-  "created": 332,
-  "gave_up": 69
+  "attempts": 621,
+  "created": 357,
+  "gave_up": 44,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "per_second_attempts": [
   40,
@@ -27,19 +36,19 @@
   40,
   40,
   40,
-  41,
-  195,
-  149,
-  41,
-  59,
-  81,
-  875,
+  171,
+  240,
+  245,
+  240,
+  219,
+  261,
+  240,
   240,
   240,
   240,
   246,
-  186,
-  61,
+  60,
+  40,
   40,
   40,
   40,
@@ -64,7 +73,7 @@
   0,
   0
  ],
- "test_started_ms": 1793944523686,
+ "test_started_ms": 1793978715719,
  "create_p50_ms": 4,
- "create_p99_ms": 729.4
+ "create_p99_ms": 8
 }

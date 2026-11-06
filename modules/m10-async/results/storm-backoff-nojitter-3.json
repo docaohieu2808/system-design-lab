@@ -2,19 +2,28 @@
  "retry": "backoff-nojitter",
  "rate": 40,
  "before": {
-  "attempts": 400,
-  "created": 400,
-  "gave_up": 0
+  "attempts": 401,
+  "created": 401,
+  "gave_up": 0,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "during": {
-  "attempts": 1611,
-  "created": 201,
-  "gave_up": 133
+  "attempts": 2254,
+  "created": 355,
+  "gave_up": 46,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "after": {
-  "attempts": 476,
+  "attempts": 495,
   "created": 401,
-  "gave_up": 0
+  "gave_up": 0,
+  "began": 401,
+  "dropped": 0,
+  "ended_other": 0
  },
  "per_second_attempts": [
   40,
@@ -27,22 +36,22 @@
   40,
   40,
   40,
-  40,
-  84,
-  142,
-  161,
+  65,
+  126,
+  61,
+  45,
+  105,
   187,
-  165,
-  170,
-  180,
-  136,
-  90,
-  108,
-  72,
-  173,
-  90,
-  80,
-  48,
+  357,
+  257,
+  357,
+  179,
+  219,
+  337,
+  120,
+  67,
+  67,
+  40,
   40,
   40,
   40,
@@ -64,7 +73,7 @@
   0,
   0
  ],
- "test_started_ms": 1793944846526,
- "create_p50_ms": 4,
- "create_p99_ms": 8912.7
+ "test_started_ms": 1793979042671,
+ "create_p50_ms": 5,
+ "create_p99_ms": 9971.3
 }

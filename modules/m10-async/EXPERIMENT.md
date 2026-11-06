@@ -23,34 +23,39 @@ One app copy (half a core), Postgres 18.6, Redis 8.10.2 streams as the queue, k6
 
 ### Retry storm (40 creates/s; the app is stopped from about 11 s to about 22 s; up to 5 retries)
 Three arms, interleaved inside every run (order rotated from run to run), 3 runs, `tools/run-m10-storm.sh 3`
-(`make m10 RETRY=backoff-nojitter`). Mean (min-max). Quiet-machine gate before every arm: 7-15% background busy,
-steal 0. k6 used 0.12-0.14 of its 2 cores and the app 0.02-0.03 of its core, so the load generator had room.
+(`make m10 RETRY=backoff-nojitter`). Mean (min-max). Quiet-machine gate before every arm: 7-24% background busy, steal 0.
+k6 used 0.12-0.14 of its 2 cores and the app 0.02-0.03 of its core. Every arrival is now counted: arrivals that began = created + gave up in
+all 27 slices (the counting fix below).
 
-| | attempts during (10-20 s) | attempts after (20-30 s) | gave up, whole run (of 1,200) | busiest second after the app is back | busiest second overall | created after (of ~400) |
+| | attempts during (10-20 s) | attempts after (20-30 s) | gave up, whole run (of 1,200) | created after (of 401) | busiest second after the app is back | busiest second overall |
 |---|---|---|---|---|---|---|
-| retry at once | 2,163 (2,111-2,211) | 705 (581-768) | 395 (329-435) | 98 (40-213) | 883 (834-940) | 353 (327-401) |
-| backoff + jitter (200 ms, 400 ms, ... x0.5-1.5) | 1,836 (1,476-2,028) | 559 (522-593) | 131 (36-178) | 139 (125-164) | 250 (226-299) | 400 (400-400) |
-| backoff, same waits, no jitter | 1,830 (1,611-1,959) | 574 (476-631) | 177 (133-217) | 185 (157-225) | 214 (187-230) | 401 (401-401) |
+| retry at once | 2,268 (2,103-2,361) | 573 (491-621) | 391 (309-433) | 373 (357-401) | 96 (40-209) | 686 (261-900) |
+| backoff + jitter (200 ms, 400 ms, ... x0.5-1.5) | 2,247 (2,239-2,253) | 485 (480-489) | 180 (171-191) | 401 (400-401) | 128 (105-173) | 245 (240-250) |
+| backoff, same waits, no jitter | 2,282 (2,253-2,338) | 560 (488-697) | 171 (46-283) | 401 (401-401) | 160 (103-256) | 285 (243-357) |
 
-Normal is 400 attempts per 10 s (40 per second). The app was stopped 10.9 s after k6 started and came back at 21.6-21.9 s,
-so the last 1.6-1.9 s of the outage fall in the "after" slice. All three arms share that timing, so compare them with each other.
+During the outage, arrivals (401) end as: retry at once 38 created, 363 gave up; backoff + jitter 221 created, 180 gave up; no jitter 230 created, 171 gave up (each slice's 401 arrivals add up).
+
+Normal is 400 attempts per 10 s (40 per second). The app was stopped about 10.9 s after k6 started and came back at about 21.7 s,
+so the last 1.7 s of the outage fall in the "after" slice. All three arms share that timing, so compare them with each other.
 The "busiest second after the app is back" starts at the first whole second after the app was started again.
 
-What the new no-jitter arm shows:
-- Without jitter the busiest second after the app returns is about 1.3 times the busiest second with jitter (185 against 139
-  attempts), 4.6 times the normal 40. The ranges touch (157-225 against 125-164), so with 3 runs this is a modest, not a sharp, difference.
-- Without jitter more people gave up over the run: 177 against 131; the ranges overlap (133-217 against 36-178), so this is not
-  established either. The jitter arm's gave-up count varied a lot from run to run (36 to 178).
-- The retry wave is not one big spike in either arm, because arrivals are steady at 40 per second: retries start from every second of
-  the outage, so exact waits line up only among requests that failed in the same instant. A visible synchronized spike would need
-  a burst of failures at once (for example many clients disconnected together); this test does not make one.
-- Retrying at once is a different case: its busiest second is during the outage (883, 22 times normal), and after the app is back
-  the retries have already been used up (98).
+What it shows:
+- All three arms make about 5.6 times the normal attempts while the app is down (2,247-2,282 against 400): every arrival is allowed the same five retries, and a 10 s outage outlasts the whole backoff schedule.
+  Backoff does not cut the attempts; it spreads them and saves the people: 171-180 give up against 391 with retry at once, and every arrival after the 20 s mark is created.
+- Jitter against no jitter: the busiest second after the app returns is 160 (103-256) without and 128 (105-173) with, about 1.25 times, and the ranges overlap; the people who gave up are the same (171 against 180).
+  With steady arrivals, 3 runs do not show jitter making a difference. The no-jitter arm is the one with the widest spread (46 to 283 gave up).
+- A synchronized wave needs a burst of failures at the same instant. With arrivals spread evenly, retries start from every second of the outage, so exact waits line up only among requests that failed together; this test does not make that burst.
+- Retrying at once is a different case: its busiest second is during the outage (686 on average, up to 900 in a run, 17-22 times normal), and after the app is back
+  the retries have already been used up (96).
 
-The earlier table (immediate and backoff measured one after the other in a first run, before this one; the runner then did not record when the app
-stopped and returned) read: retry at once 2,137 during, 890 after, 445 gave up, 303 of 400 created after; backoff + jitter
-1,941 during, 737 after, 205 gave up, 401 of 401 created after. The pattern is the same as in the interleaved run above: both make about
-five times the normal attempts while the app is down and retrying at once gives up far more.
+**A counting bug, found and fixed (06/11).** The first interleaved storm run (commit ec620ab) gave backoff arms numbers that did not add up: in the backoff + jitter arm 26, 80 and 29 of the
+401 arrivals in the outage slice ended as neither created nor gave up. Cause: k6 had 200 virtual users ready for each phase, and a client that waits and retries keeps its user busy for
+seconds, so during the outage the backoff arms needed about 265 at once. k6 started more users while running and, while it did, skipped the arrivals it could not serve (`dropped_iterations`):
+a diagnostic run with 200 ready users began only 335 and 331 of 401 arrivals in that slice; with 600 ready users all 401 began, and every slice adds up. The retry-at-once arm
+holds its users for milliseconds, so it never hit the limit. Those backoff runs therefore sent fewer attempts than the clients would have (1,836 and 1,830 attempts during the outage; the corrected value
+is about 2,250), and the earlier "backoff uses fewer attempts" reading was an artefact. `create.js` now has `PREALLOC` (default 600) and counts, per slice, how many arrivals began, how many were dropped and how many ended neither
+created nor gave up (`ended_other`; 0 in all 27 slices here). The earlier gave-up values (131 and 177) and peaks (139 and 185) are replaced by the table above.
+The 2-retry arms in "Extra variations" keep a user busy for about a second at most (40 per second needs about 40 users), so I expect them not to be affected; they were not re-run.
 
 Normal is 400 attempts per 10 s. Retrying at once spends all five retries within milliseconds (p99 of a create 5–6 ms,
 so failures are instant), so everyone who arrives while the app is down gives up, including the first two seconds
@@ -93,10 +98,10 @@ What it shows:
   worker crashed 401 times.
 - A poison job costs its tries: the drill has one worker taking jobs in strict order, and every try of the bad job takes about 31 ms (321 tries in 10 s in the main run), so 30 tries hold
   the queue for about 0.9 s and 3 tries for about 0.1 s. Both arms finished all 200 good jobs inside the 10 s window; the delay itself was not timed, the 31 ms per try is taken from the main run.
-- With only 2 retries a 10 s outage still outlasts every retry: attempts during the outage are 2.8 times normal (1,114 and 1,108 of 400 normal) against 5.4 and 4.6 times with 5 retries (see the retry storm table above). Backoff
-  with 2 retries waits only about 0.6 s in total, so it gives up on many more requests (370, 296-410) than with 5 retries (131): the extra retries at 5 retries are what let people wait out the end of the outage.
+- With only 2 retries a 10 s outage still outlasts every retry: attempts during the outage are 2.8 times normal (1,114 and 1,108 of 400 normal) against 5.6 times with 5 retries (see the retry storm table above). Backoff
+  with 2 retries waits only about 0.6 s in total, so it gives up on many more requests (370, 296-410) than with 5 retries (180, corrected): the extra retries at 5 retries are what let people wait out the end of the outage. 2 retries: about twice as many give up for about half the attempts.
   The busiest second after the app is back is 40 for retry-at-once (nothing left to retry) and 69 (55-96) for backoff.
-Not shown: the 5-retry storm arms were not re-run in this run, so compare against the interleaved storm table above, which was measured earlier the same day.
+Not shown: the 5-retry storm arms were not re-run in this run, so compare against the corrected storm table above, which was measured later the same day. The 2-retry arms were not re-run after the counting fix.
 
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.

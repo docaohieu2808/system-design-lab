@@ -46,7 +46,7 @@ def storm_row(tag):
     stopped, started = float((out / f"{tag}.stopped").read_text()), float((out / f"{tag}.started").read_text())
     back = int(started - t0) + 1               # first whole test-second after the app was started again
     per = r["per_second_attempts"]
-    row = {p: {f: r[p][f] for f in ("attempts", "created", "gave_up")} for p in ("before", "during", "after")}
+    row = {p: {f: r[p][f] for f in ("attempts", "created", "gave_up", "began", "dropped", "ended_other")} for p in ("before", "during", "after")}
     row["gave_up_total"] = sum(r[p]["gave_up"] for p in ("before", "during", "after"))
     row["peak_attempts_1s_after_return"] = max(per[back:])
     row["peak_attempts_1s_overall"] = max(per)
@@ -60,7 +60,7 @@ def storm_row(tag):
 
 for r_ in ("immediate", "backoff", "backoff-nojitter"):
     rows, pers = zip(*[storm_row(f"storm-{r_}-{k}") for k in range(1, runs + 1)])
-    d = {p: {f: agg([r[p][f] for r in rows]) for f in ("attempts", "created", "gave_up")} for p in ("before", "during", "after")}
+    d = {p: {f: agg([r[p][f] for r in rows]) for f in ("attempts", "created", "gave_up", "began", "dropped", "ended_other")} for p in ("before", "during", "after")}
     for f in ("gave_up_total", "peak_attempts_1s_after_return", "peak_attempts_1s_overall", "outage_start_s", "outage_end_s",
               "create_p99_ms", "background_busy_pct", "k6_cores", "app_cores", "k6_exit"):
         d[f] = agg([r[f] for r in rows])

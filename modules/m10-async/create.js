@@ -10,12 +10,15 @@ import { sleep } from 'k6';
 import { Counter, Trend } from 'k6/metrics';
 
 const BASE = __ENV.BASE || 'http://app:8080', RATE = Number(__ENV.RATE || 40), RETRY = __ENV.RETRY || 'none', RETRIES = Number(__ENV.RETRIES || 5);   // RETRIES: how many times a failed create is tried again
+// PREALLOC: virtual users made ready before each phase. A client that waits and retries keeps its user busy for seconds, so
+// with too few ready users k6 has to start more while the test runs and skips the arrivals it could not serve (dropped_iterations).
+const PREALLOC = Number(__ENV.PREALLOC || 600);
 const RESULT = __ENV.RESULT || 'results/run.json';
-const attempts = new Counter('attempts'), created = new Counter('created'), gaveUp = new Counter('gave_up');
+const attempts = new Counter('attempts'), began = new Counter('began'), created = new Counter('created'), gaveUp = new Counter('gave_up');
 const t = new Trend('create_ms', true), t0 = new Trend('t0_ms');
 const SECS = Array.from({ length: 46 }, (_, i) => i); // attempts are counted per second of the test, 0..45
 const phase = (name, start, dur) => ({ executor: 'constant-arrival-rate', rate: RATE, timeUnit: '1s', duration: `${dur}s`,
-  startTime: `${start}s`, preAllocatedVUs: 200, maxVUs: 3000, tags: { phase: name } });
+  startTime: `${start}s`, preAllocatedVUs: PREALLOC, maxVUs: 3000, tags: { phase: name } });
 // With retries, look the app up again on every request and open a fresh connection, so a stopped app fails at once
 // (k6 otherwise keeps the old address for 5 minutes and waits out the timeout on it, which hides the storm).
 export const options = {
@@ -23,11 +26,12 @@ export const options = {
   summaryTrendStats: ['min', 'p(50)', 'p(99)', 'max'],
   scenarios: { before: phase('before', 0, 10), during: phase('during', 10, 10), after: phase('after', 20, 10) },
   thresholds: Object.fromEntries(['before', 'during', 'after'].flatMap((p) =>
-    [[`attempts{phase:${p}}`, ['count>=0']], [`created{phase:${p}}`, ['count>=0']], [`gave_up{phase:${p}}`, ['count>=0']]])
+    [[`attempts{phase:${p}}`, ['count>=0']], [`created{phase:${p}}`, ['count>=0']], [`gave_up{phase:${p}}`, ['count>=0']], [`began{phase:${p}}`, ['count>=0']], [`dropped_iterations{scenario:${p}}`, ['count>=0']]])
     .concat(SECS.map((x) => [`attempts{sec:${x}}`, ['count>=0']]))),
 };
 export default function () {
   const started = Date.now(), dur = exec.instance.currentTestRunDuration;
+  began.add(1);
   t0.add(started - dur); // wall-clock time the test started; the summary keeps the smallest
   for (let i = 0; i <= RETRIES; i++) {
     attempts.add(1, { sec: String(Math.min(45, Math.floor(exec.instance.currentTestRunDuration / 1000))) });
@@ -42,7 +46,10 @@ export default function () {
 }
 export function handleSummary(data) {
   const v = (k) => (data.metrics[k] ? data.metrics[k].values.count : 0), d = data.metrics.create_ms.values, out = { retry: RETRY, rate: RATE };
-  for (const p of ['before', 'during', 'after']) out[p] = { attempts: v(`attempts{phase:${p}}`), created: v(`created{phase:${p}}`), gave_up: v(`gave_up{phase:${p}}`) };
+  for (const p of ['before', 'during', 'after']) out[p] = { attempts: v(`attempts{phase:${p}}`), created: v(`created{phase:${p}}`), gave_up: v(`gave_up{phase:${p}}`),
+    began: v(`began{phase:${p}}`), dropped: v(`dropped_iterations{scenario:${p}}`) };
+  // every arrival must end up created, gave up, dropped by k6 (no free user) or neither (still running when the test stopped)
+  for (const p of ['before', 'during', 'after']) out[p].ended_other = out[p].began - out[p].created - out[p].gave_up;
   out.per_second_attempts = SECS.map((x) => v(`attempts{sec:${x}}`));
   out.test_started_ms = Math.round(data.metrics.t0_ms ? data.metrics.t0_ms.values.min : 0);
   out.create_p50_ms = +d['p(50)'].toFixed(1); out.create_p99_ms = +d['p(99)'].toFixed(1);
