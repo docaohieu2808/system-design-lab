@@ -38,9 +38,9 @@ queries the database and waits the full build: 400 req/s x 0.5 s is about 200 re
 of the 24,000 requests, plus the ones just after, so the 99th percentile sits on the build time. With single-flight those
 same requests join the one rebuild and wait only what is left of it (0 to 500 ms, about 250 on average), so p99 lands
 lower (225 ms) and the database sees one query. The old table has the same 502 ms p99; what moved is the stampede size
-(129 then, 184 now), within the run-to-run spread of the earlier runs (102–159) and this one (151–201) overlapping only
-at the edge: the host was busier then (the build is a timed sleep, so the number of in-flight requests depends on how
-promptly the app serves the first 500 ms of arrivals).
+(129 then, 184 now; the ranges 102–159 and 151–201 barely overlap). I did not isolate why it grew: the first run
+of the design was on a different day and machine load. The mechanism (all requests of the first 500 ms hit the database)
+is the same in both.
 
 Stale-while-revalidate is not an arm of the flush experiment on purpose: a flush deletes the stale copy too, so there is
 nothing to serve while the page rebuilds. It helps when entries expire, not when they vanish.
