@@ -127,3 +127,31 @@ up to one step; the saturation column (spread under 3% for every arm) is the ste
   unchanged. Both pools use the same default connection count.
 - A first attempt of this run was stopped after its first pass (the 1-core arms started at 3,000 req/s, above their
   ceiling) and its files were deleted; the ladders above are the ones measured.
+
+---
+
+# Module 6, variations: 50 ms lag, a window shorter than the lag, faster promotion
+
+`make m06-extras` / `tools/run-m06-extras.sh`, 3 runs, arms interleaved (lag50, edge, promote2 in each run), fresh stack
+and quiet gate before each (background busy CPU 7-17%, steal 0%), same host and limits as above, 6/11/2026.
+Results: `results-extras/results.json` (mean, min-max).
+
+| variation | setting | result |
+|---|---|---|
+| replica 50 ms late, no read-your-writes | `APPLY_DELAY=50ms`, create then open at once, 50/s for 30 s | 99.96% not found (99.87-100); 1,500 of 1,501 opens |
+| window shorter than the lag | `APPLY_DELAY=1500ms RYW_SECONDS=1 READ_DELAY=1.2` (open waits 1.2 s after the create) | 100% not found (100-100) |
+| failover, promoted 2 s after the kill | async, `pg_promote()` at +2 s instead of +5 s | RTO 2.75 s (2.70-2.80); 0 confirmed writes lost; 3,705 confirmed (3,699-3,709) |
+
+## What it shows
+- A replica only 50 ms behind misses essentially every fresh open when the open follows the create within milliseconds
+  (the earlier no-added-lag run missed 75%); a small lag is enough, the open is just faster than it.
+- A read-your-writes window only helps while it is open: with a 1 s window, a read 1.2 s after the write goes to the replica,
+  which is 1.5 s behind, so every such read misses. The window has to be longer than the lag (the fix from the first part,
+  a 2 s window, works because 2 s is longer than 0.5 s).
+- RTO follows the promotion timer: 5 s of waiting gave 5.6 s down (first part), 2 s gave 2.75 s. Both runs add about
+  0.6-0.75 s on top of the timer; the cause was not traced (the app's 1 s connect timeout is the likely part).
+
+## What it does not show
+- The 1.2 s wait is one point between the window and the lag; it shows the edge exists, not how wide it is.
+- Real failure detection takes time too; the timer here is a stand-in for it, and the replica is only milliseconds behind,
+  so nothing confirmed was lost.

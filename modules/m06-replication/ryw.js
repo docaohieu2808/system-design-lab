@@ -1,11 +1,14 @@
 // Module 6: create a link, then open it straight away, as the same user. With reads going to a replica that is
 // behind, the fresh link may not be there yet: the redirect answers 404. Counts how often that happens.
+// READ_DELAY=1.2 waits 1.2 s between the create and the open (to test a read-your-writes window shorter than the lag).
 import http from 'k6/http';
+import { sleep } from 'k6';
 import { Counter } from 'k6/metrics';
 
 const BASE = __ENV.BASE || 'http://app:8080';
 const RATE = Number(__ENV.RATE || 50);
 const DURATION = Number(__ENV.DURATION || 30);
+const READ_DELAY = Number(__ENV.READ_DELAY || 0); // seconds to wait between the create and the open (default 0: straight away)
 const RESULT = __ENV.RESULT || 'results/run.json';
 const found = new Counter('read_found'), missing = new Counter('read_missing'), failed = new Counter('failed');
 
@@ -19,6 +22,7 @@ export default function () {
   const c = http.post(`${BASE}/api/links`, JSON.stringify({ url: `https://example.com/new/${__VU}-${__ITER}` }),
     { headers: { 'Content-Type': 'application/json' }, timeout: '5s' });
   if (c.status !== 201) { failed.add(1); return; }
+  if (READ_DELAY > 0) sleep(READ_DELAY);
   const r = http.get(`${BASE}/${c.json('code')}`, { timeout: '5s', tags: { name: 'GET /{code}' } });
   if (r.status === 302) found.add(1); else if (r.status === 404) missing.add(1); else failed.add(1);
 }

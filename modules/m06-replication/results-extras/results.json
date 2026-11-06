@@ -1,0 +1,69 @@
+{
+ "runs": 3,
+ "lag50": {
+  "found": {
+   "mean": 0.67,
+   "min": 0,
+   "max": 2
+  },
+  "missing": {
+   "mean": 1500.33,
+   "min": 1499,
+   "max": 1501
+  },
+  "missing_pct": {
+   "mean": 99.96,
+   "min": 99.87,
+   "max": 100
+  },
+  "failed": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "edge": {
+  "found": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "missing": {
+   "mean": 1501,
+   "min": 1501,
+   "max": 1501
+  },
+  "missing_pct": {
+   "mean": 100,
+   "min": 100,
+   "max": 100
+  },
+  "failed": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "promote2": {
+  "rto_s": {
+   "mean": 2.75,
+   "min": 2.7,
+   "max": 2.8
+  },
+  "acked": {
+   "mean": 3705,
+   "min": 3699,
+   "max": 3709
+  },
+  "lost": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "failed_attempts": {
+   "mean": 81.67,
+   "min": 57,
+   "max": 96
+  }
+ }
+}
