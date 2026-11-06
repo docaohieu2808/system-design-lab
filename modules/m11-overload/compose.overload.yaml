@@ -16,3 +16,5 @@ services:
     depends_on:
       db: {condition: service_healthy}
     cpus: 0.25
+  k6:
+    mem_limit: 3g   # an uncapped server at 1,200 pages/s leaves thousands of requests waiting; with the default 1g k6 was OOM-killed (exit 137) in one run

@@ -1,0 +1,10 @@
+{
+ "requests": 6001,
+ "ok_pct": 100,
+ "degraded_pct": 0,
+ "slow_pct": 100,
+ "p50_ms": 505.1,
+ "p90_ms": 531.2,
+ "p99_ms": 553.8,
+ "dropped": 0
+}

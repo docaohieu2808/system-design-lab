@@ -1,0 +1,26 @@
+{
+ "good_ms": 500,
+ "steps": [
+  {
+   "offered": 600,
+   "goodput": 477.4,
+   "slow_per_s": 0,
+   "refused_per_s": 122.6,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 900,
+   "goodput": 495.4,
+   "slow_per_s": 0,
+   "refused_per_s": 404.6,
+   "failed_per_s": 0
+  },
+  {
+   "offered": 1200,
+   "goodput": 501.6666666666667,
+   "slow_per_s": 0,
+   "refused_per_s": 698.4,
+   "failed_per_s": 0
+  }
+ ]
+}
