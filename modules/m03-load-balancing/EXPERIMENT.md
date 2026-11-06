@@ -83,7 +83,7 @@ cores (43.6-57.2%, so it had room), the host 80.3% busy (75.9-88.5), other conta
   300 pages/s per copy times the number of copies.
 - Giving the database, Traefik or k6 more room moved the ceiling by less than the spread between runs (1,181-1,211
   against 1,172-1,217 for the plain arm). None of the three was the limit.
-- The ceilings here are 7-9% below the table at the top of this file, which was measured on a quieter machine; compare
+- The ceilings here are 4.5-7.4% below the table at the top of this file, which was measured on a quieter machine; compare
   arms within this section, not across the two.
 **Check for a foreign container.** Another agent ran a `golang` container, without the lab lock, between 12:34:51 and 12:36:09 (Saigon time). The
 last cause arm (`traefik2`, run 3) ended at 12:33:48 and every other arm ended earlier, so no cause step overlapped it, and the runner's own
