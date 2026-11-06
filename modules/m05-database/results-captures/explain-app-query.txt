@@ -1,0 +1,66 @@
+# Module 5: plans of the exact query the app runs (app/db.go: SELECT code FROM links WHERE url = $1 LIMIT 1), no index, 2026-11-07 01:19 +07, one run on the course machine
+$ SELECT count(*) FROM links
+  count  
+---------
+ 1000000
+(1 row)
+
+
+$ EXPLAIN ANALYZE SELECT code FROM links WHERE url = 'https://example.com/articles/777777' LIMIT 1
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=1000.00..17321.43 rows=1 width=4) (actual time=267.247..458.437 rows=1.00 loops=1)
+   Buffers: shared hit=282 read=10815
+   ->  Gather  (cost=1000.00..17321.43 rows=1 width=4) (actual time=267.244..458.431 rows=1.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=282 read=10815
+         ->  Parallel Seq Scan on links  (cost=0.00..16321.33 rows=1 width=4) (actual time=298.290..298.290 rows=0.33 loops=3)
+               Filter: (url = 'https://example.com/articles/777777'::text)
+               Rows Removed by Filter: 330373
+               Buffers: shared hit=282 read=10815
+ Planning:
+   Buffers: shared hit=74 read=7
+ Planning Time: 1.128 ms
+ Execution Time: 458.645 ms
+(14 rows)
+
+
+$ EXPLAIN ANALYZE SELECT code FROM links WHERE url = 'https://example.com/articles/500000' LIMIT 1
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=1000.00..17321.43 rows=1 width=4) (actual time=310.337..313.764 rows=1.00 loops=1)
+   Buffers: shared hit=564 read=10541
+   ->  Gather  (cost=1000.00..17321.43 rows=1 width=4) (actual time=310.335..313.760 rows=1.00 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=564 read=10541
+         ->  Parallel Seq Scan on links  (cost=0.00..16321.33 rows=1 width=4) (actual time=237.470..237.471 rows=0.33 loops=3)
+               Filter: (url = 'https://example.com/articles/500000'::text)
+               Rows Removed by Filter: 330474
+               Buffers: shared hit=564 read=10541
+ Planning:
+   Buffers: shared hit=81
+ Planning Time: 0.935 ms
+ Execution Time: 313.830 ms
+(14 rows)
+
+
+$ EXPLAIN ANALYZE SELECT code FROM links WHERE url = 'https://example.com/articles/777777'
+                                                       QUERY PLAN                                                        
+-------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..17321.43 rows=1 width=4) (actual time=385.957..386.115 rows=1.00 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=846 read=10267
+   ->  Parallel Seq Scan on links  (cost=0.00..16321.33 rows=1 width=4) (actual time=313.619..316.619 rows=0.33 loops=3)
+         Filter: (url = 'https://example.com/articles/777777'::text)
+         Rows Removed by Filter: 333333
+         Buffers: shared hit=846 read=10267
+ Planning:
+   Buffers: shared hit=81
+ Planning Time: 0.904 ms
+ Execution Time: 386.209 ms
+(12 rows)
+
+
