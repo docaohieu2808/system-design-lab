@@ -15,8 +15,9 @@ a sampler reads the app's database query counter every 0.5 s). Quiet-machine gat
 it saw is saved in each run's `.gate` file and in `results*.json` (`background_busy_pct`). k6 had room (the app, at half
 a core, is the limit, not the load generator).
 
-**Status of the numbers: b below is a smoke run (1 run, background 9-15%), replaced by the session run (3 runs).** The
-3-run numbers for a, for b1 and for the first two b2 arms are from 30/10/2026 (git history of `results-b/`).
+Part b is 3 full runs, all arms interleaved inside each run, 25/2 quiet gate; background CPU the gate saw before the
+runs: 9–19% busy (flush 9–15%, expiry 10–19%). The runner samples CPU of every `sdlab-*` container: k6 used 0.24–0.25
+cores (limit 2) and the app 0.17–0.24 cores, so the load generator had room. Part a: numbers of 30/10/2026, not re-run.
 
 ## Results (mean of 3 runs, min–max in brackets)
 ### a. Hit ratio (`results/results.json`)
@@ -29,35 +30,47 @@ a core, is the limit, not the load generator).
 ### b1. Stampede after a wipe (`results-b/results.json`; one page, building it takes 500 ms, wipe at 32 s)
 | | queries in the 10 s before | queries in the 3 s after | p99 | max |
 |---|---|---|---|---|
-| no single-flight | 0 | 129 (102–159) | 502 ms | 538 ms |
-| single-flight | 0 | 1 (1–1) | 216 ms | 512 ms |
+| no single-flight | 0 | 184 (151–201) | 503 ms (503–503) | 590 ms (574–614) |
+| single-flight | 0 | 0.3 (0–1) | 225 ms (217–230) | 534 ms (521–554) |
 
-Smoke run (1 run) of b1: no single-flight 202 queries in the 3 s after (p99 502 ms); single-flight 1 (p99 213 ms).
-Stale-while-revalidate is not an arm here on purpose: a flush deletes the stale copy too, so there is nothing to serve
-while rebuilding. It only helps when entries expire, not when they vanish.
+Why p99 is 503 ms without single-flight: until the first rebuild lands (500 ms) every request finds the page missing,
+queries the database and waits the full build: 400 req/s x 0.5 s is about 200 requests (184 counted), that is about 0.8%
+of the 24,000 requests, plus the ones just after, so the 99th percentile sits on the build time. With single-flight those
+same requests join the one rebuild and wait only what is left of it (0 to 500 ms, about 250 on average), so p99 lands
+lower (225 ms) and the database sees one query. The old table has the same 502 ms p99; what moved is the stampede size
+(129 then, 184 now), within the run-to-run spread of the earlier runs (102–159) and this one (151–201) overlapping only
+at the edge: the host was busier then (the build is a timed sleep, so the number of in-flight requests depends on how
+promptly the app serves the first 500 ms of arrivals).
+
+Stale-while-revalidate is not an arm of the flush experiment on purpose: a flush deletes the stale copy too, so there is
+nothing to serve while the page rebuilds. It helps when entries expire, not when they vanish.
 
 ### b2. Synchronised expiry (2,000 pages warmed together, TTL 20 s, building a page takes 100 ms)
-3-run numbers (30/10/2026) for the first two rows; the swr row exists only as a smoke run so far.
 | | worst 1 s of database queries | total queries in 60 s | p99 |
 |---|---|---|---|
-| no fix | 183 (174–193) | 3,805 | 104 ms |
-| 50% jitter (lifetimes 15–25 s) | 119 (112–123) | 3,804 | 104 ms |
-| stale-while-revalidate (smoke, 1 run) | 175 | 3,740 | 16 ms |
+| no fix | 188 (165–202) | 3,811 (3,802–3,817) | 107 ms (106–108) |
+| 50% jitter (lifetimes 15–25 s) | 142 (124–162) | 3,802 (3,754–3,832) | 107 ms (106–108) |
+| stale-while-revalidate | 183 (167–202) | 3,724 (3,694–3,747) | 18 ms (15–21) |
 
-Smoke run, all three arms, same session: no fix 175 / 3,834 / 109 ms; jitter 131 / 3,785 / 106 ms; swr 175 / 3,740 /
-16 ms.
+The worst-second spread (about 20% of the mean) is above the 10% bar and I did not add runs: the worst second is the
+maximum of 110 one-second windows of random traffic (random arrivals picking among 2,000 pages) and the refill wave
+hits a different phase of the second each run. It is a noisy statistic by nature. The ranges still say two things: jitter
+(124–162) is below no fix (165–202) in every run, and SWR (167–202) is not distinguishable from no fix. The total (spread
+under 2%) and p99 (spread under 3%, except SWR's 15–21 ms) are stable.
 
-The worst second drops by about a third with jitter while the total stays the same: jitter moves refills apart, it
-doesn't remove them. Stale-while-revalidate does the opposite: the refills are as many and as bunched as with no fix
-(peak 175, same as no fix), but no user waits for them, because every request is answered from the old copy while one
-background refresh per page rebuilds it, so p99 falls from about 105 ms (one 100 ms rebuild) to about 16 ms. It protects
-the user, not the database; jitter protects the database. They can be combined (not measured here). The price is that
-a page can be up to one TTL older than the nominal lifetime when asked just before its refresh lands. At 400 req/s over 2,000 pages each page is asked for about every 5 s, so traffic itself already spreads the
-refills a little; the peak is lower than "2,000 at once".
+Jitter lowers the worst second by about a quarter while the total stays the same: it moves refills apart, it doesn't
+remove them. Stale-while-revalidate does the opposite: the refills are as many and as bunched as with no fix, but no
+user waits for them, because every request is answered from the old copy while one background refresh per page rebuilds
+it, so p99 falls from about 107 ms (one 100 ms rebuild) to about 18 ms. It protects the user, not the database; jitter
+protects the database. The two can be combined (not measured here). SWR's total is slightly lower (about 3%) because a
+refreshed page is not asked for again until traffic reaches it. The price is staleness: a page can be older than the nominal
+lifetime when asked just before its refresh lands.
+
+At 400 req/s over 2,000 pages each page is asked for about every 5 s, so traffic itself already spreads the refills a
+little; the peak is lower than "2,000 at once".
 
 Note: the first version of jitter only shortened lifetimes (TTL minus up to 50%), so pages lived 15 s on average
-instead of 20 s and the total rose to 4,975. `app/cache.go` now spreads lifetimes evenly over TTL ± 25%; the tables
-are from the rerun after that change (b1 was re-measured in the same run; it does not use jitter).
+instead of 20 s and the total rose to 4,975. `app/cache.go` now spreads lifetimes evenly over TTL ± 25%.
 
 ## What this does not show
 - How stale data affects a real product.

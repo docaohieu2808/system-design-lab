@@ -10,7 +10,7 @@ export UID GID=$(id -g) COMPOSE_FILE=compose.yaml:modules/m04-caching/compose.ca
 
 fresh() {  # fresh <tag>: lab down, wait for a quiet machine (background saved next to the result), lab up
   docker compose down -v >/dev/null 2>&1 || true
-  tools/quiet-gate.sh > "$out/$1.gate"; docker compose up -d --wait >/dev/null; sleep 3
+  tools/quiet-gate.sh 25 2 > "$out/$1.gate"; docker compose up -d --wait >/dev/null; sleep 3
 }
 sampler() {  # every 0.5 s: seconds, database queries so far, keys in Redis
   ( t0=$(date +%s.%N); while :; do

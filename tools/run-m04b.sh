@@ -10,7 +10,7 @@ runs=${1:-3}; out=modules/m04-caching/results-b; mkdir -p "$out"
 export UID GID=$(id -g) COMPOSE_FILE=compose.yaml:modules/m04-caching/compose.cache.yaml
 fresh() {  # fresh <tag>: lab down, wait for a quiet machine (background saved next to the result), lab up
   docker compose down -v >/dev/null 2>&1 || true
-  tools/quiet-gate.sh > "$out/$1.gate"; docker compose up -d --wait >/dev/null; sleep 2
+  tools/quiet-gate.sh 25 2 > "$out/$1.gate"; docker compose up -d --wait >/dev/null; sleep 2
 }
 sampler() {  # every 0.5 s: wall-clock time, database queries so far, keys in Redis
   ( while :; do
@@ -20,8 +20,12 @@ sampler() {  # every 0.5 s: wall-clock time, database queries so far, keys in Re
     done ) > "$1" &
   echo $!
 }
-load() { docker compose run --rm -e BASE=http://app:8080 -e RATE=400 -e DURATION=60 -e KEYS="$2" -e HOT_PCT=100 -e RESULT="$1" k6 \
-  run --quiet modules/m04-caching/traffic.js >/dev/null 2>&1; }
+load() {  # load <result> <keys>: k6 run with a CPU sample of every sdlab-* container (k6 included) next to the result
+  python3 tools/cpu-sampler.py "${1%.json}.cpu.tsv" 1 & cs=$!
+  docker compose run --rm -e BASE=http://app:8080 -e RATE=400 -e DURATION=60 -e KEYS="$2" -e HOT_PCT=100 -e RESULT="$1" k6 \
+    run --quiet modules/m04-caching/traffic.js >/dev/null 2>&1
+  kill $cs; wait $cs 2>/dev/null || true
+}
 docker compose build app >/dev/null
 for k in $(seq 1 "$runs"); do
   for sf in 0 1; do
@@ -60,6 +64,13 @@ def series(p):
 def queries(rows, a, b):  # database queries between wall-clock times a and b
     pts = [q for t, q in rows if a <= t <= b]
     return pts[-1] - pts[0] if len(pts) > 1 else 0
+def cores(tag, part):  # average CPU cores used by containers whose name contains `part`, over their sampled life
+    first, last = {}, {}
+    for l in (out / f"{tag}.cpu.tsv").read_text().splitlines():
+        t, name, u, *_ = l.split("\t")
+        if part in name and name != "HOST":
+            first.setdefault(name, (float(t), int(u))); last[name] = (float(t), int(u))
+    return round(sum((last[n][1] - first[n][1]) / 1e6 / max(last[n][0] - first[n][0], 1) for n in first), 3)
 def gate(tag):  # background busy % the quiet gate saw before this run
     return float(re.search(r"background_busy_pct=(\d+)", (out / f"{tag}.gate").read_text()).group(1))
 res = {"runs": runs, "flush": {}, "expiry": {}}
@@ -69,7 +80,8 @@ for sf in ("0", "1"):
         s, f = series(out / f"flush-{sf}-{k}.stats.tsv"), float((out / f"flush-{sf}-{k}.flushed").read_text())
         r6 = json.loads((out / f"flush-{sf}-{k}.json").read_text())
         rows.append({"db_queries_10s_before": queries(s, f - 10, f), "db_queries_3s_after": queries(s, f, f + 3),
-                     "p99_ms": r6["p99_ms"], "max_ms": r6["max_ms"], "background_busy_pct": gate(f"flush-{sf}-{k}")})
+                     "p99_ms": r6["p99_ms"], "max_ms": r6["max_ms"], "background_busy_pct": gate(f"flush-{sf}-{k}"),
+                     "k6_cores": cores(f"flush-{sf}-{k}", "k6"), "app_cores": cores(f"flush-{sf}-{k}", "app")})
     res["flush"][sf] = {k_: agg([r[k_] for r in rows]) for k_ in rows[0]}
 for j in ("0", "0.5", "swr"):
     rows = []
@@ -78,7 +90,8 @@ for j in ("0", "0.5", "swr"):
         per = [queries(s, w + x / 2, w + x / 2 + 1) for x in range(0, 110)]
         r6 = json.loads((out / f"expiry-{j}-{k}.json").read_text())
         rows.append({"peak_db_q_in_1s": max(per), "db_q_total": queries(s, w, w + 56), "p99_ms": r6["p99_ms"],
-                     "max_ms": r6["max_ms"], "background_busy_pct": gate(f"expiry-{j}-{k}")})
+                     "max_ms": r6["max_ms"], "background_busy_pct": gate(f"expiry-{j}-{k}"),
+                     "k6_cores": cores(f"expiry-{j}-{k}", "k6"), "app_cores": cores(f"expiry-{j}-{k}", "app")})
     res["expiry"][j] = {k_: agg([r[k_] for r in rows]) for k_ in rows[0]}
 (out / "results.json").write_text(json.dumps(res, indent=1)); print(json.dumps(res, indent=1))
 PY

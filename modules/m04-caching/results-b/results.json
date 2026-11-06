@@ -1,5 +1,5 @@
 {
- "runs": 1,
+ "runs": 3,
  "flush": {
   "0": {
    "db_queries_10s_before": {
@@ -8,24 +8,34 @@
     "max": 0
    },
    "db_queries_3s_after": {
-    "mean": 202,
-    "min": 202,
-    "max": 202
+    "mean": 184.33,
+    "min": 151,
+    "max": 201
    },
    "p99_ms": {
-    "mean": 502.45,
-    "min": 502.45,
-    "max": 502.45
+    "mean": 502.88,
+    "min": 502.58,
+    "max": 503.31
    },
    "max_ms": {
-    "mean": 655.07,
-    "min": 655.07,
-    "max": 655.07
+    "mean": 589.52,
+    "min": 574,
+    "max": 614.36
    },
    "background_busy_pct": {
-    "mean": 14.0,
-    "min": 14.0,
-    "max": 14.0
+    "mean": 13.33,
+    "min": 11.0,
+    "max": 15.0
+   },
+   "k6_cores": {
+    "mean": 0.25,
+    "min": 0.24,
+    "max": 0.25
+   },
+   "app_cores": {
+    "mean": 0.17,
+    "min": 0.17,
+    "max": 0.18
    }
   },
   "1": {
@@ -35,107 +45,147 @@
     "max": 0
    },
    "db_queries_3s_after": {
-    "mean": 1,
-    "min": 1,
+    "mean": 0.33,
+    "min": 0,
     "max": 1
    },
    "p99_ms": {
-    "mean": 213.01,
-    "min": 213.01,
-    "max": 213.01
+    "mean": 224.94,
+    "min": 217.13,
+    "max": 230.35
    },
    "max_ms": {
-    "mean": 513.29,
-    "min": 513.29,
-    "max": 513.29
+    "mean": 534.49,
+    "min": 521.42,
+    "max": 553.6
    },
    "background_busy_pct": {
-    "mean": 9.0,
+    "mean": 10.67,
     "min": 9.0,
-    "max": 9.0
+    "max": 12.0
+   },
+   "k6_cores": {
+    "mean": 0.25,
+    "min": 0.24,
+    "max": 0.25
+   },
+   "app_cores": {
+    "mean": 0.17,
+    "min": 0.17,
+    "max": 0.17
    }
   }
  },
  "expiry": {
   "0": {
    "peak_db_q_in_1s": {
-    "mean": 175,
-    "min": 175,
-    "max": 175
+    "mean": 188,
+    "min": 165,
+    "max": 202
    },
    "db_q_total": {
-    "mean": 3834,
-    "min": 3834,
-    "max": 3834
+    "mean": 3811.33,
+    "min": 3802,
+    "max": 3817
    },
    "p99_ms": {
-    "mean": 109.11,
-    "min": 109.11,
-    "max": 109.11
+    "mean": 107.16,
+    "min": 106.33,
+    "max": 108.21
    },
    "max_ms": {
-    "mean": 152.51,
-    "min": 152.51,
-    "max": 152.51
+    "mean": 164.74,
+    "min": 159.69,
+    "max": 173.76
    },
    "background_busy_pct": {
-    "mean": 10.0,
-    "min": 10.0,
-    "max": 10.0
+    "mean": 15.33,
+    "min": 13.0,
+    "max": 19.0
+   },
+   "k6_cores": {
+    "mean": 0.24,
+    "min": 0.24,
+    "max": 0.24
+   },
+   "app_cores": {
+    "mean": 0.23,
+    "min": 0.23,
+    "max": 0.23
    }
   },
   "0.5": {
    "peak_db_q_in_1s": {
-    "mean": 131,
-    "min": 131,
-    "max": 131
+    "mean": 141.67,
+    "min": 124,
+    "max": 162
    },
    "db_q_total": {
-    "mean": 3785,
-    "min": 3785,
-    "max": 3785
+    "mean": 3802,
+    "min": 3754,
+    "max": 3832
    },
    "p99_ms": {
-    "mean": 105.71,
-    "min": 105.71,
-    "max": 105.71
+    "mean": 106.77,
+    "min": 105.97,
+    "max": 107.9
    },
    "max_ms": {
-    "mean": 152.11,
-    "min": 152.11,
-    "max": 152.11
+    "mean": 153.58,
+    "min": 148.61,
+    "max": 161.02
    },
    "background_busy_pct": {
-    "mean": 15.0,
-    "min": 15.0,
-    "max": 15.0
+    "mean": 12.0,
+    "min": 10.0,
+    "max": 14.0
+   },
+   "k6_cores": {
+    "mean": 0.24,
+    "min": 0.23,
+    "max": 0.24
+   },
+   "app_cores": {
+    "mean": 0.23,
+    "min": 0.23,
+    "max": 0.24
    }
   },
   "swr": {
    "peak_db_q_in_1s": {
-    "mean": 175,
-    "min": 175,
-    "max": 175
+    "mean": 182.67,
+    "min": 167,
+    "max": 202
    },
    "db_q_total": {
-    "mean": 3740,
-    "min": 3740,
-    "max": 3740
+    "mean": 3724,
+    "min": 3694,
+    "max": 3747
    },
    "p99_ms": {
-    "mean": 16.41,
-    "min": 16.41,
-    "max": 16.41
+    "mean": 18.16,
+    "min": 15.42,
+    "max": 20.79
    },
    "max_ms": {
-    "mean": 118.78,
-    "min": 118.78,
-    "max": 118.78
+    "mean": 139.41,
+    "min": 119.07,
+    "max": 172.71
    },
    "background_busy_pct": {
-    "mean": 15.0,
-    "min": 15.0,
-    "max": 15.0
+    "mean": 12.67,
+    "min": 11.0,
+    "max": 16.0
+   },
+   "k6_cores": {
+    "mean": 0.25,
+    "min": 0.24,
+    "max": 0.25
+   },
+   "app_cores": {
+    "mean": 0.23,
+    "min": 0.23,
+    "max": 0.24
    }
   }
  }
