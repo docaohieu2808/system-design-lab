@@ -1,0 +1,6 @@
+{
+ "test": "boundary",
+ "spoof": false,
+ "allowed_per_burst_pair": 20,
+ "refused": 100
+}

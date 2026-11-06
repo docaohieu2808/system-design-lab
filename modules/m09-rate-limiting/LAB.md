@@ -19,6 +19,21 @@ RL_MODE=redis-bucket docker compose up -d --wait --scale app=3 && run -e TEST=st
 Run `-e TEST=boundary` with `RL_MODE=redis-window`, then `redis-bucket`. **Predict:** how many of the 40 requests
 straddling a second boundary get through?
 
+## 2b. The sliding window (lesson 9.3)
+```bash
+RL_MODE=redis-sliding docker compose up -d --wait --scale app=3
+run -e TEST=boundary -e RESULT=/lab/mine-sliding-boundary.json
+run -e TEST=steady -e RESULT=/lab/mine-sliding-steady.json
+docker compose exec redis redis-cli --scan --pattern 'rs:*'      # the client's log: one key per client
+docker compose exec redis redis-cli memory usage "$(docker compose exec -T redis redis-cli --scan --pattern 'rs:*' | head -1 | tr -d '\r')"
+```
+Run the key lookups while the steady run is in progress (keys expire 10 s after the last request). Compare the key size
+with `rl:*` (bucket) and `rw:*` (fixed window). **Predict:** how many of the 40 boundary requests get through, and how
+many bytes does the client's key take? For the commands Redis runs per request: `docker compose exec redis redis-cli
+config resetstat`, run the steady test, then `redis-cli info commandstats`.
+One app copy as the baseline: `RL_MODE=local docker compose up -d --wait --scale app=1`, then the steady run.
+Whole sliding experiment, interleaved: `make m09-sliding` (about 30 minutes).
+
 ## 3. Redis goes away (lesson 9.4)
 ```bash
 RL_MODE=redis-bucket RL_FAIL=open docker compose up -d --wait --scale app=3

@@ -1,0 +1,10 @@
+cmdstat_expire:calls=1502,usec=10376,usec_per_call=6.91,rejected_calls=0,failed_calls=0
+cmdstat_incr:calls=1502,usec=11498,usec_per_call=7.66,rejected_calls=0,failed_calls=0
+cmdstat_type:calls=3,usec=10,usec_per_call=3.33,rejected_calls=0,failed_calls=0
+cmdstat_config|resetstat:calls=1,usec=67,usec_per_call=67.00,rejected_calls=0,failed_calls=0
+cmdstat_ping:calls=16,usec=18,usec_per_call=1.12,rejected_calls=0,failed_calls=0
+cmdstat_client|setinfo:calls=8,usec=4,usec_per_call=0.50,rejected_calls=0,failed_calls=0
+cmdstat_object|encoding:calls=3,usec=13,usec_per_call=4.33,rejected_calls=0,failed_calls=0
+cmdstat_memory|usage:calls=3,usec=8,usec_per_call=2.67,rejected_calls=0,failed_calls=0
+cmdstat_hello:calls=4,usec=90,usec_per_call=22.50,rejected_calls=0,failed_calls=0
+cmdstat_scan:calls=1,usec=8,usec_per_call=8.00,rejected_calls=0,failed_calls=0
