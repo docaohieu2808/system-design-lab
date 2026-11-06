@@ -13,6 +13,10 @@ m01-starved:   ## Module 1: the same test with k6 squeezed to 1 core, to see the
 	K6_CPUS=1.0 OUT=modules/m01-one-server/results-k6-1core tools/run-experiment.sh modules/m01-one-server/find-the-ceiling.js $(RUNS)
 m03:           ## Module 3: load balancing, 4 experiments ($(RUNS) runs, about an hour)
 	tools/run-m03.sh $(RUNS)
+m03-cause:     ## Module 3.1: what limits the 4th copy, 1-4 copies + 3 give-it-more variants ($(RUNS) runs, about 80 minutes)
+	tools/run-m03-cause.sh $(RUNS)
+m03-health:    ## Module 3.3: shallow vs deep health check when a copy loses its database ($(RUNS) runs, about 15 minutes)
+	tools/run-m03-health-lie.sh $(RUNS)
 m04:           ## Module 4: caching, part a (hit ratio) + part b (stampede, expiry fixes) ($(RUNS) runs, about 50 minutes)
 	tools/run-m04.sh $(RUNS)
 	tools/run-m04b.sh $(RUNS)
@@ -42,4 +46,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m04 m05 m06 m07 m08 m09 m10 m11 m12 m13 check-capstone m01-starved verify help
+.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m04 m05 m06 m07 m08 m09 m10 m11 m12 m13 check-capstone m01-starved verify help

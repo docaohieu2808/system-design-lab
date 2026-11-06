@@ -1,0 +1,13 @@
+# The Traefik health check for the lying-health-check test; HC_PATH picks the check:
+#   /livez   shallow: the process answers (it does not touch the database)
+#   /healthz deep: the process answers and the database answers
+# Both copies of the service carry the same labels, so Traefik sees one health check for the whole service.
+x-hc: &hc
+  traefik.http.services.app.loadbalancer.healthcheck.path: ${HC_PATH:-/healthz}
+  traefik.http.services.app.loadbalancer.healthcheck.interval: 1s
+  traefik.http.services.app.loadbalancer.healthcheck.timeout: 500ms
+services:
+  app:
+    labels: *hc
+  appbad:
+    labels: *hc

@@ -25,14 +25,17 @@ for n in (1, 2, 3, 4):
             if name == "HOST" or name.startswith("sdlab-") or "-k6-run-" in name:
                 key = "k6" if "-k6-run-" in name else name
                 peak[key] = max(peak[key], float(cpu.rstrip("%")))
-    res["scale"][n] = {"ceiling_rps": agg(ceilings), "steps": steps, "peak_cpu_pct": dict(peak)}
+    # the roadmap's question: pages/s at the highest step whose p99 stays under the 50 ms SLO (0 = even the first step is over)
+    slo = [max([s["succeeded_rps"] for s in d["steps"] if s["p99_ms"] < 50] or [0]) for d in data]
+    res["scale"][n] = {"ceiling_rps": agg(ceilings), "rps_at_p99_under_50ms": agg(slo), "steps": steps,
+                       "peak_cpu_pct": dict(peak)}
 for kind, keys in (("kill", (3, 4)), ("pause", ("no", "yes")), ("slow", ("wrr", "p2c"))):
     for key in keys:
         data = [json.loads((out / f"{kind}-{key}-{k}.json").read_text()) for k in range(1, runs + 1)]
         res[kind][key] = {p: {f: agg([d[p][f] for d in data]) for f in data[0][p]} for p in ("before", "after")}
 (out / "results.json").write_text(json.dumps(res, indent=1))
 for n, r in res["scale"].items():
-    print(f"scale {n}: ceiling {r['ceiling_rps']}  host peak {r['peak_cpu_pct'].get('HOST')}%  traefik {r['peak_cpu_pct'].get('sdlab-traefik-1')}%")
+    print(f"scale {n}: ceiling {r['ceiling_rps']}  host peak {r['peak_cpu_pct'].get('HOST')}%  traefik {r['peak_cpu_pct'].get('sdlab-traefik-1')}%  at p99<50ms {r['rps_at_p99_under_50ms']}")
 for kind in ("kill", "pause", "slow"):
     for key, r in res[kind].items():
         print(f"{kind} {key}: " + "  ".join(f"{p} p99 {r[p]['p99_ms']['mean']} failed {r[p]['failed']['mean']}" for p in ("before", "after")))

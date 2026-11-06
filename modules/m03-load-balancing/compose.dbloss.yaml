@@ -1,0 +1,31 @@
+# Lesson 3.3, health checks that lie: two healthy copies plus a third ("appbad") that reaches the database through its
+# own network alias (db-b on dbnet). Cutting that network at runtime (tools/run-m03-health-lie.sh) makes the third
+# copy lose its database connection: the process stays up and answers, but every page fails with 503.
+# Its own container check is the shallow one (/livez), so docker still calls it healthy.
+networks:
+  dbnet: {}
+services:
+  db:
+    networks:
+      default: {}
+      dbnet:
+        aliases: [db-b]
+  appbad:
+    image: sdlab-app
+    environment:
+      DATABASE_URL: postgres://postgres:lab@db-b:5432/shortener
+      PAGE_WORK: ${PAGE_WORK:-6000}
+    networks: [default, dbnet]
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/livez"]
+      interval: 1s
+      retries: 30
+    cpus: ${APP_CPUS:-0.25}
+    mem_limit: 512m
+    labels:
+      traefik.enable: "true"
+      traefik.http.services.app.loadbalancer.server.port: "8080"
+      traefik.http.services.app.loadbalancer.strategy: ${LB_STRATEGY:-wrr}

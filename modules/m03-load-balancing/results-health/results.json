@@ -1,0 +1,217 @@
+{
+ "runs": 3,
+ "rate": 400,
+ "none": {
+  "before": {
+   "requests": {
+    "mean": 12001.33,
+    "min": 12001,
+    "max": 12002
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 1.67,
+    "min": 1.65,
+    "max": 1.68
+   },
+   "p99_ms": {
+    "mean": 76.21,
+    "min": 74.55,
+    "max": 79.52
+   },
+   "max_ms": {
+    "mean": 210.09,
+    "min": 171.48,
+    "max": 265.85
+   }
+  },
+  "after": {
+   "requests": {
+    "mean": 12000.33,
+    "min": 12000,
+    "max": 12001
+   },
+   "failed": {
+    "mean": 3880,
+    "min": 3871,
+    "max": 3892
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 2.84,
+    "min": 2.61,
+    "max": 3.04
+   },
+   "p99_ms": {
+    "mean": 3001.13,
+    "min": 3001.08,
+    "max": 3001.18
+   },
+   "max_ms": {
+    "mean": 3027.65,
+    "min": 3027.42,
+    "max": 3028.02
+   }
+  },
+  "background_busy_pct": [
+   10,
+   7,
+   15
+  ]
+ },
+ "shallow": {
+  "before": {
+   "requests": {
+    "mean": 12001,
+    "min": 12000,
+    "max": 12002
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 1.73,
+    "min": 1.66,
+    "max": 1.82
+   },
+   "p99_ms": {
+    "mean": 76.47,
+    "min": 74.88,
+    "max": 78.43
+   },
+   "max_ms": {
+    "mean": 277.08,
+    "min": 236.43,
+    "max": 344.54
+   }
+  },
+  "after": {
+   "requests": {
+    "mean": 12001,
+    "min": 12001,
+    "max": 12001
+   },
+   "failed": {
+    "mean": 3888,
+    "min": 3871,
+    "max": 3920
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 3.21,
+    "min": 2.8,
+    "max": 3.83
+   },
+   "p99_ms": {
+    "mean": 3001.17,
+    "min": 3001.11,
+    "max": 3001.22
+   },
+   "max_ms": {
+    "mean": 3021.92,
+    "min": 3018.6,
+    "max": 3025.41
+   }
+  },
+  "background_busy_pct": [
+   7,
+   8,
+   11
+  ]
+ },
+ "deep": {
+  "before": {
+   "requests": {
+    "mean": 12001,
+    "min": 12001,
+    "max": 12001
+   },
+   "failed": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 1.72,
+    "min": 1.64,
+    "max": 1.81
+   },
+   "p99_ms": {
+    "mean": 74.91,
+    "min": 73.43,
+    "max": 76.47
+   },
+   "max_ms": {
+    "mean": 193.19,
+    "min": 162.14,
+    "max": 246.1
+   }
+  },
+  "after": {
+   "requests": {
+    "mean": 12000.33,
+    "min": 12000,
+    "max": 12001
+   },
+   "failed": {
+    "mean": 175.67,
+    "min": 166,
+    "max": 187
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 1.95,
+    "min": 1.83,
+    "max": 2.04
+   },
+   "p99_ms": {
+    "mean": 3000.21,
+    "min": 3000.18,
+    "max": 3000.23
+   },
+   "max_ms": {
+    "mean": 3002.83,
+    "min": 3001.27,
+    "max": 3004.26
+   }
+  },
+  "background_busy_pct": [
+   12,
+   11,
+   9
+  ]
+ }
+}

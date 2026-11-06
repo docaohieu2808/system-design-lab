@@ -4,7 +4,8 @@
 #   2 kill:  steady 600 req/s, one copy killed halfway, with 3 copies and with 4 (one spare)
 #   3 pause: steady 400 req/s, one copy frozen halfway, without and with a Traefik health check
 #   4 slow:  steady 400 req/s, one of 3 copies squeezed to 0.08 core, take-turns (wrr) vs less-busy-of-two (p2c)
-# Writes modules/m03-load-balancing/results/*.json (+ .cpu.tsv for scale) and results.json.
+# Writes modules/m03-load-balancing/results/*.json (+ .cpu.tsv for scale) and results.json, then runs the two follow-ups
+#   tools/run-m03-cause.sh (results-cause/) and tools/run-m03-health-lie.sh (results-health/).
 set -euo pipefail
 runs=${1:-3}; out=modules/m03-load-balancing/results; mkdir -p "$out"
 export UID GID=$(id -g)
@@ -55,3 +56,5 @@ for k in $(seq 1 "$runs"); do
 done
 docker compose down -v >/dev/null 2>&1
 python3 tools/aggregate-m03.py "$out" "$runs"
+tools/run-m03-cause.sh "$runs"          # what limits the 4th copy: per-step CPU of every container (about 4 min per variant per run)
+tools/run-m03-health-lie.sh "$runs"     # shallow vs deep health check when one copy loses its database (about 4 min per run)

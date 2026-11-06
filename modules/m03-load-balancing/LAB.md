@@ -58,6 +58,22 @@ docker compose run --rm -e RATE=400 -e RESULT=/lab/modules/m03-load-balancing/mi
 ```
 Repeat with `LB_STRATEGY=p2c`. **Predict:** which one fails more requests, and by how much?
 
+## 6. What limits the 4th copy (lesson 3.1, follow-up)
+```bash
+make m03-cause    # about 80 minutes: 1-4 copies and three "give it more" variants, 3 runs
+```
+It writes `results-cause/results.json`. Look at each app copy's CPU at the top step: if it equals its limit (25% of a core),
+the copies are the full part. Then read the three variants: if the ceiling does not move when the database, Traefik or k6 get
+more, they were not the limit. **Predict:** which of the three will move it? (Course machine: none.)
+
+## 7. A health check that lies (lesson 3.3)
+```bash
+make m03-health   # about 15 minutes
+```
+Three copies, one loses its database at second 32 while its process keeps running. Compare the failures with no check, the
+shallow check `/livez` and the deep check `/healthz`. **Predict:** does the shallow check help? (Course machine: it does not,
+3,888 failures against 3,880; the deep check: 176.)
+
 ## If something goes wrong
 - `port is already allocated`: `make down` (it clears every lab container), then try again.
 - Traefik returns 404: the copies are not healthy yet; wait for `--wait` to finish, check `docker compose ps`.

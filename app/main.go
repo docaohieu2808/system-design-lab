@@ -3,7 +3,8 @@
 //	POST /api/links {"url": "..."}  -> 201 {"code": "..."}
 //	GET  /{code}                     -> 302 to the long URL
 //	GET  /page/{code}                -> 200, a small preview page: the same lookup plus ~1 ms of CPU (Module 3)
-//	GET  /healthz                    -> 200 when the database answers
+//	GET  /healthz                    -> 200 when the database answers (a deep health check)
+//	GET  /livez                      -> 200 whenever the process runs, database or not (a shallow health check)
 //	GET  /api/lookup, /api/recent    -> Module 5 database lessons (db.go)
 //	GET  /api/limited                -> Module 9 rate limiter (ratelimit.go)
 //	GET  /api/enrich/{code}          -> Module 11 dependency + circuit breaker (overload.go)
@@ -171,6 +172,7 @@ func main() {
 	s := &server{db: pool, work: work, cache: newPageCache(), delay: time.Duration(delayMS) * time.Millisecond}
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", s.health)
+	mux.HandleFunc("GET /livez", func(w http.ResponseWriter, r *http.Request) { w.Write([]byte("ok\n")) })
 	mux.HandleFunc("POST /api/links", s.create)
 	mux.HandleFunc("GET /page/{code}", shed(s.page))
 	mux.HandleFunc("GET /api/enrich/{code}", s.enrich)

@@ -1,0 +1,5120 @@
+{
+ "base1": {
+  "ceiling_rps": {
+   "mean": 297.5,
+   "min": 294.7,
+   "max": 298.9
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 25.1,
+    "min": 24.9,
+    "max": 25.5
+   },
+   "app_throttled": {
+    "mean": 195.6,
+    "min": 187.4,
+    "max": 200.3
+   },
+   "app_cpu_max": {
+    "mean": 25.1,
+    "min": 24.9,
+    "max": 25.5
+   },
+   "traefik_cpu": {
+    "mean": 21.2,
+    "min": 20.2,
+    "max": 22.6
+   },
+   "traefik_throttled": {
+    "mean": 0.1,
+    "min": 0.0,
+    "max": 0.2
+   },
+   "db_cpu": {
+    "mean": 8.8,
+    "min": 8.8,
+    "max": 8.9
+   },
+   "db_throttled": {
+    "mean": 2.5,
+    "min": 2.2,
+    "max": 2.8
+   },
+   "k6_cpu": {
+    "mean": 18.2,
+    "min": 17.1,
+    "max": 20.2
+   },
+   "host_busy": {
+    "mean": 37.3,
+    "min": 31.1,
+    "max": 44.4
+   },
+   "host_steal": {
+    "mean": 0.1,
+    "min": 0.0,
+    "max": 0.2
+   },
+   "other_cpu": {
+    "mean": 16.3,
+    "min": 11.9,
+    "max": 20.3
+   },
+   "succeeded_rps": {
+    "mean": 297.5,
+    "min": 294.7,
+    "max": 298.9
+   },
+   "p99_ms": {
+    "mean": 1218.6,
+    "min": 1098.9,
+    "max": 1367.4
+   },
+   "dropped": {
+    "mean": 39,
+    "min": 18,
+    "max": 80
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 18.9,
+     "min": 18.2,
+     "max": 19.3
+    },
+    "app_throttled": {
+     "mean": 34.1,
+     "min": 29.5,
+     "max": 37.3
+    },
+    "app_cpu_max": {
+     "mean": 18.9,
+     "min": 18.2,
+     "max": 19.3
+    },
+    "traefik_cpu": {
+     "mean": 13.9,
+     "min": 13.1,
+     "max": 14.5
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.1,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 6.8,
+     "min": 6.5,
+     "max": 7.0
+    },
+    "db_throttled": {
+     "mean": 1.4,
+     "min": 1.1,
+     "max": 1.6
+    },
+    "k6_cpu": {
+     "mean": 11.2,
+     "min": 10.3,
+     "max": 11.7
+    },
+    "host_busy": {
+     "mean": 28.0,
+     "min": 25.2,
+     "max": 32.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 8.8,
+     "min": 7.9,
+     "max": 9.8
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 82.1,
+     "min": 80.1,
+     "max": 85.5
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 25.1,
+     "min": 24.9,
+     "max": 25.5
+    },
+    "app_throttled": {
+     "mean": 195.6,
+     "min": 187.4,
+     "max": 200.3
+    },
+    "app_cpu_max": {
+     "mean": 25.1,
+     "min": 24.9,
+     "max": 25.5
+    },
+    "traefik_cpu": {
+     "mean": 21.2,
+     "min": 20.2,
+     "max": 22.6
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "db_cpu": {
+     "mean": 8.8,
+     "min": 8.8,
+     "max": 8.9
+    },
+    "db_throttled": {
+     "mean": 2.5,
+     "min": 2.2,
+     "max": 2.8
+    },
+    "k6_cpu": {
+     "mean": 18.2,
+     "min": 17.1,
+     "max": 20.2
+    },
+    "host_busy": {
+     "mean": 37.3,
+     "min": 31.1,
+     "max": 44.4
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "other_cpu": {
+     "mean": 16.3,
+     "min": 11.9,
+     "max": 20.3
+    },
+    "succeeded_rps": {
+     "mean": 297.5,
+     "min": 294.7,
+     "max": 298.9
+    },
+    "p99_ms": {
+     "mean": 1218.6,
+     "min": 1098.9,
+     "max": 1367.4
+    },
+    "dropped": {
+     "mean": 39,
+     "min": 18,
+     "max": 80
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 24.8,
+     "min": 24.7,
+     "max": 24.9
+    },
+    "app_throttled": {
+     "mean": 155.4,
+     "min": 138.8,
+     "max": 175.8
+    },
+    "app_cpu_max": {
+     "mean": 24.8,
+     "min": 24.7,
+     "max": 24.9
+    },
+    "traefik_cpu": {
+     "mean": 33.9,
+     "min": 31.6,
+     "max": 37.0
+    },
+    "traefik_throttled": {
+     "mean": 0.5,
+     "min": 0.4,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 25.1,
+     "min": 21.6,
+     "max": 27.8
+    },
+    "db_throttled": {
+     "mean": 41.4,
+     "min": 23.3,
+     "max": 52.4
+    },
+    "k6_cpu": {
+     "mean": 35.4,
+     "min": 33.2,
+     "max": 37.8
+    },
+    "host_busy": {
+     "mean": 47.5,
+     "min": 41.0,
+     "max": 55.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 13.4,
+     "min": 11.1,
+     "max": 17.3
+    },
+    "succeeded_rps": {
+     "mean": 203.1,
+     "min": 184.2,
+     "max": 224.9
+    },
+    "p99_ms": {
+     "mean": 3005.8,
+     "min": 3001.9,
+     "max": 3012.4
+    },
+    "dropped": {
+     "mean": 888,
+     "min": 866,
+     "max": 917
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 24.3,
+     "min": 24.1,
+     "max": 24.4
+    },
+    "app_throttled": {
+     "mean": 114.3,
+     "min": 111.9,
+     "max": 118.1
+    },
+    "app_cpu_max": {
+     "mean": 24.3,
+     "min": 24.1,
+     "max": 24.4
+    },
+    "traefik_cpu": {
+     "mean": 48.8,
+     "min": 45.8,
+     "max": 52.3
+    },
+    "traefik_throttled": {
+     "mean": 1.2,
+     "min": 0.6,
+     "max": 1.7
+    },
+    "db_cpu": {
+     "mean": 37.9,
+     "min": 36.6,
+     "max": 38.7
+    },
+    "db_throttled": {
+     "mean": 85.2,
+     "min": 75.2,
+     "max": 93.5
+    },
+    "k6_cpu": {
+     "mean": 46.9,
+     "min": 44.9,
+     "max": 49.8
+    },
+    "host_busy": {
+     "mean": 63.4,
+     "min": 61.5,
+     "max": 64.9
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "other_cpu": {
+     "mean": 15.7,
+     "min": 13.9,
+     "max": 16.9
+    },
+    "succeeded_rps": {
+     "mean": 137.0,
+     "min": 131.5,
+     "max": 143.9
+    },
+    "p99_ms": {
+     "mean": 3025.0,
+     "min": 3015.6,
+     "max": 3034.9
+    },
+    "dropped": {
+     "mean": 1531,
+     "min": 1490,
+     "max": 1589
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 25.8,
+     "min": 25.5,
+     "max": 26.1
+    },
+    "app_throttled": {
+     "mean": 142.7,
+     "min": 102.4,
+     "max": 187.8
+    },
+    "app_cpu_max": {
+     "mean": 25.8,
+     "min": 25.5,
+     "max": 26.1
+    },
+    "traefik_cpu": {
+     "mean": 61.4,
+     "min": 52.1,
+     "max": 66.7
+    },
+    "traefik_throttled": {
+     "mean": 4.3,
+     "min": 0.6,
+     "max": 6.9
+    },
+    "db_cpu": {
+     "mean": 28.3,
+     "min": 13.5,
+     "max": 37.8
+    },
+    "db_throttled": {
+     "mean": 22.0,
+     "min": 2.2,
+     "max": 34.7
+    },
+    "k6_cpu": {
+     "mean": 57.5,
+     "min": 56.3,
+     "max": 58.7
+    },
+    "host_busy": {
+     "mean": 76.0,
+     "min": 63.9,
+     "max": 88.0
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 25.7,
+     "min": 21.8,
+     "max": 29.4
+    },
+    "succeeded_rps": {
+     "mean": 116.7,
+     "min": 111.8,
+     "max": 122.1
+    },
+    "p99_ms": {
+     "mean": 3093.2,
+     "min": 3017.1,
+     "max": 3229.2
+    },
+    "dropped": {
+     "mean": 2610.3,
+     "min": 2315,
+     "max": 3109
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.8,
+     "min": 24.8,
+     "max": 24.9
+    },
+    "app_throttled": {
+     "mean": 124.8,
+     "min": 118.0,
+     "max": 130.7
+    },
+    "app_cpu_max": {
+     "mean": 24.8,
+     "min": 24.8,
+     "max": 24.9
+    },
+    "traefik_cpu": {
+     "mean": 64.0,
+     "min": 62.6,
+     "max": 65.4
+    },
+    "traefik_throttled": {
+     "mean": 3.8,
+     "min": 2.9,
+     "max": 4.4
+    },
+    "db_cpu": {
+     "mean": 37.9,
+     "min": 34.0,
+     "max": 41.2
+    },
+    "db_throttled": {
+     "mean": 39.2,
+     "min": 32.8,
+     "max": 44.5
+    },
+    "k6_cpu": {
+     "mean": 55.6,
+     "min": 50.6,
+     "max": 62.0
+    },
+    "host_busy": {
+     "mean": 72.2,
+     "min": 70.3,
+     "max": 73.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 19.5,
+     "min": 16.9,
+     "max": 23.2
+    },
+    "succeeded_rps": {
+     "mean": 113.1,
+     "min": 107.7,
+     "max": 123.4
+    },
+    "p99_ms": {
+     "mean": 3013.3,
+     "min": 3003.7,
+     "max": 3026.4
+    },
+    "dropped": {
+     "mean": 3351.3,
+     "min": 3313,
+     "max": 3418
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 24.1,
+     "min": 24.0,
+     "max": 24.3
+    },
+    "app_throttled": {
+     "mean": 142.3,
+     "min": 141.1,
+     "max": 143.0
+    },
+    "app_cpu_max": {
+     "mean": 24.1,
+     "min": 24.0,
+     "max": 24.3
+    },
+    "traefik_cpu": {
+     "mean": 67.9,
+     "min": 66.5,
+     "max": 69.4
+    },
+    "traefik_throttled": {
+     "mean": 6.5,
+     "min": 4.1,
+     "max": 9.2
+    },
+    "db_cpu": {
+     "mean": 26.7,
+     "min": 24.3,
+     "max": 28.1
+    },
+    "db_throttled": {
+     "mean": 9.7,
+     "min": 6.5,
+     "max": 13.0
+    },
+    "k6_cpu": {
+     "mean": 66.9,
+     "min": 57.8,
+     "max": 75.2
+    },
+    "host_busy": {
+     "mean": 75.2,
+     "min": 73.1,
+     "max": 76.8
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 19.0,
+     "min": 17.0,
+     "max": 21.9
+    },
+    "succeeded_rps": {
+     "mean": 94.6,
+     "min": 83.7,
+     "max": 100.3
+    },
+    "p99_ms": {
+     "mean": 3041.2,
+     "min": 3031.2,
+     "max": 3054.1
+    },
+    "dropped": {
+     "mean": 4532.7,
+     "min": 4452,
+     "max": 4585
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 3.9,
+     "min": 3.6,
+     "max": 4.0
+    },
+    "app_throttled": {
+     "mean": 3.0,
+     "min": 2.8,
+     "max": 3.2
+    },
+    "app_cpu_max": {
+     "mean": 3.9,
+     "min": 3.6,
+     "max": 4.0
+    },
+    "db_cpu": {
+     "mean": 2.8,
+     "min": 2.6,
+     "max": 2.9
+    },
+    "db_throttled": {
+     "mean": 0.8,
+     "min": 0.5,
+     "max": 1.4
+    },
+    "k6_cpu": {
+     "mean": 41.5,
+     "min": 38.3,
+     "max": 43.8
+    },
+    "host_busy": {
+     "mean": 42.4,
+     "min": 36.5,
+     "max": 46.6
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 28.6,
+     "min": 25.5,
+     "max": 30.8
+    },
+    "succeeded_rps": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    },
+    "p99_ms": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    },
+    "dropped": {
+     "mean": 4511.3,
+     "min": 4360,
+     "max": 4808
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 3.7,
+     "min": 3.6,
+     "max": 3.8
+    },
+    "app_throttled": {
+     "mean": 2.5,
+     "min": 1.9,
+     "max": 2.8
+    },
+    "app_cpu_max": {
+     "mean": 3.7,
+     "min": 3.6,
+     "max": 3.8
+    },
+    "db_cpu": {
+     "mean": 2.6,
+     "min": 2.2,
+     "max": 2.8
+    },
+    "db_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.6
+    },
+    "k6_cpu": {
+     "mean": 166.0,
+     "min": 162.3,
+     "max": 170.5
+    },
+    "host_busy": {
+     "mean": 64.3,
+     "min": 62.5,
+     "max": 65.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 18.9,
+     "min": 16.3,
+     "max": 24.1
+    },
+    "succeeded_rps": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    },
+    "p99_ms": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    },
+    "dropped": {
+     "mean": 10403,
+     "min": 10001,
+     "max": 10988
+    }
+   }
+  }
+ },
+ "base2": {
+  "ceiling_rps": {
+   "mean": 654.4,
+   "min": 648.9,
+   "max": 660.5
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 25.6,
+    "min": 25.5,
+    "max": 25.7
+   },
+   "app_throttled": {
+    "mean": 190.9,
+    "min": 185.1,
+    "max": 194.8
+   },
+   "app_cpu_max": {
+    "mean": 25.6,
+    "min": 25.5,
+    "max": 25.7
+   },
+   "traefik_cpu": {
+    "mean": 36.2,
+    "min": 35.7,
+    "max": 36.7
+   },
+   "traefik_throttled": {
+    "mean": 0.4,
+    "min": 0.2,
+    "max": 0.6
+   },
+   "db_cpu": {
+    "mean": 12.0,
+    "min": 11.8,
+    "max": 12.3
+   },
+   "db_throttled": {
+    "mean": 0.6,
+    "min": 0.3,
+    "max": 0.8
+   },
+   "k6_cpu": {
+    "mean": 39.6,
+    "min": 38.5,
+    "max": 40.7
+   },
+   "host_busy": {
+    "mean": 51.4,
+    "min": 46.7,
+    "max": 58.0
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.1
+   },
+   "other_cpu": {
+    "mean": 13.7,
+    "min": 11.1,
+    "max": 17.6
+   },
+   "succeeded_rps": {
+    "mean": 654.4,
+    "min": 648.9,
+    "max": 660.5
+   },
+   "p99_ms": {
+    "mean": 2727.2,
+    "min": 2576.2,
+    "max": 2976.5
+   },
+   "dropped": {
+    "mean": 1413.7,
+    "min": 1342,
+    "max": 1460
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 11.7,
+     "min": 11.4,
+     "max": 12.1
+    },
+    "app_throttled": {
+     "mean": 16.8,
+     "min": 15.1,
+     "max": 17.7
+    },
+    "app_cpu_max": {
+     "mean": 11.9,
+     "min": 11.4,
+     "max": 12.3
+    },
+    "traefik_cpu": {
+     "mean": 14.1,
+     "min": 13.5,
+     "max": 14.5
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 7.6,
+     "min": 7.4,
+     "max": 7.8
+    },
+    "db_throttled": {
+     "mean": 0.9,
+     "min": 0.5,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 12.0,
+     "min": 11.3,
+     "max": 12.5
+    },
+    "host_busy": {
+     "mean": 35.3,
+     "min": 28.6,
+     "max": 42.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 13.3,
+     "min": 10.3,
+     "max": 15.2
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150.1,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 61.4,
+     "min": 60.7,
+     "max": 62.0
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 19.1,
+     "min": 18.9,
+     "max": 19.2
+    },
+    "app_throttled": {
+     "mean": 34.4,
+     "min": 32.0,
+     "max": 37.0
+    },
+    "app_cpu_max": {
+     "mean": 19.1,
+     "min": 18.9,
+     "max": 19.3
+    },
+    "traefik_cpu": {
+     "mean": 20.3,
+     "min": 20.1,
+     "max": 20.4
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 10.0,
+     "min": 9.9,
+     "max": 10.2
+    },
+    "db_throttled": {
+     "mean": 5.8,
+     "min": 3.2,
+     "max": 8.1
+    },
+    "k6_cpu": {
+     "mean": 20.5,
+     "min": 19.7,
+     "max": 21.0
+    },
+    "host_busy": {
+     "mean": 40.4,
+     "min": 35.8,
+     "max": 48.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 14.2,
+     "min": 12.2,
+     "max": 17.9
+    },
+    "succeeded_rps": {
+     "mean": 300.0,
+     "min": 300,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 80.9,
+     "min": 78.3,
+     "max": 83.4
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 24.6,
+     "min": 24.5,
+     "max": 24.8
+    },
+    "app_throttled": {
+     "mean": 78.2,
+     "min": 75.1,
+     "max": 82.5
+    },
+    "app_cpu_max": {
+     "mean": 24.7,
+     "min": 24.6,
+     "max": 24.9
+    },
+    "traefik_cpu": {
+     "mean": 24.9,
+     "min": 24.7,
+     "max": 25.3
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 10.9,
+     "min": 10.6,
+     "max": 11.1
+    },
+    "db_throttled": {
+     "mean": 1.2,
+     "min": 1.1,
+     "max": 1.3
+    },
+    "k6_cpu": {
+     "mean": 25.3,
+     "min": 25.2,
+     "max": 25.4
+    },
+    "host_busy": {
+     "mean": 44.7,
+     "min": 41.3,
+     "max": 51.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 8.1,
+     "min": 7.4,
+     "max": 8.5
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 150.1,
+     "min": 126.5,
+     "max": 164.0
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 24.2,
+     "min": 23.6,
+     "max": 24.5
+    },
+    "app_throttled": {
+     "mean": 184.8,
+     "min": 184.1,
+     "max": 185.2
+    },
+    "app_cpu_max": {
+     "mean": 24.3,
+     "min": 23.8,
+     "max": 24.6
+    },
+    "traefik_cpu": {
+     "mean": 30.9,
+     "min": 30.2,
+     "max": 31.9
+    },
+    "traefik_throttled": {
+     "mean": 0.3,
+     "min": 0.2,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 11.9,
+     "min": 11.7,
+     "max": 12.2
+    },
+    "db_throttled": {
+     "mean": 1.5,
+     "min": 0.4,
+     "max": 3.4
+    },
+    "k6_cpu": {
+     "mean": 27.3,
+     "min": 24.7,
+     "max": 29.2
+    },
+    "host_busy": {
+     "mean": 46.3,
+     "min": 44.0,
+     "max": 49.9
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "other_cpu": {
+     "mean": 13.1,
+     "min": 10.8,
+     "max": 15.1
+    },
+    "succeeded_rps": {
+     "mean": 589.2,
+     "min": 587.7,
+     "max": 591.6
+    },
+    "p99_ms": {
+     "mean": 1167.3,
+     "min": 1111.7,
+     "max": 1198.8
+    },
+    "dropped": {
+     "mean": 162,
+     "min": 126,
+     "max": 184
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 25.6,
+     "min": 25.5,
+     "max": 25.7
+    },
+    "app_throttled": {
+     "mean": 190.9,
+     "min": 185.1,
+     "max": 194.8
+    },
+    "app_cpu_max": {
+     "mean": 25.6,
+     "min": 25.5,
+     "max": 25.7
+    },
+    "traefik_cpu": {
+     "mean": 36.2,
+     "min": 35.7,
+     "max": 36.7
+    },
+    "traefik_throttled": {
+     "mean": 0.4,
+     "min": 0.2,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 12.0,
+     "min": 11.8,
+     "max": 12.3
+    },
+    "db_throttled": {
+     "mean": 0.6,
+     "min": 0.3,
+     "max": 0.8
+    },
+    "k6_cpu": {
+     "mean": 39.6,
+     "min": 38.5,
+     "max": 40.7
+    },
+    "host_busy": {
+     "mean": 51.4,
+     "min": 46.7,
+     "max": 58.0
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 13.7,
+     "min": 11.1,
+     "max": 17.6
+    },
+    "succeeded_rps": {
+     "mean": 654.4,
+     "min": 648.9,
+     "max": 660.5
+    },
+    "p99_ms": {
+     "mean": 2727.2,
+     "min": 2576.2,
+     "max": 2976.5
+    },
+    "dropped": {
+     "mean": 1413.7,
+     "min": 1342,
+     "max": 1460
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.6,
+     "min": 24.4,
+     "max": 24.7
+    },
+    "app_throttled": {
+     "mean": 165.2,
+     "min": 158.6,
+     "max": 169.8
+    },
+    "app_cpu_max": {
+     "mean": 24.7,
+     "min": 24.7,
+     "max": 24.8
+    },
+    "traefik_cpu": {
+     "mean": 41.5,
+     "min": 41.0,
+     "max": 42.3
+    },
+    "traefik_throttled": {
+     "mean": 0.7,
+     "min": 0.6,
+     "max": 0.9
+    },
+    "db_cpu": {
+     "mean": 18.2,
+     "min": 17.2,
+     "max": 18.9
+    },
+    "db_throttled": {
+     "mean": 19.6,
+     "min": 9.8,
+     "max": 25.1
+    },
+    "k6_cpu": {
+     "mean": 50.8,
+     "min": 50.5,
+     "max": 51.1
+    },
+    "host_busy": {
+     "mean": 60.7,
+     "min": 59.6,
+     "max": 62.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 9.9,
+     "min": 9.7,
+     "max": 10.2
+    },
+    "succeeded_rps": {
+     "mean": 487.5,
+     "min": 484.9,
+     "max": 489.4
+    },
+    "p99_ms": {
+     "mean": 3014.0,
+     "min": 3001.7,
+     "max": 3035.6
+    },
+    "dropped": {
+     "mean": 2881.7,
+     "min": 2861,
+     "max": 2902
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 23.7,
+     "min": 23.4,
+     "max": 24.2
+    },
+    "app_throttled": {
+     "mean": 133.1,
+     "min": 111.5,
+     "max": 144.8
+    },
+    "app_cpu_max": {
+     "mean": 23.9,
+     "min": 23.6,
+     "max": 24.3
+    },
+    "traefik_cpu": {
+     "mean": 52.7,
+     "min": 51.0,
+     "max": 54.9
+    },
+    "traefik_throttled": {
+     "mean": 2.3,
+     "min": 0.4,
+     "max": 4.4
+    },
+    "db_cpu": {
+     "mean": 24.5,
+     "min": 21.5,
+     "max": 28.5
+    },
+    "db_throttled": {
+     "mean": 53.6,
+     "min": 31.1,
+     "max": 75.7
+    },
+    "k6_cpu": {
+     "mean": 55.6,
+     "min": 53.1,
+     "max": 57.1
+    },
+    "host_busy": {
+     "mean": 69.0,
+     "min": 65.7,
+     "max": 74.7
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.1,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 19.5,
+     "min": 15.5,
+     "max": 23.4
+    },
+    "succeeded_rps": {
+     "mean": 368.0,
+     "min": 355.7,
+     "max": 385.3
+    },
+    "p99_ms": {
+     "mean": 3089.8,
+     "min": 3005.9,
+     "max": 3240.2
+    },
+    "dropped": {
+     "mean": 4106.3,
+     "min": 3854,
+     "max": 4406
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 11.0,
+     "min": 3.7,
+     "max": 25.7
+    },
+    "app_throttled": {
+     "mean": 51.1,
+     "min": 1.4,
+     "max": 149.1
+    },
+    "app_cpu_max": {
+     "mean": 11.1,
+     "min": 3.7,
+     "max": 25.8
+    },
+    "db_cpu": {
+     "mean": 11.5,
+     "min": 2.6,
+     "max": 29.2
+    },
+    "db_throttled": {
+     "mean": 9.7,
+     "min": 0.3,
+     "max": 28.6
+    },
+    "k6_cpu": {
+     "mean": 70.7,
+     "min": 66.7,
+     "max": 77.0
+    },
+    "host_busy": {
+     "mean": 58.1,
+     "min": 43.7,
+     "max": 79.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 23.8,
+     "min": 17.7,
+     "max": 29.6
+    },
+    "succeeded_rps": {
+     "mean": 99.6,
+     "min": 0,
+     "max": 298.7
+    },
+    "p99_ms": {
+     "mean": 1168.4,
+     "min": 0,
+     "max": 3505.2
+    },
+    "dropped": {
+     "mean": 5229,
+     "min": 4859,
+     "max": 5576
+    },
+    "traefik_cpu": {
+     "mean": 69.2,
+     "min": 69.2,
+     "max": 69.2
+    },
+    "traefik_throttled": {
+     "mean": 3.0,
+     "min": 3.0,
+     "max": 3.0
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 10.5,
+     "min": 3.7,
+     "max": 24.0
+    },
+    "app_throttled": {
+     "mean": 33.5,
+     "min": 1.7,
+     "max": 96.9
+    },
+    "app_cpu_max": {
+     "mean": 10.6,
+     "min": 3.8,
+     "max": 24.1
+    },
+    "db_cpu": {
+     "mean": 14.6,
+     "min": 2.3,
+     "max": 38.9
+    },
+    "db_throttled": {
+     "mean": 39.1,
+     "min": 0.0,
+     "max": 117.1
+    },
+    "k6_cpu": {
+     "mean": 131.2,
+     "min": 50.9,
+     "max": 177.5
+    },
+    "host_busy": {
+     "mean": 72.0,
+     "min": 65.1,
+     "max": 77.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 16.4,
+     "min": 15.3,
+     "max": 17.8
+    },
+    "succeeded_rps": {
+     "mean": 83.8,
+     "min": 0,
+     "max": 251.5
+    },
+    "p99_ms": {
+     "mean": 1006.4,
+     "min": 0,
+     "max": 3019.3
+    },
+    "dropped": {
+     "mean": 8985.3,
+     "min": 5815,
+     "max": 11239
+    },
+    "traefik_cpu": {
+     "mean": 71.1,
+     "min": 71.1,
+     "max": 71.1
+    },
+    "traefik_throttled": {
+     "mean": 5.8,
+     "min": 5.8,
+     "max": 5.8
+    }
+   }
+  }
+ },
+ "base3": {
+  "ceiling_rps": {
+   "mean": 983.6,
+   "min": 979.8,
+   "max": 987.4
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 150.1,
+   "min": 150.1,
+   "max": 150.1
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 25.5,
+    "min": 24.9,
+    "max": 25.8
+   },
+   "app_throttled": {
+    "mean": 165.1,
+    "min": 120.8,
+    "max": 190.3
+   },
+   "app_cpu_max": {
+    "mean": 25.6,
+    "min": 25.0,
+    "max": 26.0
+   },
+   "traefik_cpu": {
+    "mean": 43.4,
+    "min": 36.8,
+    "max": 47.3
+   },
+   "traefik_throttled": {
+    "mean": 0.8,
+    "min": 0.5,
+    "max": 1.0
+   },
+   "db_cpu": {
+    "mean": 16.9,
+    "min": 16.8,
+    "max": 17.1
+   },
+   "db_throttled": {
+    "mean": 0.9,
+    "min": 0.3,
+    "max": 1.9
+   },
+   "k6_cpu": {
+    "mean": 52.8,
+    "min": 48.5,
+    "max": 55.6
+   },
+   "host_busy": {
+    "mean": 73.9,
+    "min": 62.8,
+    "max": 91.3
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "other_cpu": {
+    "mean": 14.3,
+    "min": 8.7,
+    "max": 18.1
+   },
+   "succeeded_rps": {
+    "mean": 983.6,
+    "min": 979.8,
+    "max": 987.4
+   },
+   "p99_ms": {
+    "mean": 2464.1,
+    "min": 2396.0,
+    "max": 2506.8
+   },
+   "dropped": {
+    "mean": 3997.3,
+    "min": 3191,
+    "max": 5554
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 9.2,
+     "min": 9.0,
+     "max": 9.5
+    },
+    "app_throttled": {
+     "mean": 9.2,
+     "min": 8.5,
+     "max": 10.4
+    },
+    "app_cpu_max": {
+     "mean": 9.3,
+     "min": 9.1,
+     "max": 9.7
+    },
+    "traefik_cpu": {
+     "mean": 14.3,
+     "min": 14.1,
+     "max": 14.8
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 7.0,
+     "min": 6.6,
+     "max": 7.2
+    },
+    "db_throttled": {
+     "mean": 0.2,
+     "min": 0.1,
+     "max": 0.2
+    },
+    "k6_cpu": {
+     "mean": 11.6,
+     "min": 11.2,
+     "max": 11.9
+    },
+    "host_busy": {
+     "mean": 35.1,
+     "min": 28.2,
+     "max": 45.8
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 12.7,
+     "min": 9.8,
+     "max": 17.4
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150.1,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 39.3,
+     "min": 37.9,
+     "max": 41.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 14.7,
+     "min": 14.6,
+     "max": 14.7
+    },
+    "app_throttled": {
+     "mean": 20.5,
+     "min": 20.4,
+     "max": 20.7
+    },
+    "app_cpu_max": {
+     "mean": 14.9,
+     "min": 14.8,
+     "max": 15.1
+    },
+    "traefik_cpu": {
+     "mean": 21.7,
+     "min": 21.5,
+     "max": 21.9
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.5
+    },
+    "db_cpu": {
+     "mean": 10.8,
+     "min": 10.5,
+     "max": 11.3
+    },
+    "db_throttled": {
+     "mean": 4.3,
+     "min": 3.7,
+     "max": 4.6
+    },
+    "k6_cpu": {
+     "mean": 21.9,
+     "min": 21.6,
+     "max": 22.3
+    },
+    "host_busy": {
+     "mean": 43.7,
+     "min": 40.5,
+     "max": 49.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 15.6,
+     "min": 11.4,
+     "max": 19.3
+    },
+    "succeeded_rps": {
+     "mean": 300.1,
+     "min": 300.1,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 68.0,
+     "min": 63.1,
+     "max": 73.2
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 19.0,
+     "min": 18.8,
+     "max": 19.2
+    },
+    "app_throttled": {
+     "mean": 32.1,
+     "min": 31.5,
+     "max": 32.9
+    },
+    "app_cpu_max": {
+     "mean": 19.2,
+     "min": 18.9,
+     "max": 19.4
+    },
+    "traefik_cpu": {
+     "mean": 25.5,
+     "min": 25.4,
+     "max": 25.7
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 11.1,
+     "min": 10.9,
+     "max": 11.2
+    },
+    "db_throttled": {
+     "mean": 1.8,
+     "min": 0.9,
+     "max": 2.6
+    },
+    "k6_cpu": {
+     "mean": 25.9,
+     "min": 25.6,
+     "max": 26.6
+    },
+    "host_busy": {
+     "mean": 44.1,
+     "min": 43.7,
+     "max": 44.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 9.2,
+     "min": 8.7,
+     "max": 9.8
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450.1,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 76.8,
+     "min": 75.3,
+     "max": 77.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 22.6,
+     "min": 22.4,
+     "max": 22.8
+    },
+    "app_throttled": {
+     "mean": 53.4,
+     "min": 50.4,
+     "max": 55.0
+    },
+    "app_cpu_max": {
+     "mean": 22.8,
+     "min": 22.4,
+     "max": 23.1
+    },
+    "traefik_cpu": {
+     "mean": 30.1,
+     "min": 29.7,
+     "max": 30.5
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.1,
+     "max": 0.2
+    },
+    "db_cpu": {
+     "mean": 13.1,
+     "min": 12.8,
+     "max": 13.5
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.0,
+     "max": 2.2
+    },
+    "k6_cpu": {
+     "mean": 27.6,
+     "min": 25.5,
+     "max": 28.8
+    },
+    "host_busy": {
+     "mean": 55.0,
+     "min": 50.5,
+     "max": 63.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 13.8,
+     "min": 10.1,
+     "max": 18.8
+    },
+    "succeeded_rps": {
+     "mean": 600.1,
+     "min": 600,
+     "max": 600.1
+    },
+    "p99_ms": {
+     "mean": 95.3,
+     "min": 92.0,
+     "max": 98.2
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 26.1,
+     "min": 25.6,
+     "max": 26.4
+    },
+    "app_throttled": {
+     "mean": 128.8,
+     "min": 126.2,
+     "max": 133.8
+    },
+    "app_cpu_max": {
+     "mean": 26.2,
+     "min": 25.7,
+     "max": 26.5
+    },
+    "traefik_cpu": {
+     "mean": 36.3,
+     "min": 35.3,
+     "max": 37.3
+    },
+    "traefik_throttled": {
+     "mean": 0.3,
+     "min": 0.2,
+     "max": 0.5
+    },
+    "db_cpu": {
+     "mean": 16.6,
+     "min": 15.8,
+     "max": 17.2
+    },
+    "db_throttled": {
+     "mean": 1.1,
+     "min": 0.5,
+     "max": 1.9
+    },
+    "k6_cpu": {
+     "mean": 33.1,
+     "min": 31.8,
+     "max": 34.5
+    },
+    "host_busy": {
+     "mean": 66.6,
+     "min": 56.7,
+     "max": 73.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 15.7,
+     "min": 10.9,
+     "max": 20.2
+    },
+    "succeeded_rps": {
+     "mean": 750.0,
+     "min": 750,
+     "max": 750.1
+    },
+    "p99_ms": {
+     "mean": 187.2,
+     "min": 182.8,
+     "max": 191.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 180.7,
+     "min": 158.8,
+     "max": 193.5
+    },
+    "app_cpu_max": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.1
+    },
+    "traefik_cpu": {
+     "mean": 38.7,
+     "min": 37.6,
+     "max": 40.3
+    },
+    "traefik_throttled": {
+     "mean": 0.6,
+     "min": 0.0,
+     "max": 1.0
+    },
+    "db_cpu": {
+     "mean": 16.6,
+     "min": 16.0,
+     "max": 17.1
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.9,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 36.5,
+     "min": 35.5,
+     "max": 37.0
+    },
+    "host_busy": {
+     "mean": 63.8,
+     "min": 55.0,
+     "max": 76.6
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 9.5,
+     "min": 8.7,
+     "max": 10.4
+    },
+    "succeeded_rps": {
+     "mean": 874.9,
+     "min": 861.6,
+     "max": 883.1
+    },
+    "p99_ms": {
+     "mean": 926.1,
+     "min": 886.9,
+     "max": 959.3
+    },
+    "dropped": {
+     "mean": 376.7,
+     "min": 254,
+     "max": 576
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 24.4,
+     "min": 24.4,
+     "max": 24.5
+    },
+    "app_throttled": {
+     "mean": 176.7,
+     "min": 164.6,
+     "max": 185.7
+    },
+    "app_cpu_max": {
+     "mean": 24.5,
+     "min": 24.5,
+     "max": 24.5
+    },
+    "traefik_cpu": {
+     "mean": 40.9,
+     "min": 39.3,
+     "max": 41.8
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 16.2,
+     "min": 16.1,
+     "max": 16.3
+    },
+    "db_throttled": {
+     "mean": 0.5,
+     "min": 0.4,
+     "max": 0.8
+    },
+    "k6_cpu": {
+     "mean": 43.9,
+     "min": 41.3,
+     "max": 46.2
+    },
+    "host_busy": {
+     "mean": 64.4,
+     "min": 62.1,
+     "max": 68.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 14.4,
+     "min": 10.5,
+     "max": 18.8
+    },
+    "succeeded_rps": {
+     "mean": 933.8,
+     "min": 932.7,
+     "max": 935.2
+    },
+    "p99_ms": {
+     "mean": 1869.2,
+     "min": 1756.4,
+     "max": 1991.2
+    },
+    "dropped": {
+     "mean": 1744.7,
+     "min": 1723,
+     "max": 1760
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 25.7,
+     "min": 25.5,
+     "max": 25.8
+    },
+    "app_throttled": {
+     "mean": 169.8,
+     "min": 134.9,
+     "max": 190.3
+    },
+    "app_cpu_max": {
+     "mean": 25.8,
+     "min": 25.6,
+     "max": 26.0
+    },
+    "traefik_cpu": {
+     "mean": 44.4,
+     "min": 39.8,
+     "max": 47.3
+    },
+    "traefik_throttled": {
+     "mean": 0.9,
+     "min": 0.6,
+     "max": 1.0
+    },
+    "db_cpu": {
+     "mean": 17.1,
+     "min": 16.8,
+     "max": 17.2
+    },
+    "db_throttled": {
+     "mean": 0.7,
+     "min": 0.0,
+     "max": 1.9
+    },
+    "k6_cpu": {
+     "mean": 52.4,
+     "min": 47.1,
+     "max": 55.6
+    },
+    "host_busy": {
+     "mean": 72.9,
+     "min": 62.8,
+     "max": 88.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 14.8,
+     "min": 10.3,
+     "max": 18.1
+    },
+    "succeeded_rps": {
+     "mean": 970.8,
+     "min": 941.5,
+     "max": 987.4
+    },
+    "p99_ms": {
+     "mean": 2389.5,
+     "min": 2265.7,
+     "max": 2506.8
+    },
+    "dropped": {
+     "mean": 3438.3,
+     "min": 3191,
+     "max": 3877
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 25.0,
+     "min": 24.9,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 154.2,
+     "min": 120.8,
+     "max": 174.6
+    },
+    "app_cpu_max": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.0
+    },
+    "traefik_cpu": {
+     "mean": 46.9,
+     "min": 36.8,
+     "max": 52.3
+    },
+    "traefik_throttled": {
+     "mean": 1.3,
+     "min": 0.5,
+     "max": 2.5
+    },
+    "db_cpu": {
+     "mean": 16.7,
+     "min": 16.6,
+     "max": 16.9
+    },
+    "db_throttled": {
+     "mean": 0.4,
+     "min": 0.1,
+     "max": 0.6
+    },
+    "k6_cpu": {
+     "mean": 57.0,
+     "min": 48.5,
+     "max": 62.2
+    },
+    "host_busy": {
+     "mean": 79.0,
+     "min": 70.2,
+     "max": 91.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 9.4,
+     "min": 8.7,
+     "max": 9.8
+    },
+    "succeeded_rps": {
+     "mean": 930.9,
+     "min": 881.7,
+     "max": 979.8
+    },
+    "p99_ms": {
+     "mean": 2834.6,
+     "min": 2489.6,
+     "max": 3013.3
+    },
+    "dropped": {
+     "mean": 5485.3,
+     "min": 5265,
+     "max": 5637
+    }
+   }
+  }
+ },
+ "base4": {
+  "ceiling_rps": {
+   "mean": 1196.7,
+   "min": 1171.7,
+   "max": 1216.5
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 150.1,
+   "min": 150.1,
+   "max": 150.1
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 24.9,
+    "min": 24.9,
+    "max": 25.0
+   },
+   "app_throttled": {
+    "mean": 148.3,
+    "min": 116.4,
+    "max": 165.1
+   },
+   "app_cpu_max": {
+    "mean": 25.0,
+    "min": 25.0,
+    "max": 25.0
+   },
+   "traefik_cpu": {
+    "mean": 44.3,
+    "min": 39.2,
+    "max": 47.6
+   },
+   "traefik_throttled": {
+    "mean": 0.6,
+    "min": 0.2,
+    "max": 0.8
+   },
+   "db_cpu": {
+    "mean": 21.1,
+    "min": 20.7,
+    "max": 21.6
+   },
+   "db_throttled": {
+    "mean": 2.8,
+    "min": 1.0,
+    "max": 3.8
+   },
+   "k6_cpu": {
+    "mean": 51.8,
+    "min": 43.6,
+    "max": 57.2
+   },
+   "host_busy": {
+    "mean": 80.3,
+    "min": 75.9,
+    "max": 88.5
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.1
+   },
+   "other_cpu": {
+    "mean": 12.6,
+    "min": 8.6,
+    "max": 18.1
+   },
+   "succeeded_rps": {
+    "mean": 1196.7,
+    "min": 1171.7,
+    "max": 1216.5
+   },
+   "p99_ms": {
+    "mean": 1329.5,
+    "min": 1294.7,
+    "max": 1349.8
+   },
+   "dropped": {
+    "mean": 2300.3,
+    "min": 2003,
+    "max": 2675
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 7.9,
+     "min": 7.9,
+     "max": 8.0
+    },
+    "app_throttled": {
+     "mean": 6.4,
+     "min": 5.7,
+     "max": 7.3
+    },
+    "app_cpu_max": {
+     "mean": 8.0,
+     "min": 7.9,
+     "max": 8.1
+    },
+    "traefik_cpu": {
+     "mean": 14.5,
+     "min": 13.8,
+     "max": 15.1
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 7.5,
+     "min": 7.3,
+     "max": 7.7
+    },
+    "db_throttled": {
+     "mean": 0.6,
+     "min": 0.1,
+     "max": 0.9
+    },
+    "k6_cpu": {
+     "mean": 12.0,
+     "min": 11.4,
+     "max": 12.9
+    },
+    "host_busy": {
+     "mean": 39.2,
+     "min": 31.5,
+     "max": 49.8
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 15.7,
+     "min": 14.0,
+     "max": 17.2
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150.1,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 29.2,
+     "min": 20.2,
+     "max": 39.4
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 11.9,
+     "min": 11.5,
+     "max": 12.3
+    },
+    "app_throttled": {
+     "mean": 13.7,
+     "min": 13.3,
+     "max": 14.0
+    },
+    "app_cpu_max": {
+     "mean": 12.1,
+     "min": 11.8,
+     "max": 12.5
+    },
+    "traefik_cpu": {
+     "mean": 21.5,
+     "min": 20.5,
+     "max": 22.6
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 11.1,
+     "min": 10.6,
+     "max": 11.5
+    },
+    "db_throttled": {
+     "mean": 3.5,
+     "min": 1.2,
+     "max": 5.6
+    },
+    "k6_cpu": {
+     "mean": 20.4,
+     "min": 18.3,
+     "max": 22.4
+    },
+    "host_busy": {
+     "mean": 50.1,
+     "min": 45.3,
+     "max": 52.9
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 11.3,
+     "min": 9.4,
+     "max": 12.4
+    },
+    "succeeded_rps": {
+     "mean": 300.1,
+     "min": 300.1,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 58.8,
+     "min": 54.9,
+     "max": 66.0
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 16.1,
+     "min": 15.5,
+     "max": 16.3
+    },
+    "app_throttled": {
+     "mean": 24.1,
+     "min": 22.3,
+     "max": 27.2
+    },
+    "app_cpu_max": {
+     "mean": 16.3,
+     "min": 15.7,
+     "max": 16.7
+    },
+    "traefik_cpu": {
+     "mean": 26.5,
+     "min": 25.5,
+     "max": 27.6
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.1,
+     "max": 0.2
+    },
+    "db_cpu": {
+     "mean": 12.3,
+     "min": 11.7,
+     "max": 12.7
+    },
+    "db_throttled": {
+     "mean": 0.7,
+     "min": 0.1,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 25.6,
+     "min": 23.5,
+     "max": 27.2
+    },
+    "host_busy": {
+     "mean": 55.6,
+     "min": 45.4,
+     "max": 69.2
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 11.7,
+     "min": 9.5,
+     "max": 15.4
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450.1,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 69.8,
+     "min": 68.5,
+     "max": 71.2
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 18.7,
+     "min": 18.3,
+     "max": 19.1
+    },
+    "app_throttled": {
+     "mean": 28.8,
+     "min": 22.0,
+     "max": 32.5
+    },
+    "app_cpu_max": {
+     "mean": 18.9,
+     "min": 18.5,
+     "max": 19.2
+    },
+    "traefik_cpu": {
+     "mean": 29.9,
+     "min": 27.1,
+     "max": 32.4
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.4
+    },
+    "db_cpu": {
+     "mean": 13.9,
+     "min": 13.9,
+     "max": 14.0
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.2,
+     "max": 1.9
+    },
+    "k6_cpu": {
+     "mean": 28.5,
+     "min": 26.1,
+     "max": 30.3
+    },
+    "host_busy": {
+     "mean": 66.1,
+     "min": 57.3,
+     "max": 81.6
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 15.8,
+     "min": 13.2,
+     "max": 17.4
+    },
+    "succeeded_rps": {
+     "mean": 600.1,
+     "min": 600,
+     "max": 600.1
+    },
+    "p99_ms": {
+     "mean": 77.6,
+     "min": 72.8,
+     "max": 80.5
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 22.6,
+     "min": 22.1,
+     "max": 22.9
+    },
+    "app_throttled": {
+     "mean": 43.5,
+     "min": 40.1,
+     "max": 47.1
+    },
+    "app_cpu_max": {
+     "mean": 22.7,
+     "min": 22.4,
+     "max": 22.9
+    },
+    "traefik_cpu": {
+     "mean": 34.9,
+     "min": 33.1,
+     "max": 36.6
+    },
+    "traefik_throttled": {
+     "mean": 0.4,
+     "min": 0.0,
+     "max": 0.8
+    },
+    "db_cpu": {
+     "mean": 16.0,
+     "min": 15.0,
+     "max": 16.5
+    },
+    "db_throttled": {
+     "mean": 0.7,
+     "min": 0.0,
+     "max": 1.1
+    },
+    "k6_cpu": {
+     "mean": 31.9,
+     "min": 30.2,
+     "max": 33.4
+    },
+    "host_busy": {
+     "mean": 60.3,
+     "min": 57.1,
+     "max": 62.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.5,
+     "min": 9.3,
+     "max": 12.4
+    },
+    "succeeded_rps": {
+     "mean": 750.0,
+     "min": 750,
+     "max": 750.1
+    },
+    "p99_ms": {
+     "mean": 87.0,
+     "min": 83.7,
+     "max": 90.6
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.6,
+     "min": 24.5,
+     "max": 24.7
+    },
+    "app_throttled": {
+     "mean": 73.5,
+     "min": 67.9,
+     "max": 79.5
+    },
+    "app_cpu_max": {
+     "mean": 24.7,
+     "min": 24.6,
+     "max": 24.7
+    },
+    "traefik_cpu": {
+     "mean": 37.6,
+     "min": 36.1,
+     "max": 38.8
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 19.0,
+     "min": 18.3,
+     "max": 19.3
+    },
+    "db_throttled": {
+     "mean": 2.7,
+     "min": 2.0,
+     "max": 3.4
+    },
+    "k6_cpu": {
+     "mean": 34.9,
+     "min": 33.2,
+     "max": 36.5
+    },
+    "host_busy": {
+     "mean": 70.0,
+     "min": 62.4,
+     "max": 80.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 12.9,
+     "min": 9.1,
+     "max": 17.6
+    },
+    "succeeded_rps": {
+     "mean": 900.0,
+     "min": 900,
+     "max": 900.1
+    },
+    "p99_ms": {
+     "mean": 161.6,
+     "min": 154.0,
+     "max": 171.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 24.0,
+     "min": 23.7,
+     "max": 24.2
+    },
+    "app_throttled": {
+     "mean": 142.4,
+     "min": 131.7,
+     "max": 152.8
+    },
+    "app_cpu_max": {
+     "mean": 24.1,
+     "min": 23.8,
+     "max": 24.3
+    },
+    "traefik_cpu": {
+     "mean": 40.2,
+     "min": 38.6,
+     "max": 42.4
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.1,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 19.7,
+     "min": 19.1,
+     "max": 20.6
+    },
+    "db_throttled": {
+     "mean": 1.8,
+     "min": 1.5,
+     "max": 2.1
+    },
+    "k6_cpu": {
+     "mean": 37.2,
+     "min": 34.9,
+     "max": 38.8
+    },
+    "host_busy": {
+     "mean": 71.2,
+     "min": 68.8,
+     "max": 74.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 15.4,
+     "min": 11.0,
+     "max": 18.2
+    },
+    "succeeded_rps": {
+     "mean": 1042.1,
+     "min": 1026.3,
+     "max": 1050.1
+    },
+    "p99_ms": {
+     "mean": 409.1,
+     "min": 198.8,
+     "max": 825.9
+    },
+    "dropped": {
+     "mean": 118.7,
+     "min": 0,
+     "max": 356
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 26.0,
+     "min": 25.7,
+     "max": 26.2
+    },
+    "app_throttled": {
+     "mean": 179.1,
+     "min": 166.6,
+     "max": 194.2
+    },
+    "app_cpu_max": {
+     "mean": 26.0,
+     "min": 25.7,
+     "max": 26.3
+    },
+    "traefik_cpu": {
+     "mean": 45.7,
+     "min": 42.5,
+     "max": 49.3
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 21.9,
+     "min": 21.7,
+     "max": 22.1
+    },
+    "db_throttled": {
+     "mean": 1.4,
+     "min": 0.2,
+     "max": 3.6
+    },
+    "k6_cpu": {
+     "mean": 47.8,
+     "min": 44.2,
+     "max": 49.9
+    },
+    "host_busy": {
+     "mean": 71.3,
+     "min": 68.0,
+     "max": 73.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 9.8,
+     "min": 7.5,
+     "max": 12.0
+    },
+    "succeeded_rps": {
+     "mean": 1157.9,
+     "min": 1151.3,
+     "max": 1163.3
+    },
+    "p99_ms": {
+     "mean": 857.1,
+     "min": 825.3,
+     "max": 892.5
+    },
+    "dropped": {
+     "mean": 633.3,
+     "min": 550,
+     "max": 733
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 24.9,
+     "min": 24.9,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 148.3,
+     "min": 116.4,
+     "max": 165.1
+    },
+    "app_cpu_max": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.0
+    },
+    "traefik_cpu": {
+     "mean": 44.3,
+     "min": 39.2,
+     "max": 47.6
+    },
+    "traefik_throttled": {
+     "mean": 0.6,
+     "min": 0.2,
+     "max": 0.8
+    },
+    "db_cpu": {
+     "mean": 21.1,
+     "min": 20.7,
+     "max": 21.6
+    },
+    "db_throttled": {
+     "mean": 2.8,
+     "min": 1.0,
+     "max": 3.8
+    },
+    "k6_cpu": {
+     "mean": 51.8,
+     "min": 43.6,
+     "max": 57.2
+    },
+    "host_busy": {
+     "mean": 80.3,
+     "min": 75.9,
+     "max": 88.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 12.6,
+     "min": 8.6,
+     "max": 18.1
+    },
+    "succeeded_rps": {
+     "mean": 1196.7,
+     "min": 1171.7,
+     "max": 1216.5
+    },
+    "p99_ms": {
+     "mean": 1329.5,
+     "min": 1294.7,
+     "max": 1349.8
+    },
+    "dropped": {
+     "mean": 2300.3,
+     "min": 2003,
+     "max": 2675
+    }
+   }
+  }
+ },
+ "db1": {
+  "ceiling_rps": {
+   "mean": 1194.4,
+   "min": 1183,
+   "max": 1206.1
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 150.1,
+   "min": 150,
+   "max": 150.1
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 24.7,
+    "min": 24.1,
+    "max": 25.0
+   },
+   "app_throttled": {
+    "mean": 152.9,
+    "min": 141.5,
+    "max": 173.2
+   },
+   "app_cpu_max": {
+    "mean": 24.8,
+    "min": 24.2,
+    "max": 25.1
+   },
+   "traefik_cpu": {
+    "mean": 43.7,
+    "min": 40.3,
+    "max": 45.8
+   },
+   "traefik_throttled": {
+    "mean": 0.2,
+    "min": 0.0,
+    "max": 0.6
+   },
+   "db_cpu": {
+    "mean": 21.5,
+    "min": 21.4,
+    "max": 21.6
+   },
+   "db_throttled": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "k6_cpu": {
+    "mean": 51.2,
+    "min": 47.7,
+    "max": 55.8
+   },
+   "host_busy": {
+    "mean": 80.4,
+    "min": 75.1,
+    "max": 87.3
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "other_cpu": {
+    "mean": 14.2,
+    "min": 11.1,
+    "max": 16.9
+   },
+   "succeeded_rps": {
+    "mean": 1194.4,
+    "min": 1183,
+    "max": 1206.1
+   },
+   "p99_ms": {
+    "mean": 1388.8,
+    "min": 1236.5,
+    "max": 1650.4
+   },
+   "dropped": {
+    "mean": 2311.7,
+    "min": 2163,
+    "max": 2504
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 8.0,
+     "min": 7.8,
+     "max": 8.2
+    },
+    "app_throttled": {
+     "mean": 6.8,
+     "min": 6.1,
+     "max": 7.7
+    },
+    "app_cpu_max": {
+     "mean": 8.1,
+     "min": 7.9,
+     "max": 8.2
+    },
+    "traefik_cpu": {
+     "mean": 14.4,
+     "min": 13.8,
+     "max": 14.8
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.4
+    },
+    "db_cpu": {
+     "mean": 7.9,
+     "min": 7.6,
+     "max": 8.5
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 13.3,
+     "min": 12.5,
+     "max": 14.0
+    },
+    "host_busy": {
+     "mean": 38.7,
+     "min": 33.6,
+     "max": 46.8
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 17.0,
+     "min": 16.1,
+     "max": 17.8
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 31.4,
+     "min": 30.6,
+     "max": 32.3
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 12.2,
+     "min": 11.6,
+     "max": 12.8
+    },
+    "app_throttled": {
+     "mean": 15.3,
+     "min": 15.2,
+     "max": 15.4
+    },
+    "app_cpu_max": {
+     "mean": 12.4,
+     "min": 11.7,
+     "max": 13.0
+    },
+    "traefik_cpu": {
+     "mean": 22.4,
+     "min": 20.6,
+     "max": 23.5
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 11.0,
+     "min": 10.3,
+     "max": 11.6
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 21.1,
+     "min": 18.9,
+     "max": 23.9
+    },
+    "host_busy": {
+     "mean": 52.1,
+     "min": 46.5,
+     "max": 60.8
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.3,
+     "min": 9.4,
+     "max": 11.4
+    },
+    "succeeded_rps": {
+     "mean": 300.1,
+     "min": 300.1,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 59.2,
+     "min": 57.5,
+     "max": 62.3
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 15.7,
+     "min": 15.4,
+     "max": 16.1
+    },
+    "app_throttled": {
+     "mean": 23.1,
+     "min": 22.5,
+     "max": 23.5
+    },
+    "app_cpu_max": {
+     "mean": 16.0,
+     "min": 15.7,
+     "max": 16.2
+    },
+    "traefik_cpu": {
+     "mean": 26.6,
+     "min": 26.4,
+     "max": 27.0
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 12.1,
+     "min": 11.5,
+     "max": 12.5
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 25.3,
+     "min": 24.0,
+     "max": 26.4
+    },
+    "host_busy": {
+     "mean": 53.3,
+     "min": 47.7,
+     "max": 62.2
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.1,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.4,
+     "min": 8.9,
+     "max": 13.1
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 68.4,
+     "min": 66.6,
+     "max": 69.6
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 18.9,
+     "min": 18.7,
+     "max": 19.0
+    },
+    "app_throttled": {
+     "mean": 31.4,
+     "min": 28.6,
+     "max": 33.4
+    },
+    "app_cpu_max": {
+     "mean": 19.1,
+     "min": 18.9,
+     "max": 19.3
+    },
+    "traefik_cpu": {
+     "mean": 30.7,
+     "min": 29.2,
+     "max": 31.9
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 13.9,
+     "min": 13.5,
+     "max": 14.2
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 29.4,
+     "min": 28.2,
+     "max": 30.0
+    },
+    "host_busy": {
+     "mean": 64.6,
+     "min": 56.7,
+     "max": 79.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 17.3,
+     "min": 15.5,
+     "max": 19.3
+    },
+    "succeeded_rps": {
+     "mean": 600.1,
+     "min": 600,
+     "max": 600.1
+    },
+    "p99_ms": {
+     "mean": 77.9,
+     "min": 76.4,
+     "max": 79.8
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 22.8,
+     "min": 22.1,
+     "max": 23.2
+    },
+    "app_throttled": {
+     "mean": 47.1,
+     "min": 41.1,
+     "max": 52.4
+    },
+    "app_cpu_max": {
+     "mean": 23.0,
+     "min": 22.2,
+     "max": 23.5
+    },
+    "traefik_cpu": {
+     "mean": 35.8,
+     "min": 32.2,
+     "max": 37.8
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 17.6,
+     "min": 16.9,
+     "max": 19.0
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 33.1,
+     "min": 30.8,
+     "max": 34.5
+    },
+    "host_busy": {
+     "mean": 70.4,
+     "min": 59.0,
+     "max": 77.3
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.4
+    },
+    "other_cpu": {
+     "mean": 11.0,
+     "min": 9.0,
+     "max": 12.2
+    },
+    "succeeded_rps": {
+     "mean": 746.7,
+     "min": 739.6,
+     "max": 750.3
+    },
+    "p99_ms": {
+     "mean": 345.6,
+     "min": 88.7,
+     "max": 839.6
+    },
+    "dropped": {
+     "mean": 52.3,
+     "min": 0,
+     "max": 157
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.6,
+     "min": 24.2,
+     "max": 24.8
+    },
+    "app_throttled": {
+     "mean": 87.5,
+     "min": 77.8,
+     "max": 97.0
+    },
+    "app_cpu_max": {
+     "mean": 24.7,
+     "min": 24.4,
+     "max": 24.9
+    },
+    "traefik_cpu": {
+     "mean": 38.2,
+     "min": 35.9,
+     "max": 40.6
+    },
+    "traefik_throttled": {
+     "mean": 0.3,
+     "min": 0.0,
+     "max": 0.8
+    },
+    "db_cpu": {
+     "mean": 18.9,
+     "min": 18.5,
+     "max": 19.1
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 34.6,
+     "min": 34.3,
+     "max": 34.9
+    },
+    "host_busy": {
+     "mean": 70.7,
+     "min": 64.9,
+     "max": 80.2
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.4,
+     "min": 7.4,
+     "max": 14.6
+    },
+    "succeeded_rps": {
+     "mean": 900.0,
+     "min": 899.9,
+     "max": 900.1
+    },
+    "p99_ms": {
+     "mean": 281.0,
+     "min": 269.6,
+     "max": 293.1
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 24.4,
+     "min": 23.8,
+     "max": 25.2
+    },
+    "app_throttled": {
+     "mean": 141.6,
+     "min": 120.1,
+     "max": 168.6
+    },
+    "app_cpu_max": {
+     "mean": 24.6,
+     "min": 24.0,
+     "max": 25.4
+    },
+    "traefik_cpu": {
+     "mean": 40.0,
+     "min": 38.8,
+     "max": 42.1
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.1,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 20.6,
+     "min": 20.4,
+     "max": 20.7
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 37.2,
+     "min": 35.9,
+     "max": 38.8
+    },
+    "host_busy": {
+     "mean": 74.6,
+     "min": 67.1,
+     "max": 83.9
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 14.8,
+     "min": 12.5,
+     "max": 16.4
+    },
+    "succeeded_rps": {
+     "mean": 1050.1,
+     "min": 1050,
+     "max": 1050.1
+    },
+    "p99_ms": {
+     "mean": 254.5,
+     "min": 213.8,
+     "max": 291.3
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 25.9,
+     "min": 25.0,
+     "max": 26.8
+    },
+    "app_throttled": {
+     "mean": 167.4,
+     "min": 152.3,
+     "max": 193.3
+    },
+    "app_cpu_max": {
+     "mean": 25.9,
+     "min": 25.1,
+     "max": 26.9
+    },
+    "traefik_cpu": {
+     "mean": 44.8,
+     "min": 41.6,
+     "max": 47.3
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "db_cpu": {
+     "mean": 22.2,
+     "min": 21.3,
+     "max": 23.9
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 45.9,
+     "min": 43.3,
+     "max": 51.0
+    },
+    "host_busy": {
+     "mean": 78.7,
+     "min": 66.8,
+     "max": 88.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 9.9,
+     "min": 9.2,
+     "max": 10.6
+    },
+    "succeeded_rps": {
+     "mean": 1154.4,
+     "min": 1127.3,
+     "max": 1179
+    },
+    "p99_ms": {
+     "mean": 849.8,
+     "min": 688.2,
+     "max": 996.8
+    },
+    "dropped": {
+     "mean": 685.7,
+     "min": 316,
+     "max": 1094
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 24.7,
+     "min": 24.1,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 152.9,
+     "min": 141.5,
+     "max": 173.2
+    },
+    "app_cpu_max": {
+     "mean": 24.8,
+     "min": 24.2,
+     "max": 25.1
+    },
+    "traefik_cpu": {
+     "mean": 43.7,
+     "min": 40.3,
+     "max": 45.8
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 21.5,
+     "min": 21.4,
+     "max": 21.6
+    },
+    "db_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "k6_cpu": {
+     "mean": 51.2,
+     "min": 47.7,
+     "max": 55.8
+    },
+    "host_busy": {
+     "mean": 80.4,
+     "min": 75.1,
+     "max": 87.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 14.2,
+     "min": 11.1,
+     "max": 16.9
+    },
+    "succeeded_rps": {
+     "mean": 1194.4,
+     "min": 1183,
+     "max": 1206.1
+    },
+    "p99_ms": {
+     "mean": 1388.8,
+     "min": 1236.5,
+     "max": 1650.4
+    },
+    "dropped": {
+     "mean": 2311.7,
+     "min": 2163,
+     "max": 2504
+    }
+   }
+  }
+ },
+ "traefik2": {
+  "ceiling_rps": {
+   "mean": 1210.8,
+   "min": 1195.7,
+   "max": 1220.2
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 150.1,
+   "min": 150.1,
+   "max": 150.1
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 25.0,
+    "min": 25.0,
+    "max": 25.0
+   },
+   "app_throttled": {
+    "mean": 160.2,
+    "min": 143.7,
+    "max": 172.4
+   },
+   "app_cpu_max": {
+    "mean": 25.0,
+    "min": 25.0,
+    "max": 25.0
+   },
+   "traefik_cpu": {
+    "mean": 44.2,
+    "min": 42.3,
+    "max": 45.7
+   },
+   "traefik_throttled": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "db_cpu": {
+    "mean": 21.0,
+    "min": 20.6,
+    "max": 21.3
+   },
+   "db_throttled": {
+    "mean": 1.0,
+    "min": 0.0,
+    "max": 2.2
+   },
+   "k6_cpu": {
+    "mean": 47.6,
+    "min": 44.2,
+    "max": 49.5
+   },
+   "host_busy": {
+    "mean": 75.4,
+    "min": 68.7,
+    "max": 79.4
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.1
+   },
+   "other_cpu": {
+    "mean": 16.6,
+    "min": 14.7,
+    "max": 18.4
+   },
+   "succeeded_rps": {
+    "mean": 1210.8,
+    "min": 1195.7,
+    "max": 1220.2
+   },
+   "p99_ms": {
+    "mean": 1349.8,
+    "min": 1172.4,
+    "max": 1488.6
+   },
+   "dropped": {
+    "mean": 2089.3,
+    "min": 1947,
+    "max": 2316
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 7.9,
+     "min": 7.8,
+     "max": 8.0
+    },
+    "app_throttled": {
+     "mean": 6.5,
+     "min": 6.0,
+     "max": 7.1
+    },
+    "app_cpu_max": {
+     "mean": 8.0,
+     "min": 8.0,
+     "max": 8.1
+    },
+    "traefik_cpu": {
+     "mean": 14.2,
+     "min": 13.9,
+     "max": 14.6
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 7.4,
+     "min": 7.2,
+     "max": 7.5
+    },
+    "db_throttled": {
+     "mean": 0.7,
+     "min": 0.5,
+     "max": 0.9
+    },
+    "k6_cpu": {
+     "mean": 12.4,
+     "min": 11.9,
+     "max": 13.3
+    },
+    "host_busy": {
+     "mean": 38.9,
+     "min": 29.2,
+     "max": 55.7
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 11.7,
+     "min": 7.2,
+     "max": 18.3
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150.1,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 32.7,
+     "min": 29.0,
+     "max": 38.5
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 11.8,
+     "min": 11.5,
+     "max": 12.3
+    },
+    "app_throttled": {
+     "mean": 15.3,
+     "min": 13.8,
+     "max": 17.1
+    },
+    "app_cpu_max": {
+     "mean": 12.0,
+     "min": 11.7,
+     "max": 12.5
+    },
+    "traefik_cpu": {
+     "mean": 20.7,
+     "min": 19.9,
+     "max": 21.7
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 10.8,
+     "min": 10.7,
+     "max": 11.1
+    },
+    "db_throttled": {
+     "mean": 3.1,
+     "min": 2.7,
+     "max": 3.7
+    },
+    "k6_cpu": {
+     "mean": 20.0,
+     "min": 19.0,
+     "max": 20.7
+    },
+    "host_busy": {
+     "mean": 47.7,
+     "min": 42.1,
+     "max": 53.7
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 9.8,
+     "min": 8.3,
+     "max": 10.7
+    },
+    "succeeded_rps": {
+     "mean": 300.1,
+     "min": 300.1,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 58.6,
+     "min": 54.8,
+     "max": 60.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 15.4,
+     "min": 15.3,
+     "max": 15.4
+    },
+    "app_throttled": {
+     "mean": 20.7,
+     "min": 18.3,
+     "max": 23.2
+    },
+    "app_cpu_max": {
+     "mean": 15.4,
+     "min": 15.4,
+     "max": 15.5
+    },
+    "traefik_cpu": {
+     "mean": 25.8,
+     "min": 25.5,
+     "max": 26.2
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 11.5,
+     "min": 11.5,
+     "max": 11.6
+    },
+    "db_throttled": {
+     "mean": 0.6,
+     "min": 0.1,
+     "max": 1.4
+    },
+    "k6_cpu": {
+     "mean": 24.9,
+     "min": 22.2,
+     "max": 26.5
+    },
+    "host_busy": {
+     "mean": 54.4,
+     "min": 48.0,
+     "max": 66.5
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 16.7,
+     "min": 12.3,
+     "max": 19.4
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450.1,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 68.4,
+     "min": 64.7,
+     "max": 71.1
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 18.1,
+     "min": 18.0,
+     "max": 18.4
+    },
+    "app_throttled": {
+     "mean": 26.9,
+     "min": 23.3,
+     "max": 29.9
+    },
+    "app_cpu_max": {
+     "mean": 18.2,
+     "min": 18.0,
+     "max": 18.5
+    },
+    "traefik_cpu": {
+     "mean": 29.0,
+     "min": 28.5,
+     "max": 29.9
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 12.8,
+     "min": 12.8,
+     "max": 12.9
+    },
+    "db_throttled": {
+     "mean": 1.2,
+     "min": 0.8,
+     "max": 1.6
+    },
+    "k6_cpu": {
+     "mean": 27.8,
+     "min": 26.8,
+     "max": 28.9
+    },
+    "host_busy": {
+     "mean": 61.9,
+     "min": 50.6,
+     "max": 70.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 9.7,
+     "min": 7.2,
+     "max": 12.9
+    },
+    "succeeded_rps": {
+     "mean": 600.1,
+     "min": 600,
+     "max": 600.1
+    },
+    "p99_ms": {
+     "mean": 77.3,
+     "min": 76.5,
+     "max": 78.8
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 23.2,
+     "min": 23.1,
+     "max": 23.3
+    },
+    "app_throttled": {
+     "mean": 47.4,
+     "min": 43.4,
+     "max": 51.5
+    },
+    "app_cpu_max": {
+     "mean": 23.4,
+     "min": 23.1,
+     "max": 23.7
+    },
+    "traefik_cpu": {
+     "mean": 36.1,
+     "min": 35.6,
+     "max": 37.3
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 17.1,
+     "min": 17.0,
+     "max": 17.3
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.5,
+     "max": 1.3
+    },
+    "k6_cpu": {
+     "mean": 33.3,
+     "min": 32.2,
+     "max": 34.6
+    },
+    "host_busy": {
+     "mean": 65.6,
+     "min": 61.7,
+     "max": 68.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.9,
+     "min": 8.7,
+     "max": 12.1
+    },
+    "succeeded_rps": {
+     "mean": 750.1,
+     "min": 750,
+     "max": 750.1
+    },
+    "p99_ms": {
+     "mean": 91.5,
+     "min": 87.1,
+     "max": 99.6
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.5,
+     "min": 24.4,
+     "max": 24.6
+    },
+    "app_throttled": {
+     "mean": 69.0,
+     "min": 64.0,
+     "max": 78.0
+    },
+    "app_cpu_max": {
+     "mean": 24.7,
+     "min": 24.6,
+     "max": 24.7
+    },
+    "traefik_cpu": {
+     "mean": 37.4,
+     "min": 34.8,
+     "max": 39.0
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 18.7,
+     "min": 18.2,
+     "max": 19.1
+    },
+    "db_throttled": {
+     "mean": 0.9,
+     "min": 0.4,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 33.2,
+     "min": 31.0,
+     "max": 35.7
+    },
+    "host_busy": {
+     "mean": 70.1,
+     "min": 66.3,
+     "max": 74.2
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 17.3,
+     "min": 14.4,
+     "max": 19.2
+    },
+    "succeeded_rps": {
+     "mean": 900.1,
+     "min": 900,
+     "max": 900.1
+    },
+    "p99_ms": {
+     "mean": 153.6,
+     "min": 145.6,
+     "max": 158.0
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 23.9,
+     "min": 23.7,
+     "max": 24.3
+    },
+    "app_throttled": {
+     "mean": 154.5,
+     "min": 146.1,
+     "max": 161.5
+    },
+    "app_cpu_max": {
+     "mean": 24.1,
+     "min": 23.7,
+     "max": 24.5
+    },
+    "traefik_cpu": {
+     "mean": 41.1,
+     "min": 39.5,
+     "max": 42.2
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 19.6,
+     "min": 19.2,
+     "max": 19.9
+    },
+    "db_throttled": {
+     "mean": 1.1,
+     "min": 1.0,
+     "max": 1.3
+    },
+    "k6_cpu": {
+     "mean": 37.1,
+     "min": 34.2,
+     "max": 38.9
+    },
+    "host_busy": {
+     "mean": 67.3,
+     "min": 64.3,
+     "max": 71.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 9.5,
+     "min": 6.7,
+     "max": 11.5
+    },
+    "succeeded_rps": {
+     "mean": 1050.2,
+     "min": 1050,
+     "max": 1050.5
+    },
+    "p99_ms": {
+     "mean": 227.7,
+     "min": 203.5,
+     "max": 269.4
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 25.9,
+     "min": 25.7,
+     "max": 26.2
+    },
+    "app_throttled": {
+     "mean": 178.1,
+     "min": 168.7,
+     "max": 189.5
+    },
+    "app_cpu_max": {
+     "mean": 25.9,
+     "min": 25.7,
+     "max": 26.3
+    },
+    "traefik_cpu": {
+     "mean": 46.4,
+     "min": 43.4,
+     "max": 48.8
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 21.9,
+     "min": 21.5,
+     "max": 22.1
+    },
+    "db_throttled": {
+     "mean": 1.2,
+     "min": 1.0,
+     "max": 1.3
+    },
+    "k6_cpu": {
+     "mean": 46.2,
+     "min": 43.1,
+     "max": 48.0
+    },
+    "host_busy": {
+     "mean": 70.7,
+     "min": 69.3,
+     "max": 72.2
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 12.2,
+     "min": 10.3,
+     "max": 14.2
+    },
+    "succeeded_rps": {
+     "mean": 1146.4,
+     "min": 1133.1,
+     "max": 1163.3
+    },
+    "p99_ms": {
+     "mean": 944.1,
+     "min": 756.4,
+     "max": 1132.5
+    },
+    "dropped": {
+     "mean": 805.3,
+     "min": 552,
+     "max": 1004
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 160.2,
+     "min": 143.7,
+     "max": 172.4
+    },
+    "app_cpu_max": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.0
+    },
+    "traefik_cpu": {
+     "mean": 44.2,
+     "min": 42.3,
+     "max": 45.7
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 21.0,
+     "min": 20.6,
+     "max": 21.3
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.0,
+     "max": 2.2
+    },
+    "k6_cpu": {
+     "mean": 47.6,
+     "min": 44.2,
+     "max": 49.5
+    },
+    "host_busy": {
+     "mean": 75.4,
+     "min": 68.7,
+     "max": 79.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 16.6,
+     "min": 14.7,
+     "max": 18.4
+    },
+    "succeeded_rps": {
+     "mean": 1210.8,
+     "min": 1195.7,
+     "max": 1220.2
+    },
+    "p99_ms": {
+     "mean": 1349.8,
+     "min": 1172.4,
+     "max": 1488.6
+    },
+    "dropped": {
+     "mean": 2089.3,
+     "min": 1947,
+     "max": 2316
+    }
+   }
+  }
+ },
+ "k6pin": {
+  "ceiling_rps": {
+   "mean": 1180.7,
+   "min": 1123.4,
+   "max": 1212.8
+  },
+  "rps_at_p99_under_50ms": {
+   "mean": 150.1,
+   "min": 150.1,
+   "max": 150.1
+  },
+  "at_top_step": {
+   "app_cpu_each": {
+    "mean": 24.9,
+    "min": 24.8,
+    "max": 25.0
+   },
+   "app_throttled": {
+    "mean": 144.5,
+    "min": 106.5,
+    "max": 173.1
+   },
+   "app_cpu_max": {
+    "mean": 25.0,
+    "min": 25.0,
+    "max": 25.1
+   },
+   "traefik_cpu": {
+    "mean": 44.9,
+    "min": 42.1,
+    "max": 48.5
+   },
+   "traefik_throttled": {
+    "mean": 0.2,
+    "min": 0.0,
+    "max": 0.6
+   },
+   "db_cpu": {
+    "mean": 21.3,
+    "min": 20.2,
+    "max": 22.4
+   },
+   "db_throttled": {
+    "mean": 0.9,
+    "min": 0.4,
+    "max": 1.2
+   },
+   "k6_cpu": {
+    "mean": 43.9,
+    "min": 41.8,
+    "max": 47.7
+   },
+   "host_busy": {
+    "mean": 77.3,
+    "min": 68.8,
+    "max": 87.6
+   },
+   "host_steal": {
+    "mean": 0.0,
+    "min": 0.0,
+    "max": 0.0
+   },
+   "other_cpu": {
+    "mean": 12.8,
+    "min": 11.0,
+    "max": 15.4
+   },
+   "succeeded_rps": {
+    "mean": 1180.7,
+    "min": 1123.4,
+    "max": 1212.8
+   },
+   "p99_ms": {
+    "mean": 1459.2,
+    "min": 1152.7,
+    "max": 1838.5
+   },
+   "dropped": {
+    "mean": 2540.3,
+    "min": 2059,
+    "max": 3401
+   }
+  },
+  "steps": {
+   "150": {
+    "app_cpu_each": {
+     "mean": 8.0,
+     "min": 7.9,
+     "max": 8.1
+    },
+    "app_throttled": {
+     "mean": 6.0,
+     "min": 5.4,
+     "max": 6.4
+    },
+    "app_cpu_max": {
+     "mean": 8.2,
+     "min": 8.0,
+     "max": 8.2
+    },
+    "traefik_cpu": {
+     "mean": 14.7,
+     "min": 14.2,
+     "max": 15.0
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 7.6,
+     "min": 7.3,
+     "max": 7.9
+    },
+    "db_throttled": {
+     "mean": 1.0,
+     "min": 0.7,
+     "max": 1.4
+    },
+    "k6_cpu": {
+     "mean": 9.0,
+     "min": 8.6,
+     "max": 9.3
+    },
+    "host_busy": {
+     "mean": 31.9,
+     "min": 31.0,
+     "max": 33.2
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.0,
+     "min": 9.1,
+     "max": 10.5
+    },
+    "succeeded_rps": {
+     "mean": 150.1,
+     "min": 150.1,
+     "max": 150.1
+    },
+    "p99_ms": {
+     "mean": 34.4,
+     "min": 30.3,
+     "max": 38.7
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "300": {
+    "app_cpu_each": {
+     "mean": 12.1,
+     "min": 11.8,
+     "max": 12.6
+    },
+    "app_throttled": {
+     "mean": 13.5,
+     "min": 11.2,
+     "max": 17.3
+    },
+    "app_cpu_max": {
+     "mean": 12.3,
+     "min": 12.0,
+     "max": 12.8
+    },
+    "traefik_cpu": {
+     "mean": 21.1,
+     "min": 20.4,
+     "max": 22.4
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 11.1,
+     "min": 10.7,
+     "max": 11.8
+    },
+    "db_throttled": {
+     "mean": 3.2,
+     "min": 2.6,
+     "max": 4.0
+    },
+    "k6_cpu": {
+     "mean": 17.0,
+     "min": 16.1,
+     "max": 17.9
+    },
+    "host_busy": {
+     "mean": 46.7,
+     "min": 42.9,
+     "max": 51.3
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 14.5,
+     "min": 11.8,
+     "max": 18.4
+    },
+    "succeeded_rps": {
+     "mean": 300.1,
+     "min": 300.1,
+     "max": 300.1
+    },
+    "p99_ms": {
+     "mean": 58.9,
+     "min": 56.6,
+     "max": 63.1
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "450": {
+    "app_cpu_each": {
+     "mean": 15.7,
+     "min": 15.4,
+     "max": 16.0
+    },
+    "app_throttled": {
+     "mean": 18.7,
+     "min": 17.4,
+     "max": 19.4
+    },
+    "app_cpu_max": {
+     "mean": 15.9,
+     "min": 15.6,
+     "max": 16.1
+    },
+    "traefik_cpu": {
+     "mean": 26.0,
+     "min": 25.5,
+     "max": 26.4
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.4
+    },
+    "db_cpu": {
+     "mean": 11.8,
+     "min": 11.7,
+     "max": 11.8
+    },
+    "db_throttled": {
+     "mean": 0.8,
+     "min": 0.3,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 20.7,
+     "min": 20.5,
+     "max": 21.1
+    },
+    "host_busy": {
+     "mean": 48.5,
+     "min": 44.6,
+     "max": 54.2
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 13.8,
+     "min": 10.1,
+     "max": 17.2
+    },
+    "succeeded_rps": {
+     "mean": 450.1,
+     "min": 450.1,
+     "max": 450.1
+    },
+    "p99_ms": {
+     "mean": 70.0,
+     "min": 69.8,
+     "max": 70.2
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "600": {
+    "app_cpu_each": {
+     "mean": 18.6,
+     "min": 18.0,
+     "max": 19.0
+    },
+    "app_throttled": {
+     "mean": 27.8,
+     "min": 25.7,
+     "max": 30.0
+    },
+    "app_cpu_max": {
+     "mean": 18.7,
+     "min": 18.1,
+     "max": 19.2
+    },
+    "traefik_cpu": {
+     "mean": 29.7,
+     "min": 29.1,
+     "max": 30.3
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.3
+    },
+    "db_cpu": {
+     "mean": 13.6,
+     "min": 13.3,
+     "max": 13.9
+    },
+    "db_throttled": {
+     "mean": 0.3,
+     "min": 0.0,
+     "max": 0.5
+    },
+    "k6_cpu": {
+     "mean": 25.3,
+     "min": 24.3,
+     "max": 25.9
+    },
+    "host_busy": {
+     "mean": 51.9,
+     "min": 50.2,
+     "max": 53.6
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 10.0,
+     "min": 9.6,
+     "max": 10.5
+    },
+    "succeeded_rps": {
+     "mean": 600.1,
+     "min": 600.1,
+     "max": 600.1
+    },
+    "p99_ms": {
+     "mean": 77.3,
+     "min": 75.7,
+     "max": 80.2
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "750": {
+    "app_cpu_each": {
+     "mean": 22.8,
+     "min": 22.5,
+     "max": 22.9
+    },
+    "app_throttled": {
+     "mean": 44.0,
+     "min": 41.2,
+     "max": 47.5
+    },
+    "app_cpu_max": {
+     "mean": 22.9,
+     "min": 22.5,
+     "max": 23.3
+    },
+    "traefik_cpu": {
+     "mean": 35.6,
+     "min": 35.1,
+     "max": 35.9
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "db_cpu": {
+     "mean": 16.6,
+     "min": 16.1,
+     "max": 16.9
+    },
+    "db_throttled": {
+     "mean": 1.2,
+     "min": 0.3,
+     "max": 1.8
+    },
+    "k6_cpu": {
+     "mean": 26.7,
+     "min": 25.7,
+     "max": 28.5
+    },
+    "host_busy": {
+     "mean": 58.4,
+     "min": 57.7,
+     "max": 59.0
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 15.5,
+     "min": 12.6,
+     "max": 18.7
+    },
+    "succeeded_rps": {
+     "mean": 750.1,
+     "min": 750.1,
+     "max": 750.1
+    },
+    "p99_ms": {
+     "mean": 89.8,
+     "min": 86.6,
+     "max": 93.4
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "900": {
+    "app_cpu_each": {
+     "mean": 24.4,
+     "min": 24.4,
+     "max": 24.5
+    },
+    "app_throttled": {
+     "mean": 67.5,
+     "min": 62.9,
+     "max": 71.0
+    },
+    "app_cpu_max": {
+     "mean": 24.5,
+     "min": 24.5,
+     "max": 24.6
+    },
+    "traefik_cpu": {
+     "mean": 38.3,
+     "min": 37.6,
+     "max": 38.7
+    },
+    "traefik_throttled": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 18.1,
+     "min": 17.7,
+     "max": 18.4
+    },
+    "db_throttled": {
+     "mean": 0.9,
+     "min": 0.4,
+     "max": 1.6
+    },
+    "k6_cpu": {
+     "mean": 30.6,
+     "min": 29.4,
+     "max": 31.4
+    },
+    "host_busy": {
+     "mean": 64.0,
+     "min": 62.0,
+     "max": 67.1
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "other_cpu": {
+     "mean": 13.0,
+     "min": 10.0,
+     "max": 16.5
+    },
+    "succeeded_rps": {
+     "mean": 900.1,
+     "min": 900.1,
+     "max": 900.1
+    },
+    "p99_ms": {
+     "mean": 152.2,
+     "min": 124.0,
+     "max": 173.9
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1050": {
+    "app_cpu_each": {
+     "mean": 23.9,
+     "min": 23.4,
+     "max": 24.2
+    },
+    "app_throttled": {
+     "mean": 137.8,
+     "min": 131.8,
+     "max": 141.5
+    },
+    "app_cpu_max": {
+     "mean": 24.0,
+     "min": 23.5,
+     "max": 24.3
+    },
+    "traefik_cpu": {
+     "mean": 40.5,
+     "min": 39.3,
+     "max": 41.9
+    },
+    "traefik_throttled": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.1
+    },
+    "db_cpu": {
+     "mean": 19.4,
+     "min": 19.2,
+     "max": 19.8
+    },
+    "db_throttled": {
+     "mean": 0.5,
+     "min": 0.4,
+     "max": 0.6
+    },
+    "k6_cpu": {
+     "mean": 32.1,
+     "min": 31.5,
+     "max": 32.6
+    },
+    "host_busy": {
+     "mean": 68.4,
+     "min": 64.0,
+     "max": 75.0
+    },
+    "host_steal": {
+     "mean": 0.1,
+     "min": 0.0,
+     "max": 0.2
+    },
+    "other_cpu": {
+     "mean": 9.9,
+     "min": 7.8,
+     "max": 11.0
+    },
+    "succeeded_rps": {
+     "mean": 1049.9,
+     "min": 1049.5,
+     "max": 1050.1
+    },
+    "p99_ms": {
+     "mean": 283.2,
+     "min": 198.2,
+     "max": 372.1
+    },
+    "dropped": {
+     "mean": 0,
+     "min": 0,
+     "max": 0
+    }
+   },
+   "1200": {
+    "app_cpu_each": {
+     "mean": 25.7,
+     "min": 25.6,
+     "max": 25.9
+    },
+    "app_throttled": {
+     "mean": 162.8,
+     "min": 129.1,
+     "max": 180.9
+    },
+    "app_cpu_max": {
+     "mean": 25.8,
+     "min": 25.7,
+     "max": 26.0
+    },
+    "traefik_cpu": {
+     "mean": 46.9,
+     "min": 46.5,
+     "max": 47.4
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.4
+    },
+    "db_cpu": {
+     "mean": 21.6,
+     "min": 20.9,
+     "max": 22.7
+    },
+    "db_throttled": {
+     "mean": 0.4,
+     "min": 0.2,
+     "max": 0.8
+    },
+    "k6_cpu": {
+     "mean": 40.5,
+     "min": 38.0,
+     "max": 44.5
+    },
+    "host_busy": {
+     "mean": 72.7,
+     "min": 67.0,
+     "max": 80.4
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 16.3,
+     "min": 14.2,
+     "max": 19.1
+    },
+    "succeeded_rps": {
+     "mean": 1147.1,
+     "min": 1116.5,
+     "max": 1172.5
+    },
+    "p99_ms": {
+     "mean": 1056.9,
+     "min": 845.7,
+     "max": 1248.8
+    },
+    "dropped": {
+     "mean": 794,
+     "min": 414,
+     "max": 1253
+    }
+   },
+   "1350": {
+    "app_cpu_each": {
+     "mean": 24.9,
+     "min": 24.8,
+     "max": 25.0
+    },
+    "app_throttled": {
+     "mean": 144.5,
+     "min": 106.5,
+     "max": 173.1
+    },
+    "app_cpu_max": {
+     "mean": 25.0,
+     "min": 25.0,
+     "max": 25.1
+    },
+    "traefik_cpu": {
+     "mean": 44.9,
+     "min": 42.1,
+     "max": 48.5
+    },
+    "traefik_throttled": {
+     "mean": 0.2,
+     "min": 0.0,
+     "max": 0.6
+    },
+    "db_cpu": {
+     "mean": 21.3,
+     "min": 20.2,
+     "max": 22.4
+    },
+    "db_throttled": {
+     "mean": 0.9,
+     "min": 0.4,
+     "max": 1.2
+    },
+    "k6_cpu": {
+     "mean": 43.9,
+     "min": 41.8,
+     "max": 47.7
+    },
+    "host_busy": {
+     "mean": 77.3,
+     "min": 68.8,
+     "max": 87.6
+    },
+    "host_steal": {
+     "mean": 0.0,
+     "min": 0.0,
+     "max": 0.0
+    },
+    "other_cpu": {
+     "mean": 12.8,
+     "min": 11.0,
+     "max": 15.4
+    },
+    "succeeded_rps": {
+     "mean": 1180.7,
+     "min": 1123.4,
+     "max": 1212.8
+    },
+    "p99_ms": {
+     "mean": 1459.2,
+     "min": 1152.7,
+     "max": 1838.5
+    },
+    "dropped": {
+     "mean": 2540.3,
+     "min": 2059,
+     "max": 3401
+    }
+   }
+  }
+ }
+}

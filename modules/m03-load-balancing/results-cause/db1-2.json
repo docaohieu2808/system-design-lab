@@ -1,0 +1,113 @@
+{
+ "hold_s": 15,
+ "steps": [
+  {
+   "asked_rps": 150,
+   "sent_rps": 150.1,
+   "dropped": 0,
+   "completed_rps": 150.1,
+   "succeeded_rps": 150.1,
+   "p50_ms": 2.01,
+   "p95_ms": 4.82,
+   "p99_ms": 31.3,
+   "avg_ms": 2.98,
+   "max_ms": 70.21
+  },
+  {
+   "asked_rps": 300,
+   "sent_rps": 300.1,
+   "dropped": 0,
+   "completed_rps": 300.1,
+   "succeeded_rps": 300.1,
+   "p50_ms": 1.88,
+   "p95_ms": 19.42,
+   "p99_ms": 57.72,
+   "avg_ms": 4.48,
+   "max_ms": 118.32
+  },
+  {
+   "asked_rps": 450,
+   "sent_rps": 450,
+   "dropped": 0,
+   "completed_rps": 450,
+   "succeeded_rps": 450,
+   "p50_ms": 1.95,
+   "p95_ms": 31.33,
+   "p99_ms": 66.59,
+   "avg_ms": 5.73,
+   "max_ms": 91.06
+  },
+  {
+   "asked_rps": 600,
+   "sent_rps": 600,
+   "dropped": 0,
+   "completed_rps": 600,
+   "succeeded_rps": 600,
+   "p50_ms": 1.95,
+   "p95_ms": 46.39,
+   "p99_ms": 76.39,
+   "avg_ms": 7.71,
+   "max_ms": 178.86
+  },
+  {
+   "asked_rps": 750,
+   "sent_rps": 739.6,
+   "dropped": 157,
+   "completed_rps": 739.6,
+   "succeeded_rps": 739.6,
+   "p50_ms": 6,
+   "p95_ms": 582.89,
+   "p99_ms": 839.58,
+   "avg_ms": 84.66,
+   "max_ms": 1255.31
+  },
+  {
+   "asked_rps": 900,
+   "sent_rps": 899.9,
+   "dropped": 0,
+   "completed_rps": 899.9,
+   "succeeded_rps": 899.9,
+   "p50_ms": 13.07,
+   "p95_ms": 199.33,
+   "p99_ms": 293.08,
+   "avg_ms": 48.09,
+   "max_ms": 521.95
+  },
+  {
+   "asked_rps": 1050,
+   "sent_rps": 1050.1,
+   "dropped": 0,
+   "completed_rps": 1050.1,
+   "succeeded_rps": 1050.1,
+   "p50_ms": 84.76,
+   "p95_ms": 223.33,
+   "p99_ms": 291.3,
+   "avg_ms": 94.71,
+   "max_ms": 487.49
+  },
+  {
+   "asked_rps": 1200,
+   "sent_rps": 1127.3,
+   "dropped": 1094,
+   "completed_rps": 1127.3,
+   "succeeded_rps": 1127.3,
+   "p50_ms": 523.89,
+   "p95_ms": 886.74,
+   "p99_ms": 996.75,
+   "avg_ms": 521.51,
+   "max_ms": 1107.01
+  },
+  {
+   "asked_rps": 1350,
+   "sent_rps": 1183,
+   "dropped": 2504,
+   "completed_rps": 1183,
+   "succeeded_rps": 1183,
+   "p50_ms": 697.45,
+   "p95_ms": 1185.3,
+   "p99_ms": 1279.57,
+   "avg_ms": 709.89,
+   "max_ms": 1382.23
+  }
+ ]
+}

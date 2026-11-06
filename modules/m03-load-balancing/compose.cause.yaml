@@ -1,0 +1,19 @@
+# Knobs for "what limits the 4th copy" (tools/run-m03-cause.sh). Defaults change nothing; set one to see if it moves the ceiling.
+#   DB_CPUS       the database's CPU limit (default 0.5)
+#   TRAEFIK_CPUS  the proxy's CPU limit (default 1.0)
+#   K6_CPUSET     CPUs k6 may use; REST_CPUSET: CPUs for Traefik, the app copies and the database
+#                 (e.g. K6_CPUSET=3 REST_CPUSET=0-2 gives k6 a core nobody else uses)
+#   K6_MEM        k6's memory limit (default 3g): with 1 GB, k6 was OOM-killed (exit 137) on the overloaded steps of a 1-copy run,
+#                 because thousands of waiting requests pile up while the app cannot answer
+services:
+  db:
+    cpus: ${DB_CPUS:-0.5}
+    cpuset: ${REST_CPUSET:-0-3}
+  app:
+    cpuset: ${REST_CPUSET:-0-3}
+  traefik:
+    cpus: ${TRAEFIK_CPUS:-1.0}
+    cpuset: ${REST_CPUSET:-0-3}
+  k6:
+    cpuset: ${K6_CPUSET:-0-3}
+    mem_limit: ${K6_MEM:-3g}

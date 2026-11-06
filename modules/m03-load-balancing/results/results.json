@@ -7,6 +7,11 @@
     "min": 308.6,
     "max": 342.1
    },
+   "rps_at_p99_under_50ms": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
    "steps": [
     {
      "asked_rps": 150,
@@ -229,6 +234,11 @@
     "mean": 684.53,
     "min": 677.2,
     "max": 693.1
+   },
+   "rps_at_p99_under_50ms": {
+    "mean": 150.07,
+    "min": 150,
+    "max": 150.1
    },
    "steps": [
     {
@@ -454,6 +464,11 @@
     "min": 1059.4,
     "max": 1069.5
    },
+   "rps_at_p99_under_50ms": {
+    "mean": 150.07,
+    "min": 150,
+    "max": 150.1
+   },
    "steps": [
     {
      "asked_rps": 150,
@@ -678,6 +693,11 @@
     "mean": 1270.37,
     "min": 1264,
     "max": 1277.7
+   },
+   "rps_at_p99_under_50ms": {
+    "mean": 300.1,
+    "min": 300.1,
+    "max": 300.1
    },
    "steps": [
     {
