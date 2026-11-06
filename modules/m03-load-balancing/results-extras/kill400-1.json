@@ -1,0 +1,20 @@
+{
+ "rate": 400,
+ "half_s": 30,
+ "before": {
+  "requests": 12001,
+  "failed": 0,
+  "dropped": 0,
+  "p50_ms": 1.65,
+  "p99_ms": 74.54,
+  "max_ms": 206.98
+ },
+ "after": {
+  "requests": 12001,
+  "failed": 135,
+  "dropped": 0,
+  "p50_ms": 1.83,
+  "p99_ms": 2999.94,
+  "max_ms": 3001.6
+ }
+}

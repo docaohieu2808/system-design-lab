@@ -74,6 +74,14 @@ Three copies, one loses its database at second 32 while its process keeps runnin
 shallow check `/livez` and the deep check `/healthz`. **Predict:** does the shallow check help? (Course machine: it does not,
 3,888 failures against 3,880; the deep check: 176.)
 
+## 8. Extra variations (lessons 3.1-3.4)
+```bash
+make m03-extras   # about 80 minutes: split cores, kill at 400, health check 1 s vs 5 s, two slow copies, one slow copy
+```
+Results in `results-extras/results.json`. **Predict:** do 2 copies of half a core carry more or less than 4 copies of a quarter core? How many
+more requests fail when Traefik checks every 5 s instead of every 1 s? What is the real ceiling of a copy limited to 0.08 core?
+(Course machine: 1,256 against 1,194; 488 against 135; 85 pages/s.)
+
 ## If something goes wrong
 - `port is already allocated`: `make down` (it clears every lab container), then try again.
 - Traefik returns 404: the copies are not healthy yet; wait for `--wait` to finish, check `docker compose ps`.

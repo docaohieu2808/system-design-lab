@@ -21,6 +21,8 @@ m03-cause:     ## Module 3.1: what limits the 4th copy, 1-4 copies + 3 give-it-m
 	tools/run-m03-cause.sh $(RUNS)
 m03-health:    ## Module 3.3: shallow vs deep health check when a copy loses its database ($(RUNS) runs, about 15 minutes)
 	tools/run-m03-health-lie.sh $(RUNS)
+m03-extras:    ## Module 3 extras: split cores, kill at 400, health check 5 s, two slow copies, one slow copy ($(RUNS) runs, about 80 minutes)
+	tools/run-m03-extras.sh $(RUNS)
 m04:           ## Module 4: caching, part a (hit ratio) + part b (stampede, expiry fixes) ($(RUNS) runs, about 50 minutes)
 	tools/run-m04.sh $(RUNS)
 	tools/run-m04b.sh $(RUNS)
@@ -66,4 +68,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m04 m04-size m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help

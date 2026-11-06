@@ -85,6 +85,10 @@ cores (43.6-57.2%, so it had room), the host 80.3% busy (75.9-88.5), other conta
   against 1,172-1,217 for the plain arm). None of the three was the limit.
 - The ceilings here are 7-9% below the table at the top of this file, which was measured on a quieter machine; compare
   arms within this section, not across the two.
+**Check for a foreign container.** Another agent ran a `golang` container, without the lab lock, between 12:34:51 and 12:36:09 (Saigon time). The
+last cause arm (`traefik2`, run 3) ended at 12:33:48 and every other arm ended earlier, so no cause step overlapped it, and the runner's own
+check (all non-lab containers together under 25% of a core during an arm, otherwise the arm is thrown away and repeated) found nothing to
+discard. No arm was rerun. The "other containers" reading at the 4-copy top step is 12.6% of one core (8.6-18.1).
 **What it does not show.** Why the 3rd to 4th step is smaller than 2nd to 3rd: per copy the ceiling falls from 328 to 299
 (9%) while the CPU per page rises only 6%. The host is 74% busy with 3 copies and 80% with 4, with about 0.9 of a core
 that no container accounts for (kernel network work, the sampler), and the 4 vCPUs may be hyperthreads that share
@@ -116,3 +120,48 @@ deep `/healthz`. 3 runs, gate before every arm (background 7-11% busy, steal 0).
   the window, even for the deep check. Use the failed column, not p99, to compare these.
 **What it does not show.** A deep check has its own risk: if the shared database is slow, every copy fails its check at
 once and the proxy has nothing left to send to. Here only one copy lost the database, so that case is not tested.
+
+## Extra runs for lessons 3.1-3.4 (`tools/run-m03-extras.sh`, `results-extras/`)
+Eight arms in every run, interleaved, 3 runs, gate before every arm (background 11-22% busy, steal 0), k6 limit 3 GB. Mean (min-max).
+This machine was busier than for the first table above, so compare arms inside this section.
+
+**Split the cores: 4 copies of 0.25 core against 2 copies of 0.5 core** (step test 150 to 1,350 pages/s):
+
+| | ceiling pages/s | p99 at 450 pages/s | p99 at 900 pages/s |
+|---|---|---|---|
+| 4 x 0.25 core | 1,194 (1,178-1,215) | 70 ms (69-71) | 160 ms (142-174) |
+| 2 x 0.5 core | 1,256 (1,250-1,261) | 17 ms (15-20) | 117 ms (83-167) |
+
+The same total CPU gives 5% more pages/s and a much calmer slow end when it is split into two bigger copies: a page costs about 0.8 ms of CPU,
+so a quarter-core copy is cut off by its CPU limit for part of every 100 ms, and a half-core copy waits half as long for the same work. That
+explanation comes from how the CPU limit works and from the p99 gap; I did not measure throttling per copy in this run.
+
+**Kill one of 3 copies at 32 s, 400 pages/s:** failed after the kill 95 (65-135) of about 12,000; p99 after the kill 1,083 ms, run by run 2,999, 100 and 150 ms.
+The p99 is bimodal because it sits on the 1% line: a run with more than about 120 failures has its p99 at the 3 s timeout, one with fewer does not.
+Compare 3 copies at 600 pages/s above (failed 106, p99 518 ms).
+
+**Freeze one of 3 copies at 400 pages/s, health check every 1 s against every 5 s (timeout 500 ms):**
+
+| check interval | failed after the freeze | p99 after |
+|---|---|---|
+| 1 s | 135 (99-186) | 2,056 ms (169-3,000) |
+| 5 s | 488 (450-545) | 3,001 ms |
+
+The 5 s check lets 3.6 times as many requests fail. The worst case, 133 requests a second to the frozen copy for 5.5 s, would be about 730; the
+measured 450-545 is below it. The 1 s arm here is lower and less steady than the 190 failures (190-192) of the earlier freeze test; one
+run also had 34 failed requests before the freeze that I cannot explain. The check overlay differs only in being a copy of `compose.health.yaml`
+with the interval as a variable, and k6 had a 3 GB limit; I did not find which difference moved the number.
+
+**Two slow copies (app-2 and app-3 at 0.08 core), 400 pages/s over 3 copies:**
+
+| strategy | failed (both 30 s halves together) | p99 |
+|---|---|---|
+| wrr (take turns) | 14,008 of about 24,000 (6,677 in the first 30 s + 7,331 in the second) | 3,004 / 3,019 ms (first / second half) |
+| p2c (less busy of two) | 0 | 669 / 833 ms |
+
+(The squeeze is in place before the load starts here, so both halves are the same situation.) Two thirds of the traffic goes to copies that
+can do about 85 pages/s each, so taking turns fails over half of everything; picking the less busy of two fails none but p99 is 0.7-0.8 s,
+because the one good copy and the two slow ones are all busy.
+
+**One copy at 0.08 core, step test:** the real ceiling is 85 pages/s (85-86), with p99 2.3 s at the step that gave it; at 120 pages/s only 48 succeed (the line grows).
+That replaces the earlier assumption of "about 100 a second" (a third of 321).

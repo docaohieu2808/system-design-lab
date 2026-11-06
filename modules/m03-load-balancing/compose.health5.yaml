@@ -1,0 +1,7 @@
+# Like compose.health.yaml, but Traefik asks every 5 seconds instead of every second (HC_INTERVAL, default 5s).
+services:
+  app:
+    labels:
+      traefik.http.services.app.loadbalancer.healthcheck.path: /healthz
+      traefik.http.services.app.loadbalancer.healthcheck.interval: ${HC_INTERVAL:-5s}
+      traefik.http.services.app.loadbalancer.healthcheck.timeout: 500ms
