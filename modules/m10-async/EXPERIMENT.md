@@ -55,7 +55,7 @@ a diagnostic run with 200 ready users began only 335 and 331 of 401 arrivals in 
 holds its users for milliseconds, so it never hit the limit. Those backoff runs therefore sent fewer attempts than the clients would have (1,836 and 1,830 attempts during the outage; the corrected value
 is about 2,250), and the earlier "backoff uses fewer attempts" reading was an artefact. `create.js` now has `PREALLOC` (default 600) and counts, per slice, how many arrivals began, how many were dropped and how many ended neither
 created nor gave up (`ended_other`; 0 in all 27 slices here). The earlier gave-up values (131 and 177) and peaks (139 and 185) are replaced by the table above.
-The 2-retry arms in "Extra variations" keep a user busy for about a second at most (40 per second needs about 40 users), so I expect them not to be affected; they were not re-run.
+The 2-retry arms in "Extra variations" were first measured with the old setting too; I expected them not to be affected, but when re-run with 600 ready users (`results-retries2/`) their numbers moved, so they are replaced there.
 
 Normal is 400 attempts per 10 s. Retrying at once spends all five retries within milliseconds (p99 of a create 5–6 ms,
 so failures are instant), so everyone who arrives while the app is down gives up, including the first two seconds
@@ -87,8 +87,8 @@ Interleaved inside every run, 3 runs, gate before every arm (background 10-17% b
 | | idempotency key: charges / double charges | 1,000 / 0 (the worker crashed 401 times (398-404)) |
 | poison job, 200 good jobs behind it | parked after 3 tries | 200 good done in 10 s; 3 tries of the bad job |
 | | parked after 30 tries | 200 good done in 10 s; 30 tries of the bad job |
-| retry storm, only 2 retries | retry at once: attempts during / after, gave up, created after | 1,114 (1,111-1,117) / 554 (549-562), 433 (430-439), 324 (319-327) of ~400 |
-| | backoff + jitter: attempts during / after, gave up, created after | 1,108 (1,100-1,113) / 536 (518-548), 370 (296-410), 366 (347-401) of ~400 |
+| retry storm, only 2 retries (re-run with 600 ready users, every slice dropped 0 / ended_other 0) | retry at once: attempts during / after, gave up, created after | 1,184 (1,169-1,203) / 478 (459-494), 430 (430-431), 362 (355-372) of ~401 |
+| | backoff + jitter: attempts during / after, gave up, created after | 1,185 (1,181-1,189) / 466 (462-469), 404 (402-406), 389 (386-393) of ~401 |
 
 What it shows:
 - With 400 ms of side work the create takes 403 ms inline against 3 ms queued: the whole side-work time comes back out of the request. The jobs still cost 400 ms each; they moved to the worker.
@@ -98,10 +98,12 @@ What it shows:
   worker crashed 401 times.
 - A poison job costs its tries: the drill has one worker taking jobs in strict order, and every try of the bad job takes about 31 ms (321 tries in 10 s in the main run), so 30 tries hold
   the queue for about 0.9 s and 3 tries for about 0.1 s. Both arms finished all 200 good jobs inside the 10 s window; the delay itself was not timed, the 31 ms per try is taken from the main run.
-- With only 2 retries a 10 s outage still outlasts every retry: attempts during the outage are 2.8 times normal (1,114 and 1,108 of 400 normal) against 5.6 times with 5 retries (see the retry storm table above). Backoff
-  with 2 retries waits only about 0.6 s in total, so it gives up on many more requests (370, 296-410) than with 5 retries (180, corrected): the extra retries at 5 retries are what let people wait out the end of the outage. 2 retries: about twice as many give up for about half the attempts.
-  The busiest second after the app is back is 40 for retry-at-once (nothing left to retry) and 69 (55-96) for backoff.
-Not shown: the 5-retry storm arms were not re-run in this run, so compare against the corrected storm table above, which was measured later the same day. The 2-retry arms were not re-run after the counting fix.
+- With only 2 retries a 10 s outage still outlasts every retry: attempts during the outage are 3.0 times normal in both arms (1,184 and 1,185 of 400) against 5.6 times with 5 retries (see the retry storm table above).
+  Backoff with 2 retries waits only about 0.6 s in total, so almost nobody outlasts the outage: it gives up on 404 (402-406) of 1,204, retry at once on 430, against 180 and 391 with 5 retries. Two retries halve the attempts
+  and roughly double the people lost for backoff, and make backoff nearly no better than retrying at once. The busiest second after the app is back is 40 for retry-at-once (nothing left to retry) and 58 (53-61) for backoff.
+- The first version of this row (1,114 / 1,108 attempts, gave up 433 and 370 with a spread of 296-410) came from runs where k6 had 200 ready users; the re-run with 600 ready users replaces it. The numbers for backoff moved the most (gave up 370 to 404),
+  which fits the counting bug described in the retry storm section; the retry-at-once arm moved too (1,114 to 1,184 attempts during the outage) and I cannot say why, because its slices were not counted then. `tools/run-m10-retries2.sh` (results in `results-retries2/`) refuses to finish unless every slice began at least 400 arrivals with dropped 0 and ended_other 0.
+Not shown: the 5-retry storm arms were not re-run in this run, so compare against the corrected storm table above, which was measured the same day.
 
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.
