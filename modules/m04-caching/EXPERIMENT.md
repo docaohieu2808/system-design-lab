@@ -104,17 +104,18 @@ session with the references. Same settings and the corrected aggregator of part 
 straight-line fill for the worst second). Quiet gate 25/2 before every arm (background 7–13% busy, steal 0). k6 used
 0.23–0.24 cores (limit 2) and the app 0.17–0.24 of its half core.
 ### Stampede with a slower page build (every request asks for the home page, 400/s, Redis flushed at 32 s, no single-flight)
+`results-b-flush/results.json`: the two stampede arms rerun alone, interleaved (3 runs, order rotating, gate 7–11% busy), with
+`PREALLOC=800` ready k6 users (`traffic.js` reads `PREALLOC` and `MAXVUS`, defaults 300 and 2,000 as before). k6 dropped 0
+arrivals in every run of both arms and used 0.24 cores of 2.
 | page build | database queries in the 3 s after the flush | queries in the 10 s before | p99 | max |
 |---|---|---|---|---|
-| 500 ms (reference) | 201 (201–201) | 0 | 503 ms (502–503) | 641 ms |
-| 1,000 ms | 376.7 (376–377) | 0 | 1,004 ms (1,003–1,005) | 1,081 ms |
+| 500 ms | 201 (201–201) | 0 | 503 ms (503–503) | 622 ms (588–680) |
+| 1,000 ms | 401 (401–401) | 0 | 1,007 ms (1,006–1,007) | 1,157 ms (1,097–1,190) |
 
-The stampede is the requests that arrive during the build: 400 per second times the build time, so 200 and about 400.
-The 1,000 ms arm shows 377 rather than 400 because k6 started this arm with 300 pre-allocated users and needed about 400
-waiting at once: it dropped 81 arrivals (23,920 of 24,000 sent), so some requests were never made (my reading of the
-number; the dropped count is in `flush-1000-*.json`). p99 sits on the build time in both arms (the stampede is more than
-1% of the requests). Cold start adds the first-fill queries before the flush window in the part b table; here the counter
-was zero in the 10 s before the flush in every arm because the cache was warm by then.
+The stampede is the requests that arrive while the page is being rebuilt: 400 per second times the build time, plus the one
+that starts the build, so 201 and 401. p99 sits on the build time in both arms (the stampede is more than 1% of the requests).
+The first pass of the 1,000 ms arm (`results-b-extra/flush-1000-*`) had k6 with 300 ready users: it dropped 81 arrivals and
+counted 377 queries. That was a load-generator limit, not the cache; the numbers above replace it.
 ### Expiry: how wide the jitter, and jitter with stale-while-revalidate (2,000 pages warmed together, TTL 20 s, build 100 ms)
 | | worst 1 s of database queries | total queries in 56 s | p99 |
 |---|---|---|---|

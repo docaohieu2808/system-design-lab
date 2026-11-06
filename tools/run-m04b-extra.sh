@@ -13,7 +13,7 @@
 #           evenly over those pages. No fix / 50% TTL jitter / stale-while-revalidate: peak database queries in any
 #           1 s, and p99. (Stale-while-revalidate is not in the flush experiment: a flush leaves nothing to serve.)
 set -euo pipefail
-runs=${1:-3}; out=modules/m04-caching/results-b-extra; mkdir -p "$out"
+runs=${1:-3}; out=${OUT:-modules/m04-caching/results-b-extra}; mkdir -p "$out"
 export UID GID=$(id -g) COMPOSE_FILE=compose.yaml:modules/m04-caching/compose.cache.yaml
 fresh() {  # fresh <tag>: lab down, wait for a quiet machine (background saved next to the result), lab up
   docker compose down -v >/dev/null 2>&1 || true
@@ -29,12 +29,12 @@ sampler() {  # every 0.5 s: wall-clock time, database queries so far, keys in Re
 }
 load() {  # load <result> <keys>: k6 run with a CPU sample of every sdlab-* container (k6 included) next to the result
   python3 tools/cpu-sampler.py "${1%.json}.cpu.tsv" 1 & cs=$!
-  docker compose run --rm -e BASE=http://app:8080 -e RATE=400 -e DURATION=60 -e KEYS="$2" -e HOT_PCT=100 -e RESULT="$1" k6 \
+  docker compose run --rm -e BASE=http://app:8080 -e RATE=400 -e PREALLOC="${PREALLOC:-300}" -e DURATION=60 -e KEYS="$2" -e HOT_PCT=100 -e RESULT="$1" k6 \
     run --quiet modules/m04-caching/traffic.js >/dev/null 2>&1
   kill $cs; wait $cs 2>/dev/null || true
 }
 docker compose build app >/dev/null
-arms=(f500 f1000 e0 e0.5 e1 eswr ecombo)
+arms=(${ARMS:-f500 f1000 e0 e0.5 e1 eswr ecombo})   # ARMS="f500 f1000" runs only those; PREALLOC=800 gives k6 more ready users (the 1,000 ms build needs about 400 waiting at once)
 n=${#arms[@]}
 warm() {  # cache 2,000 pages in one burst, then note when it ended
   python3 -c "
@@ -47,7 +47,7 @@ print('\n'.join(f'http://localhost:8080/page/{b(i)}' for i in range(1,2001)))" |
 }
 for k in $(seq 1 "$runs"); do
   for i in $(seq 0 $((n - 1))); do
-    arm=${arms[$(( (i + 2 * (k - 1)) % n ))]}
+    arm=${arms[$(( (i + (n > 2 ? 2 : 1) * (k - 1)) % n ))]}
     case $arm in
       f500|f1000)
         d=${arm#f}; export CACHE_MB=64 CACHE_TTL=600 CACHE_JITTER=0 CACHE_SINGLEFLIGHT=0 CACHE_SWR=0 PAGE_DELAY_MS=$d; tag="flush-$d-$k"
@@ -104,15 +104,17 @@ def gate(tag):  # background busy % the quiet gate saw before this run
     return float(re.search(r"background_busy_pct=(\d+)", (out / f"{tag}.gate").read_text()).group(1))
 res = {"runs": runs, "flush": {}, "expiry": {}}
 for sf in ("500", "1000"):
+    if not (out / f"flush-{sf}-1.json").exists(): continue
     rows = []
     for k in range(1, runs + 1):
         s, f = series(out / f"flush-{sf}-{k}.stats.tsv"), float((out / f"flush-{sf}-{k}.flushed").read_text())
         r6 = json.loads((out / f"flush-{sf}-{k}.json").read_text())
         rows.append({"db_queries_10s_before": queries(s, f - 10, f), "db_queries_3s_after": queries(s, f, f + 3),
-                     "p99_ms": r6["p99_ms"], "max_ms": r6["max_ms"], "background_busy_pct": gate(f"flush-{sf}-{k}"),
+                     "p99_ms": r6["p99_ms"], "max_ms": r6["max_ms"], "dropped": r6["dropped"], "background_busy_pct": gate(f"flush-{sf}-{k}"),
                      "k6_cores": cores(f"flush-{sf}-{k}", "k6"), "app_cores": cores(f"flush-{sf}-{k}", "app")})
     res["flush"][sf] = {k_: agg([r[k_] for r in rows]) for k_ in rows[0]}
 for j in ("0", "0.5", "1", "swr", "combo"):
+    if not (out / f"expiry-{j}-1.json").exists(): continue
     rows = []
     for k in range(1, runs + 1):
         s, w = series(out / f"expiry-{j}-{k}.stats.tsv"), float((out / f"expiry-{j}-{k}.warmed").read_text())

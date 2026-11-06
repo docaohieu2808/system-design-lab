@@ -1,0 +1,90 @@
+{
+ "runs": 3,
+ "flush": {
+  "500": {
+   "db_queries_10s_before": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "db_queries_3s_after": {
+    "mean": 201,
+    "min": 201,
+    "max": 201
+   },
+   "p99_ms": {
+    "mean": 502.87,
+    "min": 502.58,
+    "max": 503.12
+   },
+   "max_ms": {
+    "mean": 621.61,
+    "min": 587.6,
+    "max": 679.76
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "background_busy_pct": {
+    "mean": 8.67,
+    "min": 7.0,
+    "max": 11.0
+   },
+   "k6_cores": {
+    "mean": 0.24,
+    "min": 0.23,
+    "max": 0.24
+   },
+   "app_cores": {
+    "mean": 0.17,
+    "min": 0.17,
+    "max": 0.17
+   }
+  },
+  "1000": {
+   "db_queries_10s_before": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "db_queries_3s_after": {
+    "mean": 401,
+    "min": 401,
+    "max": 401
+   },
+   "p99_ms": {
+    "mean": 1006.65,
+    "min": 1006.17,
+    "max": 1007.42
+   },
+   "max_ms": {
+    "mean": 1156.72,
+    "min": 1096.83,
+    "max": 1190.14
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "background_busy_pct": {
+    "mean": 8.33,
+    "min": 7.0,
+    "max": 9.0
+   },
+   "k6_cores": {
+    "mean": 0.24,
+    "min": 0.24,
+    "max": 0.24
+   },
+   "app_cores": {
+    "mean": 0.17,
+    "min": 0.17,
+    "max": 0.17
+   }
+  }
+ },
+ "expiry": {}
+}

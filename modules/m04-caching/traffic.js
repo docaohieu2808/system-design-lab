@@ -18,7 +18,7 @@ export const options = {
   discardResponseBodies: true,
   summaryTrendStats: ['avg', 'p(50)', 'p(99)', 'max'],
   scenarios: { load: { executor: 'constant-arrival-rate', rate: RATE, timeUnit: '1s', duration: `${DURATION}s`,
-    preAllocatedVUs: 300, maxVUs: 2000 } },
+    preAllocatedVUs: Number(__ENV.PREALLOC || 300), maxVUs: Number(__ENV.MAXVUS || 2000) } },
 };
 
 const A = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
