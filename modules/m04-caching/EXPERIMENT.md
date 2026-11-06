@@ -91,7 +91,7 @@ rotates), quiet gate 25/2 before every arm (background 6–11% busy, steal 0). k
 | 4 MB | even | 8.4% (8.3–8.5) | 366 | 54 ms (50–57) | 11,133 |
 | 8 MB | even | 11.1% (11.1–11.2) | 355 | 50 ms (49–51) | 0 |
 
-**The 1 MB cache holds nothing.** An empty Redis already uses about 1.5 MB (`used_memory` was 1.58 MB with `dbsize` 0 and 0
+**The 1 MB cache holds nothing.** An empty Redis already uses about 1.5 MB (`used_memory` 1.51 MB, 1.50-1.52 over the 3 runs in results-size/results.json, and 0
 evictions), which is above a 1 MB cap, so no page is stored and every request is a miss: the same 400 queries/s as no cache.
 I did not capture the error Redis returns for the refused writes; the app ignores it. So the Zipf curve is 0% at 1 MB (the
 cap is below Redis's own footprint), 54% at 2 MB (about 2,050 pages fit, 9,000 evictions), and flat from 4 MB on: at 4 MB
