@@ -30,7 +30,7 @@ docker compose run --rm -e KEYS=hot -e HOT_PCT=100 -e RESULT=/lab/modules/m04-ca
 ```
 Read `curl -s localhost:8080/stats` just before the wipe (about 28 s in) and 3 s after it (about 35 s in); the difference
 in `db_queries` is the stampede. **Predict first:** 400 requests/s, 0.5 s to rebuild: how many identical queries in those
-first seconds? (You should see about 130-200. A 100 ms rebuild, or a Zipf mix of pages, buries the signal in ordinary
+first seconds? (You should see close to 200: the course runs measured 201 in every run (400 requests a second times the 500 ms rebuild, plus the first request). A 100 ms rebuild, or a Zipf mix of pages, buries the signal in ordinary
 misses; that is why this step uses one page and 500 ms.)
 
 ## 3. The fixes (lesson 4.4)
