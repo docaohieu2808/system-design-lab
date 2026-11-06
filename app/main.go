@@ -56,6 +56,12 @@ type server struct {
 
 func (s *server) redirect(w http.ResponseWriter, r *http.Request) {
 	var long string
+	if hotc != nil { // Module 7.3 fix: answer a hot code from memory, no shard involved
+		if u, ok := hotc.get(r.PathValue("code")); ok {
+			http.Redirect(w, r, u, http.StatusFound)
+			return
+		}
+	}
 	stats.dbQueries.Add(1)
 	db := s.readDB(r)
 	if sp := shardFor(r.PathValue("code")); sp != nil {
@@ -69,6 +75,9 @@ func (s *server) redirect(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		http.Error(w, "database error", http.StatusServiceUnavailable)
 		return
+	}
+	if hotc != nil {
+		hotc.miss(r.PathValue("code"), long)
 	}
 	http.Redirect(w, r, long, http.StatusFound)
 }
@@ -168,6 +177,7 @@ func main() {
 	}
 	openReadPool()
 	openShards()
+	openHotCache()
 	delayMS, _ := strconv.Atoi(os.Getenv("PAGE_DELAY_MS"))
 	s := &server{db: pool, work: work, cache: newPageCache(), delay: time.Duration(delayMS) * time.Millisecond}
 	mux := http.NewServeMux()
@@ -181,6 +191,7 @@ func main() {
 	mux.HandleFunc("POST /api/rooms/{room}/send", sendToRoom)
 	mux.HandleFunc("GET /stats/chat", chatStats)
 	mux.HandleFunc("GET /stats/shards", serveShardStats)
+	mux.HandleFunc("GET /stats/dep", serveDepStats)
 	mux.HandleFunc("GET /api/limited", newLimiter().serve)
 	mux.HandleFunc("GET /api/lookup", s.lookup)
 	mux.HandleFunc("GET /api/recent", s.recent)

@@ -63,7 +63,8 @@ func (r *ring) shard(key string) int {
 
 func rehash() map[string]any {
 	const keys = 1_000_000
-	r3, r4 := newRing(3, 100), newRing(4, 100)
+	vnodes := envInt("VNODES", 100) // points per shard on the ring (VNODES=10 for the variation in lesson 7.2)
+	r3, r4 := newRing(3, vnodes), newRing(4, vnodes)
 	movedMod, movedRing := 0, 0
 	load4 := make([]int, 4)
 	for k := 1; k <= keys; k++ {
@@ -80,7 +81,7 @@ func rehash() map[string]any {
 	}
 	return map[string]any{"keys": keys, "from_shards": 3, "to_shards": 4,
 		"moved_modulo_pct": 100 * float64(movedMod) / keys, "moved_consistent_pct": 100 * float64(movedRing) / keys,
-		"consistent_keys_per_shard_after": load4, "vnodes_per_shard": 100}
+		"consistent_keys_per_shard_after": load4, "vnodes_per_shard": vnodes}
 }
 
 // tickets: each of 1,000 buyers tries to buy one seat for an event with 100 seats, all at once.

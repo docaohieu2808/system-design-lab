@@ -130,8 +130,8 @@ func drill(name string) {
 // lostUpdate: 50 workers each add one click 100 times to the same link. Read-then-write loses clicks; letting the
 // database do the addition does not.
 func lostUpdate(ctx context.Context, pool *pgxpool.Pool) map[string]int64 {
-	res := map[string]int64{"expected": 5000}
-	for _, mode := range []string{"read_then_write", "atomic_update"} {
+	res := map[string]int64{"expected": 5000, "pool_max": int64(pool.Config().MaxConns)}
+	for _, mode := range []string{"read_then_write", "atomic_update", "for_update"} {
 		pool.Exec(ctx, "INSERT INTO link_stats (code, clicks) VALUES ('drill', 0) ON CONFLICT (code) DO UPDATE SET clicks = 0")
 		var wg sync.WaitGroup
 		for w := 0; w < 50; w++ {
@@ -141,6 +141,15 @@ func lostUpdate(ctx context.Context, pool *pgxpool.Pool) map[string]int64 {
 				for i := 0; i < 100; i++ {
 					if mode == "atomic_update" {
 						pool.Exec(ctx, "UPDATE link_stats SET clicks = clicks + 1 WHERE code = 'drill'")
+						continue
+					}
+					if mode == "for_update" { // read-then-write, but the read locks the row until the commit
+						if tx, err := pool.Begin(ctx); err == nil {
+							var n int64
+							tx.QueryRow(ctx, "SELECT clicks FROM link_stats WHERE code = 'drill' FOR UPDATE").Scan(&n)
+							tx.Exec(ctx, "UPDATE link_stats SET clicks = $1 WHERE code = 'drill'", n+1)
+							tx.Commit(ctx)
+						}
 						continue
 					}
 					var n int64
@@ -158,11 +167,19 @@ func lostUpdate(ctx context.Context, pool *pgxpool.Pool) map[string]int64 {
 }
 
 // writeSkew: two doctors are on call; the rule is that at least one must stay on call. Both ask to go off at the same
-// moment, each checking the rule first. 1,000 trials per isolation level; count how often nobody is left on call and
-// how many transactions the database refused.
+// moment, each checking the rule first. 1,000 trials per variant (read committed, serializable, and read committed
+// with the check written as SELECT ... FOR UPDATE so it locks the rows it relies on); count how often nobody is left
+// on call and how many transactions the database refused.
 func writeSkew(ctx context.Context, pool *pgxpool.Pool) map[string]map[string]int {
 	res := map[string]map[string]int{}
-	for _, level := range []pgx.TxIsoLevel{pgx.ReadCommitted, pgx.Serializable} {
+	type variant struct {
+		label string
+		level pgx.TxIsoLevel
+		lock  bool
+	}
+	for _, v := range []variant{{string(pgx.ReadCommitted), pgx.ReadCommitted, false}, {string(pgx.Serializable), pgx.Serializable, false},
+		{"read committed, select for update", pgx.ReadCommitted, true}} {
+		level := v.level
 		broken, refused := 0, 0
 		for trial := 0; trial < 1000; trial++ {
 			pool.Exec(ctx, "UPDATE doctors SET on_call = true")
@@ -180,7 +197,17 @@ func writeSkew(ctx context.Context, pool *pgxpool.Pool) map[string]map[string]in
 					}
 					defer tx.Rollback(ctx)
 					var n int
-					tx.QueryRow(ctx, "SELECT count(*) FROM doctors WHERE on_call").Scan(&n)
+					if v.lock { // the rows themselves, locked: the second doctor waits here, then sees the first one's change
+						rows, err := tx.Query(ctx, "SELECT name FROM doctors WHERE on_call FOR UPDATE")
+						if err == nil {
+							for rows.Next() {
+								n++
+							}
+							rows.Close()
+						}
+					} else {
+						tx.QueryRow(ctx, "SELECT count(*) FROM doctors WHERE on_call").Scan(&n)
+					}
 					if n >= 2 {
 						tx.Exec(ctx, "UPDATE doctors SET on_call = false WHERE name = $1", name)
 					}
@@ -199,7 +226,7 @@ func writeSkew(ctx context.Context, pool *pgxpool.Pool) map[string]map[string]in
 				broken++
 			}
 		}
-		res[string(level)] = map[string]int{"trials": 1000, "nobody_on_call": broken, "refused_commits": refused}
+		res[v.label] = map[string]int{"trials": 1000, "nobody_on_call": broken, "refused_commits": refused}
 	}
 	return res
 }

@@ -5,6 +5,7 @@ package main
 //	RL_MODE   local        a token bucket in this app copy's memory
 //	          redis-bucket one token bucket per client in Redis (a Lua script), shared by every copy
 //	          redis-window one counter per client per whole second in Redis (fixed window)
+//	          redis-sliding a log of the last second's allowed requests per client in Redis (a sorted set, a Lua script)
 //	RL_RATE   requests per second per client (default 10); the bucket holds RL_RATE tokens
 //	RL_FAIL   open | closed: what to do when Redis does not answer (default open)
 //	RL_CLIENT xff-left  = the first X-Forwarded-For address (what the client claims; can be faked)
@@ -19,6 +20,7 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"sync/atomic"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -48,6 +50,18 @@ if tokens >= 1 then tokens = tokens - 1; ok = 1 end
 redis.call('HSET', KEYS[1], 'tokens', tokens, 'last', now)
 redis.call('PEXPIRE', KEYS[1], 10000)
 return ok`)
+
+// slidingLogLua drops log entries older than one second, then allows the request if fewer than `rate` are left in
+// the last second, and records it (refused requests are not logged).
+var slidingLogLua = redis.NewScript(`
+local rate, now, member = tonumber(ARGV[1]), tonumber(ARGV[2]), ARGV[3]
+redis.call('ZREMRANGEBYSCORE', KEYS[1], 0, now - 1000)
+local ok = 0
+if redis.call('ZCARD', KEYS[1]) < rate then redis.call('ZADD', KEYS[1], now, member); ok = 1 end
+redis.call('PEXPIRE', KEYS[1], 10000)
+return ok`)
+
+var slidingSeq atomic.Int64
 
 func newLimiter() *limiter {
 	l := &limiter{mode: os.Getenv("RL_MODE"), fail: os.Getenv("RL_FAIL"), client: os.Getenv("RL_CLIENT"), buckets: map[string]*bucket{}}
@@ -101,6 +115,10 @@ func (l *limiter) allow(ctx context.Context, client string) (bool, error) {
 		return false, nil
 	case "redis-bucket":
 		ok, err := tokenBucketLua.Run(ctx, l.rdb, []string{"rl:" + client}, l.rate, now.UnixMilli()).Int()
+		return ok == 1, err
+	case "redis-sliding":
+		member := strconv.FormatInt(now.UnixNano(), 10) + "-" + strconv.FormatInt(slidingSeq.Add(1), 10) // unique even within one millisecond
+		ok, err := slidingLogLua.Run(ctx, l.rdb, []string{"rs:" + client}, l.rate, now.UnixMilli(), member).Int()
 		return ok == 1, err
 	default: // redis-window
 		key := "rw:" + client + ":" + strconv.FormatInt(now.Unix(), 10)

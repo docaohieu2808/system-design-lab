@@ -50,5 +50,9 @@ func serveShardStats(w http.ResponseWriter, r *http.Request) {
 		out[i] = shardHits[i].Load()
 	}
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(map[string]any{"lookups_per_shard": out})
+	cacheHits := int64(0)
+	if hotc != nil {
+		cacheHits = hotc.hits.Load()
+	}
+	json.NewEncoder(w).Encode(map[string]any{"lookups_per_shard": out, "hot_cache_hits": cacheHits})
 }
