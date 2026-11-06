@@ -1,6 +1,6 @@
 # Module 10 — Async work: hands-on
 
-Do this alongside lessons 10.1–10.6. **Predict first, write it down, then run.** Whole module: `make m10` (about 30 min); only the retry-storm arms: `make m10 RETRY=backoff-nojitter` (about 10 min).
+Do this alongside lessons 10.1–10.7. **Predict first, write it down, then run.** Whole module: `make m10` (about 30 min); only the retry-storm arms: `make m10 RETRY=backoff-nojitter` (about 10 min).
 
 ```bash
 export COMPOSE_FILE=compose.yaml:modules/m10-async/compose.queue.yaml UID GID=$(id -g)
@@ -48,7 +48,7 @@ a 30% crash rate, a dead-letter limit of 30 tries, and a retry storm with only 2
 **Predict:** how many jobs 4 workers finish in 40 s (each job takes 200 ms)? How many double charges at 30%? How many attempts reach the app during the outage with 2 retries?
 (Course machine: 781, 432, 1,114 with retry-at-once.)
 
-## 7. Retry burst (lesson 10.5)
+## 7. Retry burst (lesson 10.6)
 `make m10-burst` (about 6 minutes): 300 clients fail in the same moment because the app is down, then retry with waits of exactly 1, 2, 4, 8, 16 s (no jitter) or a random time up to each of those (full jitter).
 The app comes back about 10 s in. It writes `results-burst/timeline-nojitter.tsv` and `timeline-jitter.tsv` (attempts per 100 ms): open them and look for the spikes.
 **Predict:** how many attempts reach the app in the busiest 100 ms after the first try, without and with jitter? How many clients give up? (Course machine: 281 against 50; 0 against 52.)
