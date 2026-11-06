@@ -1,0 +1,15 @@
+# Module 12.2: a Redis next to the app, for the lock held in Redis (SET ... NX PX).
+#   COMPOSE_FILE=compose.yaml:modules/m12-contention/compose.redis.yaml
+# No saving to disk: this Redis only holds the lock and a counter.
+services:
+  redis:
+    image: redis:8.10.2-alpine3.23
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck: {test: ["CMD", "redis-cli", "ping"], interval: 2s, retries: 30}
+    cpus: 0.5
+    mem_limit: 256m
+  app:
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      redis: {condition: service_healthy}

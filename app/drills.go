@@ -9,7 +9,9 @@ import (
 	"context"
 	"fmt"
 	"hash/fnv"
+	"os"
 	"sort"
+	"strings"
 	"sync"
 	"time"
 
@@ -84,7 +86,8 @@ func rehash() map[string]any {
 // tickets: each of 1,000 buyers tries to buy one seat for an event with 100 seats, all at once.
 func tickets(ctx context.Context, pool *pgxpool.Pool) map[string]any {
 	pool.Exec(ctx, `CREATE TABLE IF NOT EXISTS events (id int PRIMARY KEY, seats int NOT NULL, sold int NOT NULL DEFAULT 0);
-		CREATE TABLE IF NOT EXISTS orders (id bigserial PRIMARY KEY, event_id int NOT NULL, buyer int NOT NULL)`)
+		CREATE TABLE IF NOT EXISTS orders (id bigserial PRIMARY KEY, event_id int NOT NULL, buyer int NOT NULL);
+		ALTER TABLE events ADD COLUMN IF NOT EXISTS last_token bigint NOT NULL DEFAULT 0`)
 	modes := map[string]func(buyer int) error{
 		// read how many are sold, and if there is room, write an order: two buyers can both see room for the last seat
 		"check_then_insert": func(b int) error {
@@ -140,9 +143,23 @@ func tickets(ctx context.Context, pool *pgxpool.Pool) map[string]any {
 			return err
 		},
 	}
+	arms := []string{"check_then_insert", "select_for_update", "advisory_lock", "conditional_update"}
+	resetLock := func() {}
+	if os.Getenv("LOCK") == "redis" { // Module 12.2: the lock held in Redis (app/tickets_redis.go)
+		var redisModes map[string]func(int) error
+		redisModes, resetLock = redisLockModes(ctx, pool)
+		for k, f := range redisModes {
+			modes[k] = f
+		}
+		arms = append(arms, "redis_lock")
+	}
+	if a := os.Getenv("ARMS"); a != "" { // run only these arms, for example redis_lock_stall,redis_lock_stall_fence
+		arms = strings.Split(a, ",")
+	}
 	out := map[string]any{"seats": 100, "buyers": 1000}
-	for _, name := range []string{"check_then_insert", "select_for_update", "advisory_lock", "conditional_update"} {
-		pool.Exec(ctx, "TRUNCATE orders; INSERT INTO events (id, seats, sold) VALUES (1, 100, 0) ON CONFLICT (id) DO UPDATE SET sold = 0")
+	for _, name := range arms {
+		resetLock()
+		pool.Exec(ctx, "TRUNCATE orders; INSERT INTO events (id, seats, sold) VALUES (1, 100, 0) ON CONFLICT (id) DO UPDATE SET sold = 0, last_token = 0")
 		var wg sync.WaitGroup
 		start, gate := time.Now(), make(chan struct{})
 		for b := 0; b < 1000; b++ {

@@ -38,7 +38,7 @@ m10:           ## Module 10: async work, 5 experiments ($(RUNS) runs, about 25 m
 	@if [ -n "$(RETRY)" ]; then tools/run-m10-storm.sh $(RUNS); else tools/run-m10.sh $(RUNS); fi
 m11:           ## Module 11: overload, 2 experiments ($(RUNS) runs, about 20 minutes)
 	tools/run-m11.sh $(RUNS)
-m12:           ## Module 12: the ticket race ($(RUNS) runs, about 3 minutes)
+m12:           ## Module 12: the ticket race ($(RUNS) runs, about 3 minutes; LOCK=redis adds the Redis lock and the stalled-holder arms, about 10 minutes)
 	tools/run-m12.sh $(RUNS)
 m13:           ## Capstone 13.3: news feed fan-out ($(RUNS) runs, about 5 minutes)
 	tools/run-m13.sh $(RUNS)
