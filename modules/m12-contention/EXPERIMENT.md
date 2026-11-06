@@ -53,6 +53,21 @@ is 0.8 s slower on average; I did not investigate it, the ranges are separate).
 **What it does not show.** A real pause (garbage collection, a stopped VM) instead of a sleep; only one Redis (no failover, no Redlock);
 the lease and the freeze are chosen to make it happen, not measured from a real system.
 
+## Only 4 database connections (`make m12 POOL_MAX=4`, `results-pool4/`)
+Same drill and the same four database ways, but the app's connection pool holds 4 connections instead of 50. 3 runs, gate before every drill (background 10-14%, steal 0).
+
+| way | orders (of 100 seats) | time for 1,000 buyers |
+|---|---|---|
+| check, then insert | 1,000 (1,000-1,000), 900 oversold | 552 ms (512-575) |
+| `SELECT ... FOR UPDATE` | 100 | 1,013 ms (966-1,096) |
+| advisory lock | 100 | 643 ms (602-696) |
+| one conditional `UPDATE` | 100 | 417 ms (379-446) |
+
+What it shows: with a pool of 4 the broken way sells a seat to every one of the 1,000 buyers, in all 3 runs, not 880-990 as with 50. The likely reason: the check and the
+insert are two separate trips to the pool, the 1,000 buyers queue for 4 connections in turn, and all the checks line up ahead of the inserts, so every check sees 0 sold. I did not
+confirm that by tracing the queue. The correct ways stay correct and are faster than with 50 connections (conditional update 417 against 750 ms) because fewer connections fight over the same row; row
+locking takes 1,013 ms against 1,578 ms with 50 connections. A small pool hides nothing: it only changes how the race looks.
+
 ## What it does not show
 - Payments failing midway, or seat maps (specific seats).
 - Redis failover or Redlock (several Redis nodes); only one Redis.

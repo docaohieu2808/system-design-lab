@@ -21,7 +21,7 @@ Same 100 seats and 1,000 buyers; the line now also has `redis_lock`: every buyer
 runs the check-then-insert of the broken way, and gives the lock back only if it is still theirs (`app/tickets_redis.go`).
 **Predict:** orders, and time compared with the advisory lock and the conditional update.
 
-## 3. A lease that runs out mid-work (lesson 12.2)
+## 3. A lease that runs out mid-work (lesson 12.2; course 2.2 material)
 Three lock holders freeze for 5 seconds, right after their check and before their write, while the lock lasts only 1 second.
 ```bash
 docker compose run --rm --no-deps -e POOL_MAX=50 -e LOCK=redis -e ARMS=redis_lock_stall app drill tickets
@@ -30,6 +30,12 @@ docker compose run --rm --no-deps -e POOL_MAX=50 -e LOCK=redis -e ARMS=redis_loc
 The second adds a fencing token: every grant of the lock carries a number that only goes up, and the database refuses a write whose
 number is lower than one it has already seen. **Predict:** how many orders beyond 100 in each case, and why.
 Everything for the Redis story, 3 runs, with quiet-gate and CPU samples: `make m12 LOCK=redis` (about 10 minutes).
+
+## 4. A small connection pool (lesson 12.1 and 12.2)
+```bash
+make m12 POOL_MAX=4      # about 3 minutes; results in results-pool4/
+```
+Or by hand: add `-e POOL_MAX=4` to the `drill tickets` line. **Predict:** how many orders does the broken way produce with 4 connections? (Course machine: 1,000.)
 
 ## Try next
 Lower `POOL_MAX` to 4 and run again. Fewer buyers can talk to the database at the same moment: does the naive way
