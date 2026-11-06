@@ -3,6 +3,8 @@ package main
 // Module 6: reads from a replica, and the failover writer drill.
 //
 //	READ_DATABASE_URL  unset = everything uses DATABASE_URL (Modules 1-5 unchanged); set = redirects read from here
+//	READ_SPREAD        1 = redirects alternate at random between the primary and the replica (half each), instead of
+//	                   all going to the replica; only used by the read-scaling experiment (tools/run-m06-reads.sh)
 //	RYW_SECONDS        read-your-writes: for this many seconds after a client creates a link, that client's reads
 //	                   go to the primary instead (the create response sets a cookie with the time)
 //	shortener drill failover-writer   creates links at WRITER_RATE per second for WRITER_SECONDS and prints one JSON
@@ -11,6 +13,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"math/rand/v2"
 	"net/http"
 	"os"
 	"strconv"
@@ -20,6 +23,7 @@ import (
 )
 
 var readPool *pgxpool.Pool
+var readSpread = os.Getenv("READ_SPREAD") == "1"
 
 func openReadPool() {
 	url := os.Getenv("READ_DATABASE_URL")
@@ -44,6 +48,9 @@ func (s *server) readDB(r *http.Request) *pgxpool.Pool {
 				return s.db
 			}
 		}
+	}
+	if readSpread && rand.IntN(2) == 0 {
+		return s.db
 	}
 	return readPool
 }

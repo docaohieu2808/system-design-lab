@@ -24,6 +24,8 @@ m05:           ## Module 5: database, 5 experiments ($(RUNS) runs, about 40 minu
 	tools/run-m05.sh $(RUNS)
 m06:           ## Module 6: replication, 2 experiments ($(RUNS) runs, about 25 minutes)
 	tools/run-m06.sh $(RUNS)
+m06-reads:     ## Module 6: read scaling, primary alone vs replica, 5 arms ($(RUNS) runs, about 80 minutes)
+	tools/run-m06-reads.sh $(RUNS)
 m07:           ## Module 7: partitioning, 3 experiments ($(RUNS) runs, about 15 minutes)
 	tools/run-m07.sh $(RUNS)
 m08:           ## Module 8: CAP, cut the network ($(RUNS) runs, about 5 minutes)
@@ -46,4 +48,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m04 m05 m06 m07 m08 m09 m10 m11 m12 m13 check-capstone m01-starved verify help
+.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m04 m05 m06 m06-reads m07 m08 m09 m10 m11 m12 m13 check-capstone m01-starved verify help

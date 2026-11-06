@@ -1,0 +1,11 @@
+# Module 6, read scaling: lets the runner change the app's CPU limit and gives k6 more memory (it holds many
+# open-model VUs when the system under test falls behind, and 1 GB can be OOM-killed on the overloaded steps).
+#   COMPOSE_FILE=compose.yaml:modules/m06-replication/compose.replica.yaml:modules/m06-replication/compose.reads.yaml
+# APP_CPUS defaults to the lab's usual half core; READ_DATABASE_URL= (empty) sends reads to the primary alone.
+services:
+  app:
+    cpus: ${APP_CPUS:-0.5}
+    environment:
+      READ_SPREAD: ${READ_SPREAD:-0}   # 1 = reads split between primary and replica (arm E)
+  k6:
+    mem_limit: 2g

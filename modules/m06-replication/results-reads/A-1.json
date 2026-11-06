@@ -1,0 +1,89 @@
+{
+ "hold_s": 20,
+ "steps": [
+  {
+   "asked_rps": 1750,
+   "sent_rps": 1750,
+   "dropped": 0,
+   "completed_rps": 1750,
+   "succeeded_rps": 1750,
+   "p50_ms": 0.64,
+   "p95_ms": 21.61,
+   "p99_ms": 47.24,
+   "avg_ms": 3.65,
+   "max_ms": 118.88
+  },
+  {
+   "asked_rps": 2000,
+   "sent_rps": 2000,
+   "dropped": 0,
+   "completed_rps": 2000,
+   "succeeded_rps": 2000,
+   "p50_ms": 0.67,
+   "p95_ms": 44.95,
+   "p99_ms": 102.46,
+   "avg_ms": 7.56,
+   "max_ms": 159.88
+  },
+  {
+   "asked_rps": 2250,
+   "sent_rps": 2250.1,
+   "dropped": 0,
+   "completed_rps": 2250.1,
+   "succeeded_rps": 2250.1,
+   "p50_ms": 0.7,
+   "p95_ms": 39.74,
+   "p99_ms": 71.34,
+   "avg_ms": 7.25,
+   "max_ms": 127.92
+  },
+  {
+   "asked_rps": 2500,
+   "sent_rps": 2500.1,
+   "dropped": 0,
+   "completed_rps": 2500,
+   "succeeded_rps": 2500,
+   "p50_ms": 8.09,
+   "p95_ms": 80.12,
+   "p99_ms": 144.36,
+   "avg_ms": 21.04,
+   "max_ms": 235.11
+  },
+  {
+   "asked_rps": 2750,
+   "sent_rps": 2750.1,
+   "dropped": 0,
+   "completed_rps": 2750.1,
+   "succeeded_rps": 2750.1,
+   "p50_ms": 17.62,
+   "p95_ms": 84.98,
+   "p99_ms": 105.97,
+   "avg_ms": 26.36,
+   "max_ms": 177.09
+  },
+  {
+   "asked_rps": 3000,
+   "sent_rps": 2960.8,
+   "dropped": 786,
+   "completed_rps": 2960.7,
+   "succeeded_rps": 2960.7,
+   "p50_ms": 50.64,
+   "p95_ms": 183.08,
+   "p99_ms": 294.5,
+   "avg_ms": 68.45,
+   "max_ms": 430.38
+  },
+  {
+   "asked_rps": 3500,
+   "sent_rps": 3137.3,
+   "dropped": 7255,
+   "completed_rps": 3137.3,
+   "succeeded_rps": 3137.3,
+   "p50_ms": 241.42,
+   "p95_ms": 500.74,
+   "p99_ms": 643.82,
+   "avg_ms": 265.11,
+   "max_ms": 943.87
+  }
+ ]
+}

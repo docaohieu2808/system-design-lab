@@ -1,6 +1,6 @@
 # Module 6 — Replication and failover: hands-on
 
-Do this alongside lessons 6.1–6.5. **Predict first, write it down, then run.** Whole module: `make m06` (about 25 min).
+Do this alongside lessons 6.1–6.5. **Predict first, write it down, then run.** Whole module: `make m06` (about 25 min), plus `make m06-reads` (about 80 min).
 
 ```bash
 export COMPOSE_FILE=compose.yaml:modules/m06-replication/compose.replica.yaml UID GID=$(id -g)
@@ -27,6 +27,27 @@ docker compose run --rm --no-deps -e WRITER_RATE=100 -e WRITER_SECONDS=40 app dr
 **Predict:** for how many seconds will writes fail? Will any write that was confirmed be missing afterwards?
 Count: gaps between successful lines (`"ok":true`) give the RTO; compare confirmed codes with
 `SELECT code FROM links WHERE code LIKE 'fo-%'` on db2 for the RPO.
+
+## 4. Does a replica raise the read ceiling? (lesson 6.1)
+Find where reads stop being sustained, first with every read on the primary alone, then with every read on the replica.
+Same ladder as lesson 1.1, reads only. Whole experiment (five arms, 3 runs, about 80 minutes): `make m06-reads`.
+```bash
+export COMPOSE_FILE=compose.yaml:modules/m06-replication/compose.replica.yaml:modules/m06-replication/compose.reads.yaml UID GID=$(id -g)
+STEPS=1750,2000,2250,2500,2750,3000,3500
+# A: reads on the primary alone (an empty READ_DATABASE_URL turns the replica pool off)
+READ_DATABASE_URL= docker compose up -d --build --wait
+docker compose run --rm -e STEPS=$STEPS -e RESULT=/lab/modules/m06-replication/mine-reads-A.json k6 run --quiet modules/m01-one-server/find-the-ceiling.js
+# B: reads on the replica
+docker compose up -d --wait --force-recreate app
+docker compose run --rm -e STEPS=$STEPS -e RESULT=/lab/modules/m06-replication/mine-reads-B.json k6 run --quiet modules/m01-one-server/find-the-ceiling.js
+```
+**Predict:** which step is the last one where `succeeded_rps` equals `asked_rps` and `dropped` is 0, for A and for B?
+Will B be higher? While a run goes, watch `docker stats` in another terminal: which container is at 50%?
+
+Then give the app a full core and repeat: `APP_CPUS=1.0 docker compose up -d --wait --force-recreate app` with
+`STEPS=2000,2500,3000,3500,4000,5000,6000`. **Predict:** now which container is at its limit, and does the replica help?
+Last, split reads over both databases (`READ_SPREAD=1 APP_CPUS=1.0 docker compose up -d --wait --force-recreate app`).
+Check the last step in the result file with `succeeded_rps` still close to `asked_rps`.
 
 ## Try next
 Turn on synchronous replication (`ALTER SYSTEM SET synchronous_standby_names = '*'`, reload) and compare write times.

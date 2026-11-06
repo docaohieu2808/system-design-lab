@@ -1,0 +1,5 @@
+ Container sdlab-k6-run-f4a499f7b43f Creating 
+ Container sdlab-k6-run-f4a499f7b43f Created 
+time="2026-11-06T07:30:00Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_6000
+time="2026-11-06T07:30:17Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_7000
+time="2026-11-06T07:30:41Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_8000

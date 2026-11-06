@@ -1,0 +1,5 @@
+ Container sdlab-k6-run-33fe5a0a7c6b Creating 
+ Container sdlab-k6-run-33fe5a0a7c6b Created 
+time="2026-11-06T07:53:16Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_6000
+time="2026-11-06T07:53:31Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_7000
+time="2026-11-06T07:53:56Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_8000

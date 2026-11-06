@@ -1,0 +1,5 @@
+ Container sdlab-k6-run-2a6a793b7176 Creating 
+ Container sdlab-k6-run-2a6a793b7176 Created 
+time="2026-11-06T07:49:05Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_6000
+time="2026-11-06T07:49:22Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_7000
+time="2026-11-06T07:49:47Z" level=warning msg="Insufficient VUs, reached 3000 active VUs and cannot initialize more" executor=constant-arrival-rate scenario=rps_8000
