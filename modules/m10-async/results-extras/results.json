@@ -1,0 +1,267 @@
+{
+ "runs": 3,
+ "side400_queue0": {
+  "create_p50_ms": {
+   "mean": 403,
+   "min": 403,
+   "max": 403
+  },
+  "create_p99_ms": {
+   "mean": 409.33,
+   "min": 409,
+   "max": 410
+  }
+ },
+ "side400_queue1": {
+  "create_p50_ms": {
+   "mean": 3,
+   "min": 3,
+   "max": 3
+  },
+  "create_p99_ms": {
+   "mean": 9.33,
+   "min": 8,
+   "max": 11
+  }
+ },
+ "workers_1": {
+  "done": {
+   "mean": 196.33,
+   "min": 195,
+   "max": 197
+  },
+  "pending": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p50_ms": {
+   "mean": 17209,
+   "min": 17115,
+   "max": 17256
+  },
+  "wait_p99_ms": {
+   "mean": 34046.67,
+   "min": 33834,
+   "max": 34156
+  }
+ },
+ "workers_4": {
+  "done": {
+   "mean": 781.33,
+   "min": 776,
+   "max": 784
+  },
+  "pending": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p50_ms": {
+   "mean": 9805.33,
+   "min": 9755,
+   "max": 9831
+  },
+  "wait_p99_ms": {
+   "mean": 19525,
+   "min": 19409,
+   "max": 19587
+  }
+ },
+ "workers_8": {
+  "done": {
+   "mean": 1202.67,
+   "min": 1202,
+   "max": 1203
+  },
+  "pending": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p50_ms": {
+   "mean": 109.33,
+   "min": 92,
+   "max": 122
+  },
+  "wait_p99_ms": {
+   "mean": 246,
+   "min": 219,
+   "max": 277
+  }
+ },
+ "workers_16": {
+  "done": {
+   "mean": 1203,
+   "min": 1203,
+   "max": 1203
+  },
+  "pending": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p50_ms": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "wait_p99_ms": {
+   "mean": 2,
+   "min": 2,
+   "max": 2
+  }
+ },
+ "crash30_idem0": {
+  "charges": {
+   "mean": 1431.67,
+   "min": 1429,
+   "max": 1434
+  },
+  "crashes": {
+   "mean": 431.67,
+   "min": 429,
+   "max": 434
+  },
+  "double_charges": {
+   "mean": 431.67,
+   "min": 429,
+   "max": 434
+  }
+ },
+ "crash30_idem1": {
+  "charges": {
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
+  },
+  "crashes": {
+   "mean": 400.67,
+   "min": 398,
+   "max": 404
+  },
+  "double_charges": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  }
+ },
+ "dlq_3": {
+  "good_done_in_10s": {
+   "mean": 200,
+   "min": 200,
+   "max": 200
+  },
+  "poison_attempts": {
+   "mean": 3,
+   "min": 3,
+   "max": 3
+  },
+  "parked_in_dlq": {
+   "mean": 1,
+   "min": 1,
+   "max": 1
+  }
+ },
+ "dlq_30": {
+  "good_done_in_10s": {
+   "mean": 200,
+   "min": 200,
+   "max": 200
+  },
+  "poison_attempts": {
+   "mean": 30,
+   "min": 30,
+   "max": 30
+  },
+  "parked_in_dlq": {
+   "mean": 1,
+   "min": 1,
+   "max": 1
+  }
+ },
+ "storm2_immediate": {
+  "during_attempts": {
+   "mean": 1114.33,
+   "min": 1111,
+   "max": 1117
+  },
+  "after_attempts": {
+   "mean": 554,
+   "min": 549,
+   "max": 562
+  },
+  "gave_up_total": {
+   "mean": 433.33,
+   "min": 430,
+   "max": 439
+  },
+  "created_after": {
+   "mean": 324,
+   "min": 319,
+   "max": 327
+  },
+  "peak_1s_after_return": {
+   "mean": 40,
+   "min": 40,
+   "max": 40
+  },
+  "peak_1s_overall": {
+   "mean": 122.67,
+   "min": 122,
+   "max": 123
+  },
+  "create_p99_ms": {
+   "mean": 9.43,
+   "min": 8.4,
+   "max": 10.6
+  },
+  "background_busy_pct": {
+   "mean": 12.67,
+   "min": 10.0,
+   "max": 17.0
+  }
+ },
+ "storm2_backoff": {
+  "during_attempts": {
+   "mean": 1108,
+   "min": 1100,
+   "max": 1113
+  },
+  "after_attempts": {
+   "mean": 535.67,
+   "min": 518,
+   "max": 548
+  },
+  "gave_up_total": {
+   "mean": 370.33,
+   "min": 296,
+   "max": 410
+  },
+  "created_after": {
+   "mean": 366.33,
+   "min": 347,
+   "max": 401
+  },
+  "peak_1s_after_return": {
+   "mean": 69,
+   "min": 55,
+   "max": 96
+  },
+  "peak_1s_overall": {
+   "mean": 212.33,
+   "min": 127,
+   "max": 267
+  },
+  "create_p99_ms": {
+   "mean": 1839.97,
+   "min": 658.2,
+   "max": 4145.2
+  },
+  "background_busy_pct": {
+   "mean": 11.33,
+   "min": 10.0,
+   "max": 12.0
+  }
+ }
+}

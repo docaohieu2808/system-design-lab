@@ -9,7 +9,7 @@ import exec from 'k6/execution';
 import { sleep } from 'k6';
 import { Counter, Trend } from 'k6/metrics';
 
-const BASE = __ENV.BASE || 'http://app:8080', RATE = Number(__ENV.RATE || 40), RETRY = __ENV.RETRY || 'none';
+const BASE = __ENV.BASE || 'http://app:8080', RATE = Number(__ENV.RATE || 40), RETRY = __ENV.RETRY || 'none', RETRIES = Number(__ENV.RETRIES || 5);   // RETRIES: how many times a failed create is tried again
 const RESULT = __ENV.RESULT || 'results/run.json';
 const attempts = new Counter('attempts'), created = new Counter('created'), gaveUp = new Counter('gave_up');
 const t = new Trend('create_ms', true), t0 = new Trend('t0_ms');
@@ -29,12 +29,12 @@ export const options = {
 export default function () {
   const started = Date.now(), dur = exec.instance.currentTestRunDuration;
   t0.add(started - dur); // wall-clock time the test started; the summary keeps the smallest
-  for (let i = 0; i <= 5; i++) {
+  for (let i = 0; i <= RETRIES; i++) {
     attempts.add(1, { sec: String(Math.min(45, Math.floor(exec.instance.currentTestRunDuration / 1000))) });
     const r = http.post(`${BASE}/api/links`, JSON.stringify({ url: `https://example.com/q/${__VU}-${__ITER}` }),
       { headers: { 'Content-Type': 'application/json' }, timeout: '2s' });
     if (r.status === 201) { created.add(1); t.add(Date.now() - started); return; }
-    if (RETRY === 'none' || i === 5) break;
+    if (RETRY === 'none' || i === RETRIES) break;
     if (RETRY === 'backoff') sleep((200 * 2 ** i) * (0.5 + Math.random()) / 1000);
     if (RETRY === 'backoff-nojitter') sleep((200 * 2 ** i) / 1000);
   }

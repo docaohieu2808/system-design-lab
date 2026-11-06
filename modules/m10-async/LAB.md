@@ -42,4 +42,10 @@ with and without the random factor. **Predict:** how many attempts reach the app
 The result file lists `per_second_attempts` (attempts in each second of the test): find the busiest second after the app is back.
 All three arms, interleaved, 3 runs, with CPU samples: `make m10 RETRY=backoff-nojitter` (about 10 minutes).
 
+## 6. Variations
+`make m10-extras` (about 75 minutes) repeats lessons 10.1-10.5 with other settings, in `results-extras/`: side work 400 ms instead of 200, 4 and 8 workers,
+a 30% crash rate, a dead-letter limit of 30 tries, and a retry storm with only 2 retries (`-e RETRIES=2` on `create.js`).
+**Predict:** how many jobs 4 workers finish in 40 s (each job takes 200 ms)? How many double charges at 30%? How many attempts reach the app during the outage with 2 retries?
+(Course machine: 781, 432, 1,114 with retry-at-once.)
+
 Clean up: `make down`.

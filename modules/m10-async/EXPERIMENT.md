@@ -67,6 +67,37 @@ Notes on earlier runs:
 - Now: with retries, `create.js` looks the app up on every request and opens a fresh connection, so a stopped app
   fails at once, as it would behind a load balancer. The table is from `tools/run-m10-storm.sh 3` after that change.
 
+## Extra variations (`tools/run-m10-extras.sh`, `results-extras/`)
+Interleaved inside every run, 3 runs, gate before every arm (background 10-17% busy, steal 0). Mean (min-max). `make m10-extras` (about 75 minutes).
+
+| experiment | arm | result |
+|---|---|---|
+| side work 400 ms, 40 creates/s | inline: create p50 / p99 | 403 / 409 ms (403-403 / 409-410) |
+| | queued: create p50 / p99 | 3 / 9 ms (3-3 / 8-11) |
+| workers, jobs done after 40 s (of about 1,200) | 1 worker | 196 (195-197), wait p50 17.2 s, p99 34.0 s |
+| | 4 workers | 781 (776-784), wait p50 9.8 s (9.8-9.8), p99 19.5 s (19.4-19.6) |
+| | 8 workers | 1,203 (1,202-1,203), wait p50 109 ms (92-122), p99 246 ms (219-277) |
+| | 16 workers | 1,203, wait p50 0 ms, p99 2 ms |
+| crash 30% in 1,000 payments | no key: charges / double charges | 1,432 (1,429-1,434) / 432 (429-434) |
+| | idempotency key: charges / double charges | 1,000 / 0 (the worker crashed 401 times (398-404)) |
+| poison job, 200 good jobs behind it | parked after 3 tries | 200 good done in 10 s; 3 tries of the bad job |
+| | parked after 30 tries | 200 good done in 10 s; 30 tries of the bad job |
+| retry storm, only 2 retries | retry at once: attempts during / after, gave up, created after | 1,114 (1,111-1,117) / 554 (549-562), 433 (430-439), 324 (319-327) of ~400 |
+| | backoff + jitter: attempts during / after, gave up, created after | 1,108 (1,100-1,113) / 536 (518-548), 370 (296-410), 366 (347-401) of ~400 |
+
+What it shows:
+- With 400 ms of side work the create takes 403 ms inline against 3 ms queued: the whole side-work time comes back out of the request. The jobs still cost 400 ms each; they moved to the worker.
+- Throughput scales with workers until the work is done: one job takes 200 ms of side work, so a worker clears 5 a second: 4 workers about 800 in 40 s (781 measured), 8 workers
+  clear all 1,200 with a wait of about 0.1 s; going to 16 gains only the last 0.1 s.
+- A crash rate of 30% gives about 1 / 0.7 charges per payment: 1,432 charges for 1,000 jobs, 432 of them doubles; the count equals the crashes (432). With a key the table is 1,000 charges and no doubles, even though the
+  worker crashed 401 times.
+- A poison job costs its tries: the drill has one worker taking jobs in strict order, and every try of the bad job takes about 31 ms (321 tries in 10 s in the main run), so 30 tries hold
+  the queue for about 0.9 s and 3 tries for about 0.1 s. Both arms finished all 200 good jobs inside the 10 s window; the delay itself was not timed, the 31 ms per try is taken from the main run.
+- With only 2 retries a 10 s outage still outlasts every retry: attempts during the outage are 2.8 times normal (1,114 and 1,108 of 400 normal) against 5.4 and 4.6 times with 5 retries (see the retry storm table above). Backoff
+  with 2 retries waits only about 0.6 s in total, so it gives up on many more requests (370, 296-410) than with 5 retries (131): the extra retries at 5 retries are what let people wait out the end of the outage.
+  The busiest second after the app is back is 40 for retry-at-once (nothing left to retry) and 69 (55-96) for backoff.
+Not shown: the 5-retry storm arms were not re-run in this run, so compare against the interleaved storm table above, which was measured earlier the same day.
+
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.
 - Crashes in the middle of a charge, rather than between charging and acknowledging.
