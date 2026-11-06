@@ -3,11 +3,11 @@ RUNS ?= 3
 
 up:            ## start app + Postgres
 	docker compose up -d --build --wait
-dash:          ## optional: Grafana dashboard at http://localhost:3000 (start the lab with it; measurements run with it off)
+dash:          ## optional: Grafana dashboard at http://localhost:3000 (measurements run with it off)
 	COMPOSE_FILE=compose.yaml:compose.dash.yaml UID=$$(id -u) GID=$$(id -g) docker compose up -d --build --wait
-	@echo "Grafana: http://localhost:3000 . Load with: export COMPOSE_FILE=compose.yaml:compose.dash.yaml before docker compose run k6 ..."
+	@echo "Grafana: http://localhost:3000 . Run k6 with the overlay on: export COMPOSE_FILE=compose.yaml:compose.dash.yaml (then your module's overlay) before docker compose run k6 ..."
 down:          ## stop and remove everything
-	docker compose down -v --remove-orphans
+	COMPOSE_FILE=compose.yaml:compose.dash.yaml docker compose down -v --remove-orphans
 m00:           ## Module 0: closed vs open load model around a 2-second freeze ($(RUNS) runs, ~5 min each)
 	tools/run-omission.sh $(RUNS)
 m01:           ## Module 1: find the ceiling of one server ($(RUNS) runs, ~4 min each)
@@ -59,7 +59,7 @@ m10:           ## Module 10: async work, 5 experiments ($(RUNS) runs, about 25 m
 	@if [ -n "$(RETRY)" ]; then tools/run-m10-storm.sh $(RUNS); else tools/run-m10.sh $(RUNS); fi
 m10-extras:   ## Module 10 variations: side work 400, 4/8 workers, crash 30%, DLQ after 30, storm with 2 retries ($(RUNS) runs, about 75 minutes)
 	tools/run-m10-extras.sh $(RUNS)
-m10-burst:    ## Module 10: 300 clients fail together, backoff without vs with jitter ($(RUNS) runs, about 6 minutes)
+m10-burst:    ## Module 10 retry burst: 300 clients fail together, backoff without jitter vs full jitter ($(RUNS) runs, about 6 minutes)
 	tools/run-m10-burst.sh $(RUNS)
 m11:           ## Module 11: overload, 2 experiments ($(RUNS) runs, about 20 minutes)
 	tools/run-m11.sh $(RUNS)
