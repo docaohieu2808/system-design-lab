@@ -47,6 +47,11 @@ make m01-starved        # Module 1's test with k6 squeezed to one core
 Then compare `modules/m01-one-server/results-k6-1core/results.json` with `results/results.json` (after `make m01`).
 **Look at:** `peak_cpu_pct.k6`. Near 100% of its limit means the tester, not the server, set the numbers.
 
+### Variation: more closed users (added 06/11/2026)
+Repeat the closed run with `-e VUS=200` (the default is 10): `docker compose run --rm -e MODEL=closed -e VUS=200 -e RESULT=/lab/mine-closed200.json k6 run --quiet modules/m00-the-lab/open-vs-closed.js`,
+with the 2-second freeze as before. **Predict:** does p99 now show the freeze? How many requests does the run send? Check p99.9 and max too.
+`make m00-closed200` runs the 10-user, 200-user and open arms interleaved (about 15 minutes).
+
 ## If something goes wrong
 - `port is already allocated`: something else uses port 8080. Stop it, or `make down` an old lab first.
 - `make verify` says k6 peak CPU is high: your machine is busy or small; close programs, or accept noisier numbers.

@@ -1,0 +1,193 @@
+{
+ "runs": 3,
+ "freeze_s": 2,
+ "duration_s": 60,
+ "arms": {
+  "closed10": {
+   "requests": {
+    "mean": 46778.33,
+    "min": 46179,
+    "max": 47489
+   },
+   "rps": {
+    "mean": 779.63,
+    "min": 769.6,
+    "max": 791.5
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 1.26,
+    "min": 1.19,
+    "max": 1.32
+   },
+   "p99_ms": {
+    "mean": 7.1,
+    "min": 6.54,
+    "max": 7.68
+   },
+   "p999_ms": {
+    "mean": 36.05,
+    "min": 31.78,
+    "max": 40.52
+   },
+   "avg_ms": {
+    "mean": 2.08,
+    "min": 1.93,
+    "max": 2.2
+   },
+   "max_ms": {
+    "mean": 2066.04,
+    "min": 2045.38,
+    "max": 2089.11
+   },
+   "k6_cores": {
+    "mean": 0.26,
+    "min": 0.26,
+    "max": 0.27
+   },
+   "app_cores": {
+    "mean": 0.2,
+    "min": 0.19,
+    "max": 0.2
+   },
+   "background_busy_pct": {
+    "mean": 15.0,
+    "min": 8.0,
+    "max": 19.0
+   }
+  },
+  "closed200": {
+   "requests": {
+    "mean": 174997,
+    "min": 172318,
+    "max": 179290
+   },
+   "rps": {
+    "mean": 2916.63,
+    "min": 2872,
+    "max": 2988.2
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "p50_ms": {
+    "mean": 59.51,
+    "min": 57.38,
+    "max": 61.61
+   },
+   "p99_ms": {
+    "mean": 140.93,
+    "min": 137.79,
+    "max": 145.64
+   },
+   "p999_ms": {
+    "mean": 2091.34,
+    "min": 2072.03,
+    "max": 2113.6
+   },
+   "avg_ms": {
+    "mean": 57.05,
+    "min": 55.62,
+    "max": 57.83
+   },
+   "max_ms": {
+    "mean": 2157.5,
+    "min": 2101.24,
+    "max": 2215.18
+   },
+   "k6_cores": {
+    "mean": 0.68,
+    "min": 0.68,
+    "max": 0.69
+   },
+   "app_cores": {
+    "mean": 0.47,
+    "min": 0.46,
+    "max": 0.47
+   },
+   "background_busy_pct": {
+    "mean": 10.67,
+    "min": 7.0,
+    "max": 18.0
+   }
+  },
+  "open": {
+   "requests": {
+    "mean": 48000.67,
+    "min": 48000,
+    "max": 48001
+   },
+   "rps": {
+    "mean": 800,
+    "min": 800,
+    "max": 800
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "p50_ms": {
+    "mean": 0.52,
+    "min": 0.5,
+    "max": 0.54
+   },
+   "p99_ms": {
+    "mean": 1605.29,
+    "min": 1561.36,
+    "max": 1682.8
+   },
+   "p999_ms": {
+    "mean": 2051.11,
+    "min": 2033.89,
+    "max": 2066.84
+   },
+   "avg_ms": {
+    "mean": 54.4,
+    "min": 51.83,
+    "max": 59.12
+   },
+   "max_ms": {
+    "mean": 2125.92,
+    "min": 2105.84,
+    "max": 2150.65
+   },
+   "k6_cores": {
+    "mean": 0.39,
+    "min": 0.38,
+    "max": 0.4
+   },
+   "app_cores": {
+    "mean": 0.26,
+    "min": 0.26,
+    "max": 0.27
+   },
+   "background_busy_pct": {
+    "mean": 11.33,
+    "min": 7.0,
+    "max": 19.0
+   }
+  }
+ }
+}
