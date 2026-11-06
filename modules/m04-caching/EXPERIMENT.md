@@ -76,6 +76,28 @@ little; the peak is lower than "2,000 at once".
 Note: the first version of jitter only shortened lifetimes (TTL minus up to 50%), so pages lived 15 s on average
 instead of 20 s and the total rose to 4,975. `app/cache.go` now spreads lifetimes evenly over TTL ± 25%.
 
+## Added 06/11/2026: cache-size sweep (`make m04-size`, `tools/run-m04-size.sh`, `results-size/results.json`)
+Part a again with the Redis cap changed: 400 pages/s for 60 s over 100,000 pages, `maxmemory` 1 / 2 / 4 / 8 MB
+(`allkeys-lru`), Zipf keys, plus even keys at 4 and 8 MB. 3 runs, the six arms interleaved inside every run (the order
+rotates), quiet gate 25/2 before every arm (background 6–11% busy, steal 0). k6 used 0.22 cores (limit 2) and the app up to
+0.48 of its 0.5 in the no-cache arm, so the load generator had room. The 4 MB Zipf and even rows repeat part a's table
+(62.7% and 8.4% against 62.8% and 8.4%), so this run matches the earlier one.
+| Redis cap | keys | hit ratio | database queries/s | p99 | Redis evictions in 60 s |
+|---|---|---|---|---|---|
+| 1 MB | Zipf | 0.0% (0.0–0.0) | 400 | 61 ms (56–66) | 0 |
+| 2 MB | Zipf | 54.0% (53.6–54.4) | 184 (182–186) | 28 ms (25–34) | 8,988 |
+| 4 MB | Zipf | 62.7% (62.7–62.8) | 149 | 27 ms (24–30) | 0 |
+| 8 MB | Zipf | 62.7% (62.4–63.1) | 149 (148–151) | 24 ms (19–29) | 0 |
+| 4 MB | even | 8.4% (8.3–8.5) | 366 | 54 ms (50–57) | 11,133 |
+| 8 MB | even | 11.1% (11.1–11.2) | 355 | 50 ms (49–51) | 0 |
+
+**The 1 MB cache holds nothing.** An empty Redis already uses about 1.5 MB (`used_memory` was 1.58 MB with `dbsize` 0 and 0
+evictions), which is above a 1 MB cap, so no page is stored and every request is a miss: the same 400 queries/s as no cache.
+I did not capture the error Redis returns for the refused writes; the app ignores it. So the Zipf curve is 0% at 1 MB (the
+cap is below Redis's own footprint), 54% at 2 MB (about 2,050 pages fit, 9,000 evictions), and flat from 4 MB on: at 4 MB
+the pages the traffic touches (Redis used 3.54 MB in all, about 2 MB of it pages) already fit, nothing is evicted, and 8 MB adds nothing. With even keys more room
+helps a little (8.4% to 11.1%) because 24,000 requests spread over 100,000 pages mostly never repeat a page.
+
 ## What this does not show
 - How stale data affects a real product.
 - A cache spread over several machines, or eviction policy choices.

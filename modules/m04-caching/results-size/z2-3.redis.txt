@@ -1,0 +1,5 @@
+used_memory:2097160
+maxmemory:2097152
+expired_keys:0
+evicted_keys:8976
+2065
