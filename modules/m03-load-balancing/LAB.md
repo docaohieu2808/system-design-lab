@@ -1,6 +1,6 @@
 # Module 3 — Load balancing: hands-on
 
-Do this alongside lessons 3.1–3.5. **Predict first, write it down, then run.** The whole module: `make m03`
+Do this alongside lessons 3.1–3.7. **Predict first, write it down, then run.** The whole module: `make m03`
 (about an hour, 3 runs); the steps below run one piece at a time so you can watch.
 
 Every command below needs these two settings in your shell first:
@@ -28,7 +28,7 @@ done
 **Check:** course machine: 321 → 685 → 1,063 pages/s; the 4th copy (1,270) added less because the database filled.
 Watch `docker stats` in another terminal: the database at 50% means it is full.
 
-## 3. Kill one under load (lesson 3.2)
+## 3. Kill one under load (lesson 3.3)
 ```bash
 docker compose up -d --wait --scale app=3
 ( sleep 32; docker kill sdlab-app-2 ) &
@@ -38,7 +38,7 @@ cat modules/m03-load-balancing/mine-kill.json
 **Predict:** how many requests fail at the moment of the kill, and what happens to p99 after it? Then repeat with
 `--scale app=4` and compare.
 
-## 4. A frozen copy and a health check (lesson 3.3)
+## 4. A frozen copy and a health check (lesson 3.4)
 ```bash
 docker compose up -d --wait --scale app=3
 ( sleep 32; docker pause sdlab-app-2 ) &
@@ -51,14 +51,14 @@ export COMPOSE_FILE=$COMPOSE_FILE:modules/m03-load-balancing/compose.health.yaml
 ```
 **Predict:** how many failures with the check, compared with without? (Course machine: 3,861 vs 191.)
 
-## 5. A slow copy (lesson 3.4)
+## 5. A slow copy (lesson 3.6)
 ```bash
 LB_STRATEGY=wrr docker compose up -d --wait --scale app=3 && docker update --cpus 0.08 sdlab-app-3
 docker compose run --rm -e RATE=400 -e RESULT=/lab/modules/m03-load-balancing/mine-wrr.json k6 run --quiet modules/m03-load-balancing/steady.js
 ```
 Repeat with `LB_STRATEGY=p2c`. **Predict:** which one fails more requests, and by how much?
 
-## 6. What limits the 4th copy (lesson 3.1, follow-up)
+## 6. What limits the 4th copy (lesson 3.2)
 ```bash
 make m03-cause    # about 80 minutes: 1-4 copies and three "give it more" variants, 3 runs
 ```
@@ -66,7 +66,7 @@ It writes `results-cause/results.json`. Look at each app copy's CPU at the top s
 the copies are the full part. Then read the three variants: if the ceiling does not move when the database, Traefik or k6 get
 more, they were not the limit. **Predict:** which of the three will move it? (Course machine: none.)
 
-## 7. A health check that lies (lesson 3.3)
+## 7. A health check that lies (lesson 3.5)
 ```bash
 make m03-health   # about 15 minutes
 ```
@@ -74,7 +74,7 @@ Three copies, one loses its database at second 32 while its process keeps runnin
 shallow check `/livez` and the deep check `/healthz`. **Predict:** does the shallow check help? (Course machine: it does not,
 3,888 failures against 3,880; the deep check: 176.)
 
-## 8. Extra variations (lessons 3.1-3.4)
+## 8. Extra variations (lessons 3.1-3.6)
 ```bash
 make m03-extras   # about 80 minutes: split cores, kill at 400, health check 1 s vs 5 s, two slow copies, one slow copy
 ```
