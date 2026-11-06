@@ -1,0 +1,11 @@
+{
+ "hot_pct": 50,
+ "rate": 1800,
+ "rps": 1478.7,
+ "failed_pct": 0,
+ "dropped": 9637,
+ "p99_ms": 3631.51,
+ "hot_p99_ms": 3653.93,
+ "cold_p50_ms": 2.76,
+ "cold_p99_ms": 3560.93
+}

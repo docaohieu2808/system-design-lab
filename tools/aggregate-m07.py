@@ -34,8 +34,14 @@ for k in R:
     for kind in ("bigint", "uuid4", "uuid7"):
         m = re.search(rf"insert-{kind}\s*\nINSERT 0 1000000\s*\nTime: ([\d.]+) ms", txt) or re.search(rf"insert-{kind}.*?Time: ([\d.]+) ms", txt, re.S)
         ids[f"{kind}_insert_s"].append(float(m.group(1)) / 1000)
-        size = re.search(rf"index-mb\|ids_{kind}\|([\d.]+)", txt)
-        ids[f"{kind}_index_mb"].append(float(size.group(1)))
+        table = re.search(rf"table-mb\|ids_{kind}\|([\d.]+)", txt)
+        ids[f"{kind}_table_mb"].append(float(table.group(1)))
+        index = re.search(rf"index-mb\|ids_{kind}_pkey\|([\d.]+)", txt)
+        ids[f"{kind}_index_mb"].append(float(index.group(1)))
+for k in R:  # generating a million IDs with no table and no index (gen.sql), when it was run
+    if (out / f"gen-{k}.txt").exists():
+        for kind in ("base", "uuid4", "uuid7"):
+            ids[f"gen_{kind}_ms"].append(float(re.search(rf"gen-{kind}.*?Time: ([\d.]+) ms", (out / f"gen-{k}.txt").read_text(), re.S).group(1)))
 res["ids"] = {f: agg(v) for f, v in ids.items()}
 (out / "results.json").write_text(json.dumps(res, indent=1))
 print(json.dumps(res, indent=1))

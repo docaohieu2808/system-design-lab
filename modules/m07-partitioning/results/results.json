@@ -1,18 +1,18 @@
 {
  "runs": 3,
  "rehash": {
+  "keys": 1000000,
+  "from_shards": 3,
+  "to_shards": 4,
+  "vnodes_per_shard": 100,
   "consistent_keys_per_shard_after": [
    229075,
    223612,
    269481,
    277832
   ],
-  "from_shards": 3,
-  "keys": 1000000,
-  "moved_consistent_pct": 27.78,
   "moved_modulo_pct": 75.01,
-  "to_shards": 4,
-  "vnodes_per_shard": 100
+  "moved_consistent_pct": 27.78
  },
  "hot": {
   "0": {
@@ -136,34 +136,64 @@
  },
  "ids": {
   "bigint_insert_s": {
-   "mean": 20.03,
-   "min": 19.8,
-   "max": 20.19
+   "mean": 5.67,
+   "min": 5.33,
+   "max": 5.96
   },
-  "bigint_index_mb": {
+  "bigint_table_mb": {
    "mean": 42.2,
    "min": 42.2,
    "max": 42.2
   },
+  "bigint_index_mb": {
+   "mean": 21.4,
+   "min": 21.4,
+   "max": 21.4
+  },
   "uuid4_insert_s": {
-   "mean": 53.33,
-   "min": 52.89,
-   "max": 54.21
+   "mean": 15.15,
+   "min": 14.68,
+   "max": 15.89
+  },
+  "uuid4_table_mb": {
+   "mean": 49.8,
+   "min": 49.8,
+   "max": 49.8
   },
   "uuid4_index_mb": {
-   "mean": 49.8,
-   "min": 49.8,
-   "max": 49.8
+   "mean": 37.8,
+   "min": 37.5,
+   "max": 38.2
   },
   "uuid7_insert_s": {
-   "mean": 33.6,
-   "min": 32.81,
-   "max": 34.89
+   "mean": 9.71,
+   "min": 9.53,
+   "max": 9.9
   },
-  "uuid7_index_mb": {
+  "uuid7_table_mb": {
    "mean": 49.8,
    "min": 49.8,
    "max": 49.8
+  },
+  "uuid7_index_mb": {
+   "mean": 30.1,
+   "min": 30.1,
+   "max": 30.1
+  },
+  "gen_base_ms": {
+   "mean": 371.9,
+   "min": 333.07,
+   "max": 411.58
+  },
+  "gen_uuid4_ms": {
+   "mean": 3338.76,
+   "min": 3310.31,
+   "max": 3373.88
+  },
+  "gen_uuid7_ms": {
+   "mean": 3262.73,
+   "min": 3216.48,
+   "max": 3299.64
   }
  }
 }

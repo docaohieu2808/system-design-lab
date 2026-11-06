@@ -22,6 +22,7 @@ services:
   app:
     cpus: 1.0
     environment:
+      HOT_CACHE: ${HOT_CACHE:-0}   # 1 = cache hot codes in the app (tools/run-m07-hotfix.sh)
       SHARD_URLS: postgres://postgres:lab@db:5432/shortener,postgres://postgres:lab@db2:5432/shortener,postgres://postgres:lab@db3:5432/shortener
     depends_on:
       db2:

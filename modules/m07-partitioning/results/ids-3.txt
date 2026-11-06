@@ -1,12 +1,15 @@
-Time: 94.000 ms
-Time: 4.366 ms
-Time: 2.507 ms
+Time: 10.759 ms
+Time: 5.086 ms
+Time: 48.455 ms
 insert-bigint
-Time: 20193.195 ms (00:20.193)
+Time: 5333.047 ms (00:05.333)
 insert-uuid4
-Time: 52897.916 ms (00:52.898)
+Time: 14681.081 ms (00:14.681)
 insert-uuid7
-Time: 33103.053 ms (00:33.103)
-index-mb|ids_bigint|42.2
-index-mb|ids_uuid4|49.8
-index-mb|ids_uuid7|49.8
+Time: 9896.815 ms (00:09.897)
+table-mb|ids_bigint|42.2
+table-mb|ids_uuid4|49.8
+table-mb|ids_uuid7|49.8
+index-mb|ids_bigint_pkey|21.4
+index-mb|ids_uuid4_pkey|37.7
+index-mb|ids_uuid7_pkey|30.1

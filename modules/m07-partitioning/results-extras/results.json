@@ -1,0 +1,561 @@
+{
+ "runs": 6,
+ "arms": {
+  "even": {
+   "rps": {
+    "mean": 1786.08,
+    "min": 1763.1,
+    "max": 1794.3
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "dropped": {
+    "mean": 412.33,
+    "min": 171,
+    "max": 1071
+   },
+   "p99_ms": {
+    "mean": 346.56,
+    "min": 251.54,
+    "max": 521.17
+   },
+   "cold_p50_ms": {
+    "mean": 1.73,
+    "min": 1.01,
+    "max": 3.51
+   },
+   "cold_p99_ms": {
+    "mean": 346.56,
+    "min": 251.54,
+    "max": 521.17
+   },
+   "hot_shard_share_of_shard_lookups_pct": {
+    "mean": 33.46,
+    "min": 33.12,
+    "max": 33.72
+   },
+   "hot_shard_share_of_all_requests_pct": {
+    "mean": 33.46,
+    "min": 33.12,
+    "max": 33.72
+   },
+   "shard_lookups": {
+    "mean": 53582.5,
+    "min": 52894,
+    "max": 53830
+   },
+   "cache_hits": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "hot_shard_index": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "k6_cores": {
+    "mean": 0.73,
+    "min": 0.69,
+    "max": 0.8
+   },
+   "app_cores": {
+    "mean": 0.45,
+    "min": 0.43,
+    "max": 0.47
+   },
+   "hot_shard_cores": {
+    "mean": 0.12,
+    "min": 0.12,
+    "max": 0.13
+   },
+   "background_busy_pct": {
+    "mean": 13.67,
+    "min": 9.0,
+    "max": 25.0
+   }
+  },
+  "r600": {
+   "rps": {
+    "mean": 600,
+    "min": 600,
+    "max": 600
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.01
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p99_ms": {
+    "mean": 97.4,
+    "min": 79.17,
+    "max": 172.8
+   },
+   "cold_p50_ms": {
+    "mean": 0.58,
+    "min": 0.57,
+    "max": 0.61
+   },
+   "cold_p99_ms": {
+    "mean": 97.4,
+    "min": 79.17,
+    "max": 172.8
+   },
+   "hot_shard_share_of_shard_lookups_pct": {
+    "mean": 33.54,
+    "min": 32.9,
+    "max": 33.97
+   },
+   "hot_shard_share_of_all_requests_pct": {
+    "mean": 33.54,
+    "min": 32.9,
+    "max": 33.97
+   },
+   "shard_lookups": {
+    "mean": 18000.33,
+    "min": 18000,
+    "max": 18001
+   },
+   "cache_hits": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "hot_shard_index": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "k6_cores": {
+    "mean": 0.37,
+    "min": 0.35,
+    "max": 0.38
+   },
+   "app_cores": {
+    "mean": 0.23,
+    "min": 0.23,
+    "max": 0.24
+   },
+   "hot_shard_cores": {
+    "mean": 0.06,
+    "min": 0.06,
+    "max": 0.06
+   },
+   "background_busy_pct": {
+    "mean": 13.83,
+    "min": 7.0,
+    "max": 24.0
+   }
+  },
+  "hot20": {
+   "rps": {
+    "mean": 1786.05,
+    "min": 1776.8,
+    "max": 1795.8
+   },
+   "failed_pct": {
+    "mean": 0.0,
+    "min": 0,
+    "max": 0.0
+   },
+   "dropped": {
+    "mean": 418.67,
+    "min": 127,
+    "max": 695
+   },
+   "p99_ms": {
+    "mean": 465.55,
+    "min": 254.65,
+    "max": 690.06
+   },
+   "hot_p99_ms": {
+    "mean": 493.89,
+    "min": 272.75,
+    "max": 718.74
+   },
+   "cold_p50_ms": {
+    "mean": 2.46,
+    "min": 1.39,
+    "max": 3.07
+   },
+   "cold_p99_ms": {
+    "mean": 448.98,
+    "min": 245.25,
+    "max": 671.49
+   },
+   "hot_shard_share_of_shard_lookups_pct": {
+    "mean": 46.69,
+    "min": 46.57,
+    "max": 46.87
+   },
+   "hot_shard_share_of_all_requests_pct": {
+    "mean": 46.69,
+    "min": 46.57,
+    "max": 46.87
+   },
+   "shard_lookups": {
+    "mean": 53581.5,
+    "min": 53305,
+    "max": 53873
+   },
+   "cache_hits": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "hot_shard_index": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "k6_cores": {
+    "mean": 0.7,
+    "min": 0.67,
+    "max": 0.75
+   },
+   "app_cores": {
+    "mean": 0.43,
+    "min": 0.42,
+    "max": 0.45
+   },
+   "hot_shard_cores": {
+    "mean": 0.15,
+    "min": 0.14,
+    "max": 0.15
+   },
+   "background_busy_pct": {
+    "mean": 11.17,
+    "min": 6.0,
+    "max": 21.0
+   }
+  }
+ },
+ "per_run": {
+  "even": [
+   {
+    "rps": 1793.6,
+    "failed_pct": 0,
+    "dropped": 194,
+    "p99_ms": 371.07,
+    "cold_p50_ms": 1.33,
+    "cold_p99_ms": 371.07,
+    "hot_shard_share_of_shard_lookups_pct": 33.69821770401621,
+    "hot_shard_share_of_all_requests_pct": 33.69821770401621,
+    "shard_lookups": 53807,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.6923401287612521,
+    "app_cores": 0.43563292249765145,
+    "hot_shard_cores": 0.11706197937742054,
+    "background_busy_pct": 15.0
+   },
+   {
+    "rps": 1786.6,
+    "failed_pct": 0,
+    "dropped": 403,
+    "p99_ms": 291.47,
+    "cold_p50_ms": 1.01,
+    "cold_p99_ms": 291.47,
+    "hot_shard_share_of_shard_lookups_pct": 33.42848613754244,
+    "hot_shard_share_of_all_requests_pct": 33.42848613754244,
+    "shard_lookups": 53598,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.7124103145463293,
+    "app_cores": 0.4386131248622879,
+    "hot_shard_cores": 0.1154816456429926,
+    "background_busy_pct": 10.0
+   },
+   {
+    "rps": 1787.5,
+    "failed_pct": 0,
+    "dropped": 377,
+    "p99_ms": 324.32,
+    "cold_p50_ms": 2.01,
+    "cold_p99_ms": 324.32,
+    "hot_shard_share_of_shard_lookups_pct": 33.33395494554677,
+    "hot_shard_share_of_all_requests_pct": 33.33395494554677,
+    "shard_lookups": 53624,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.698722050204809,
+    "app_cores": 0.43071595125859996,
+    "hot_shard_cores": 0.11614789712348479,
+    "background_busy_pct": 25.0
+   },
+   {
+    "rps": 1791.4,
+    "failed_pct": 0.002,
+    "dropped": 258,
+    "p99_ms": 319.8,
+    "cold_p50_ms": 1.51,
+    "cold_p99_ms": 319.8,
+    "hot_shard_share_of_shard_lookups_pct": 33.724089166759704,
+    "hot_shard_share_of_all_requests_pct": 33.724089166759704,
+    "shard_lookups": 53742,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.748358925925926,
+    "app_cores": 0.4517809666666667,
+    "hot_shard_cores": 0.11936563333333333,
+    "background_busy_pct": 13.0
+   },
+   {
+    "rps": 1763.1,
+    "failed_pct": 0,
+    "dropped": 1071,
+    "p99_ms": 521.17,
+    "cold_p50_ms": 3.51,
+    "cold_p99_ms": 521.17,
+    "hot_shard_share_of_shard_lookups_pct": 33.11528717812985,
+    "hot_shard_share_of_all_requests_pct": 33.11528717812985,
+    "shard_lookups": 52894,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.8039382366178848,
+    "app_cores": 0.4727466845887525,
+    "hot_shard_cores": 0.12609860050658347,
+    "background_busy_pct": 9.0
+   },
+   {
+    "rps": 1794.3,
+    "failed_pct": 0,
+    "dropped": 171,
+    "p99_ms": 251.54,
+    "cold_p50_ms": 1.02,
+    "cold_p99_ms": 251.54,
+    "hot_shard_share_of_shard_lookups_pct": 33.45532231097901,
+    "hot_shard_share_of_all_requests_pct": 33.45532231097901,
+    "shard_lookups": 53830,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.725529739625819,
+    "app_cores": 0.4523727425629511,
+    "hot_shard_cores": 0.11894178610910755,
+    "background_busy_pct": 10.0
+   }
+  ],
+  "r600": [
+   {
+    "rps": 600,
+    "failed_pct": 0,
+    "dropped": 0,
+    "p99_ms": 83.23,
+    "cold_p50_ms": 0.61,
+    "cold_p99_ms": 83.23,
+    "hot_shard_share_of_shard_lookups_pct": 33.970334981389925,
+    "hot_shard_share_of_all_requests_pct": 33.970334981389925,
+    "shard_lookups": 18001,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.3598990361810876,
+    "app_cores": 0.23059433529487236,
+    "hot_shard_cores": 0.06422022661154454,
+    "background_busy_pct": 17.0
+   },
+   {
+    "rps": 600,
+    "failed_pct": 0,
+    "dropped": 0,
+    "p99_ms": 82.72,
+    "cold_p50_ms": 0.57,
+    "cold_p99_ms": 82.72,
+    "hot_shard_share_of_shard_lookups_pct": 33.8370090550525,
+    "hot_shard_share_of_all_requests_pct": 33.8370090550525,
+    "shard_lookups": 18001,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.3671115925925926,
+    "app_cores": 0.22884363333333332,
+    "hot_shard_cores": 0.06374906666666666,
+    "background_busy_pct": 10.0
+   },
+   {
+    "rps": 600,
+    "failed_pct": 0,
+    "dropped": 0,
+    "p99_ms": 86.58,
+    "cold_p50_ms": 0.57,
+    "cold_p99_ms": 86.58,
+    "hot_shard_share_of_shard_lookups_pct": 33.38333333333333,
+    "hot_shard_share_of_all_requests_pct": 33.38333333333333,
+    "shard_lookups": 18000,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.35216276341872493,
+    "app_cores": 0.22898257254860874,
+    "hot_shard_cores": 0.06301686106634374,
+    "background_busy_pct": 18.0
+   },
+   {
+    "rps": 600,
+    "failed_pct": 0.006,
+    "dropped": 0,
+    "p99_ms": 79.17,
+    "cold_p50_ms": 0.59,
+    "cold_p99_ms": 79.17,
+    "hot_shard_share_of_shard_lookups_pct": 33.605555555555554,
+    "hot_shard_share_of_all_requests_pct": 33.605555555555554,
+    "shard_lookups": 18000,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.38285560714285716,
+    "app_cores": 0.23700456666666667,
+    "hot_shard_cores": 0.06348093333333334,
+    "background_busy_pct": 7.0
+   },
+   {
+    "rps": 600,
+    "failed_pct": 0.006,
+    "dropped": 0,
+    "p99_ms": 172.8,
+    "cold_p50_ms": 0.58,
+    "cold_p99_ms": 172.8,
+    "hot_shard_share_of_shard_lookups_pct": 33.522222222222226,
+    "hot_shard_share_of_all_requests_pct": 33.522222222222226,
+    "shard_lookups": 18000,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.3705015709936943,
+    "app_cores": 0.23058623799397007,
+    "hot_shard_cores": 0.06223808732401028,
+    "background_busy_pct": 7.0
+   },
+   {
+    "rps": 600,
+    "failed_pct": 0,
+    "dropped": 0,
+    "p99_ms": 79.87,
+    "cold_p50_ms": 0.57,
+    "cold_p99_ms": 79.87,
+    "hot_shard_share_of_shard_lookups_pct": 32.9,
+    "hot_shard_share_of_all_requests_pct": 32.9,
+    "shard_lookups": 18000,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.3586600714285714,
+    "app_cores": 0.22633713333333333,
+    "hot_shard_cores": 0.0616207,
+    "background_busy_pct": 24.0
+   }
+  ],
+  "hot20": [
+   {
+    "rps": 1795.8,
+    "failed_pct": 0,
+    "dropped": 127,
+    "p99_ms": 254.65,
+    "hot_p99_ms": 272.75,
+    "cold_p50_ms": 1.9,
+    "cold_p99_ms": 245.25,
+    "hot_shard_share_of_shard_lookups_pct": 46.5724945705641,
+    "hot_shard_share_of_all_requests_pct": 46.5724945705641,
+    "shard_lookups": 53873,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.6681668692028611,
+    "app_cores": 0.42864468524118204,
+    "hot_shard_cores": 0.14384675112868475,
+    "background_busy_pct": 21.0
+   },
+   {
+    "rps": 1782,
+    "failed_pct": 0.002,
+    "dropped": 539,
+    "p99_ms": 538.01,
+    "hot_p99_ms": 581.42,
+    "cold_p50_ms": 2.42,
+    "cold_p99_ms": 511.49,
+    "hot_shard_share_of_shard_lookups_pct": 46.79760568649458,
+    "hot_shard_share_of_all_requests_pct": 46.79760568649458,
+    "shard_lookups": 53460,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.6692036774859702,
+    "app_cores": 0.4227574809740663,
+    "hot_shard_cores": 0.1455066311691989,
+    "background_busy_pct": 9.0
+   },
+   {
+    "rps": 1776.8,
+    "failed_pct": 0,
+    "dropped": 695,
+    "p99_ms": 690.06,
+    "hot_p99_ms": 718.74,
+    "cold_p50_ms": 2.9,
+    "cold_p99_ms": 671.49,
+    "hot_shard_share_of_shard_lookups_pct": 46.590376137322956,
+    "hot_shard_share_of_all_requests_pct": 46.590376137322956,
+    "shard_lookups": 53305,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.699372037037037,
+    "app_cores": 0.42847796666666665,
+    "hot_shard_cores": 0.1454865,
+    "background_busy_pct": 15.0
+   },
+   {
+    "rps": 1783.1,
+    "failed_pct": 0,
+    "dropped": 508,
+    "p99_ms": 469.07,
+    "hot_p99_ms": 487.84,
+    "cold_p50_ms": 3.05,
+    "cold_p99_ms": 455.93,
+    "hot_shard_share_of_shard_lookups_pct": 46.628530835810295,
+    "hot_shard_share_of_all_requests_pct": 46.628530835810295,
+    "shard_lookups": 53493,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.7202363087064874,
+    "app_cores": 0.428163345687547,
+    "hot_shard_cores": 0.14585618131926004,
+    "background_busy_pct": 6.0
+   },
+   {
+    "rps": 1793.3,
+    "failed_pct": 0,
+    "dropped": 201,
+    "p99_ms": 353.05,
+    "hot_p99_ms": 381.18,
+    "cold_p50_ms": 1.39,
+    "cold_p99_ms": 344.02,
+    "hot_shard_share_of_shard_lookups_pct": 46.687732342007436,
+    "hot_shard_share_of_all_requests_pct": 46.687732342007436,
+    "shard_lookups": 53800,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.720741628235399,
+    "app_cores": 0.4428024993076606,
+    "hot_shard_cores": 0.1452631456642898,
+    "background_busy_pct": 8.0
+   },
+   {
+    "rps": 1785.3,
+    "failed_pct": 0,
+    "dropped": 442,
+    "p99_ms": 488.43,
+    "hot_p99_ms": 521.43,
+    "cold_p50_ms": 3.07,
+    "cold_p99_ms": 465.69,
+    "hot_shard_share_of_shard_lookups_pct": 46.87254938571269,
+    "hot_shard_share_of_all_requests_pct": 46.87254938571269,
+    "shard_lookups": 53558,
+    "cache_hits": 0,
+    "hot_shard_index": 0,
+    "k6_cores": 0.7496358214285713,
+    "app_cores": 0.4488681666666666,
+    "hot_shard_cores": 0.14894516666666666,
+    "background_busy_pct": 8.0
+   }
+  ]
+ }
+}
