@@ -59,6 +59,8 @@ m10:           ## Module 10: async work, 5 experiments ($(RUNS) runs, about 25 m
 	@if [ -n "$(RETRY)" ]; then tools/run-m10-storm.sh $(RUNS); else tools/run-m10.sh $(RUNS); fi
 m10-extras:   ## Module 10 variations: side work 400, 4/8 workers, crash 30%, DLQ after 30, storm with 2 retries ($(RUNS) runs, about 75 minutes)
 	tools/run-m10-extras.sh $(RUNS)
+m10-burst:    ## Module 10 retry burst: 300 clients fail together, backoff without jitter vs full jitter ($(RUNS) runs, about 6 minutes)
+	tools/run-m10-burst.sh $(RUNS)
 m11:           ## Module 11: overload, 2 experiments ($(RUNS) runs, about 20 minutes)
 	tools/run-m11.sh $(RUNS)
 m11-breaker:   ## Module 11.4: no breaker / simple / single-probe breaker, interleaved ($(RUNS) runs, about 12 minutes)
@@ -75,4 +77,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m10-burst m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help

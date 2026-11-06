@@ -105,6 +105,33 @@ What it shows:
   which fits the counting bug described in the retry storm section; the retry-at-once arm moved too (1,114 to 1,184 attempts during the outage) and I cannot say why, because its slices were not counted then. `tools/run-m10-retries2.sh` (results in `results-retries2/`) refuses to finish unless every slice began at least 400 arrivals with dropped 0 and ended_other 0.
 Not shown: the 5-retry storm arms were not re-run in this run, so compare against the corrected storm table above, which was measured the same day.
 
+## Retry burst: 300 clients fail in the same moment (`tools/run-m10-burst.sh`, `results-burst/`)
+**Question.** The steady-arrival storm above shows no clear effect of jitter. Jitter exists for the other case: many clients that fail at the same instant. Do they retry in waves
+without jitter, and does jitter flatten them? **Method.** The app is down before the test; 300 clients (`burst.js`, one k6 user each) all send their create in the same moment, fail at once
+and retry up to 5 times with waits capped at 1, 2, 4, 8, 16 s: exactly the cap (no jitter) or a random time between 0 and the cap (full jitter). The app comes back about 10.2 s into the run
+(10.2-10.4 s measured). Attempts are counted in 100 ms buckets. 3 runs, the two arms interleaved (order rotated), gate before every arm (background 8-17% busy, steal 0).
+All 300 clients began and ended created or gave up in all 6 arms (`ended_other` 0). Mean (min-max):
+
+| | no jitter | full jitter |
+|---|---|---|
+| busiest 100 ms after the first try (of 300 clients) | 281 attempts (251-300) = 94% of the clients | 50 (48-54) = 17% |
+| visible waves after the first try (at least a third of the clients in a 100 ms bucket) | 4 (4-4), at 1.0, 3.0, 7.0 and 15.1 s into the test | 0 |
+| busiest second after the first try | 300 (300-300) | 322 (311-327) |
+| attempts in total | 1,500 | 1,746 (1,739-1,755) |
+| created / gave up | 300 / 0 | 248 (242-253) / 52 (47-58) |
+| last client done | 15.8 s | 25.2 s (24.8-25.5) |
+
+Timelines: `results-burst/timeline-nojitter.tsv` and `results-burst/timeline-jitter.tsv` (seconds into the test, attempts per 100 ms: mean, min, max over the 3 runs).
+
+**What it shows.**
+- Without jitter every client that failed together retries together: 300 attempts land on the app in one 100 ms bucket at 0 s (the first try), 1, 3, 7 and 15 s, exactly the wait schedule's sums (1, 1+2, 1+2+4, 1+2+4+8 s).
+  The app sees the whole crowd five times, and the wave at 15 s is the first one after it came back.
+- With full jitter the retries spread out: the busiest 100 ms after the first try holds 50 attempts, 5.6 times less than the 281 without jitter. The 300 first tries are still one burst at 0 s: jitter changes only the retries.
+- Per second the difference is gone for the first retry: the busiest second holds 322 attempts with jitter, as many as without (300), because all 300 first retries are spread over the first second only (the cap is 1 s). Jitter flattens the 100 ms shape, not the total.
+- Jitter costs something here: 52 of 300 clients (17%) used up all 5 retries before the app came back at 10 s and gave up, against none without jitter, because random waits are on average half the cap, so the retries run out earlier.
+  Without jitter the retry at 15 s came after the return and everybody got through. The last client finished at 25 s with jitter, since a random wait can be up to the full 16 s. Whether jitter wins depends on when the dependency returns and on how many retries it is given; with these numbers it flattens the load and loses 17% of the clients.
+**What it does not show.** One schedule (1 s base, 5 retries, return at 10 s). Server-side limits or a queue in front of the app (the app here has none, so the crowd of 300 is simply answered). 300 clients on a lab app: the point is the shape of the load, not its size.
+
 ## What it does not show
 - Queues with several partitions, ordering across them, or exactly-once delivery from the broker.
 - Crashes in the middle of a charge, rather than between charging and acknowledging.

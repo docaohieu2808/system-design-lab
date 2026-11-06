@@ -1,0 +1,153 @@
+{
+ "runs": 3,
+ "bucket_ms": 100,
+ "nojitter": {
+  "peak_100ms": {
+   "mean": 300,
+   "min": 300,
+   "max": 300
+  },
+  "peak_100ms_pct_of_clients": {
+   "mean": 100.0,
+   "min": 100.0,
+   "max": 100.0
+  },
+  "retry_peak_100ms": {
+   "mean": 281,
+   "min": 251,
+   "max": 300
+  },
+  "retry_peak_100ms_pct_of_clients": {
+   "mean": 93.67,
+   "min": 83.7,
+   "max": 100.0
+  },
+  "retry_peak_1s": {
+   "mean": 300,
+   "min": 300,
+   "max": 300
+  },
+  "retry_waves": {
+   "mean": 4,
+   "min": 4,
+   "max": 4
+  },
+  "attempts": {
+   "mean": 1500,
+   "min": 1500,
+   "max": 1500
+  },
+  "created": {
+   "mean": 300,
+   "min": 300,
+   "max": 300
+  },
+  "gave_up": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "last_done_s": {
+   "mean": 15.82,
+   "min": 15.81,
+   "max": 15.84
+  },
+  "app_returned_s": {
+   "mean": 10.23,
+   "min": 10.2,
+   "max": 10.3
+  },
+  "background_busy_pct": {
+   "mean": 10.67,
+   "min": 8.0,
+   "max": 12.0
+  },
+  "wave_start_seconds_per_run": [
+   [
+    1.0,
+    3.1,
+    7.1,
+    15.1
+   ],
+   [
+    1.0,
+    3.0,
+    7.0,
+    15.1
+   ],
+   [
+    1.0,
+    3.0,
+    7.1,
+    15.1
+   ]
+  ]
+ },
+ "jitter": {
+  "peak_100ms": {
+   "mean": 313,
+   "min": 305,
+   "max": 326
+  },
+  "peak_100ms_pct_of_clients": {
+   "mean": 104.37,
+   "min": 101.7,
+   "max": 108.7
+  },
+  "retry_peak_100ms": {
+   "mean": 50.33,
+   "min": 48,
+   "max": 54
+  },
+  "retry_peak_100ms_pct_of_clients": {
+   "mean": 16.77,
+   "min": 16.0,
+   "max": 18.0
+  },
+  "retry_peak_1s": {
+   "mean": 321.67,
+   "min": 311,
+   "max": 327
+  },
+  "retry_waves": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "attempts": {
+   "mean": 1746,
+   "min": 1739,
+   "max": 1755
+  },
+  "created": {
+   "mean": 248.33,
+   "min": 242,
+   "max": 253
+  },
+  "gave_up": {
+   "mean": 51.67,
+   "min": 47,
+   "max": 58
+  },
+  "last_done_s": {
+   "mean": 25.19,
+   "min": 24.75,
+   "max": 25.46
+  },
+  "app_returned_s": {
+   "mean": 10.27,
+   "min": 10.2,
+   "max": 10.4
+  },
+  "background_busy_pct": {
+   "mean": 14.0,
+   "min": 9.0,
+   "max": 17.0
+  },
+  "wave_start_seconds_per_run": [
+   [],
+   [],
+   []
+  ]
+ }
+}
