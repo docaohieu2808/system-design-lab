@@ -61,9 +61,23 @@ def series(p):
         t, q, k = l.split("\t")
         if int(q) >= 0: rows.append((float(t), int(q)))
     return rows
-def queries(rows, a, b):  # database queries between wall-clock times a and b
-    pts = [q for t, q in rows if a <= t <= b]
-    return pts[-1] - pts[0] if len(pts) > 1 else 0
+# The sampler reads the counter about every 0.8 s, not every 0.5 s, so a window of 1 s can hold 0, 1 or 2 readings.
+# Counting readings inside the window undercounts (a stampede that fills one gap was read as 151 instead of 201).
+def hold(rows, t):  # counter at time t, as last read at or before t (right for a step such as a stampede)
+    v = rows[0][1]
+    for ts, q in rows:
+        if ts > t: break
+        v = q
+    return v
+def fill(rows, t):  # counter at time t, straight line between the two readings around t (right for a steady flow)
+    if t <= rows[0][0]: return rows[0][1]
+    for (t0, q0), (t1, q1) in zip(rows, rows[1:]):
+        if t0 <= t <= t1: return q0 + (q1 - q0) * (t - t0) / (t1 - t0)
+    return rows[-1][1]
+def queries(rows, a, b):  # database queries between a and b, using last-read values at both ends
+    return hold(rows, b) - hold(rows, a)
+def queries_filled(rows, a, b):  # database queries between a and b, straight-line fill between readings
+    return fill(rows, b) - fill(rows, a)
 def cores(tag, part):  # average CPU cores used by containers whose name contains `part`, over their sampled life
     first, last = {}, {}
     for l in (out / f"{tag}.cpu.tsv").read_text().splitlines():
@@ -87,9 +101,9 @@ for j in ("0", "0.5", "swr"):
     rows = []
     for k in range(1, runs + 1):
         s, w = series(out / f"expiry-{j}-{k}.stats.tsv"), float((out / f"expiry-{j}-{k}.warmed").read_text())
-        per = [queries(s, w + x / 2, w + x / 2 + 1) for x in range(0, 110)]
+        per = [queries_filled(s, w + x / 2, w + x / 2 + 1) for x in range(0, 110)]
         r6 = json.loads((out / f"expiry-{j}-{k}.json").read_text())
-        rows.append({"peak_db_q_in_1s": max(per), "db_q_total": queries(s, w, w + 56), "p99_ms": r6["p99_ms"],
+        rows.append({"peak_db_q_in_1s": round(max(per)), "db_q_total": round(queries_filled(s, w, w + 56)), "p99_ms": r6["p99_ms"],
                      "max_ms": r6["max_ms"], "background_busy_pct": gate(f"expiry-{j}-{k}"),
                      "k6_cores": cores(f"expiry-{j}-{k}", "k6"), "app_cores": cores(f"expiry-{j}-{k}", "app")})
     res["expiry"][j] = {k_: agg([r[k_] for r in rows]) for k_ in rows[0]}

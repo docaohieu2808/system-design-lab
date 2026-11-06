@@ -8,8 +8,8 @@
     "max": 0
    },
    "db_queries_3s_after": {
-    "mean": 184.33,
-    "min": 151,
+    "mean": 201,
+    "min": 201,
     "max": 201
    },
    "p99_ms": {
@@ -45,8 +45,8 @@
     "max": 0
    },
    "db_queries_3s_after": {
-    "mean": 0.33,
-    "min": 0,
+    "mean": 1,
+    "min": 1,
     "max": 1
    },
    "p99_ms": {
@@ -79,14 +79,14 @@
  "expiry": {
   "0": {
    "peak_db_q_in_1s": {
-    "mean": 188,
-    "min": 165,
-    "max": 202
+    "mean": 258,
+    "min": 256,
+    "max": 261
    },
    "db_q_total": {
-    "mean": 3811.33,
-    "min": 3802,
-    "max": 3817
+    "mean": 3901.33,
+    "min": 3895,
+    "max": 3905
    },
    "p99_ms": {
     "mean": 107.16,
@@ -116,14 +116,14 @@
   },
   "0.5": {
    "peak_db_q_in_1s": {
-    "mean": 141.67,
-    "min": 124,
-    "max": 162
+    "mean": 184,
+    "min": 182,
+    "max": 187
    },
    "db_q_total": {
-    "mean": 3802,
-    "min": 3754,
-    "max": 3832
+    "mean": 3904.67,
+    "min": 3857,
+    "max": 3965
    },
    "p99_ms": {
     "mean": 106.77,
@@ -153,14 +153,14 @@
   },
   "swr": {
    "peak_db_q_in_1s": {
-    "mean": 182.67,
-    "min": 167,
-    "max": 202
+    "mean": 252.67,
+    "min": 244,
+    "max": 258
    },
    "db_q_total": {
-    "mean": 3724,
-    "min": 3694,
-    "max": 3747
+    "mean": 3821.67,
+    "min": 3795,
+    "max": 3840
    },
    "p99_ms": {
     "mean": 18.16,

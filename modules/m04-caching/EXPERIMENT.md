@@ -30,17 +30,20 @@ cores (limit 2) and the app 0.17–0.24 cores, so the load generator had room. P
 ### b1. Stampede after a wipe (`results-b/results.json`; one page, building it takes 500 ms, wipe at 32 s)
 | | queries in the 10 s before | queries in the 3 s after | p99 | max |
 |---|---|---|---|---|
-| no single-flight | 0 | 184 (151–201) | 503 ms (503–503) | 590 ms (574–614) |
-| single-flight | 0 | 0.3 (0–1) | 225 ms (217–230) | 534 ms (521–554) |
+| no single-flight | 0 | 201 (201–201) | 503 ms (503–503) | 590 ms (574–614) |
+| single-flight | 0 | 1 (1–1) | 225 ms (217–230) | 534 ms (521–554) |
 
 Why p99 is 503 ms without single-flight: until the first rebuild lands (500 ms) every request finds the page missing,
-queries the database and waits the full build: 400 req/s x 0.5 s is about 200 requests (184 counted), that is about 0.8%
+queries the database and waits the full build: 400 req/s x 0.5 s is about 200 requests (201 counted), that is about 0.8%
 of the 24,000 requests, plus the ones just after, so the 99th percentile sits on the build time. With single-flight those
 same requests join the one rebuild and wait only what is left of it (0 to 500 ms, about 250 on average), so p99 lands
-lower (225 ms) and the database sees one query. The old table has the same 502 ms p99; what moved is the stampede size
-(129 then, 184 now; the ranges 102–159 and 151–201 barely overlap). I did not isolate why it grew: the first run
-of the design was on a different day and machine load. The mechanism (all requests of the first 500 ms hit the database)
-is the same in both.
+lower (225 ms) and the database sees one query. The raw counter shows the same 201 extra queries in every run (209→410, 210→411, 217→418). Before 06/11 the table said 184 (151–201)
+and the old design 129: that was a sampling artefact. The sampler reads the counter about every 0.8 s, and the aggregator counted the
+readings inside "the 3 s after the wipe", so a run whose first reading after the wipe already fell mid-stampede (259) lost the
+queries before it (410 − 259 = 151). The aggregator now takes the last reading at or before the wipe as the baseline. The earlier "129 then, 184
+now" note (growth I could not explain) is most likely this artefact too; the 129 came from the older design's own aggregator, which I did not re-check. The counter also reads about 210 (no single-flight)
+or 1 (single-flight) before the wipe: the cold start at the very beginning is the same stampede, so the p99 sits on the build time
+because two stampedes together (about 411 slow requests) exceed 1% of the 24,001 requests.
 
 Stale-while-revalidate is not an arm of the flush experiment on purpose: a flush deletes the stale copy too, so there is
 nothing to serve while the page rebuilds. It helps when entries expire, not when they vanish.
@@ -48,21 +51,22 @@ nothing to serve while the page rebuilds. It helps when entries expire, not when
 ### b2. Synchronised expiry (2,000 pages warmed together, TTL 20 s, building a page takes 100 ms)
 | | worst 1 s of database queries | total queries in 60 s | p99 |
 |---|---|---|---|
-| no fix | 188 (165–202) | 3,811 (3,802–3,817) | 107 ms (106–108) |
-| 50% jitter (lifetimes 15–25 s) | 142 (124–162) | 3,802 (3,754–3,832) | 107 ms (106–108) |
-| stale-while-revalidate | 183 (167–202) | 3,724 (3,694–3,747) | 18 ms (15–21) |
+| no fix | 258 (256–261) | 3,901 (3,895–3,905) | 107 ms (106–108) |
+| 50% jitter (lifetimes 15–25 s) | 184 (182–187) | 3,905 (3,857–3,965) | 107 ms (106–108) |
+| stale-while-revalidate | 253 (244–258) | 3,822 (3,795–3,840) | 18 ms (15–21) |
 
-The worst-second spread (about 20% of the mean) is above the 10% bar and I did not add runs: the worst second is the
-maximum of 110 one-second windows of random traffic (random arrivals picking among 2,000 pages) and the refill wave
-hits a different phase of the second each run. It is a noisy statistic by nature. The ranges still say two things: jitter
-(124–162) is below no fix (165–202) in every run, and SWR (167–202) is not distinguishable from no fix. The total (spread
-under 2%) and p99 (spread under 3%, except SWR's 15–21 ms) are stable.
+Counting method (corrected 06/11): the sampler reads the counter about every 0.8 s, so counting readings inside a 1 s window
+undercounted (the first version of this table said 188 / 142 / 183 with a spread of about 20%, and an SWR total of 3,724). The aggregator now draws a straight
+line between the readings around each end of the window; the worst second is the maximum of 110 such windows. The spread is now about
+3% for no fix and about 2% for jitter, and the ranges do not overlap between jitter (182–187) and the others (244–261): jitter lowers
+the worst second in every run, and SWR is not distinguishable from no fix. The total (spread under 2%) and p99 (under 3%, except SWR's
+15–21 ms) are stable.
 
-Jitter lowers the worst second by about a quarter while the total stays the same: it moves refills apart, it doesn't
+Jitter lowers the worst second by about 30% while the total stays the same: it moves refills apart, it doesn't
 remove them. Stale-while-revalidate does the opposite: the refills are as many and as bunched as with no fix, but no
 user waits for them, because every request is answered from the old copy while one background refresh per page rebuilds
 it, so p99 falls from about 107 ms (one 100 ms rebuild) to about 18 ms. It protects the user, not the database; jitter
-protects the database. The two can be combined (not measured here). SWR's total is slightly lower (about 3%) because a
+protects the database. The two can be combined (not measured here). SWR's total is slightly lower (about 2%) because a
 refreshed page is not asked for again until traffic reaches it. The price is staleness: a page can be older than the nominal
 lifetime when asked just before its refresh lands.
 
