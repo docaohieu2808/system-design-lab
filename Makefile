@@ -67,6 +67,8 @@ m11-breaker:   ## Module 11.4: no breaker / simple / single-probe breaker, inter
 	tools/run-m11-breaker.sh $(RUNS)
 m12:           ## Module 12: the ticket race ($(RUNS) runs, about 3 minutes; LOCK=redis adds the Redis lock and the stalled-holder arms, about 10 minutes)
 	tools/run-m12.sh $(RUNS)
+m12-tx:        ## Module 12: the conditional update with and without a transaction around the order insert ($(RUNS) runs, about 3 minutes)
+	tools/run-m12-tx.sh $(RUNS)
 m13:           ## Capstone 13.3: news feed fan-out ($(RUNS) runs, about 5 minutes)
 	tools/run-m13.sh $(RUNS)
 check-capstone: ## capstone 13.1: does your URL shortener meet the contract and the module-two goals?
@@ -77,4 +79,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m10-burst m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m10-burst m11 m11-breaker m12 m12-tx m13 check-capstone m01-starved m01-variations m00-closed200 verify help

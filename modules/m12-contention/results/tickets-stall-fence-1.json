@@ -1,1 +1,1 @@
-{"buyers":1000,"redis_lock_stall_fence":{"ms":8136,"orders":100,"oversold":0},"seats":100}
+{"buyers":1000,"redis_lock_stall_fence":{"ms":7021,"orders":100,"oversold":0},"seats":100}

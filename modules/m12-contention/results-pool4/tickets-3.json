@@ -1,1 +1,1 @@
-{"advisory_lock":{"ms":696,"orders":100,"oversold":0},"buyers":1000,"check_then_insert":{"ms":512,"orders":1000,"oversold":900},"conditional_update":{"ms":426,"orders":100,"oversold":0},"seats":100,"select_for_update":{"ms":966,"orders":100,"oversold":0}}
+{"advisory_lock":{"ms":672,"orders":100,"oversold":0},"buyers":1000,"check_then_insert":{"ms":509,"orders":1000,"oversold":900},"conditional_update":{"ms":382,"orders":100,"oversold":0},"seats":100,"select_for_update":{"ms":921,"orders":100,"oversold":0}}

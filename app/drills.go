@@ -143,6 +143,23 @@ func tickets(ctx context.Context, pool *pgxpool.Pool) map[string]any {
 			_, err = pool.Exec(ctx, "INSERT INTO orders (event_id, buyer) VALUES (1, $1)", b)
 			return err
 		},
+		// the conditional update and the order insert in one transaction: the seat and its order commit together or not at all
+		// (run only through ARMS, for example ARMS=conditional_update,conditional_update_tx; tools/run-m12-tx.sh)
+		"conditional_update_tx": func(b int) error {
+			tx, err := pool.Begin(ctx)
+			if err != nil {
+				return err
+			}
+			defer tx.Rollback(ctx)
+			tag, err := tx.Exec(ctx, "UPDATE events SET sold = sold + 1 WHERE id = 1 AND sold < seats")
+			if err != nil || tag.RowsAffected() == 0 {
+				return err
+			}
+			if _, err := tx.Exec(ctx, "INSERT INTO orders (event_id, buyer) VALUES (1, $1)", b); err != nil {
+				return err
+			}
+			return tx.Commit(ctx)
+		},
 	}
 	arms := []string{"check_then_insert", "select_for_update", "advisory_lock", "conditional_update"}
 	resetLock := func() {}
@@ -156,6 +173,17 @@ func tickets(ctx context.Context, pool *pgxpool.Pool) map[string]any {
 	}
 	if a := os.Getenv("ARMS"); a != "" { // run only these arms, for example redis_lock_stall,redis_lock_stall_fence
 		arms = strings.Split(a, ",")
+	}
+	// Warm-up round, not timed: opens the pool's connections and warms the tables, so the first timed arm does not pay for
+	// connection setup (without it the first arm of every drill ran about 1 s slower, whichever arm it was).
+	if os.Getenv("WARMUP") != "0" {
+		pool.Exec(ctx, "TRUNCATE orders; INSERT INTO events (id, seats, sold) VALUES (1, 100, 0) ON CONFLICT (id) DO UPDATE SET sold = 0, last_token = 0")
+		var wg sync.WaitGroup
+		for b := 0; b < 1000; b++ {
+			wg.Add(1)
+			go func(b int) { defer wg.Done(); modes["conditional_update"](b) }(b)
+		}
+		wg.Wait()
 	}
 	out := map[string]any{"seats": 100, "buyers": 1000}
 	for _, name := range arms {

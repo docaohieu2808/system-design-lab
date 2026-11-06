@@ -14,26 +14,26 @@
    "max": 0
   },
   "ms": {
-   "mean": 988.33,
-   "min": 967,
-   "max": 1010
+   "mean": 1147,
+   "min": 1061,
+   "max": 1215
   }
  },
  "check_then_insert": {
   "orders": {
-   "mean": 982.67,
-   "min": 968,
-   "max": 990
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
   },
   "oversold": {
-   "mean": 882.67,
-   "min": 868,
-   "max": 890
+   "mean": 900,
+   "min": 900,
+   "max": 900
   },
   "ms": {
-   "mean": 1901,
-   "min": 1886,
-   "max": 1914
+   "mean": 833.67,
+   "min": 797,
+   "max": 889
   }
  },
  "conditional_update": {
@@ -48,9 +48,9 @@
    "max": 0
   },
   "ms": {
-   "mean": 750,
-   "min": 696,
-   "max": 790
+   "mean": 775,
+   "min": 739,
+   "max": 807
   }
  },
  "redis_lock": {
@@ -65,9 +65,9 @@
    "max": 0
   },
   "ms": {
-   "mean": 3728.33,
-   "min": 3362,
-   "max": 4101
+   "mean": 3514.67,
+   "min": 3141,
+   "max": 3750
   }
  },
  "select_for_update": {
@@ -82,78 +82,78 @@
    "max": 0
   },
   "ms": {
-   "mean": 1577.67,
-   "min": 1525,
-   "max": 1620
+   "mean": 1463,
+   "min": 1405,
+   "max": 1535
   }
  },
  "background_busy_pct": {
   "tickets": {
-   "mean": 9.33,
-   "min": 7.0,
-   "max": 13.0
+   "mean": 8.67,
+   "min": 8.0,
+   "max": 10.0
   },
   "tickets-stall": {
-   "mean": 11.0,
-   "min": 8.0,
-   "max": 17.0
+   "mean": 7.67,
+   "min": 7.0,
+   "max": 9.0
   },
   "tickets-stall-fence": {
-   "mean": 12.67,
-   "min": 10.0,
-   "max": 15.0
+   "mean": 8.33,
+   "min": 7.0,
+   "max": 10.0
   }
  },
  "cores": {
   "tickets": {
    "app": {
-    "mean": 0.4,
-    "min": 0.39,
-    "max": 0.41
+    "mean": 0.36,
+    "min": 0.35,
+    "max": 0.36
    },
    "db": {
-    "mean": 0.31,
-    "min": 0.3,
-    "max": 0.32
+    "mean": 0.34,
+    "min": 0.33,
+    "max": 0.35
    },
    "redis": {
-    "mean": 0.11,
-    "min": 0.11,
-    "max": 0.12
+    "mean": 0.1,
+    "min": 0.09,
+    "max": 0.1
    }
   },
   "tickets-stall": {
    "app": {
-    "mean": 0.45,
-    "min": 0.45,
-    "max": 0.47
+    "mean": 0.47,
+    "min": 0.42,
+    "max": 0.49
    },
    "db": {
-    "mean": 0.05,
-    "min": 0.04,
-    "max": 0.05
+    "mean": 0.14,
+    "min": 0.14,
+    "max": 0.14
    },
    "redis": {
-    "mean": 0.24,
-    "min": 0.24,
-    "max": 0.24
+    "mean": 0.2,
+    "min": 0.18,
+    "max": 0.21
    }
   },
   "tickets-stall-fence": {
    "app": {
     "mean": 0.48,
-    "min": 0.47,
-    "max": 0.48
+    "min": 0.46,
+    "max": 0.5
    },
    "db": {
-    "mean": 0.04,
-    "min": 0.04,
-    "max": 0.04
+    "mean": 0.14,
+    "min": 0.14,
+    "max": 0.14
    },
    "redis": {
-    "mean": 0.25,
-    "min": 0.25,
-    "max": 0.26
+    "mean": 0.2,
+    "min": 0.19,
+    "max": 0.21
    }
   }
  },
@@ -169,9 +169,9 @@
    "max": 3
   },
   "ms": {
-   "mean": 7059,
-   "min": 7026,
-   "max": 7087
+   "mean": 7027.33,
+   "min": 7006,
+   "max": 7039
   }
  },
  "redis_lock_stall_fence": {
@@ -186,9 +186,9 @@
    "max": 0
   },
   "ms": {
-   "mean": 7897.67,
-   "min": 7653,
-   "max": 8136
+   "mean": 7290.33,
+   "min": 7021,
+   "max": 7595
   }
  }
 }

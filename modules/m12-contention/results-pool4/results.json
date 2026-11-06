@@ -14,9 +14,9 @@
    "max": 0
   },
   "ms": {
-   "mean": 643.33,
-   "min": 602,
-   "max": 696
+   "mean": 655.33,
+   "min": 624,
+   "max": 672
   }
  },
  "check_then_insert": {
@@ -31,9 +31,9 @@
    "max": 900
   },
   "ms": {
-   "mean": 552,
-   "min": 512,
-   "max": 575
+   "mean": 500,
+   "min": 434,
+   "max": 557
   }
  },
  "conditional_update": {
@@ -48,9 +48,9 @@
    "max": 0
   },
   "ms": {
-   "mean": 417,
-   "min": 379,
-   "max": 446
+   "mean": 387.33,
+   "min": 381,
+   "max": 399
   }
  },
  "select_for_update": {
@@ -65,16 +65,16 @@
    "max": 0
   },
   "ms": {
-   "mean": 1013.33,
-   "min": 966,
-   "max": 1096
+   "mean": 980,
+   "min": 921,
+   "max": 1056
   }
  },
  "background_busy_pct": {
   "tickets": {
-   "mean": 11.33,
-   "min": 10.0,
-   "max": 14.0
+   "mean": 6.0,
+   "min": 5.0,
+   "max": 7.0
   }
  },
  "cores": {
@@ -85,9 +85,9 @@
     "max": 0.0
    },
    "db": {
-    "mean": 0.43,
-    "min": 0.43,
-    "max": 0.43
+    "mean": 0.44,
+    "min": 0.42,
+    "max": 0.45
    },
    "redis": {
     "mean": 0,
