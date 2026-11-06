@@ -1,0 +1,35 @@
+# Module 6 terminal captures for lesson 6.1 and 6.4, 2026-11-06 23:14 +07, one run on the course machine
+$ docker compose exec -T db psql -U postgres -c "SELECT application_name, state, replay_lag FROM pg_stat_replication"
+ application_name |   state   |   replay_lag    
+------------------+-----------+-----------------
+ walreceiver      | streaming | 00:00:00.000256
+(1 row)
+
+
+$ docker compose exec -T db2 psql -U postgres -d shortener -c "INSERT INTO links (code,url) VALUES ('x','https://example.com')"
+ERROR:  cannot execute INSERT in a read-only transaction
+
+$ docker compose exec -T db2 psql -U postgres -c "SELECT pg_is_in_recovery()"
+ pg_is_in_recovery 
+-------------------
+ t
+(1 row)
+
+
+$ docker kill sdlab-db-1 >/dev/null; echo killed sdlab-db-1
+killed sdlab-db-1
+
+$ docker compose exec -T db2 psql -U postgres -c "SELECT pg_promote()"
+ pg_promote 
+------------
+ t
+(1 row)
+
+
+$ docker compose exec -T db2 psql -U postgres -c "SELECT pg_is_in_recovery()"
+ pg_is_in_recovery 
+-------------------
+ f
+(1 row)
+
+
