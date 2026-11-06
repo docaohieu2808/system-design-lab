@@ -1,6 +1,6 @@
 # Module 10 — Async work: hands-on
 
-Do this alongside lessons 10.1–10.6. **Predict first, write it down, then run.** Whole module: `make m10` (about 25 min).
+Do this alongside lessons 10.1–10.6. **Predict first, write it down, then run.** Whole module: `make m10` (about 30 min); only the retry-storm arms: `make m10 RETRY=backoff-nojitter` (about 10 min).
 
 ```bash
 export COMPOSE_FILE=compose.yaml:modules/m10-async/compose.queue.yaml UID GID=$(id -g)
@@ -29,11 +29,17 @@ end? Then try `WORKERS=16`.
 **Predict:** how many good jobs finish in 10 seconds behind the bad one?
 
 ## 5. Retry storm (lesson 10.5)
+The app is stopped (not frozen) for 10 seconds in the middle of a 30-second run of 40 creates a second. Stopping makes requests
+fail at once, as they would behind a load balancer; `docker compose pause` makes every attempt hang for the 2-second timeout
+and hides the difference between the three clients.
 ```bash
 QUEUE=0 SIDE_WORK_MS=0 docker compose up -d --wait
-( sleep 12; docker compose pause app; sleep 10; docker compose unpause app ) &
+( sleep 12; docker compose stop app; sleep 10; docker compose start app ) &
 create -e RETRY=immediate -e RESULT=/lab/mine-storm.json
 ```
-Repeat with `RETRY=backoff`. **Predict:** how many attempts reach the app while it's frozen, in each case?
+Repeat (bring the app back up first) with `RETRY=backoff` and `RETRY=backoff-nojitter`: the same waits of about 200 ms, 400 ms, ...
+with and without the random factor. **Predict:** how many attempts reach the app while it is down, in each case? Who gives up?
+The result file lists `per_second_attempts` (attempts in each second of the test): find the busiest second after the app is back.
+All three arms, interleaved, 3 runs, with CPU samples: `make m10 RETRY=backoff-nojitter` (about 10 minutes).
 
 Clean up: `make down`.

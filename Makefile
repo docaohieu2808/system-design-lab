@@ -30,8 +30,8 @@ m08:           ## Module 8: CAP, cut the network ($(RUNS) runs, about 5 minutes)
 	tools/run-m08.sh $(RUNS)
 m09:           ## Module 9: rate limiting, 4 experiments ($(RUNS) runs, about 25 minutes)
 	tools/run-m09.sh $(RUNS)
-m10:           ## Module 10: async work, 5 experiments ($(RUNS) runs, about 25 minutes)
-	tools/run-m10.sh $(RUNS)
+m10:           ## Module 10: async work, 5 experiments ($(RUNS) runs, about 25 minutes); with RETRY set, only the retry-storm arms (instant, backoff, backoff-nojitter), about 10 minutes
+	@if [ -n "$(RETRY)" ]; then tools/run-m10-storm.sh $(RUNS); else tools/run-m10.sh $(RUNS); fi
 m11:           ## Module 11: overload, 2 experiments ($(RUNS) runs, about 20 minutes)
 	tools/run-m11.sh $(RUNS)
 m12:           ## Module 12: the ticket race ($(RUNS) runs, about 3 minutes)

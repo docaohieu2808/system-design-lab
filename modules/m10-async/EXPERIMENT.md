@@ -21,11 +21,36 @@ One app copy (half a core), Postgres 18.6, Redis 8.10.2 streams as the queue, k6
 | double charges in 1,000 payments, no key vs idempotency key | 128 (116–137) | 0 |
 | good jobs done in 10 s behind a poison job, retry forever vs dead-letter after 3 | 0 (321 tries of the bad job) | 200 (bad job parked after 3) |
 
-### Retry storm (40 creates/s; the app is stopped from 12 s to about 22 s; up to 5 retries)
-| | attempts during (10–20 s) | attempts after (20–30 s) | gave up, whole run | created after |
-|---|---|---|---|---|
-| retry at once | 2,137 (×5.3 normal) | 890 | 445 of 1,200 | 303 of 400 |
-| backoff + jitter (200 ms, 400 ms, ... ×0.5–1.5) | 1,941 (×4.9) | 737 | 205 of 1,200 | 401 of 401 |
+### Retry storm (40 creates/s; the app is stopped from about 11 s to about 22 s; up to 5 retries)
+Three arms, interleaved inside every run (order rotated from run to run), 3 runs, `tools/run-m10-storm.sh 3`
+(`make m10 RETRY=backoff-nojitter`). Mean (min-max). Quiet-machine gate before every arm: 7-15% background busy,
+steal 0. k6 used 0.12-0.14 of its 2 cores and the app 0.02-0.03 of its core, so the load generator had room.
+
+| | attempts during (10-20 s) | attempts after (20-30 s) | gave up, whole run (of 1,200) | busiest second after the app is back | busiest second overall | created after (of ~400) |
+|---|---|---|---|---|---|---|
+| retry at once | 2,163 (2,111-2,211) | 705 (581-768) | 395 (329-435) | 98 (40-213) | 883 (834-940) | 353 (327-401) |
+| backoff + jitter (200 ms, 400 ms, ... x0.5-1.5) | 1,836 (1,476-2,028) | 559 (522-593) | 131 (36-178) | 139 (125-164) | 250 (226-299) | 400 (400-400) |
+| backoff, same waits, no jitter | 1,830 (1,611-1,959) | 574 (476-631) | 177 (133-217) | 185 (157-225) | 214 (187-230) | 401 (401-401) |
+
+Normal is 400 attempts per 10 s (40 per second). The app was stopped 10.9 s after k6 started and came back at 21.6-21.9 s,
+so the last 1.6-1.9 s of the outage fall in the "after" slice. All three arms share that timing, so compare them with each other.
+The "busiest second after the app is back" starts at the first whole second after the app was started again.
+
+What the new no-jitter arm shows:
+- Without jitter the busiest second after the app returns is about 1.3 times the busiest second with jitter (185 against 139
+  attempts), 4.6 times the normal 40. The ranges touch (157-225 against 125-164), so with 3 runs this is a modest, not a sharp, difference.
+- Without jitter more people gave up over the run: 177 against 131; the ranges overlap (133-217 against 36-178), so this is not
+  established either. The jitter arm's gave-up count varied a lot from run to run (36 to 178).
+- The retry wave is not one big spike in either arm, because arrivals are steady at 40 per second: retries start from every second of
+  the outage, so exact waits line up only among requests that failed in the same instant. A visible synchronized spike would need
+  a burst of failures at once (for example many clients disconnected together); this test does not make one.
+- Retrying at once is a different case: its busiest second is during the outage (883, 22 times normal), and after the app is back
+  the retries have already been used up (98).
+
+The earlier table (immediate and backoff measured one after the other in a first run, before this one; the runner then did not record when the app
+stopped and returned) read: retry at once 2,137 during, 890 after, 445 gave up, 303 of 400 created after; backoff + jitter
+1,941 during, 737 after, 205 gave up, 401 of 401 created after. The pattern is the same as in the interleaved run above: both make about
+five times the normal attempts while the app is down and retrying at once gives up far more.
 
 Normal is 400 attempts per 10 s. Retrying at once spends all five retries within milliseconds (p99 of a create 5–6 ms,
 so failures are instant), so everyone who arrives while the app is down gives up, including the first two seconds
