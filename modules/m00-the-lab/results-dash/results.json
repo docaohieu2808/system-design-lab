@@ -1,0 +1,87 @@
+{
+ "runs": 3,
+ "off": {
+  "rps": {
+   "mean": 400,
+   "min": 400,
+   "max": 400
+  },
+  "p99_ms": {
+   "mean": 8.52,
+   "min": 7.51,
+   "max": 10.25
+  },
+  "failed_pct": {
+   "mean": 0.007,
+   "min": 0.004,
+   "max": 0.008
+  },
+  "app_cores": {
+   "mean": 0.182,
+   "min": 0.178,
+   "max": 0.185
+  },
+  "k6_cores": {
+   "mean": 0.273,
+   "min": 0.261,
+   "max": 0.28
+  },
+  "dashboard_cores": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "host_busy_pct": {
+   "mean": 27.081,
+   "min": 26.585,
+   "max": 27.407
+  },
+  "background_busy_pct": {
+   "mean": 8.333,
+   "min": 8.0,
+   "max": 9.0
+  }
+ },
+ "on": {
+  "rps": {
+   "mean": 400,
+   "min": 400,
+   "max": 400
+  },
+  "p99_ms": {
+   "mean": 12.77,
+   "min": 10.37,
+   "max": 14.11
+  },
+  "failed_pct": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "app_cores": {
+   "mean": 0.186,
+   "min": 0.185,
+   "max": 0.188
+  },
+  "k6_cores": {
+   "mean": 0.281,
+   "min": 0.276,
+   "max": 0.285
+  },
+  "dashboard_cores": {
+   "mean": 0.117,
+   "min": 0.115,
+   "max": 0.12
+  },
+  "host_busy_pct": {
+   "mean": 31.756,
+   "min": 31.046,
+   "max": 32.467
+  },
+  "background_busy_pct": {
+   "mean": 8.0,
+   "min": 7.0,
+   "max": 9.0
+  }
+ }
+}

@@ -1,0 +1,7 @@
+# Scrapes container CPU and memory from cStats every 2 s; k6 pushes its own metrics by remote write.
+global:
+  scrape_interval: 2s
+scrape_configs:
+  - job_name: cstats
+    static_configs:
+      - targets: ["cstats:8080"]

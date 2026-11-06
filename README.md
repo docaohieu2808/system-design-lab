@@ -16,6 +16,7 @@ make m00        # Module 0: closed vs open load around a 2-second freeze (3 runs
 make help       # every module's experiments, with how long each takes
 make m01        # Module 1: find the ceiling of one server (3 runs, ~13 minutes)
 make down       # remove everything
+make dash       # optional: Grafana dashboard at http://localhost:3000 while a test runs (see Module 0); measure with it OFF
 ```
 
 ## How to follow along

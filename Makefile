@@ -3,8 +3,11 @@ RUNS ?= 3
 
 up:            ## start app + Postgres
 	docker compose up -d --build --wait
+dash:          ## optional: Grafana dashboard at http://localhost:3000 (measurements run with it off)
+	COMPOSE_FILE=compose.yaml:compose.dash.yaml UID=$$(id -u) GID=$$(id -g) docker compose up -d --build --wait
+	@echo "Grafana: http://localhost:3000 . Run k6 with the overlay on: export COMPOSE_FILE=compose.yaml:compose.dash.yaml (then your module's overlay) before docker compose run k6 ..."
 down:          ## stop and remove everything
-	docker compose down -v
+	COMPOSE_FILE=compose.yaml:compose.dash.yaml docker compose down -v --remove-orphans
 m00:           ## Module 0: closed vs open load model around a 2-second freeze ($(RUNS) runs, ~5 min each)
 	tools/run-omission.sh $(RUNS)
 m01:           ## Module 1: find the ceiling of one server ($(RUNS) runs, ~4 min each)
@@ -72,4 +75,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help

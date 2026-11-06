@@ -56,3 +56,25 @@ the 10-user arm's calm and freeze rows are in the table above (measured 29/10, n
 ## Calibration (`make calibrate`)
 On the reference machine, 29/10/2026: ceiling 4,006 req/s in the short calibration run, ratio 1.03 against the
 Module 1 mean of 3,900 (`results/calibrate/calibration.json`).
+
+## What the optional dashboard costs (`tools/run-dash-cost.sh`, `results-dash/`)
+**Question.** `make dash` adds Grafana, Prometheus and cAdvisor and sends k6's metrics to Prometheus. What does it cost, and does it move a result?
+**Method.** The same 60 s open-model test at 400 req/s (`open-vs-closed.js`, the short-link page), 3 rounds, the dashboard off then on in every round (alternating), fresh lab and
+quiet-machine gate before every arm (background 7-9% busy, steal 0). Prometheus retention 1 h, scrape and k6 push every 2 s. Mean (min-max):
+
+| | dashboard off | dashboard on |
+|---|---|---|
+| requests per second | 400 (400-400) | 400 (400-400) |
+| p99 | 8.5 ms (7.5-10.3) | 12.8 ms (10.4-14.1) |
+| failed | 0.007% (0.004-0.008) | 0% |
+| CPU of Prometheus + Grafana + cAdvisor | none | 0.117 core (0.115-0.120) |
+| CPU of the app | 0.182 core (0.178-0.185) | 0.186 core (0.185-0.188) |
+| CPU of k6 | 0.273 core (0.261-0.280) | 0.281 core (0.276-0.285) |
+| whole host busy | 27.1% (26.6-27.4) | 31.8% (31.0-32.5) |
+
+**What it shows.** The dashboard takes about 0.12 of a core and 4.7 points of the 4-core host. It did not change throughput. Its p99 is 4 ms higher
+and the two ranges do not overlap, so measure with it off. The extra k6 CPU (0.008 core) is the metrics push.
+**What it does not show.** A heavier test: at a rate that fills the machine the same 0.12 core would be taken from the app. The off-arm p99 spread (7.5-10.3 ms) is
+over 10% of its mean, but the on-arm range sits clear above it. The dashboard's own memory (Grafana about 0.3-0.4 GB) was seen in the screenshot, not measured in this table.
+The CPU samples in `results-dash/` came from a run where the metrics container was still called by its tool name; the name in the `.cpu.tsv` files was renamed to `sdlab-cstats-1` afterwards (a text replacement, the numbers are unchanged), and the service is `cstats` in `compose.dash.yaml`.
+`dash-screenshot.png` was taken during a 400 req/s run: every panel has data (dropped iterations is flat at 0 because none were dropped).

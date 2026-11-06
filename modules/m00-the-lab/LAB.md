@@ -52,10 +52,24 @@ Repeat the closed run with `-e VUS=200` (the default is 10): `docker compose run
 with the 2-second freeze as before. **Predict:** does p99 now show the freeze? How many requests does the run send? Check p99.9 and max too.
 `make m00-closed200` runs the 10-user, 200-user and open arms interleaved (about 15 minutes).
 
+## 6. Watch a test live (optional dashboard, lesson 0.2)
+```bash
+make dash                                   # Grafana + Prometheus + cAdvisor next to the lab; pulls about 1.5 GB of images the first time
+export COMPOSE_FILE=compose.yaml:compose.dash.yaml
+docker compose run --rm -e MODEL=open -e RATE=400 k6 run modules/m00-the-lab/open-vs-closed.js &
+```
+Open **http://localhost:3000** (no login; it listens on your own machine only). The page shows six panels while k6 runs: requests per second, p99 and p50 latency,
+failed %, dropped iterations (requests k6 could not send), CPU and memory of every lab container. See `dash-screenshot.png` for how it looks.
+- **Measurements run with it OFF.** It adds about 0.12 of a core (Prometheus, Grafana, cAdvisor) and k6 sends its metrics to it, so the host is busier and p99 is higher
+  (course machine: host 27% busy without it, 32% with it; p99 8.5 ms against 12.8 ms at 400 req/s). Use it to watch, never for numbers you write down.
+- Prometheus keeps one hour of data and nothing is written outside the container; `make down` removes it all.
+- Free about 1.5 GB of disk first. After you are done, `docker rmi prom/prometheus:v3.16.0 grafana/grafana:13.2.5` gets the space back.
+
 ## If something goes wrong
 - `port is already allocated`: something else uses port 8080. Stop it, or `make down` an old lab first.
 - `make verify` says k6 peak CPU is high: your machine is busy or small; close programs, or accept noisier numbers.
-- Clean up any time: `make down`.
+- `make dash` says port 3000 is in use: stop whatever uses it (the dashboard only listens on 127.0.0.1:3000).
+- Clean up any time: `make down` (it removes the dashboard too).
 
 ## Try next
 Change the freeze length in `tools/run-omission.sh` (`freeze-app.sh 32 2` → `32 5`) and predict the new open-test p99.

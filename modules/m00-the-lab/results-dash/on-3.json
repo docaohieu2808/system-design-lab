@@ -1,0 +1,12 @@
+{
+ "model": "open",
+ "requests": 24001,
+ "rps": 400,
+ "dropped": 0,
+ "failed_pct": 0,
+ "p50_ms": 0.59,
+ "p99_ms": 10.37,
+ "p999_ms": 34.1,
+ "avg_ms": 0.96,
+ "max_ms": 75.98
+}
