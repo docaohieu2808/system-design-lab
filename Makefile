@@ -28,6 +28,8 @@ m04:           ## Module 4: caching, part a (hit ratio) + part b (stampede, expi
 	tools/run-m04b.sh $(RUNS)
 m04-size:     ## Module 4a: cache-size sweep, Redis 1/2/4/8 MB, Zipf and even keys, interleaved ($(RUNS) runs, about 35 minutes)
 	tools/run-m04-size.sh $(RUNS)
+m04-extra:    ## Module 4b: stampede with a 1 s build, 100% jitter, jitter + stale-while-revalidate, interleaved with the old arms ($(RUNS) runs, about 45 minutes)
+	tools/run-m04b-extra.sh $(RUNS)
 m05:           ## Module 5: database, 5 experiments ($(RUNS) runs, about 40 minutes)
 	tools/run-m05.sh $(RUNS)
 m05-deepen:   ## Module 5 variations: no-index rates, N+1 at 400/s, pool sizes, FOR UPDATE modes, pgbench prepared ($(RUNS) runs, about 90 minutes)
@@ -70,4 +72,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m11 m11-breaker m12 m13 check-capstone m01-starved m01-variations m00-closed200 verify help

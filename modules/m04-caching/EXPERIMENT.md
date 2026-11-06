@@ -98,6 +98,37 @@ cap is below Redis's own footprint), 54% at 2 MB (about 2,050 pages fit, 9,000 e
 the pages the traffic touches (Redis used 3.54 MB in all, about 2 MB of it pages) already fit, nothing is evicted, and 8 MB adds nothing. With even keys more room
 helps a little (8.4% to 11.1%) because 24,000 requests spread over 100,000 pages mostly never repeat a page.
 
+## Added 06/11/2026: more arms of part b (`make m04-extra`, `tools/run-m04b-extra.sh`, `results-b-extra/results.json`)
+3 runs; all 7 arms inside every run, interleaved with the old arms (the order rotates each run), so the new arms share the
+session with the references. Same settings and the corrected aggregator of part b (last-read counter for the stampede,
+straight-line fill for the worst second). Quiet gate 25/2 before every arm (background 7–13% busy, steal 0). k6 used
+0.23–0.24 cores (limit 2) and the app 0.17–0.24 of its half core.
+### Stampede with a slower page build (every request asks for the home page, 400/s, Redis flushed at 32 s, no single-flight)
+| page build | database queries in the 3 s after the flush | queries in the 10 s before | p99 | max |
+|---|---|---|---|---|
+| 500 ms (reference) | 201 (201–201) | 0 | 503 ms (502–503) | 641 ms |
+| 1,000 ms | 376.7 (376–377) | 0 | 1,004 ms (1,003–1,005) | 1,081 ms |
+
+The stampede is the requests that arrive during the build: 400 per second times the build time, so 200 and about 400.
+The 1,000 ms arm shows 377 rather than 400 because k6 started this arm with 300 pre-allocated users and needed about 400
+waiting at once: it dropped 81 arrivals (23,920 of 24,000 sent), so some requests were never made (my reading of the
+number; the dropped count is in `flush-1000-*.json`). p99 sits on the build time in both arms (the stampede is more than
+1% of the requests). Cold start adds the first-fill queries before the flush window in the part b table; here the counter
+was zero in the 10 s before the flush in every arm because the cache was warm by then.
+### Expiry: how wide the jitter, and jitter with stale-while-revalidate (2,000 pages warmed together, TTL 20 s, build 100 ms)
+| | worst 1 s of database queries | total queries in 56 s | p99 |
+|---|---|---|---|
+| no fix | 252 (235–262) | 3,842 | 106 ms (106–107) |
+| 50% jitter (lifetimes 15–25 s) | 167 (158–175) | 3,885 | 106 ms (105–107) |
+| 100% jitter (lifetimes 10–30 s) | 115 (113–118) | 3,877 | 107 ms (105–108) |
+| stale-while-revalidate | 240 (233–249) | 3,773 | 14.5 ms (11–18) |
+| 50% jitter and stale-while-revalidate | 159 (155–165) | 3,806 | 14.6 ms (9.8–18.5) |
+
+Jitter lowers the worst second in proportion to how wide it is (252, 167, 115) and does nothing for p99; stale-while-revalidate
+removes the wait (p99 106 to 14.5 ms) and does nothing for the worst second (240); together they do both (159 and 14.6 ms).
+The totals are within 3% of each other: the same pages are rebuilt, only when changes. The worst-second spread for no fix
+(235–262, 11% of the mean) is the maximum of 110 one-second windows of random traffic, as in part b.
+
 ## What this does not show
 - How stale data affects a real product.
 - A cache spread over several machines, or eviction policy choices.

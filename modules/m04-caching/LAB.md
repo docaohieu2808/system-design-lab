@@ -68,3 +68,5 @@ sees fewer queries at once; stale-while-revalidate does as many but nobody waits
 Double the cache (`CACHE_MB=8`) and predict the new hit ratio for Zipf traffic. Why doesn't it double too?
 Then sweep it: `CACHE_MB=1`, `2`, `8` with `KEYS=zipf` (and `KEYS=uniform` at 8) and compare hit ratios; at 1 MB look at `redis-cli dbsize` and
 `info memory` before you trust the number. `make m04-size` runs the whole sweep, interleaved (about 35 minutes).
+Part b variations: `PAGE_DELAY_MS=1000` in the stampede experiment (how many queries after the wipe, and p99?); `CACHE_JITTER=1`; and
+`CACHE_JITTER=0.5 CACHE_SWR=1` in the expiry experiment. `make m04-extra` runs them interleaved with the old arms (about 45 minutes).

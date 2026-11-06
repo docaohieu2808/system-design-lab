@@ -1,0 +1,11 @@
+{
+ "keys": "hot",
+ "rate": 400,
+ "requests": 23920,
+ "rps": 398.7,
+ "failed_pct": 0,
+ "dropped": 81,
+ "p50_ms": 0.45,
+ "p99_ms": 1003.14,
+ "max_ms": 1067.99
+}
