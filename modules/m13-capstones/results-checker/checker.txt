@@ -1,0 +1,5 @@
+# make check-capstone URL=http://localhost:8080 against the lab's own app (reference build), 2026-11-06 23:24 +07, one run on the course machine
+ok   create answers 201 with a code (q0V)
+ok   redirect answers 302 to the right URL
+ok   unknown code answers 404
+PASS p99 8.75 ms, correct 100%, dropped 0
