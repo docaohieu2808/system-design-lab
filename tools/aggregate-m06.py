@@ -25,7 +25,9 @@ for mode in ("async", "sync"):
         before = [a["t"] for a in att if a["ok"] and a["t"] < killed + 0.5]
         after = [a["t"] for a in att if a["ok"] and a["t"] > (before[-1] if before else 0) + 0.5]
         rows.append({"rto_s": (after[0] - before[-1]) if before and after else -1, "acked": len(acked),
-                     "lost": len(lost), "failed_attempts": sum(1 for a in att if not a["ok"])})
+                     "lost": len(lost), "failed_attempts": sum(1 for a in att if not a["ok"]),
+                     # rows that exist after promotion although the client never got an ok (ambiguous commits)
+                     "present_not_acked": len(present - {a["code"] for a in acked})})
     res["failover"][mode] = {f: agg([r[f] for r in rows]) for f in rows[0]}
 (out / "results.json").write_text(json.dumps(res, indent=1))
 print(json.dumps(res, indent=1))

@@ -89,6 +89,11 @@
     "mean": 199.67,
     "min": 189,
     "max": 219
+   },
+   "present_not_acked": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
    }
   },
   "sync": {
@@ -111,6 +116,11 @@
     "mean": 200.67,
     "min": 188,
     "max": 225
+   },
+   "present_not_acked": {
+    "mean": 0.33,
+    "min": 0,
+    "max": 1
    }
   }
  }

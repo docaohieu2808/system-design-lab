@@ -22,8 +22,8 @@ Postgres 18.6 primary + streaming replica (half a core each) on the same 4-vCPU 
 | fresh open on replica, no added lag | 75% not found |
 | fresh open on replica, 500 ms lag | 100% not found |
 | same lag, read-your-writes cookie | 0% not found |
-| failover async | RTO 5.6 s, 3,437 confirmed, 0 lost |
-| failover sync | RTO 5.6 s, 3,429 confirmed, 0 lost |
+| failover async | RTO 5.6 s, 3,437 confirmed, 0 lost, 0 present without an ok |
+| failover sync | RTO 5.6 s, 3,429 confirmed, 0 lost; 1 row present without an ok in one of 3 runs (an ambiguous commit: committed, but the client saw an error) |
 
 ## What it shows
 - A replica a few milliseconds behind already misses most reads that follow a write immediately.
