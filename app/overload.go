@@ -2,8 +2,9 @@ package main
 
 // Module 11: staying useful when asked for more than you can do.
 //
-//	MAX_INFLIGHT  > 0: at most this many preview pages are built at once; one more is refused at once with 429
-//	              instead of waiting in line (load shedding). 0 = everyone waits.
+//	MAX_INFLIGHT  > 0: at most this many preview pages are built at once; one more is refused at once with 503 and
+//	              Retry-After: 1 instead of waiting in line (load shedding). 503, not 429: the cap protects the whole
+//	              service (temporary unavailability); 429 is the per-client rate limiter of module 9. 0 = everyone waits.
 //	GET /api/enrich  builds the page and also asks a dependency (DEP_URL) for extra data, with a DEP_TIMEOUT_MS timeout.
 //	              BREAKER=1: after 5 failures in a row, stop calling the dependency for 2 s and answer without it;
 //	              when the 2 s end, every call goes through again.
@@ -36,7 +37,9 @@ func shed(next http.HandlerFunc) http.HandlerFunc {
 			defer func() { <-inflight }()
 			next(w, r)
 		default:
-			http.Error(w, "busy, try again shortly", http.StatusTooManyRequests)
+			// a slot frees within milliseconds; 1 s is the smallest wait the header can say
+			w.Header().Set("Retry-After", "1")
+			http.Error(w, "busy, try again shortly", http.StatusServiceUnavailable)
 		}
 	}
 }

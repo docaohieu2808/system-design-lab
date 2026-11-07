@@ -1,5 +1,5 @@
 // Module 11: step the offered load on the preview page and count goodput: answers that are correct (200) AND come
-// back within GOOD_MS. Fast refusals (429) are counted separately; they are cheap and honest.
+// back within GOOD_MS. Fast refusals (the cap's 503 with a Retry-After header) are counted separately; they are cheap and honest.
 import http from 'k6/http';
 import { Counter } from 'k6/metrics';
 
@@ -19,7 +19,7 @@ export default function () {
   const r = http.get(`${BASE}/page/${b62(1 + Math.floor(Math.random() * 100000))}`, { timeout: '5s' });
   if (r.status === 200 && r.timings.duration <= GOOD_MS) good.add(1);
   else if (r.status === 200) slow.add(1);
-  else if (r.status === 429) refused.add(1);
+  else if (r.status === 503 && r.headers['Retry-After']) refused.add(1); // the cap; a 503 without the header is a failure
   else failed.add(1);
 }
 export function handleSummary(data) {

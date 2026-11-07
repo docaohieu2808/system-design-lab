@@ -6,7 +6,7 @@
 #   d500off / d500on        dependency takes 500 ms (under the timeout); no breaker / simple breaker
 # Goodput arms (goodput.js, steps 600 / 900 / 1,200 offered pages/s, 15 s each):
 #   g500    no cap, a good answer is a 200 within 500 ms (reference)       g2000  no cap, within 2,000 ms
-#   cap2 / cap4 / cap8      at most 2 / 4 / 8 pages built at once, the rest refused with 429
+#   cap2 / cap4 / cap8      at most 2 / 4 / 8 pages built at once, the rest refused with 503 + Retry-After
 # Records p50 / p90 / p99, share of pages slower than 500 ms, dependency calls (app counter) and a CPU sample of every
 # sdlab-* container (k6 included). Results: modules/m11-overload/results-breaker/
 set -euo pipefail

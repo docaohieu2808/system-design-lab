@@ -10,15 +10,15 @@
   },
   {
    "offered": 900,
-   "goodput": 439.2,
-   "slow_per_s": 304,
+   "goodput": 401.4,
+   "slow_per_s": 331.4,
    "refused_per_s": 0,
    "failed_per_s": 0
   },
   {
    "offered": 1200,
-   "goodput": 263.4,
-   "slow_per_s": 416.26666666666665,
+   "goodput": 256.26666666666665,
+   "slow_per_s": 527.6666666666666,
    "refused_per_s": 0,
    "failed_per_s": 0
   }

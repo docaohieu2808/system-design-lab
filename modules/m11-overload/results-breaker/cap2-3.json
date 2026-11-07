@@ -3,23 +3,23 @@
  "steps": [
   {
    "offered": 600,
-   "goodput": 465,
+   "goodput": 462.6,
    "slow_per_s": 0,
-   "refused_per_s": 135,
+   "refused_per_s": 137.46666666666667,
    "failed_per_s": 0
   },
   {
    "offered": 900,
-   "goodput": 462.46666666666664,
+   "goodput": 460.6,
    "slow_per_s": 0,
-   "refused_per_s": 437.53333333333336,
+   "refused_per_s": 439.46666666666664,
    "failed_per_s": 0
   },
   {
    "offered": 1200,
-   "goodput": 478.46666666666664,
+   "goodput": 480.46666666666664,
    "slow_per_s": 0,
-   "refused_per_s": 721.6,
+   "refused_per_s": 719.6,
    "failed_per_s": 0
   }
  ]

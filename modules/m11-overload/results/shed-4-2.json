@@ -10,30 +10,30 @@
   },
   {
    "offered": 600,
-   "goodput": 511.6666666666667,
+   "goodput": 462.8666666666667,
    "slow_per_s": 0,
-   "refused_per_s": 88.4,
+   "refused_per_s": 137.13333333333333,
    "failed_per_s": 0
   },
   {
    "offered": 900,
-   "goodput": 525,
+   "goodput": 482.93333333333334,
    "slow_per_s": 0,
-   "refused_per_s": 375.06666666666666,
+   "refused_per_s": 417.1333333333333,
    "failed_per_s": 0
   },
   {
    "offered": 1200,
-   "goodput": 533.6,
+   "goodput": 491.93333333333334,
    "slow_per_s": 0,
-   "refused_per_s": 666.5333333333333,
+   "refused_per_s": 708.2,
    "failed_per_s": 0
   },
   {
    "offered": 1500,
-   "goodput": 524.7333333333333,
-   "slow_per_s": 11.2,
-   "refused_per_s": 906.2,
+   "goodput": 482.8666666666667,
+   "slow_per_s": 0,
+   "refused_per_s": 1017.1333333333333,
    "failed_per_s": 0
   }
  ]

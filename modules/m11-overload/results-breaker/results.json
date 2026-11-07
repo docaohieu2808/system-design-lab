@@ -29,14 +29,14 @@
     {
      "offered": 900,
      "goodput": {
-      "mean": 50.87,
-      "min": 47.53,
-      "max": 53.8
+      "mean": 55.69,
+      "min": 47.07,
+      "max": 60.67
      },
      "slow_per_s": {
-      "mean": 680.53,
-      "min": 674.2,
-      "max": 686.67
+      "mean": 682.49,
+      "min": 675.67,
+      "max": 694.53
      },
      "refused_per_s": {
       "mean": 0,
@@ -52,14 +52,14 @@
     {
      "offered": 1200,
      "goodput": {
-      "mean": 31.73,
-      "min": 29,
-      "max": 34.8
+      "mean": 31.8,
+      "min": 29.67,
+      "max": 35.53
      },
      "slow_per_s": {
-      "mean": 712.02,
-      "min": 673.93,
-      "max": 750.27
+      "mean": 761.47,
+      "min": 749.2,
+      "max": 771.27
      },
      "refused_per_s": {
       "mean": 0,
@@ -67,25 +67,25 @@
       "max": 0
      },
      "failed_per_s": {
-      "mean": 0.29,
+      "mean": 0,
       "min": 0,
-      "max": 0.87
+      "max": 0
      }
     }
    ],
    "k6_cores": {
-    "mean": 0.39,
+    "mean": 0.37,
     "min": 0.36,
-    "max": 0.42
+    "max": 0.38
    },
    "app_cores": {
-    "mean": 0.43,
-    "min": 0.43,
+    "mean": 0.44,
+    "min": 0.44,
     "max": 0.44
    },
    "background_busy_pct": {
-    "mean": 16.33,
-    "min": 12.0,
+    "mean": 14.0,
+    "min": 10.0,
     "max": 19.0
    }
   },
@@ -117,14 +117,14 @@
     {
      "offered": 900,
      "goodput": {
-      "mean": 422.36,
-      "min": 406.6,
-      "max": 439.2
+      "mean": 426.89,
+      "min": 401.4,
+      "max": 449
      },
      "slow_per_s": {
-      "mean": 315.53,
-      "min": 304,
-      "max": 324.93
+      "mean": 313.93,
+      "min": 298.6,
+      "max": 331.4
      },
      "refused_per_s": {
       "mean": 0,
@@ -140,14 +140,14 @@
     {
      "offered": 1200,
      "goodput": {
-      "mean": 262.16,
-      "min": 251.93,
-      "max": 271.13
+      "mean": 251.18,
+      "min": 233.47,
+      "max": 263.8
      },
      "slow_per_s": {
-      "mean": 475.87,
-      "min": 416.27,
-      "max": 533.8
+      "mean": 541.13,
+      "min": 527.53,
+      "max": 568.2
      },
      "refused_per_s": {
       "mean": 0,
@@ -162,19 +162,19 @@
     }
    ],
    "k6_cores": {
-    "mean": 0.39,
-    "min": 0.37,
-    "max": 0.42
+    "mean": 0.37,
+    "min": 0.36,
+    "max": 0.38
    },
    "app_cores": {
-    "mean": 0.43,
-    "min": 0.43,
+    "mean": 0.44,
+    "min": 0.44,
     "max": 0.44
    },
    "background_busy_pct": {
-    "mean": 8.33,
-    "min": 6.0,
-    "max": 12.0
+    "mean": 11.67,
+    "min": 8.0,
+    "max": 15.0
    }
   },
   "cap2": {
@@ -182,9 +182,9 @@
     {
      "offered": 600,
      "goodput": {
-      "mean": 463.2,
-      "min": 459.33,
-      "max": 465.27
+      "mean": 463.69,
+      "min": 462.47,
+      "max": 466
      },
      "slow_per_s": {
       "mean": 0,
@@ -192,9 +192,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 136.84,
-      "min": 134.73,
-      "max": 140.8
+      "mean": 136.38,
+      "min": 134.07,
+      "max": 137.6
      },
      "failed_per_s": {
       "mean": 0,
@@ -205,9 +205,9 @@
     {
      "offered": 900,
      "goodput": {
-      "mean": 468.78,
-      "min": 462.47,
-      "max": 480.73
+      "mean": 458.44,
+      "min": 453.33,
+      "max": 461.4
      },
      "slow_per_s": {
       "mean": 0,
@@ -215,9 +215,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 431.24,
-      "min": 419.27,
-      "max": 437.53
+      "mean": 441.6,
+      "min": 438.6,
+      "max": 446.73
      },
      "failed_per_s": {
       "mean": 0,
@@ -228,9 +228,9 @@
     {
      "offered": 1200,
      "goodput": {
-      "mean": 472.36,
-      "min": 459.6,
-      "max": 479
+      "mean": 472.84,
+      "min": 465.87,
+      "max": 480.47
      },
      "slow_per_s": {
       "mean": 0,
@@ -238,9 +238,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 727.73,
-      "min": 721.13,
-      "max": 740.47
+      "mean": 727.22,
+      "min": 719.6,
+      "max": 734.2
      },
      "failed_per_s": {
       "mean": 0,
@@ -250,9 +250,9 @@
     }
    ],
    "k6_cores": {
-    "mean": 0.29,
-    "min": 0.29,
-    "max": 0.3
+    "mean": 0.32,
+    "min": 0.32,
+    "max": 0.33
    },
    "app_cores": {
     "mean": 0.4,
@@ -260,9 +260,9 @@
     "max": 0.41
    },
    "background_busy_pct": {
-    "mean": 13.67,
-    "min": 12.0,
-    "max": 15.0
+    "mean": 12.67,
+    "min": 9.0,
+    "max": 19.0
    }
   },
   "cap4": {
@@ -270,9 +270,9 @@
     {
      "offered": 600,
      "goodput": {
-      "mean": 474.49,
-      "min": 463.87,
-      "max": 480.93
+      "mean": 467.62,
+      "min": 459.33,
+      "max": 473.27
      },
      "slow_per_s": {
       "mean": 0,
@@ -280,9 +280,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 125.56,
-      "min": 119.13,
-      "max": 136.13
+      "mean": 132.44,
+      "min": 126.8,
+      "max": 140.73
      },
      "failed_per_s": {
       "mean": 0,
@@ -293,9 +293,9 @@
     {
      "offered": 900,
      "goodput": {
-      "mean": 483.62,
-      "min": 475.67,
-      "max": 490.33
+      "mean": 485.89,
+      "min": 477.87,
+      "max": 496.07
      },
      "slow_per_s": {
       "mean": 0,
@@ -303,9 +303,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 416.42,
-      "min": 409.73,
-      "max": 424.33
+      "mean": 414.16,
+      "min": 403.93,
+      "max": 422.2
      },
      "failed_per_s": {
       "mean": 0,
@@ -316,9 +316,9 @@
     {
      "offered": 1200,
      "goodput": {
-      "mean": 498.16,
-      "min": 483.33,
-      "max": 505.67
+      "mean": 498.02,
+      "min": 493.33,
+      "max": 504.2
      },
      "slow_per_s": {
       "mean": 0,
@@ -326,97 +326,9 @@
       "max": 0
      },
      "refused_per_s": {
-      "mean": 701.89,
-      "min": 694.4,
-      "max": 716.67
-     },
-     "failed_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     }
-    }
-   ],
-   "k6_cores": {
-    "mean": 0.3,
-    "min": 0.29,
-    "max": 0.3
-   },
-   "app_cores": {
-    "mean": 0.41,
-    "min": 0.41,
-    "max": 0.41
-   },
-   "background_busy_pct": {
-    "mean": 10.33,
-    "min": 8.0,
-    "max": 13.0
-   }
-  },
-  "cap8": {
-   "steps": [
-    {
-     "offered": 600,
-     "goodput": {
-      "mean": 478.53,
-      "min": 476.67,
-      "max": 481.53
-     },
-     "slow_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     },
-     "refused_per_s": {
-      "mean": 121.47,
-      "min": 118.47,
-      "max": 123.33
-     },
-     "failed_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     }
-    },
-    {
-     "offered": 900,
-     "goodput": {
-      "mean": 504.71,
-      "min": 495.4,
-      "max": 511.8
-     },
-     "slow_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     },
-     "refused_per_s": {
-      "mean": 395.31,
-      "min": 388.2,
-      "max": 404.6
-     },
-     "failed_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     }
-    },
-    {
-     "offered": 1200,
-     "goodput": {
-      "mean": 512.02,
-      "min": 499.6,
-      "max": 534.8
-     },
-     "slow_per_s": {
-      "mean": 0,
-      "min": 0,
-      "max": 0
-     },
-     "refused_per_s": {
-      "mean": 688.02,
-      "min": 665.2,
-      "max": 700.47
+      "mean": 702.04,
+      "min": 695.87,
+      "max": 706.8
      },
      "failed_per_s": {
       "mean": 0,
@@ -427,7 +339,7 @@
    ],
    "k6_cores": {
     "mean": 0.31,
-    "min": 0.3,
+    "min": 0.31,
     "max": 0.32
    },
    "app_cores": {
@@ -436,9 +348,97 @@
     "max": 0.41
    },
    "background_busy_pct": {
-    "mean": 9.33,
+    "mean": 12.0,
     "min": 8.0,
-    "max": 11.0
+    "max": 19.0
+   }
+  },
+  "cap8": {
+   "steps": [
+    {
+     "offered": 600,
+     "goodput": {
+      "mean": 484.69,
+      "min": 480.13,
+      "max": 490.8
+     },
+     "slow_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "refused_per_s": {
+      "mean": 115.33,
+      "min": 109.2,
+      "max": 119.87
+     },
+     "failed_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     }
+    },
+    {
+     "offered": 900,
+     "goodput": {
+      "mean": 493.8,
+      "min": 488.8,
+      "max": 501.13
+     },
+     "slow_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "refused_per_s": {
+      "mean": 406.22,
+      "min": 398.87,
+      "max": 411.27
+     },
+     "failed_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     }
+    },
+    {
+     "offered": 1200,
+     "goodput": {
+      "mean": 502.96,
+      "min": 494.93,
+      "max": 508.8
+     },
+     "slow_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     },
+     "refused_per_s": {
+      "mean": 697.04,
+      "min": 691.2,
+      "max": 705.07
+     },
+     "failed_per_s": {
+      "mean": 0,
+      "min": 0,
+      "max": 0
+     }
+    }
+   ],
+   "k6_cores": {
+    "mean": 0.32,
+    "min": 0.31,
+    "max": 0.33
+   },
+   "app_cores": {
+    "mean": 0.41,
+    "min": 0.41,
+    "max": 0.41
+   },
+   "background_busy_pct": {
+    "mean": 15.0,
+    "min": 12.0,
+    "max": 21.0
    }
   },
   "off": {
