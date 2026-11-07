@@ -1,0 +1,8 @@
+# STEPS=500,1000,1500 make calibrate   (07/11/2026, course machine, one run; shows the "at least" branch with real data)
+    500 req/s asked:   500.1 succeeded, p99 16.13 ms
+   1000 req/s asked:  1000.1 succeeded, p99 31.97 ms
+   1500 req/s asked:  1500.1 succeeded, p99 58.42 ms
+
+Your ceiling: at least 1,500 req/s (4 CPUs visible): the top step (1,500 asked) was still fully answered.
+Course machine: 3,900 req/s. Ratio: at least 0.38x.
+Multiply the request rates in the videos by this ratio; compare shapes, not exact numbers.

@@ -1,0 +1,42 @@
+{
+ "hold_s": 10,
+ "vus_max": 1500,
+ "steps": [
+  {
+   "asked_rps": 500,
+   "sent_rps": 500.1,
+   "dropped": 0,
+   "completed_rps": 500.1,
+   "succeeded_rps": 500.1,
+   "p50_ms": 0.55,
+   "p95_ms": 1.72,
+   "p99_ms": 16.13,
+   "avg_ms": 1.01,
+   "max_ms": 50.62
+  },
+  {
+   "asked_rps": 1000,
+   "sent_rps": 1000.1,
+   "dropped": 0,
+   "completed_rps": 1000.1,
+   "succeeded_rps": 1000.1,
+   "p50_ms": 0.52,
+   "p95_ms": 4.23,
+   "p99_ms": 31.97,
+   "avg_ms": 1.68,
+   "max_ms": 63.13
+  },
+  {
+   "asked_rps": 1500,
+   "sent_rps": 1500.1,
+   "dropped": 0,
+   "completed_rps": 1500.1,
+   "succeeded_rps": 1500.1,
+   "p50_ms": 0.6,
+   "p95_ms": 30.86,
+   "p99_ms": 58.42,
+   "avg_ms": 4.46,
+   "max_ms": 89.29
+  }
+ ]
+}

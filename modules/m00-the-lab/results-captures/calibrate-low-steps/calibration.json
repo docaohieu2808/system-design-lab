@@ -1,0 +1,6 @@
+{
+ "ceiling_rps": 1500,
+ "reference_rps": 3900,
+ "ratio": 0.38,
+ "at_least": true
+}

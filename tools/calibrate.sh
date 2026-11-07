@@ -8,7 +8,7 @@ tmp=modules/m00-the-lab/results/calibrate; mkdir -p "$tmp"
 docker compose down -v >/dev/null 2>&1 || true
 docker compose up -d --build --wait >/dev/null
 sleep 3
-docker compose run --rm -e STEPS=1000,2000,3000,4000,5000,6000 -e HOLD=10 -e GAP=3 -e RESULT="$tmp/run.json" k6 \
+docker compose run --rm -e STEPS="${STEPS:-1000,2000,3000,4000,5000,6000}" -e HOLD=10 -e GAP=3 -e RESULT="$tmp/run.json" k6 \
   run --quiet modules/m01-one-server/find-the-ceiling.js >/dev/null
 docker compose down -v >/dev/null 2>&1
 python3 - "$tmp" "$REF" <<'PY'
