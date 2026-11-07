@@ -16,6 +16,8 @@ m01-variations: ## Module 1/2: ceiling test with k6 at half a core, and with the
 	tools/run-m01-variations.sh $(RUNS)
 m00-closed200: ## Module 0: the 2 s freeze with a closed model of 10 users, 200 users, and an open model ($(RUNS) runs, about 15 minutes)
 	tools/run-m00-closed200.sh $(RUNS)
+m01-finer:      ## Module 1: asked rates 3,000-4,000 in 250 steps, 3 runs interleaved (about 25 minutes)
+	tools/run-m01-finer.sh $(RUNS)
 m01-starved:   ## Module 1: the same test with k6 squeezed to 1 core, to see the load generator lie
 	K6_CPUS=1.0 OUT=modules/m01-one-server/results-k6-1core tools/run-experiment.sh modules/m01-one-server/find-the-ceiling.js $(RUNS)
 m03:           ## Module 3: load balancing, 4 experiments ($(RUNS) runs, about an hour)
@@ -43,6 +45,8 @@ m06-reads:     ## Module 6: read scaling, primary alone vs replica, 5 arms ($(RU
 	tools/run-m06-reads.sh $(RUNS)
 m06-extras:    ## Module 6: 50 ms lag, window shorter than the lag, promotion after 2 s ($(RUNS) runs, about 15 minutes)
 	tools/run-m06-extras.sh $(RUNS)
+m06-synccost:  ## Module 6: create latency, asynchronous vs synchronous (remote_apply) replication ($(RUNS) runs, about 10 minutes)
+	tools/run-m06-synccost.sh $(RUNS)
 m07:           ## Module 7: partitioning, 3 experiments ($(RUNS) runs, about 15 minutes)
 	tools/run-m07.sh $(RUNS)
 m07-hotfix:    ## Module 7.3 fix: even / hot / hot + cache of hot codes, interleaved ($(RUNS) runs, about 10 minutes)
@@ -79,4 +83,4 @@ verify:        ## short self-check: the lab runs, answers are correct, k6 is not
 	tools/verify.sh
 help:
 	@grep -E '^[a-z0-9]+:.*##' Makefile | sed 's/:.*##/ —/'
-.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m10-burst m11 m11-breaker m12 m12-tx m13 check-capstone m01-starved m01-variations m00-closed200 verify help
+.PHONY: dash up down calibrate m00 m01 m03 m03-cause m03-health m03-extras m04 m04-size m04-extra m05 m05-deepen m06 m06-reads m06-extras m07 m07-hotfix m07-ids m08 m09 m09-sliding m10 m10-extras m10-burst m11 m11-breaker m12 m12-tx m13 check-capstone m01-starved m01-finer m06-synccost m01-variations m00-closed200 verify help
