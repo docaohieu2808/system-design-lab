@@ -56,6 +56,7 @@ the 10-user arm's calm and freeze rows are in the table above (measured 29/10, n
 ## Calibration (`make calibrate`)
 On the reference machine, 29/10/2026: ceiling 4,006 req/s in the short calibration run, ratio 1.03 against the
 Module 1 mean of 3,900 (`results/calibrate/calibration.json`).
+Since 07/11/2026 `tools/calibrate.sh` prints "at least" (and "Ratio: at least") when the top step was still fully answered (succeeded within 1% of asked, nothing dropped), because the machine did not reach its ceiling in that test; otherwise it prints "about". Checked by feeding the script's summary block a run whose top step is fully answered and the course machine's own run (`results/calibrate/run.json`); `calibration.json` gains an `at_least` field.
 
 ## What the optional dashboard costs (`tools/run-dash-cost.sh`, `results-dash/`)
 **Question.** `make dash` adds Grafana, Prometheus and cAdvisor and sends k6's metrics to Prometheus. What does it cost, and does it move a result?

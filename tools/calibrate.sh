@@ -18,9 +18,17 @@ r = json.loads((Path(sys.argv[1]) / "run.json").read_text()); ref = int(sys.argv
 for s in r["steps"]:
     print(f"  {s['asked_rps']:>5} req/s asked: {s['succeeded_rps']:>7} succeeded, p99 {s['p99_ms']} ms")
 ceiling = max(s["succeeded_rps"] for s in r["steps"])
-print(f"\nYour ceiling: about {ceiling:,.0f} req/s ({os.cpu_count()} CPUs visible).")
-print(f"Course machine: {ref:,} req/s. Ratio: {ceiling / ref:.2f}x.")
+top = r["steps"][-1]
+# The top step is "fully answered" when (nearly) every request got its answer and k6 dropped none: the machine did not
+# reach its ceiling in this test, so the number is a floor, not a ceiling.
+at_least = top["dropped"] == 0 and top["succeeded_rps"] >= 0.99 * top["asked_rps"]
+if at_least:
+    print(f"\nYour ceiling: at least {ceiling:,.0f} req/s ({os.cpu_count()} CPUs visible): the top step ({top['asked_rps']:,} asked) was still fully answered.")
+    print(f"Course machine: {ref:,} req/s. Ratio: at least {ceiling / ref:.2f}x.")
+else:
+    print(f"\nYour ceiling: about {ceiling:,.0f} req/s ({os.cpu_count()} CPUs visible).")
+    print(f"Course machine: {ref:,} req/s. Ratio: {ceiling / ref:.2f}x.")
 print("Multiply the request rates in the videos by this ratio; compare shapes, not exact numbers.")
 (Path(sys.argv[1]) / "calibration.json").write_text(json.dumps({"ceiling_rps": round(ceiling), "reference_rps": ref,
-                                                                 "ratio": round(ceiling / ref, 2)}, indent=1))
+                                                                 "ratio": round(ceiling / ref, 2), "at_least": at_least}, indent=1))
 PY
