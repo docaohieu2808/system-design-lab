@@ -1,0 +1,207 @@
+{
+ "runs": 3,
+ "async": {
+  "succeeded_rps": {
+   "mean": 200,
+   "min": 200,
+   "max": 200
+  },
+  "p50_ms": {
+   "mean": 1.61,
+   "min": 1.57,
+   "max": 1.64
+  },
+  "p95_ms": {
+   "mean": 4.48,
+   "min": 4.12,
+   "max": 4.8
+  },
+  "p99_ms": {
+   "mean": 24.02,
+   "min": 15.51,
+   "max": 31.3
+  },
+  "avg_ms": {
+   "mean": 2.44,
+   "min": 2.16,
+   "max": 2.65
+  },
+  "max_ms": {
+   "mean": 67.99,
+   "min": 51.78,
+   "max": 84.12
+  },
+  "dropped": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "not_201": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "timeouts": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "app_cores": {
+   "mean": 0.18,
+   "min": 0.17,
+   "max": 0.18
+  },
+  "db_cores": {
+   "mean": 0.16,
+   "min": 0.15,
+   "max": 0.16
+  },
+  "db2_cores": {
+   "mean": 0.09,
+   "min": 0.09,
+   "max": 0.09
+  },
+  "background_busy_pct": {
+   "mean": 14.33,
+   "min": 13.0,
+   "max": 16.0
+  }
+ },
+ "sync": {
+  "succeeded_rps": {
+   "mean": 200,
+   "min": 200,
+   "max": 200
+  },
+  "p50_ms": {
+   "mean": 2.26,
+   "min": 2.25,
+   "max": 2.28
+  },
+  "p95_ms": {
+   "mean": 5.4,
+   "min": 5.11,
+   "max": 5.73
+  },
+  "p99_ms": {
+   "mean": 20.12,
+   "min": 19.54,
+   "max": 20.96
+  },
+  "avg_ms": {
+   "mean": 2.98,
+   "min": 2.95,
+   "max": 3.02
+  },
+  "max_ms": {
+   "mean": 49.94,
+   "min": 46.44,
+   "max": 52.08
+  },
+  "dropped": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "not_201": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "timeouts": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "app_cores": {
+   "mean": 0.17,
+   "min": 0.17,
+   "max": 0.17
+  },
+  "db_cores": {
+   "mean": 0.15,
+   "min": 0.15,
+   "max": 0.15
+  },
+  "db2_cores": {
+   "mean": 0.09,
+   "min": 0.09,
+   "max": 0.09
+  },
+  "background_busy_pct": {
+   "mean": 13.67,
+   "min": 10.0,
+   "max": 17.0
+  }
+ },
+ "stopped_single_run": {
+  "asked_rps": 200,
+  "duration_s": 20,
+  "succeeded": 0,
+  "succeeded_rps": 0,
+  "not_201": 0,
+  "timeouts": 4001,
+  "dropped": 0,
+  "max_vus": 1500,
+  "p50_ms": null,
+  "p95_ms": null,
+  "p99_ms": null,
+  "avg_ms": null,
+  "max_ms": null,
+  "after": {
+   "rows_on_primary_from_this_load": "178",
+   "backends_waiting_for_standby": "0",
+   "one_create_with_30s_timeout": "000 after 30.002420s"
+  }
+ },
+ "probe_single_runs": {
+  "async-100": {
+   "succeeded_rps": 100,
+   "dropped": 0,
+   "p50_ms": 1.93,
+   "p99_ms": 8.53
+  },
+  "async-200": {
+   "succeeded_rps": 200,
+   "dropped": 0,
+   "p50_ms": 1.48,
+   "p99_ms": 9.21
+  },
+  "async-400": {
+   "succeeded_rps": 400.1,
+   "dropped": 0,
+   "p50_ms": 1.43,
+   "p99_ms": 27.7
+  },
+  "async-800": {
+   "succeeded_rps": 800,
+   "dropped": 0,
+   "p50_ms": 1.66,
+   "p99_ms": 76.8
+  },
+  "sync-100": {
+   "succeeded_rps": 100,
+   "dropped": 0,
+   "p50_ms": 2.92,
+   "p99_ms": 18.11
+  },
+  "sync-200": {
+   "succeeded_rps": 200.1,
+   "dropped": 0,
+   "p50_ms": 2.27,
+   "p99_ms": 19.44
+  },
+  "sync-400": {
+   "succeeded_rps": 400.1,
+   "dropped": 0,
+   "p50_ms": 2.09,
+   "p99_ms": 30.82
+  },
+  "sync-800": {
+   "succeeded_rps": 800,
+   "dropped": 0,
+   "p50_ms": 10.45,
+   "p99_ms": 202.17
+  }
+ }
+}

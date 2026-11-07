@@ -1,0 +1,3 @@
+rows_on_primary_from_this_load: 178
+backends_waiting_for_standby: 0
+one_create_with_30s_timeout: 000 after 30.002420s

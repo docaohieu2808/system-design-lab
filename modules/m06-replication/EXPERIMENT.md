@@ -32,8 +32,33 @@ Postgres 18.6 primary + streaming replica (half a core each) on the same 4-vCPU 
 
 ## What it does not show
 - Data loss with async replication: on one machine the replica is milliseconds behind, so nothing confirmed was lost.
-- The write-time cost of synchronous replication: write latency was not recorded in this run.
+- The write-time cost of synchronous replication in the failover run above: write latency was not recorded there; it is measured separately below (added 07/11/2026).
 - Automatic failover tools, fencing the old primary, or replicas in another region.
+
+## Added 07/11/2026: what a create costs, asynchronous vs synchronous (`make m06-synccost`, `results-sync-cost/results.json`)
+**Question.** What does `synchronous_commit = remote_apply` with the standby named in `synchronous_standby_names = '*'` add to the time of a create, and what do
+creates do when that standby is stopped?
+**Method.** `tools/run-m06-synccost.sh` and `create-latency.js`: open model, `POST /api/links` at a fixed **200 creates/s** for 30 s after a 5 s warm-up at the same rate,
+fresh stack (primary + one streaming replica, half a core each, app half a core, Postgres 18.6, same host as above) and quiet gate 25/2 before every arm (background
+10-17% busy, steal 0), k6 niced. 3 runs, the two arms interleaved (order rotating). The synchronous settings are applied after the replica is attached, as in the failover run.
+200/s was picked from a one-run probe at 100 / 200 / 400 / 800 per second (`probe-*.json`): both arms answered every create at 200/s and 400/s, nothing dropped.
+
+| arm (3 runs, mean, min-max) | succeeded/s | p50 ms | p99 ms | average ms |
+|---|---|---|---|---|
+| asynchronous | 200 (200-200) | 1.61 (1.57-1.64) | 24.0 (15.5-31.3) | 2.44 (2.16-2.65) |
+| synchronous, remote_apply | 200 (200-200) | 2.26 (2.25-2.28) | 20.1 (19.5-21.0) | 2.98 (2.95-3.02) |
+
+Dropped arrivals 0, failed creates 0 in all six runs. The typical create takes about **0.65 ms longer (+40%)** with the synchronous standby; p99 does not separate (its spread in
+the asynchronous arm, 15.5-31.3 ms, covers the synchronous arm's). Primary 0.15-0.16 cores, replica 0.09, app 0.17-0.18 in both arms. Near the limit the price grows: one probe run at 800/s
+(single run per arm, not repeated) gave p50 1.7 vs 10.5 ms and p99 77 vs 202 ms, both answering all 800/s.
+
+**Standby stopped (`stopped-1.json`, ONE run, not repeated).** Synchronous settings on, the standby container stopped before the load, 200 creates/s for 20 s, client timeout 5 s:
+**0 of 4,001 creates succeeded**, all 4,001 timed out; one create with a 30 s timeout did not come back either. Right after the load the primary held 178 rows from this load
+that clients never got an answer for (the commit is local first, and the backend then waits for the standby; the client's timeout cancelled the wait): a timed-out create is
+not a failed create.
+
+**Limits.** Primary and replica share one host and one network namespace, so this is the cheapest the wait can be; a replica in another zone adds its round trip to every create.
+One create per transaction, no batching. One rate (200/s). The stopped-standby case is a single run.
 
 ---
 

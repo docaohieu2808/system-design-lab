@@ -1,0 +1,15 @@
+{
+ "asked_rps": 200,
+ "duration_s": 20,
+ "succeeded": 4001,
+ "succeeded_rps": 200.1,
+ "not_201": 0,
+ "timeouts": 0,
+ "dropped": 0,
+ "max_vus": 300,
+ "p50_ms": 2.27,
+ "p95_ms": 6.29,
+ "p99_ms": 19.44,
+ "avg_ms": 3.12,
+ "max_ms": 63.33
+}
