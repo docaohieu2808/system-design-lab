@@ -64,5 +64,5 @@ export function handleSummary(data) {
       max_ms: +v(`http_req_duration${s}`, 'max').toFixed(2),
     });
   }
-  return { [RESULT]: JSON.stringify({ hold_s: HOLD, steps }, null, 1), stdout: `steps written to ${RESULT}\n` };
+  return { [RESULT]: JSON.stringify({ hold_s: HOLD, vus_max: v('vus_max', 'max'), steps }, null, 1), stdout: `steps written to ${RESULT}\n` };
 }

@@ -1,0 +1,30 @@
+{
+ "hold_s": 20,
+ "vus_max": 1072,
+ "steps": [
+  {
+   "asked_rps": 1000,
+   "sent_rps": 1000,
+   "dropped": 0,
+   "completed_rps": 1000,
+   "succeeded_rps": 1000,
+   "p50_ms": 0.59,
+   "p95_ms": 3.38,
+   "p99_ms": 20.15,
+   "avg_ms": 1.32,
+   "max_ms": 49.53
+  },
+  {
+   "asked_rps": 2500,
+   "sent_rps": 2415.6,
+   "dropped": 1689,
+   "completed_rps": 2415.6,
+   "succeeded_rps": 2415.6,
+   "p50_ms": 30.39,
+   "p95_ms": 209.37,
+   "p99_ms": 360.63,
+   "avg_ms": 57.03,
+   "max_ms": 512.43
+  }
+ ]
+}

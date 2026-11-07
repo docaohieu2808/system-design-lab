@@ -1,0 +1,155 @@
+{
+ "runs": 3,
+ "asked": {
+  "1250": {
+   "succeeded_rps": {
+    "mean": 1250.03,
+    "min": 1250,
+    "max": 1250.1
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.55,
+    "min": 0.55,
+    "max": 0.56
+   },
+   "p95_ms": {
+    "mean": 8.17,
+    "min": 6.29,
+    "max": 9.64
+   },
+   "p99_ms": {
+    "mean": 35.9,
+    "min": 31.73,
+    "max": 39.2
+   },
+   "k6_cores_last_20s": {
+    "mean": 0.49,
+    "min": 0.48,
+    "max": 0.49
+   },
+   "app_cores_last_20s": {
+    "mean": 0.35,
+    "min": 0.35,
+    "max": 0.35
+   },
+   "background_busy_pct": {
+    "mean": 11.33,
+    "min": 8.0,
+    "max": 16.0
+   }
+  },
+  "1375": {
+   "succeeded_rps": {
+    "mean": 1375.03,
+    "min": 1375,
+    "max": 1375.1
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.57,
+    "min": 0.56,
+    "max": 0.58
+   },
+   "p95_ms": {
+    "mean": 15.84,
+    "min": 13.72,
+    "max": 19.08
+   },
+   "p99_ms": {
+    "mean": 55.74,
+    "min": 41.26,
+    "max": 80.63
+   },
+   "k6_cores_last_20s": {
+    "mean": 0.52,
+    "min": 0.51,
+    "max": 0.54
+   },
+   "app_cores_last_20s": {
+    "mean": 0.38,
+    "min": 0.37,
+    "max": 0.39
+   },
+   "background_busy_pct": {
+    "mean": 9.67,
+    "min": 8.0,
+    "max": 12.0
+   }
+  },
+  "1500": {
+   "succeeded_rps": {
+    "mean": 1500,
+    "min": 1500,
+    "max": 1500
+   },
+   "dropped": {
+    "mean": 0,
+    "min": 0,
+    "max": 0
+   },
+   "p50_ms": {
+    "mean": 0.56,
+    "min": 0.54,
+    "max": 0.59
+   },
+   "p95_ms": {
+    "mean": 20.96,
+    "min": 18.43,
+    "max": 23.11
+   },
+   "p99_ms": {
+    "mean": 60.0,
+    "min": 48.05,
+    "max": 81.74
+   },
+   "k6_cores_last_20s": {
+    "mean": 0.55,
+    "min": 0.55,
+    "max": 0.57
+   },
+   "app_cores_last_20s": {
+    "mean": 0.41,
+    "min": 0.4,
+    "max": 0.42
+   },
+   "background_busy_pct": {
+    "mean": 13.67,
+    "min": 11.0,
+    "max": 17.0
+   }
+  }
+ },
+ "warmup_step_all_ladders": {
+  "succeeded_rps": {
+   "mean": 1000,
+   "min": 1000,
+   "max": 1000
+  },
+  "dropped": {
+   "mean": 0,
+   "min": 0,
+   "max": 0
+  },
+  "p50_ms": {
+   "mean": 0.54,
+   "min": 0.51,
+   "max": 0.57
+  },
+  "p99_ms": {
+   "mean": 25.69,
+   "min": 18.25,
+   "max": 30.36
+  },
+  "asked_rps": 1000,
+  "ladders": 9
+ }
+}
